@@ -1,0 +1,17 @@
+# Random stuffs
+*.swp
+*.un~
+*.bk
+*.log
+*.netrwhist
+
+# vim sync folder
+plugged
+.cache
+
+# vim-plug autoload-file
+**/autoload/plug.vim
+
+# Test stuffs
+[Tt]est
+

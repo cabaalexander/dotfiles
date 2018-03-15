@@ -1,0 +1,227 @@
+gcb(){
+  # Current git branch
+  echo $(git symbolic-ref --short -q HEAD)
+}
+
+gmtm(){
+  # Merges current branch on master
+  currentBranch=$(gcb)
+
+  git checkout master
+  git fetch && git pull --rebase origin master
+
+  git merge --ff-only ${currentBranch}
+  git branch -D ${currentBranch}
+}
+
+gprune(){
+  # Deletes the git branches that are not on github
+  git fetch --prune
+
+  remoteBranches=$(git branch -r | sed 's:[ ]\+origin/::')
+  localBranches=$(git branch | sed 's:[ *]\+::')
+
+  for branch in ${localBranches}
+  do
+    isOnRemote=$(echo ${remoteBranches} | grep "${branch}")
+    if [ -z "${isOnRemote}" ]
+    then
+      git branch -D ${branch}
+    fi
+  done
+}
+
+grsh(){
+  # Reset hard a range of commits from git
+  if [ -z "$1" ]; then
+    echo "How many resets?"
+    return 1
+  fi
+  git reset --hard HEAD~${1}
+}
+
+grss(){
+  # Reset soft a range of commits from git
+  if [ -z "$1" ]; then
+    echo "How many resets?"
+    return 1
+  fi
+  git reset --soft HEAD~${1}
+}
+
+gsq(){
+  # Squash a range of commits
+  if [ -z "$1" ]; then
+    echo "How many commits do you wanna squash?"
+    return 1
+  fi
+  git rebase -i HEAD~${1}
+}
+
+gpf(){
+  # Git pulls "hard" from a repo
+  read -p "Are you sure that you want to pull hard ? Really, reaaally hard ? [y, n]: " isHard
+  if [ "$isHard" == "y" ]
+  then
+    currentBranch=$(gcb)
+    git fetch -v origin ${currentBranch}
+    git reset --hard origin/${currentBranch}
+  fi
+}
+
+gps(){
+  # Alias to push. Validated and stuffs
+  currentBranch=$(gcb)
+
+  if [ "${currentBranch}" == "master" ]
+  then
+    echo "¯\_(ツ)_/¯"
+    return 1
+  fi
+
+  git push origin ${currentBranch} ${@}
+}
+
+ginfo(){
+  # Displays current github user, password and ssh key
+  clear
+  git config --global user.name
+  git config --global user.email
+  echo
+
+  if [ -f ~/.ssh/id_rsa.pub ]; then
+    cat ~/.ssh/id_rsa.pub | grep -e "\w*@\w*\.com.*"
+    ls -l ~/.ssh/
+  else
+    echo ':: NO SSH AVAILABLE ::'
+  fi
+}
+
+checkifmaster(){
+  # If you are on master branch returns true otherwise false
+  if [ ! -d "$(pwd)/.git" ]; then
+    echo '[Error] No git repository on this path'
+    return 1
+  fi
+
+  local __currentBranch=$(gcb)
+  local __isMaster=$([[ ${__currentBranch} == "master" ]] && echo "true" || echo "false")
+
+  local __returnVal=$1
+  if [[ "$__returnVal" ]]; then
+    eval $__returnVal="'$__isMaster'"
+  else
+    echo "$__isMaster"
+  fi
+}
+
+lstree(){
+  # Displays files in a tree view
+  LEVEL=${1}
+  IGNORE="node_modules|build"
+  clear
+  tree -I ${IGNORE} -CL $((${LEVEL} + 1))
+}
+
+dodir(){
+  # Creates the directory and cd to it right away
+	mkdir -p -- "$1"
+	cd -P -- "$1"
+  clear
+}
+
+filetypeb(){
+  # To change the End lines of a file
+  local INPUT_FILE=$1
+
+  tr -d '\r' < ${INPUT_FILE} > tmp
+  mv -f tmp ${INPUT_FILE}
+}
+
+
+getresponsecode(){
+  # Given a url prints if it was 'OK' or not
+  responseCode=$(curl -s -o /dev/null -I -L -w "%{http_code}" "$1")
+  echo -e "$responseCode"
+}
+
+lsport(){
+  # Prints the port of the process running right now
+  if [ -n "$1" ]; then
+    clear
+    netstat -plen | grep $1
+  else
+    clear
+    netstat -plten
+  fi
+}
+
+killport(){
+  # Given a port kills its process
+  fuser -k $1/tcp
+}
+
+nvmc() {
+  # Install a version of node using nvm
+  if [ -z "$1" ]; then
+    echo -e "Options:\n\tnvmc\t[Version]\tE.g. => 6"
+    return 1
+  else
+    version="${1}"
+    versionToFind=$(echo "v$version")
+    versionFound=$(nvm list | grep $versionToFind)
+
+    [[ ! ${versionFound} ]] && nvm install ${version}
+    nvm use ${version}
+  fi
+}
+
+isglobalflagfirstorlast(){
+  # Checks if the global flag is the first or last parameter
+  first=${1}
+  last=${!#}
+
+  if [ "${first}" == "-g" ]
+  then
+    echo "first"
+  elif [ "${last}" == "-g" ]
+  then
+    echo "last"
+  fi
+}
+
+inpm(){
+  # Installs node.js packages and saves them automatically on its package.json
+  firstOrLast=$(isglobalflagfirstorlast ${@})
+  flag=$([[ -n "${firstOrLast}" ]] && echo '-g')
+
+  if [ "${firstOrLast}" == "first" ]
+  then
+    remainingArgs=${@: 2} # all but first
+  elif [ "${firstOrLast}" == "last" ]
+  then
+    remainingArgs=${@: 1: ($#-1)} # all but last
+  else
+    remainingArgs=${@}
+  fi
+
+	if [ -z "$1" ]; then
+		npm i && npm i
+    return 0
+	fi
+
+  npm i ${remainingArgs} ${flag}
+  return 0
+}
+
+ee(){
+  # Opens vin in current directory (And 'Session.vim' if exists)
+  FILE=$1
+  if [ -f ./Session.vim ] && [ -z "${FILE}" ]
+  then
+    nvim -S
+  else
+    nvim "${@}"
+  fi
+}
+

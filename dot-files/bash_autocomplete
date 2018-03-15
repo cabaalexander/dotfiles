@@ -1,0 +1,4 @@
+. ~/bin/extractcaseoption.sh
+
+complete -W "$(extractCaseOption ~/bin/utils.sh)" utils.sh
+
