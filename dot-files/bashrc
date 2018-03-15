@@ -1,0 +1,36 @@
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+sourceIfExists(){
+  local TARGET=$1
+  [ -f ${TARGET} ] && source ${TARGET}
+}
+
+# Import configurations
+sourceIfExists ~/.bash_defaults
+sourceIfExists ~/.bash_aliases
+sourceIfExists ~/.bash_aliases_cn
+sourceIfExists ~/.bash_utils
+sourceIfExists ~/.bash_autocomplete
+
+# colors!
+green="\e[32m"
+blue="\[\033[1;34m\]"
+purple="\[\033[1;35m\]"
+reset="\[\033[0m\]"
+
+# emojis
+emojis=(🐱  🐭  🐮  🐵  )
+emoji='`echo ${emojis[$RANDOM % 4]}`'
+
+ # Change command prompt
+[ -f ~/.git-prompt.sh ] && source ~/.git-prompt.sh
+export GIT_PS1_SHOWSTASHSTATE=1
+export GIT_PS1_SHOWUNTRACKEDFILES=1
+export GIT_PS1_SHOWUPSTREAM="auto verbose"
+export GIT_PS1_STATESEPARATOR=" "
+export GIT_PS1_DESCRIBE_STYLE="branch"
+export GIT_PS1_SHOWCOLORHINTS=1
+
+PS1="${blue}\W$green\$(__git_ps1) $reset${emoji} "
+
