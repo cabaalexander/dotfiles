@@ -1,0 +1,99 @@
+# Git Aliases
+alias gb='git branch'
+alias gs='clear && git status'
+alias ga='git add'
+alias gall='git add -A && git status'
+alias gl='git log'
+alias gk='gitk'
+alias gf='git fetch -v'
+alias ggo='git checkout'
+alias gd='clear && git diff'
+alias gp='git fetch && git pull'
+alias gpr='git fetch && git pull --rebase origin master'
+alias gprup='git pull --rebase upstream master'
+alias gdt='git difftool'
+alias gdm='git diff remotes/origin/master..'
+alias gmt='git mergetool'
+alias grl='git reflog'
+alias gst='git stash'
+alias gcm='git commit'
+alias grs='git reset'
+alias gcl='git clone'
+alias grb='git rebase'
+alias grf='git show-ref'
+alias gma='git merge --abort'
+alias grbm='git rebase master'
+alias grbc='git rebase --continue'
+alias grba='git rebase --abort'
+alias gcma='git commit --amend'
+alias gcman='git commit --amend --no-edit --no-verify'
+alias gdms='git diff --stat --color master..'
+alias gclean='git clean -df'
+alias lsgst='git stash list'
+alias uptrefs='git fetch origin --prune'
+alias gr='git remote'
+alias gpsm='git push origin master'
+
+# Edit
+alias editbutils="nvim ${HOME}/.bash_utils"
+alias editvimconfig='nvim ${HOME}/.config/nvim/init.vim'
+alias editbaliases='nvim ${HOME}/.bash_aliases'
+alias editbash='nvim ${HOME}/.bashrc'
+
+# Other Aliases
+alias xx='exit'
+alias bgdisown='bg && disown'
+alias poweroff='shutdown -P now'
+alias lsgem='gem list'
+alias rst='reset'
+alias susu='sudo su'
+alias nvmv='nvm current'
+alias nvmd='nvm alias default '
+alias srbash='source ${HOME}/.bashrc'
+alias gdl='git log -p -1'
+alias gfup='git fetch upstream'
+alias del='rm -rf'
+alias lsnvm='nvm list'
+
+# npm
+alias npmprune='npm prune && npm i && npm i'
+alias rstnpm='clear && rm -rf ./node_modules && npm i && npm i'
+alias lsnpm='npm ls --depth 0'
+alias rnpm='npm remove'
+
+# yarn
+alias lsyarn='yarn list --depth=0'
+
+# cds
+alias ..='cd ..'
+alias cdssh='cd ${HOME}/.ssh && ls'
+alias cdvagrant='cd /vagrant/'
+alias cdprojects='cd /projects/'
+
+# Docker
+alias dki='docker images'
+alias dkps='docker ps'
+alias dk='dk'
+alias dkinfo='dki && echo -e "\n\n#######################\n\n" && dkps -a'
+
+# Elm
+alias celm="./node_modules/.bin/elm"
+alias celm-make="./node_modules/.bin/elm-make"
+alias celm-package="./node_modules/.bin/elm-package"
+alias celm-reactor="./node_modules/.bin/elm-reactor"
+alias celm-repl="./node_modules/.bin/elm-repl"
+
+# HAM
+alias conto='gall && gcman && gps -f --no-verify'
+
+# Tmux
+alias tm='tmux'
+alias tma='tmux attach'
+alias lstmux='tmux ls'
+
+# ls aliases
+alias l='ls -CF'
+alias la='ls -A'
+alias ll='ls -lF'
+alias lla='ls -lFa'
+

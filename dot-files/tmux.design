@@ -1,0 +1,66 @@
+# Theme
+## Status
+DARK_RED="#cc575d"
+KINDA_WHITE="#fffffe"
+DARK_GRAY="#343843"
+DARK_BLUE="#5294e2"
+DARK_WHITE="#dfdfdf"
+
+# Default status line style
+set -g status-justify left
+set -g status-fg ${KINDA_WHITE}
+set -g status-bg ${DARK_GRAY}
+
+## Left Status
+set -g status-left "#[fg=default bg=red] #S "
+set -g status-left-length 50
+
+## Right Status
+DATE="#[fg=default bg=${DARK_RED} bold] %d/%m"
+HOUR="#[fg=default bg=${DARK_BLUE} bold] %l:%M:%S %p "
+set -g status-right "${DATE} ${HOUR}"
+set -g status-right-length 50
+
+# Panes
+## Active Pane
+set -g pane-active-border-fg ${DARK_RED}
+set -g pane-active-border-bg default
+
+## Inactive Pane
+set -g pane-border-fg ${DARK_BLUE}
+set -g pane-border-bg default
+
+## Window
+set -g window-status-separator '' # Remove space between windows in status bar
+setw -g window-status-bell-style "fg=#111111 bg=#cc575d bold" # ¯\_(ツ)_/¯
+setw -g window-status-activity-style "fg=#111111 bg=#cc575d bold" # ¯\_(ツ)_/¯
+
+# Inactive Window
+WINDOW_INACTIVE_STYLE="#[fg=${KINDA_WHITE} bg=${DARK_GRAY}]#{?window_activity_flag,#[fg=${KINDA_WHITE} bg=${DARK_RED}],}"
+WINDOW_CLEAR_STYLE="#{?window_bell_flag,,}#{?window_content_flag,,}#{?window_silence_flag,,}#{?window_last_flag,,}"
+setw -g window-status-format "${WINDOW_INACTIVE_STYLE} #I #W ${WINDOW_CLEAR_STYLE}"
+
+# Active Window
+WINDOW_ACTIVE_STYLE="#[fg=default bg=${DARK_BLUE} bold]"
+setw -g window-status-current-format "${WINDOW_ACTIVE_STYLE} #I #W "
+
+## Messaging
+set -g message-fg default
+set -g message-bg ${DARK_BLUE}
+set -g message-attr bold
+
+# Clock color
+setw -g clock-mode-colour ${DARK_WHITE}
+
+# ¯\_(ツ)_/¯
+set -g message-command-fg blue
+set -g message-command-bg black
+
+# Window mode
+setw -g mode-fg white
+setw -g mode-bg ${DARK_RED}
+
+# ¯\_(ツ)_/¯
+setw -g window-status-bell-fg colour255
+setw -g window-status-bell-bg colour1
+
