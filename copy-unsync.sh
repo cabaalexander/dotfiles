@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TARGET_DIR="./cp"
+TARGET_DIR="./unsync-files"
 CP_FILES=$(ls ${TARGET_DIR})
 
 # These files will be unsync

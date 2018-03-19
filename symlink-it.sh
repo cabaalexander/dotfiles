@@ -21,5 +21,5 @@ lnDir bin/ ${HOME}/
 ln -sfv ${CONFIG_PATH}/nvim/plugins/settings.vim ${HOME}/.vimrc
 
 # Copy the unsync dot-files
-bash ./cp.sh
+bash ./copy-unsync.sh
 

@@ -4,7 +4,7 @@
 . ./bin/utils.sh
 
 lnDotFiles(){
-  SOURCE_DIR=$(normalizePath ${1}) || die "[lnDotFiles] Give me a valud source dir (Where dot files are)"
+  SOURCE_DIR=$(normalizePath ${1}) || die "[lnDotFiles] Give me a valid source dir (Where dot files are)"
   TARGET_DIR=$(normalizePath ${2})
 
   FILE_NAMES=$(ls ${SOURCE_DIR})
