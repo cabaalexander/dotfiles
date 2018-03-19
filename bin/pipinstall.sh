@@ -7,7 +7,7 @@ pipInstall(){
   [ -n "$1" ] \
     && MODULE=$1 \
     || die "What module do you want to install?"
-  echo "[Installing Python] ${MODULE}"
+  echo "[Installing PIP] ${MODULE}"
   pip3 install ${MODULE} &> /dev/null
 }
 
