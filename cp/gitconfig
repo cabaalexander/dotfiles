@@ -7,7 +7,7 @@
   unstage = reset HEAD --
   lol = log --graph --pretty=oneline --abbrev-commit --decorate --all
   co = checkout
-  conG = config --global
+  cong = config --global
   props = config --get-regexp
   del = branch -D
   tagcommit = rev-list -n 1
