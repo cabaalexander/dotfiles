@@ -20,3 +20,7 @@ lnDir bin/ ${HOME}/
 # This needs to be at the bottom becase is a symlink of a symlink ¯\_(ツ)_/¯
 ln -sfv ${CONFIG_PATH}/nvim/plugins/settings.vim ${HOME}/.vimrc
 
+# Add global gitignore to the gitconfig
+# `${HOME}` will be expanded correctly for every OS
+git config --global core.excludesfile ${HOME}/.gitignore_global
+

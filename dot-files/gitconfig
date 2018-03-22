@@ -3,16 +3,12 @@
   name = cabaalexander
 [core]
   editor = nvim
-	excludesfile = /Users/nica/.gitignore_global
 [alias]
   unstage = reset HEAD --
   lol = log --graph --pretty=oneline --abbrev-commit --decorate --all
   co = checkout
-  br = branch
   conG = config --global
-  ps = push
   props = config --get-regexp
-  unsetalias = config --global --unset
   del = branch -D
   tagcommit = rev-list -n 1
 [merge]
