@@ -1,0 +1,11 @@
+#!/bin/bash
+
+functionName(){
+}
+
+# If this file is running in terminal call the function `functionName`
+if [ "$(basename ${0})" = "scriptname.sh" ]
+then
+  functionName "${@}"
+fi
+
