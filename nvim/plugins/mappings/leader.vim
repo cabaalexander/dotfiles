@@ -1,5 +1,8 @@
 " ==================== Normal Mode
 
+" ~/bin/function Snippet
+nnoremap <leader>binf :-1read ${HOME}/.config/nvim/snippets/bin-function<CR>2j
+
 " Move to next/previous buffer
 nnoremap <leader>bn :bn<CR>
 nnoremap <leader>bp :bp<CR>
