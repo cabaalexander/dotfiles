@@ -19,7 +19,7 @@ gprune(){
   git fetch --prune
 
   remoteBranches=$(git branch -r | sed 's:[ ]\+origin/::')
-  localBranches=$(git branch | sed 's:[ *]\+::')
+  localBranches=$(git branch | sed 's:[ *]::')
 
   for branch in ${localBranches}
   do
