@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ./bin/normalizePath.sh
+. ./bin/normalizepath.sh
 . ./bin/utils.sh
 
 lnDir(){
