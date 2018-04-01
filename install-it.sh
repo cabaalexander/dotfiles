@@ -125,5 +125,8 @@ tmux new-session -d
 # killing the server is not required, I guess
 tmux kill-server
 
+# This removes the ruby import on the ~/.bashrc because it is already on ~/.profile
+git checkout .
+
 echo "Ready to use :D Reload the terminal to continue"
 
