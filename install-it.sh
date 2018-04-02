@@ -6,10 +6,16 @@
 . ./bin/updateapt.sh
 . ./bin/geminstall.sh
 . ./bin/pipinstall.sh
+. ./bin/addppa.sh
 
 COMMON="tree git tmux"
+
 LINUX="build-essential python3 python3-pip software-properties-common"
-MAC="neovim"
+PPA="neovim-ppa/unstable ultradvorka/ppa"
+AFTER_PPA="neovim hh"
+
+MAC="neovim hh"
+
 OS="$(getOS)"
 
 installNVM(){
@@ -39,13 +45,15 @@ installRVM(){
   source ${HOME}/.rvm/scripts/rvm
 }
 
-iterateOverApps(){
-  local APPS=$@
-  for APP in ${APPS}
+iterateOver(){
+  LIST=$1
+  CALLBACK=$2
+  for ITEM in ${LIST}
   do
-    appInstall ${APP}
+    ${CALLBACK} ${ITEM}
   done
 }
+
 
 if [ "${OS}" == "linux" ]
 then
@@ -63,27 +71,24 @@ echo "[Symlin-ing] dot-files"
 ./symlink-it.sh &> /dev/null
 
 
-iterateOverApps ${COMMON}
+iterateOver "${COMMON}" appInstall
 
 case "${OS}" in
   linux)
-    iterateOverApps ${LINUX}
+    iterateOver "${LINUX}" appInstall
 
-    # Add NVIM `ppa` repository
-    sudo add-apt-repository -y ppa:neovim-ppa/unstable
+    iterateOver "${PPA}" addPPA
 
     updateAPT
 
-    # NVIM Needs to be installed after the `ppa` repo
-    # is added to the registry ¯\_(ツ)_/¯
-    appInstall neovim
+    iterateOver "${AFTER_PPA}" appInstall
 
-    # After system apps are installed
+    # Special installs
     installNVM
     installRVM
     ;;
   mac)
-    iterateOverApps ${MAC}
+    iterateOver "${MAC}" appInstall
     ;;
   *)
     die "Operative System not supported ¯\_(ツ)_/¯"
@@ -94,7 +99,7 @@ TMUX_PATH=${HOME}/.tmux/plugins/tpm
 if [ ! -f ${TMUX_PATH} ]
 then
   echo "[Cloning] TPM"
-  git clone https://github.com/tmux-plugins/tpm ${TMUX_PATH}
+  git clone https://github.com/tmux-plugins/tpm ${TMUX_PATH} &> /dev/null
 else
   echo "[TPM already cloned]"
 fi
