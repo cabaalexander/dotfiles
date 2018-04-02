@@ -1,11 +1,15 @@
 " ==================== Normal Mode
 
 " ~/bin/function Snippet
-nnoremap <leader>binf :-1read ${HOME}/.config/nvim/snippets/bin-function<CR>2j
+nnoremap <leader>binf :-1read ${HOME}/.config/nvim/snippets/bin-function.sh<CR>2j
 
 " Move to next/previous buffer
-nnoremap <leader>bn :bn<CR>
-nnoremap <leader>bp :bp<CR>
+nnoremap <leader>nb :bn<CR>
+nnoremap <leader>pb :bp<CR>
+
+" Ale: Move to the next/previous error
+nmap <silent> <leader>pe <Plug>(ale_previous_wrap)
+nmap <silent> <leader>ne <Plug>(ale_next_wrap)
 
 " TODO should be moved to a autocmd file for .js files
 " Adds JS Function Documentation

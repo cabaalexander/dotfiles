@@ -1,6 +1,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Use VI mode in bash
+set -o vi
+
 sourceIfExists(){
   local TARGET=$1
   [ -f ${TARGET} ] && source ${TARGET}
