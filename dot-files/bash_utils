@@ -225,3 +225,15 @@ ee(){
   fi
 }
 
+gpr(){
+  # Git rebases from origin [master]
+  BRANCH_NAME=$1
+  git pull --rebase origin ${BRANCH_NAME:-"master"}
+}
+
+gprup(){
+  # Git rebases from upstream [master]
+  BRANCH_NAME=$1
+  git pull --rebase upstream ${BRANCH_NAME:-"master"}
+}
+
