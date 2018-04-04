@@ -22,6 +22,9 @@ PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 # Add RVM to PATH for scripting.
 PATH="$PATH:$HOME/.rvm/bin"
 
+# Add path for Yarn
+PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
 # Add yarn binary files
 PATH="$PATH:$HOME/.yarn/bin"
 

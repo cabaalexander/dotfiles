@@ -73,6 +73,10 @@ echo "[Symlin-ing] dot-files"
 
 iterateOver "${COMMON}" appInstall
 
+# Install Yarn
+echo "[Installing] Yarn"
+curl -o- -L https://yarnpkg.com/install.sh | bash &> /dev/null
+
 case "${OS}" in
   linux)
     iterateOver "${LINUX}" appInstall
