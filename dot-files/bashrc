@@ -6,16 +6,21 @@ set -o vi
 
 sourceIfExists(){
   local ALL=$@
+  local IGNORED_FILES=".bash_profile .bash_history"
   for TARGET in ${ALL}
   do
-    [ -f ${TARGET} ] && source ${TARGET}
+    TARGET_BASENAME=$(basename ${TARGET})
+    IS_IGNORED=$(echo ${IGNORED_FILES} | grep ${TARGET_BASENAME})
+    if [ -z "${IS_IGNORED}" ]
+    then
+      [ -f ${TARGET} ] && source ${TARGET}
+    fi
   done
 }
 
 # Import configurations
-sourceIfExists ~/.bash_[^hp]*
-sourceIfExists ~/.git-prompt.sh
-sourceIfExists ~/.git-completion.bash
+sourceIfExists ~/.bash_*
+sourceIfExists ~/.git-*
 
 # colors!
 green="\e[32m"
