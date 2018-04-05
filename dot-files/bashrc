@@ -5,16 +5,15 @@
 set -o vi
 
 sourceIfExists(){
-  local TARGET=$1
-  [ -f ${TARGET} ] && source ${TARGET}
+  local ALL=$@
+  for TARGET in ${ALL}
+  do
+    [ -f ${TARGET} ] && source ${TARGET}
+  done
 }
 
 # Import configurations
-sourceIfExists ~/.bash_defaults
-sourceIfExists ~/.bash_aliases
-sourceIfExists ~/.bash_aliases_cn
-sourceIfExists ~/.bash_utils
-sourceIfExists ~/.bash_autocomplete
+sourceIfExists ~/.bash_[^hp]*
 sourceIfExists ~/.git-prompt.sh
 sourceIfExists ~/.git-completion.bash
 
