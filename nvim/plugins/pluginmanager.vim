@@ -22,7 +22,7 @@ call plug#begin('~/.config/nvim/plugged')
   " Autocompletion
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'fszymanski/deoplete-emoji'
-  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+  Plug 'carlitux/deoplete-ternjs', { 'do': 'yarn global add tern' }
   " UI
   Plug 'airblade/vim-gitgutter'
   Plug 'vim-airline/vim-airline'

@@ -75,7 +75,9 @@ iterateOver "${COMMON}" appInstall
 
 # Install Yarn
 echo "[Installing] Yarn"
-curl -o- -L https://yarnpkg.com/install.sh | bash &> /dev/null
+(
+curl -o- -L https://yarnpkg.com/install.sh | bash
+) &> /dev/null
 
 case "${OS}" in
   linux)
@@ -115,6 +117,9 @@ gemInstall neovim
 
 # pip Install
 pipInstall neovim
+
+# Prepare yare for VIM plugins
+source ${HOME}/.profile
 
 # Install NVIM Plugins
 echo "[Installing] NVIM Plugins"
