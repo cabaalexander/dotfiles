@@ -45,13 +45,15 @@ NVIM Plugins
 ### File Structure
 
     .
-    ├── bin                               # Scripts available always in the terminal
+    ├── bin              # Scripts available always in the terminal
+    ├── config
     ├── dot-files
-    ├── nvim                              # NeoVim
+    ├── img
+    ├── nvim             # NeoVim
     │   ├── autoload
-    │   ├── plugins                       # All the settings for neovim are here
+    │   ├── plugins      # All the settings for neovim are here
     │   └── snippets
-    └── unsync-files                      # Files in here will not be tracked via symlink
+    └── unsync-files     # Files in here will not be tracked via symlink
 
 Note: All the files are spread in the system via [symlink(3)](https://linux.die.net/man/3/symlink) to keep them in sync within the repo
 

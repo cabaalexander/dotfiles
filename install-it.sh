@@ -7,6 +7,7 @@
 . ./bin/geminstall.sh
 . ./bin/pipinstall.sh
 . ./bin/addppa.sh
+. ./config/constants.sh
 
 COMMON="tree git tmux"
 
@@ -20,27 +21,27 @@ OS="$(getOS)"
 
 installNVM(){
   # Node
-  echo "[Installing] NVM"
+  echo "[Installing] NVM ${NVM}"
   (
-  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.1/install.sh | bash
+  curl -o- https://raw.githubusercontent.com/creationix/nvm/${NVM}/install.sh | bash
   ) &> /dev/null
 
   # Refresh $PATH env variable
   source ${HOME}/.profile
 
-  # Install node v9.5.0
-  echo "[Installing] node v9.5.0"
+  # Install node
+  echo "[Installing] node ${NODE}"
   (
-  nvm i 9.5
+  nvm i ${NODE}
   ) &> /dev/null
 }
 
 installRVM(){
   # Ruby
-  echo "[Installing] Ruby"
+  echo "[Installing] Ruby ${RUBY}"
   (
   gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-  \curl -sSL https://get.rvm.io | bash -s stable --ruby=2.2
+  \curl -sSL https://get.rvm.io | bash -s stable --ruby=${RUBY}
   ) &> /dev/null
   source ${HOME}/.rvm/scripts/rvm
 }
