@@ -25,9 +25,6 @@ PATH="$PATH:$HOME/.rvm/bin"
 # Add path for Yarn
 PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-# Add yarn binary files
-PATH="$PATH:$HOME/.yarn/bin"
-
 # This loads nvm
 [[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"
 
