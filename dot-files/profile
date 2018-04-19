@@ -25,6 +25,9 @@ PATH="$PATH:$HOME/.rvm/bin"
 # Add path for Yarn
 PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
+# Add python pip installed bin by using --user flag
+PATH="$HOME/Library/Python/3.6/bin:$PATH"
+
 # This loads nvm
 [[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"
 
