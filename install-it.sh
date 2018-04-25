@@ -9,7 +9,7 @@
 . ./bin/addppa.sh
 . ./config/constants.sh
 
-COMMON="tree git tmux"
+COMMON="tree git tmux curl"
 
 LINUX="build-essential python3 python3-pip software-properties-common"
 PPA="neovim-ppa/unstable ultradvorka/ppa"
