@@ -11,8 +11,19 @@
 
 COMMON="tree git tmux curl"
 
-LINUX="build-essential python3 python3-pip software-properties-common"
-PPA="neovim-ppa/unstable ultradvorka/ppa"
+LINUX="\
+  build-essential \
+  python3 \
+  python3-pip \
+  software-properties-common \
+  haskell-platform \
+"
+
+PPA="\
+  neovim-ppa/unstable \
+  ultradvorka/ppa \
+"
+
 AFTER_PPA="neovim hh"
 
 MAC="neovim hh"
