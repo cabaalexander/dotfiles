@@ -12,11 +12,9 @@ augroup vimrcEx
     \   execute "normal! g`\"" |
     \ endif
 
-  " When VIM enter
   autocmd VimEnter *
     \ :call utils#obsessed()
 
-  " When you don't press a key for a while
-  autocmd CursorHold *
-    \ echo ''
+  autocmd BufEnter bash_*
+    \ set syntax=sh
 augroup END
