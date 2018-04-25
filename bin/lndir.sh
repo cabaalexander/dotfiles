@@ -1,7 +1,7 @@
 #!/bin/bash
 
-. ./bin/normalizepath.sh
-. ./bin/utils.sh
+. ~/bin/normalizepath.sh
+. ~/bin/utils.sh
 
 lnDir(){
   SOURCE=$(normalizePath ${1}) || die "[lnDir] Give me a valid source dir to make a symlink"

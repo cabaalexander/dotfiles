@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ./bin/utils.sh
+. ~/bin/utils.sh
 
 pipInstall(){
   # Install modules for python
