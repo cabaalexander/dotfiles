@@ -1,7 +1,7 @@
 #!/bin/bash
 
-. ./bin/normalizepath.sh
-. ./bin/utils.sh
+. ~/bin/normalizepath.sh
+. ~/bin/utils.sh
 
 lnDotFiles(){
   SOURCE_DIR=$(normalizePath ${1}) || die "[lnDotFiles] Give me a valid source dir (Where dot files are)"

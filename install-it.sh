@@ -1,12 +1,21 @@
 #!/bin/bash
 
-. ./bin/appinstall.sh
-. ./bin/getos.sh
-. ./bin/utils.sh
-. ./bin/updateapt.sh
-. ./bin/geminstall.sh
-. ./bin/pipinstall.sh
-. ./bin/addppa.sh
+# This needs to be the first thing that runs 'cause
+# all the bin and configuration files are available on the system
+echo "[Symlin-ing] dot-files"
+./symlink-it.sh &> /dev/null
+
+
+# Binaries
+. ~/bin/appinstall.sh
+. ~/bin/getos.sh
+. ~/bin/utils.sh
+. ~/bin/updateapt.sh
+. ~/bin/geminstall.sh
+. ~/bin/pipinstall.sh
+. ~/bin/addppa.sh
+
+# Configs
 . ./config/constants.sh
 
 COMMON="tree git tmux curl"
@@ -78,10 +87,6 @@ then
 fi
 
 # Begin install process
-
-echo "[Symlin-ing] dot-files"
-./symlink-it.sh &> /dev/null
-
 
 iterateOver "${COMMON}" appInstall
 

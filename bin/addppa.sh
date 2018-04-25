@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ./bin/utils.sh
+. ~/bin/utils.sh
 
 addPPA(){
   [ -n "$1" ] \

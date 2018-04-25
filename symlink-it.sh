@@ -1,9 +1,8 @@
 #!/bin/bash
 
-echo "[Linking]"
+. ./config/symlink-specific.sh
 
-. ./bin/lndotfiles.sh
-. ./bin/lndir.sh
+echo "[Linking]"
 
 # If no '~/.config' directory create it (Just in this case)
 CONFIG_PATH=${HOME}/.config
