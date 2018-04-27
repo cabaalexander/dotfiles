@@ -25,6 +25,7 @@ echo "[Symlin-ing] dot-files"
 . ./config/install/yarn.sh
 . ./config/install/tpm.sh
 . ./config/install/plug.sh
+. ./config/install/docker.sh
 
 # Begin install process
 
@@ -34,6 +35,7 @@ echo "[Symlin-ing] dot-files"
 iterateOver "${COMMON}" appInstall
 
 yarnInstall
+dockerInstall
 
 case "${OS}" in
   linux)
