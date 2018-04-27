@@ -1,6 +1,6 @@
 #!/bin/bash
 
-installNVM(){
+nvmInstall(){
   # Node
   echo "[Installing] NVM ${NVM}"
   (

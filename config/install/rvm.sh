@@ -1,6 +1,6 @@
 #!/bin/bash
 
-installRVM(){
+rvmInstall(){
   # Ruby
   echo "[Installing] Ruby ${RUBY}"
   (

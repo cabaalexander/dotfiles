@@ -1,3 +1,5 @@
+#!/bin/bash
+
 tpmInstall(){
   echo "[Installing] TMUX Plugins"
   (

@@ -14,8 +14,8 @@ linuxRun(){
   iterateOver "${AFTER_PPA}" appInstall
 
   # Special installs
-  installNVM
-  installRVM
+  nvmInstall
+  rvmInstall
 }
 
 # This meant to be used when `install-it.sh` script is executed :'V

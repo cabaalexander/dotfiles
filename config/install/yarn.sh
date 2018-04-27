@@ -7,5 +7,10 @@ yarnInstall(){
   ) &> /dev/null
 }
 
-# This meant to be used when `install-it.sh` script is executed :'V
+# If this file is running in terminal call the function `yarnInstall`
+# Otherwise just source it
+if [ "$(basename ${0})" = "yarn.sh" ]
+then
+  yarnInstall "${@}"
+fi
 
