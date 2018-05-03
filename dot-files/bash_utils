@@ -237,3 +237,9 @@ gprup(){
   git pull --rebase upstream ${BRANCH_NAME:-"master"}
 }
 
+dkdoom(){
+  # Deletes all containers and images
+  docker rm $(docker ps -aq)
+  docker rmi $(docker images -aq)
+}
+
