@@ -75,6 +75,8 @@ alias dki='docker images'
 alias dkps='docker ps'
 alias dk='dk'
 alias dkinfo='dki && echo -e "\n\n#######################\n\n" && dkps -a'
+alias dkb='docker build'
+alias dkrit='docker run -it'
 
 # Elm
 alias celm="./node_modules/.bin/elm"
