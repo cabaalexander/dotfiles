@@ -17,4 +17,7 @@ augroup vimrcEx
 
   autocmd BufEnter bash_*
     \ set syntax=sh
+
+  autocmd BufEnter Vagrantfile
+    \ set syntax=ruby
 augroup END
