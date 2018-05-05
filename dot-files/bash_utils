@@ -90,7 +90,7 @@ ginfo(){
   echo
 
   if [ -f ~/.ssh/id_rsa.pub ]; then
-    cat ~/.ssh/id_rsa.pub | grep -e "\w*@\w*\.com.*"
+    cat ~/.ssh/id_rsa.pub | grep -e "\scabaalexander.*$"
     ls -l ~/.ssh/
   else
     echo ':: NO SSH AVAILABLE ::'
