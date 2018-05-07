@@ -1,0 +1,44 @@
+# Set prefix to Ctrl-Space
+unbind C-b
+set -g prefix C-Space
+bind C-Space send-prefix
+
+# Reset a pane
+bind C-k respawn-pane -k
+
+# Create a new session
+bind C-n new-session
+
+# Synchronize panes
+unbind S
+bind S setw synchronize-panes
+
+# Move to the last active session
+unbind l
+bind l switch-client -l
+
+# Move to the last active window
+bind C-\ last-window
+
+# Better split
+bind \ split-window -h -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}"
+
+# Bind clear screen to `<prefix> + C-l
+bind C-l send-keys 'C-l'
+
+# Kill TMUX Server
+bind C-q kill-server
+
+# Copy vi-mode
+bind -t vi-copy v begin-selection
+bind -t vi-copy V select-line
+bind -t vi-copy y copy-selection
+bind -t vi-copy r rectangle-toggle
+
+# Resize panes
+bind -r H resize-pane -L 4
+bind -r J resize-pane -D 4
+bind -r K resize-pane -U 4
+bind -r L resize-pane -R 4
+
