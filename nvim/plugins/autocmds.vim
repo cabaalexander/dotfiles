@@ -20,4 +20,7 @@ augroup vimrcEx
 
   autocmd BufEnter Vagrantfile
     \ set syntax=ruby
+
+  autocmd BufEnter *tmux.*
+    \ set syntax=tmux
 augroup END
