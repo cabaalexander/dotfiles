@@ -40,6 +40,7 @@ GEMS="
 PIP="
   neovim
   docker-compose
+  tmuxp
 "
 
 # This meant to be used when `install-it.sh` script is executed :'V
