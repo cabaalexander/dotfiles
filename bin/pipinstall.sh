@@ -8,7 +8,7 @@ pipInstall(){
     && MODULE=$1 \
     || die "What module do you want to install?"
   echo "[Installing PIP] ${MODULE}"
-  pip3 install ${MODULE} &> /dev/null
+  pip3 install --user ${MODULE} &> /dev/null
 }
 
 

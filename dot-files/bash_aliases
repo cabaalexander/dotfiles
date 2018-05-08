@@ -1,3 +1,5 @@
+OS="$(${HOME}/bin/getos.sh)"
+
 # Git Aliases
 alias gb='git branch'
 alias gs='clear && git status'
@@ -94,7 +96,7 @@ alias tma='tmux attach'
 alias lstmux='tmux ls'
 
 # Use color on `ls` across linux and mac
-case "$(${HOME}/bin/getos.sh)" in
+case "${OS}" in
   linux)
     LS_OPTIONS="--color=auto"
     ;;
