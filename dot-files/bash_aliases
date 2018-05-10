@@ -70,7 +70,6 @@ alias lsyarn='yarn list --depth=0'
 alias ..='cd ..'
 alias cdssh='cd ${HOME}/.ssh && ls'
 alias cdvagrant='cd /vagrant/'
-alias cdprojects='cd /projects/'
 
 # Docker
 alias dki='docker images'
