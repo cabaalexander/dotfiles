@@ -1,17 +1,16 @@
-# Random stuffs
+# Not specific
 *.swp
 *.un~
 *.bk
 *.log
 *.netrwhist
-
-# nvim folder
 plugged
 .cache
 
 # vim-plug autoload-file
 **/autoload/plug.vim
 
-# Test stuffs
-[Tt]est
+# Ignore all `ssh` files but the ones with the [!] ;)
+ssh/*
+!ssh/config
 

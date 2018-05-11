@@ -15,6 +15,7 @@ lnDotFiles dot-files
 lnDir nvim/ ${CONFIG_PATH}/
 lnDir bin/ ${HOME}/
 lnDir utils/ ${HOME}/
+lnDir ssh/ ${HOME}/ dot
 
 # Basic settings for VIM (Not neovim)
 # This needs to be at the bottom becase is a symlink of a symlink ¯\_(ツ)_/¯

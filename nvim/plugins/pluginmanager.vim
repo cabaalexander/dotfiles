@@ -19,6 +19,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'kana/vim-textobj-user'
   Plug 'michaeljsmith/vim-indent-object'
   Plug 'kana/vim-textobj-entire'
+  Plug 'kana/vim-textobj-line'
   " Autocompletion
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'fszymanski/deoplete-emoji'
