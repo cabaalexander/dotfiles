@@ -3,11 +3,11 @@
 . ~/bin/getos.sh
 . ~/bin/utils.sh
 
-linuxInstall(){
+appInstallLinux(){
   sudo apt-get install -y ${APP} &> /dev/null
 }
 
-macInstall(){
+appInstallMac(){
   brew install ${APP} &> /dev/null
 }
 
@@ -21,10 +21,10 @@ appInstall(){
 
   case "$(getOS)" in
     linux)
-      linuxInstall
+      appInstallLinux
       ;;
     mac)
-      macInstall
+      appInstallMac
       ;;
     *)
       die "Operative System not supported ¯\_(ツ)_/¯"

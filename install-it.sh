@@ -15,9 +15,15 @@ echo "[Symlin-ing] dot-files"
 . ~/bin/addppa.sh
 . ~/bin/iterateover.sh
 
+# Utils
+. ~/utils/appendto.sh
+
 # Configs
 . ./config/constants.sh
-. ./config/linux-run.sh
+
+# OS Specific
+. ./config/os/linux.sh
+. ./config/os/common.sh
 
 # Install Scripts
 . ./config/install/rvm.sh
@@ -32,14 +38,11 @@ echo "[Symlin-ing] dot-files"
 # Update package manager repositories (I should one of this for mac ¯\_(ツ)_/¯ *brew related*)
 [ "${OS}" == "linux" ] && updateAPT
 
-iterateOver "${COMMON}" appInstall
-
-yarnInstall
-dockerInstall
+commonOsInstall
 
 case "${OS}" in
   linux)
-    linuxRun
+    linuxOsInstall
     ;;
   mac)
     iterateOver "${MAC}" appInstall

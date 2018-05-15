@@ -1,6 +1,6 @@
 #!/bin/bash
 
-linuxRun(){
+linuxOsInstall(){
   # Set TimeZone to America/Santo_Domingo
   echo "[Setting Timezone]"
   sudo timedatectl set-timezone America/Santo_Domingo
