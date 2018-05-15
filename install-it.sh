@@ -15,9 +15,6 @@ echo "[Symlin-ing] dot-files"
 . ~/bin/addppa.sh
 . ~/bin/iterateover.sh
 
-# Utils
-. ~/utils/appendto.sh
-
 # Configs
 . ./config/constants.sh
 
