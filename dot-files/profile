@@ -16,21 +16,24 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# set PATH so it includes user's private bin and utilities directories
-PATH="${HOME}/utils:$HOME/bin:$HOME/.local/bin:$PATH"
-
-# Add RVM to PATH for scripting.
-PATH="$PATH:$HOME/.rvm/bin"
-
-# Add path for Yarn
-PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-# Add python pip installed bin by using --user flag
-PATH="$HOME/Library/Python/3.6/bin:$PATH"
-
 # This loads nvm
 [[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"
 
 # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+# User's private bin and utilities
+PATH="$HOME/utils:$HOME/bin:$HOME/.local/bin:$PATH"
+
+# RVM
+PATH="$PATH:$HOME/.rvm/bin"
+
+# Yarn
+PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# Python pip installed bin by using --user flag
+PATH="$HOME/Library/Python/3.6/bin:$PATH"
+
+# Flutter
+PATH="$HOME/flutter/bin:$PATH"
 
