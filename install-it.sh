@@ -29,6 +29,7 @@ echo "[Symlin-ing] dot-files"
 . ./config/install/tpm.sh
 . ./config/install/plug.sh
 . ./config/install/docker.sh
+. ./config/install/tmux.sh
 
 # Begin install process
 
