@@ -9,7 +9,6 @@ OS="$(getOS)"
 COMMON="
   tree
   git
-  tmux
   curl
 "
 
