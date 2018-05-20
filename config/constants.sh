@@ -24,6 +24,8 @@ LINUX="
   python3-pip
   software-properties-common
   haskell-platform
+  libevent-dev
+  libncurses5-dev
 "
 
 PPA="

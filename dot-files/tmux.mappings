@@ -31,10 +31,9 @@ bind C-l send-keys 'C-l'
 bind C-q kill-server
 
 # Copy vi-mode
-bind -t vi-copy v begin-selection
-bind -t vi-copy V select-line
-bind -t vi-copy y copy-selection
-bind -t vi-copy r rectangle-toggle
+bind -T copy-mode-vi v send-keys -X begin-selection
+bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
+bind -T copy-mode-vi r send-keys -X rectangle-toggle
 
 # Resize panes
 bind -r H resize-pane -L 4
