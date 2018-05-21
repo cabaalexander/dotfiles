@@ -243,3 +243,8 @@ dkdoom(){
   docker rmi $(docker images -aq)
 }
 
+gdl(){
+  PARAM=$1
+  git log -p -${PARAM:-1}
+}
+
