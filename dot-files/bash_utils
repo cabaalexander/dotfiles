@@ -127,7 +127,6 @@ mk(){
   # Creates the directory and cd to it right away
 	mkdir -p -- "$1"
 	cd -P -- "$1"
-  clear
 }
 
 filetypeb(){
