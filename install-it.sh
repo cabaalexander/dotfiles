@@ -20,7 +20,8 @@ echo "[Symlin-ing] dot-files"
 
 # OS Specific
 . ./config/os/linux.sh
-. ./config/os/common.sh
+. ./config/os/precommon.sh
+. ./config/os/postcommon.sh
 
 # Install Scripts
 . ./config/install/rvm.sh
@@ -36,6 +37,8 @@ echo "[Symlin-ing] dot-files"
 # Update package manager repositories (I should one of this for mac ¯\_(ツ)_/¯ *brew related*)
 [ "${OS}" == "linux" ] && updateAPT
 
+preCommonOsInstall
+
 case "${OS}" in
   linux)
     linuxOsInstall
@@ -47,22 +50,7 @@ case "${OS}" in
     die "Operative System not supported ¯\_(ツ)_/¯"
 esac
 
-commonOsInstall
-
-# Gems
-iterateOver "${GEMS}" gemInstall
-
-# pip Install
-iterateOver "${PIP}" pipInstall
-
-# TMUX Plugins
-tpmInstall
-
-# NVIM Plugins
-plugInstall
-
-# This removes the ruby import on the ~/.bashrc because it is already on ~/.profile
-git checkout .
+postCommonOsInstall
 
 echo "Ready to use :D Reload the terminal to continue"
 
