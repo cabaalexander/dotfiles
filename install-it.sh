@@ -36,8 +36,6 @@ echo "[Symlin-ing] dot-files"
 # Update package manager repositories (I should one of this for mac ¯\_(ツ)_/¯ *brew related*)
 [ "${OS}" == "linux" ] && updateAPT
 
-commonOsInstall
-
 case "${OS}" in
   linux)
     linuxOsInstall
@@ -48,6 +46,8 @@ case "${OS}" in
   *)
     die "Operative System not supported ¯\_(ツ)_/¯"
 esac
+
+commonOsInstall
 
 # Gems
 iterateOver "${GEMS}" gemInstall
