@@ -10,6 +10,7 @@ COMMON="
   tree
   git
   curl
+  htop
 "
 
 MAC="
