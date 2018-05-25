@@ -1,7 +1,7 @@
 #!/bin/bash
 
 . ~/bin/getos.sh
-. ~/bin/utils.sh
+. ~/bin/io.sh
 
 appInstallLinux(){
   sudo apt-get install -y ${APP} &> /dev/null
