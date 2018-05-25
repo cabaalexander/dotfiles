@@ -28,11 +28,12 @@ function echo_yellow(){
 }
 
 # If runing in terminal execute one of the functions if not just source it
-if [ "$(basename ${0})" = "utils.sh" ]
+if [ "$(basename ${0})" = "io.sh" ]
 then
-  UTIL=${1}
+  IO=${1}
   shift
-  case "${UTIL}" in
+
+  case "${IO}" in
     "die")
       die "${@}"
       ;;

@@ -8,7 +8,7 @@ echo "[Symlin-ing] dot-files"
 
 # Binaries
 . ~/bin/appinstall.sh
-. ~/bin/utils.sh
+. ~/bin/io.sh
 . ~/bin/updateapt.sh
 . ~/bin/geminstall.sh
 . ~/bin/pipinstall.sh

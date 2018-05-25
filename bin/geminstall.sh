@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ~/bin/utils.sh
+. ~/bin/io.sh
 
 gemInstall(){
   # Install gems for ruby
