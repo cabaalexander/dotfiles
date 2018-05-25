@@ -73,7 +73,7 @@ alias cdvagrant='cd /vagrant/'
 # Docker
 alias dki='docker images'
 alias dkps='docker ps'
-alias dk='dk'
+alias dk='docker'
 alias dkinfo='dki && echo -e "\n\n#######################\n\n" && dkps -a'
 alias dkb='docker build'
 alias dkrit='docker run -it'

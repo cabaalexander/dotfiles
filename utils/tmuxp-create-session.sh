@@ -3,7 +3,7 @@
 TMUX_SESSION_PATH="/tmp/tmuxp.yaml"
 
 DEFAULT_SESSION_NAME="default-ss"
-DEFAULT_WINDOW_NAME="asdf"
+DEFAULT_WINDOW_NAME="Code"
 DEFAULT_COMMAND="cd"
 
 read -p "Session Name (${DEFAULT_SESSION_NAME}): " SESSION_NAME
