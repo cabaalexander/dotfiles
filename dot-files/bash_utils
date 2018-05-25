@@ -118,7 +118,7 @@ checkifmaster(){
 lstree(){
   # Displays files in a tree view
   LEVEL=${1}
-  IGNORE="node_modules|build"
+  IGNORE="node_modules|build|bower_components"
   clear
   tree -I ${IGNORE} -CL $((${LEVEL} + 1))
 }
@@ -245,5 +245,25 @@ dkdoom(){
 gdl(){
   PARAM=$1
   git log -p -${PARAM:-1}
+}
+
+dotar(){
+  # Compress stuff
+  local NAME=$1
+  local SOURCE=$2
+
+  tar -cvpzf ${NAME} ${SOURCE}
+}
+
+untar(){
+  # Decompress stuff
+  local NAME=$1
+
+  tar -xvpzf ${NAME}
+}
+
+
+dkb(){
+  docker build ${@:-.}
 }
 

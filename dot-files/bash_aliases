@@ -71,12 +71,12 @@ alias cdssh='cd ${HOME}/.ssh && ls'
 alias cdvagrant='cd /vagrant/'
 
 # Docker
+alias dk='docker'
+alias dkc='docker-compose'
 alias dki='docker images'
 alias dkps='docker ps'
-alias dk='docker'
-alias dkinfo='dki && echo -e "\n\n#######################\n\n" && dkps -a'
-alias dkb='docker build'
 alias dkrit='docker run -it'
+alias dkinfo='clear && dki && echo -e "\n\n#######################\n\n" && dkps -a'
 
 # Elm
 alias celm="./node_modules/.bin/elm"
@@ -105,6 +105,7 @@ esac
 
 # ls aliases
 alias l='ls -CF ${LS_OPTIONS}'
+alias ls='ls -CF ${LS_OPTIONS}'
 alias la='ls -A ${LS_OPTIONS}'
 alias ll='ls -lF ${LS_OPTIONS}'
 alias lla='ls -lFa ${LS_OPTIONS}'
