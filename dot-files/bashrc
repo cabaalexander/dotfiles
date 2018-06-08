@@ -39,3 +39,6 @@ export GIT_PS1_SHOWCOLORHINTS=1
 
 PS1="${blue}[\W]$green\$(__git_ps1)$reset (╯°□°）╯︵ ┻━┻ \n> "
 
+# Set default editor
+export EDITOR=vim
+
