@@ -1,19 +1,20 @@
 #!/bin/bash
 
 postCommonOsInstall(){
-  tmuxInstall
+  echo "[Installing] TMUX"
+  redirectToPath tmuxInstall
 
-  # Gems
-  iterateOver "${GEMS}" gemInstall
+  echo "[Installing] Gems"
+  iterateOver "${GEMS}" redirectToPath gemInstall
 
-  # pip Install
-  iterateOver "${PIP}" pipInstall
+  echo "[Installing] PIPs"
+  iterateOver "${PIP}" redirectToPath pipInstall
 
-  # TMUX Plugins
-  tpmInstall
+  echo "[Installing] NVIM Plugins"
+  redirectToPath plugInstall
 
-  # NVIM Plugins
-  plugInstall
+  echo "[Installing] TMUX Plugins"
+  redirectToPath tpmInstall
 
   # This removes the ruby import on the ~/.bashrc because it is already on ~/.profile
   git checkout .

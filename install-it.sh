@@ -14,13 +14,14 @@ echo "[Symlin-ing] dot-files"
 . ~/bin/pipinstall.sh
 . ~/bin/addppa.sh
 . ~/bin/iterateover.sh
+. ~/bin/redirecttopath.sh
 
 # Configs
 . ./config/constants.sh
 
 # OS Specific
 . ./config/os/linux.sh
-. ./config/os/precommon.sh
+. ./config/os/common.sh
 . ./config/os/postcommon.sh
 
 # Install Scripts
@@ -35,16 +36,20 @@ echo "[Symlin-ing] dot-files"
 # Begin install process
 
 # Update package manager repositories (I should one of this for mac ¯\_(ツ)_/¯ *brew related*)
-[ "${OS}" == "linux" ] && updateAPT
+if [ "${OS}" == "linux" ]
+then
+  echo "[Updating APT]"
+  redirectToPath updateAPT
+fi
 
-preCommonOsInstall
+commonOsInstall
 
 case "${OS}" in
   linux)
     linuxOsInstall
     ;;
   mac)
-    iterateOver "${MAC}" appInstall
+    iterateOver "${MAC}" redirectToPath appInstall
     ;;
   *)
     die "Operative System not supported ¯\_(ツ)_/¯"
