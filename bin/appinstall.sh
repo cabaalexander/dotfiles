@@ -4,11 +4,11 @@
 . ~/bin/io.sh
 
 appInstallLinux(){
-  sudo apt-get install -y ${APP} &> /dev/null
+  sudo apt-get install -y ${APP}
 }
 
 appInstallMac(){
-  brew install ${APP} &> /dev/null
+  brew install ${APP}
 }
 
 appInstall(){

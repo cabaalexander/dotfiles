@@ -3,7 +3,8 @@
 updateAPT(){
   # Update APT repositories
   echo "[Updating APT]"
-  sudo apt-get update &> /dev/null
+
+  sudo apt-get update
 }
 
 

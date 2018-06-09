@@ -8,7 +8,7 @@ addPPA(){
     || die "What PPA do you want to add?"
 
   echo "[Adding Repository] ${PPA}"
-  sudo add-apt-repository -y ppa:${PPA} &> /dev/null
+  sudo add-apt-repository -y ppa:${PPA}
 }
 
 # If this file is running in terminal call the function `addPPA`

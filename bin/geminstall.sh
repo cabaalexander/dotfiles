@@ -7,8 +7,10 @@ gemInstall(){
   [ -n "$1" ] \
     && GEM=$1 \
     || die "What gem do you want to install?"
+
   echo "[Installing Gem] ${GEM}"
-  gem install ${GEM} &> /dev/null
+
+  gem install ${GEM}
 }
 
 # If this file is running in terminal call the function `gemInstall`
