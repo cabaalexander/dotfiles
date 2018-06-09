@@ -2,10 +2,12 @@
 
 iterateOver(){
   LIST=$1
-  CALLBACK=$2
+  shift
+
   for ITEM in ${LIST}
   do
-    ${CALLBACK} ${ITEM}
+    echo "- ${ITEM}"
+    $@ ${ITEM}
   done
 }
 

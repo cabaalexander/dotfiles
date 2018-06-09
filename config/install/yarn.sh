@@ -1,10 +1,7 @@
 #!/bin/bash
 
 yarnInstall(){
-  echo "[Installing] Yarn"
-  (
   curl -o- -L https://yarnpkg.com/install.sh | bash
-  ) &> /dev/null
 }
 
 # If this file is running in terminal call the function `yarnInstall`

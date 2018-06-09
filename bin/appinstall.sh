@@ -4,11 +4,11 @@
 . ~/bin/io.sh
 
 appInstallLinux(){
-  sudo apt-get install -y ${APP} &> /dev/null
+  sudo apt-get install -y ${APP}
 }
 
 appInstallMac(){
-  brew install ${APP} &> /dev/null
+  brew install ${APP}
 }
 
 appInstall(){
@@ -16,8 +16,6 @@ appInstall(){
   [ -n "$1" ] \
     && APP=$1 \
     || die "What app do you want to install?"
-
-  echo "[Installing] ${APP}"
 
   case "$(getOS)" in
     linux)
