@@ -1,9 +1,6 @@
 #!/bin/bash
 
 updateAPT(){
-  # Update APT repositories
-  echo "[Updating APT]"
-
   sudo apt-get update
 }
 

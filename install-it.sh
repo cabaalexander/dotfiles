@@ -14,6 +14,7 @@ echo "[Symlin-ing] dot-files"
 . ~/bin/pipinstall.sh
 . ~/bin/addppa.sh
 . ~/bin/iterateover.sh
+. ~/bin/redirecttonull.sh
 
 # Configs
 . ./config/constants.sh

@@ -17,8 +17,6 @@ appInstall(){
     && APP=$1 \
     || die "What app do you want to install?"
 
-  echo "[Installing] ${APP}"
-
   case "$(getOS)" in
     linux)
       appInstallLinux
