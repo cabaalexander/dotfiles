@@ -1,8 +1,6 @@
 #!/bin/bash
 
 dockerInstall(){
-  echo "[Installing] Docker"
-
   curl -fsSL get.docker.com | sh
 
   sudo usermod -a -G docker $USER

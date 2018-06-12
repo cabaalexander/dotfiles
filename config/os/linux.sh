@@ -17,11 +17,10 @@ linuxOsInstall(){
   echo "[Installing] Apps"
   iterateOver "${AFTER_PPA}" redirectToNull appInstall
 
-  # Special installs
-  echo "[Installing] Ruby ${RUBY}"
+  echo "[Installing] NVM ${NVM}"
   redirectToNull nvmInstall
 
-  echo "[Installing] NVM ${NVM}"
+  echo "[Installing] Ruby ${RUBY}"
   redirectToNull rvmInstall
 }
 

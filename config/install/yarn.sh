@@ -1,8 +1,6 @@
 #!/bin/bash
 
 yarnInstall(){
-  echo "[Installing] Yarn"
-
   curl -o- -L https://yarnpkg.com/install.sh | bash
 }
 

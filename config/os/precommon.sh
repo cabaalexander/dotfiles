@@ -1,11 +1,13 @@
 #!/bin/bash
 
 preCommonOsInstall(){
-  iterateOver "${COMMON}" appInstall
+  iterateOver "${COMMON}" redirectToNull appInstall
 
-  yarnInstall
+  echo "[Installing] Yarn"
+  redirectToNull yarnInstall
 
-  dockerInstall
+  echo "[Installing] Docker"
+  redirectToNull dockerInstall
 }
 
 # This meant to be used when `install-it.sh` script is executed :'V

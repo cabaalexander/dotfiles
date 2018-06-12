@@ -36,7 +36,11 @@ echo "[Symlin-ing] dot-files"
 # Begin install process
 
 # Update package manager repositories (I should one of this for mac ¯\_(ツ)_/¯ *brew related*)
-[ "${OS}" == "linux" ] && updateAPT
+if [ "${OS}" == "linux" ]
+then
+  echo "[Updating APT]"
+  redirectToNull updateAPT
+fi
 
 preCommonOsInstall
 
@@ -45,7 +49,7 @@ case "${OS}" in
     linuxOsInstall
     ;;
   mac)
-    iterateOver "${MAC}" appInstall
+    iterateOver "${MAC}" redirectToNull appInstall
     ;;
   *)
     die "Operative System not supported ¯\_(ツ)_/¯"
