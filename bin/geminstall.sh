@@ -8,8 +8,6 @@ gemInstall(){
     && GEM=$1 \
     || die "What gem do you want to install?"
 
-  echo "[Installing Gem] ${GEM}"
-
   gem install ${GEM}
 }
 

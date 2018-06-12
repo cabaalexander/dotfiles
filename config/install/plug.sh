@@ -4,8 +4,6 @@ plugInstall(){
   # Prepare yarn for VIM plugins
   source ${HOME}/.profile
 
-  # Install NVIM Plugins
-  echo "[Installing] NVIM Plugins"
   nvim -c PlugInstall -c qa!
 }
 

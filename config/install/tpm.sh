@@ -1,8 +1,6 @@
 #!/bin/bash
 
 tpmInstall(){
-  echo "[Installing] TMUX Plugins"
-
   if [ ! -f ${TMUX_PATH} ]
   then
     git clone https://github.com/tmux-plugins/tpm ${TMUX_PATH}

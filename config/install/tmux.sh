@@ -1,8 +1,6 @@
 #!/bin/bash
 
 tmuxInstall(){
-  echo "[Installing] TMUX"
-
   TEMP_TMUX_PATH="/tmp/tmux"
 
   rm -rf ${TEMP_TMUX_PATH}
