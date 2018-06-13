@@ -1,13 +1,13 @@
 #!/bin/bash
 
 commonOsInstall(){
-  iterateOver "${COMMON}" redirectToNull appInstall
+  iterateOver "${COMMON}" redirectToPath appInstall
 
   echo "[Installing] Yarn"
-  redirectToNull yarnInstall
+  redirectToPath yarnInstall
 
   echo "[Installing] Docker"
-  redirectToNull dockerInstall
+  redirectToPath dockerInstall
 }
 
 # This meant to be used when `install-it.sh` script is executed :'V

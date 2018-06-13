@@ -6,22 +6,22 @@ linuxOsInstall(){
   sudo timedatectl set-timezone America/Santo_Domingo
 
   echo "[Installing] Apps"
-  iterateOver "${LINUX}" redirectToNull appInstall
+  iterateOver "${LINUX}" redirectToPath appInstall
 
   echo "[Installing] PPAs"
-  iterateOver "${PPA}" redirectToNull addPPA
+  iterateOver "${PPA}" redirectToPath addPPA
 
   echo "[Updating APT]"
-  redirectToNull updateAPT
+  redirectToPath updateAPT
 
   echo "[Installing] Apps"
-  iterateOver "${AFTER_PPA}" redirectToNull appInstall
+  iterateOver "${AFTER_PPA}" redirectToPath appInstall
 
   echo "[Installing] NVM ${NVM}"
-  redirectToNull nvmInstall
+  redirectToPath nvmInstall
 
   echo "[Installing] Ruby ${RUBY}"
-  redirectToNull rvmInstall
+  redirectToPath rvmInstall
 }
 
 # This meant to be used when `install-it.sh` script is executed :'V

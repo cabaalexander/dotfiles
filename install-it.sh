@@ -14,7 +14,7 @@ echo "[Symlin-ing] dot-files"
 . ~/bin/pipinstall.sh
 . ~/bin/addppa.sh
 . ~/bin/iterateover.sh
-. ~/bin/redirecttonull.sh
+. ~/bin/redirecttopath.sh
 
 # Configs
 . ./config/constants.sh
@@ -39,7 +39,7 @@ echo "[Symlin-ing] dot-files"
 if [ "${OS}" == "linux" ]
 then
   echo "[Updating APT]"
-  redirectToNull updateAPT
+  redirectToPath updateAPT
 fi
 
 commonOsInstall
@@ -49,7 +49,7 @@ case "${OS}" in
     linuxOsInstall
     ;;
   mac)
-    iterateOver "${MAC}" redirectToNull appInstall
+    iterateOver "${MAC}" redirectToPath appInstall
     ;;
   *)
     die "Operative System not supported ¯\_(ツ)_/¯"
