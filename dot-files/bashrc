@@ -37,7 +37,7 @@ export GIT_PS1_STATESEPARATOR=" "
 export GIT_PS1_DESCRIBE_STYLE="branch"
 export GIT_PS1_SHOWCOLORHINTS=1
 
-PS1="${blue}[\W]$green\$(__git_ps1)$reset (╯°□°）╯︵ ┻━┻ \n> "
+PS1="${blue}[\w]$green\$(__git_ps1)$reset (╯°□°）╯︵ ┻━┻ \n> "
 
 # Set default editor
 export EDITOR=vim
