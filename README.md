@@ -18,11 +18,9 @@ Know VIM and TMUX <img height="18px" width="18px" src="/img/pacman.png" />
 
 #### Config files
 
-TMUX Plugins
-[Read at the .tmux.conf](/sync/dot-files/tmux.conf)
+TMUX Plugins -> [dot-files/tmux.conf](/dot-files/tmux.conf)
 
-NVIM Plugins
-[Read at the pluginmanager.vim](/sync/nvim/plugins/pluginmanager.vim)
+NVIM Plugins -> [nvim/plugins/pluginmanager.vim](/nvim/plugins/pluginmanager.vim)
 
 ### Usage
 
