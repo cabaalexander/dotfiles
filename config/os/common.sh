@@ -1,6 +1,6 @@
 #!/bin/bash
 
-preCommonOsInstall(){
+commonOsInstall(){
   iterateOver "${COMMON}" redirectToNull appInstall
 
   echo "[Installing] Yarn"

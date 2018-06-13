@@ -21,7 +21,7 @@ echo "[Symlin-ing] dot-files"
 
 # OS Specific
 . ./config/os/linux.sh
-. ./config/os/precommon.sh
+. ./config/os/common.sh
 . ./config/os/postcommon.sh
 
 # Install Scripts
@@ -42,7 +42,7 @@ then
   redirectToNull updateAPT
 fi
 
-preCommonOsInstall
+commonOsInstall
 
 case "${OS}" in
   linux)
