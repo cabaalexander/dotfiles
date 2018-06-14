@@ -1,8 +1,5 @@
 " ==================== Normal Mode
 
-" ~/bin/function Snippet
-nnoremap <leader>binf :-1read ${HOME}/.config/nvim/snippets/bin-function.sh<CR>2j
-
 " Move to next/previous buffer
 nnoremap <leader>nb :bn<CR>
 nnoremap <leader>pb :bp<CR>
@@ -11,12 +8,8 @@ nnoremap <leader>pb :bp<CR>
 nmap <silent> <leader>pe <Plug>(ale_previous_wrap)
 nmap <silent> <leader>ne <Plug>(ale_next_wrap)
 
-" TODO should be moved to a autocmd file for .js files
-" Adds JS Function Documentation
-nnoremap <leader>d :call JSDocAdd()<CR>
-
-" Quit current buffer
-nnoremap <leader>q :q<CR>
+" Delete current buffer
+nnoremap <leader>q :bd<CR>
 
 " Saves current buffer
 nnoremap <leader>s :wa<CR>
@@ -35,9 +28,6 @@ nnoremap <leader>rv :source<space>$MYVIMRC<CR>
 
 " Show Git's Blame :: Plugin Related
 nnoremap <leader>gb :Gblame<CR>
-
-" Zap trailing whitespace in the current buffer
-nnoremap <silent> <leader>zz :call utils#zap()<CR>
 
 " Plugin Manager
 nnoremap <leader>pi :PlugInstall<CR>

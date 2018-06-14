@@ -1,5 +1,6 @@
 "Begin autocommand
 augroup vimrcEx
+
   autocmd!
 
   " Set limit to 78 characters per line
@@ -23,4 +24,11 @@ augroup vimrcEx
 
   autocmd BufEnter *tmux.*
     \ set syntax=tmux
+
+  autocmd FileType javascript call JavascriptMappings()
+  function JavascriptMappings()
+    " Adds JS Function Documentation
+    nnoremap <leader>d :call JSDocAdd()<CR>
+  endfunction
+
 augroup END
