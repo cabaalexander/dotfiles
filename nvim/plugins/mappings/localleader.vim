@@ -13,9 +13,11 @@ nnoremap <localleader>tn :call utils#toggleNumbers()<CR>
 " Disables search highlight
 nnoremap <localleader>h :noh<CR>
 
-" ~/bin/function Snippet
-nnoremap <leader>binf :-1read ${HOME}/.config/nvim/snippets/bin-function.sh<CR>2j
-
 " Zap trailing whitespace in the current buffer
-nnoremap <silent> <leader>zz :call utils#zap()<CR>
+nnoremap <silent> <localleader>zz :call utils#zap()<CR>
+
+" Snippets
+
+" ~/bin/function Snippet
+nnoremap <localleader>binf :-1read ${HOME}/.config/nvim/snippets/bin-function.sh<CR>2j
 
