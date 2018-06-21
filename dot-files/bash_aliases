@@ -55,6 +55,7 @@ alias gfup='git fetch upstream'
 alias del='rm -rf'
 alias lsnvm='nvm list'
 alias lspip='pip3 list'
+alias rcls='clear && '
 
 # npm
 alias npmprune='npm prune && npm i && npm i'
