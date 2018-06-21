@@ -2,8 +2,8 @@
 
 INSTALL_LOG="true"
 
-NVM="v0.33.8"
-NODE="v9.5.0"
+NVM="0.33.8"
+NODE="8.9.0"
 RUBY="2.2"
 TMUX_PATH="${HOME}/.tmux/plugins/tpm"
 OS="$(getOS)"

@@ -17,6 +17,7 @@ let g:NERDTreeDirArrowCollapsible = '▼'
 let g:NERDTreeIgnore=utils#nerdtreeIgnore()
 
 " Emmet
+let g:user_emmet_leader_key = '<NOP>'
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 let g:user_emmet_settings = {
   \   'javascript.jsx': {
@@ -24,7 +25,7 @@ let g:user_emmet_settings = {
   \   }
   \ }
 
-" Needed to cancel CommandT File selection
+" CommandT cancel File selection
 let g:CommandTCancelMap='<Esc>'
 
 " Awesome vim color scheme

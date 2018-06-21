@@ -6,7 +6,7 @@ nvmInstall(){
   # Refresh $PATH env variable
   source ${HOME}/.profile
 
-  nvm i ${NODE}
+  nvm i "v${NODE}"
 }
 
 # This meant to be used when `install-it.sh` script is executed :'V
