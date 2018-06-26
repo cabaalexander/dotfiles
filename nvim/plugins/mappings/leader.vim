@@ -24,7 +24,7 @@ nnoremap <leader>x :qa<CR>
 nnoremap <leader>X :qa!<CR>
 
 " Source VIMRC
-nnoremap <leader>rv :source<space>$MYVIMRC<CR>
+nnoremap <leader>R :source<space>$MYVIMRC<CR>
 
 " Show Git's Blame :: Plugin Related
 nnoremap <leader>gb :Gblame<CR>
