@@ -17,7 +17,11 @@ nnoremap <localleader>h :noh<CR>
 nnoremap <silent> <localleader>zz :call utils#zap()<CR>
 
 " Snippets
+" ========
 
 " ~/bin/function Snippet
-nnoremap <localleader>binf :-1read ${HOME}/.config/nvim/snippets/bin-function.sh<CR>2j
+nnoremap <localleader>sbin :-1read ${HOME}/.config/nvim/snippets/bin-function.sh<CR>2j
+
+" Relative import (partial)
+nnoremap <localleader>sreq :read ${HOME}/.config/nvim/snippets/partials/relative-require.sh<CR>}jf0C
 
