@@ -24,6 +24,7 @@ nnoremap <s-tab> za
 nmap <leader><leader>w <Plug>(easymotion-bd-w)
 nmap <leader><leader>e <Plug>(easymotion-bd-e)
 
-" Stop space on normal mode
+" Block some default keys
 nnoremap <space> <NOP>
+nnoremap <backspace> <NOP>
 
