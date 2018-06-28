@@ -26,7 +26,7 @@ augroup vimrcEx
     \ set syntax=tmux
 
   autocmd FileType javascript call JavascriptMappings()
-  function JavascriptMappings()
+  function! JavascriptMappings()
     " Adds JS Function Documentation
     nnoremap <leader>d :call JSDocAdd()<CR>
   endfunction

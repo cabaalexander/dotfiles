@@ -238,8 +238,12 @@ gprup(){
 
 dkdoom(){
   # Deletes all containers and images
-  docker rm $(docker ps -aq)
-  docker rmi $(docker images -aq)
+  read -p "Are you sure that you want to delete all docker images/containers hard? Really, reaaally hard ? ( ͡° ͜ʖ ͡°) [y, n]: " isHard
+  if [ "$isHard" == "y" ]
+  then
+    docker rm $(docker ps -aq)
+    docker rmi $(docker images -aq)
+  fi
 }
 
 gdl(){
