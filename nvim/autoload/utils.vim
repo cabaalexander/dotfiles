@@ -59,11 +59,34 @@ function! utils#toggleLCD() abort
   echom "LCD changed to: " . b:path
 endfunction
 
+function! utils#escapeSnake(char) abort
+  " Escapes snake character (~) to be used on regex
+  if a:char == "~"
+    return "\\" . a:char
+  else
+    return a:char
+  endif
+endfunction
+
+function! utils#globToRegex(glob) abort
+  " Conver end of string glob pattern to regex
+  if a:glob !~ "^[*]"
+    return a:glob
+  endif
+  let l:regex=strcharpart(a:glob, 1)
+  let l:regex=split(l:regex, '\zs')
+  let l:regex=map(copy(l:regex), {idx, val -> utils#escapeSnake(val)})
+  let l:regex=join(l:regex, '')
+
+  return '\' . l:regex . "$"
+endfunction
+
 function! utils#nerdtreeIgnore() abort
   " Returns a list elements in the .gitignore_global file
   let l:homePrefix=expand('~') . "/"
   let l:lines=readfile(l:homePrefix . ".gitignore_global")
-  let l:lines=filter(l:lines, {idx, val -> strlen(val) && val !~ "^#"})
+  let l:lines=filter(copy(l:lines), {idx, val -> strlen(val) && val !~ "^#"})
+  let l:lines=map(copy(l:lines), {idx, val -> utils#globToRegex(val)})
 
   return l:lines
 endfunction
