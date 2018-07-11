@@ -253,17 +253,20 @@ gdl(){
 
 dotar(){
   # Compress stuff
-  local NAME=$1
-  local SOURCE=$2
+  local NAME=${1:?"Filename required ¯\_(ツ)_/¯ <name>.tar.gz"}
+  local SOURCE=${2:?"Source file(s) required ¯\_(ツ)_/¯ <./foo ./bar>"}
 
-  tar -cvpzf ${NAME} ${SOURCE}
+  tar -cvpzf ${NAME}.tar.gz ${SOURCE}
 }
 
 untar(){
   # Decompress stuff
-  local NAME=$1
+  local NAME=${1:?"Filename required ¯\_(ツ)_/¯ <name>.tar.gz"}
+  local SOURCE=${2:?"Source file(s) required ¯\_(ツ)_/¯ <./foo ./bar>"}
 
-  tar -xvpzf ${NAME}
+  [ -d "${SOURCE}" ] || mkdir -p ${SOURCE}
+
+  tar -xvpzf ${NAME} -C ${SOURCE}
 }
 
 
