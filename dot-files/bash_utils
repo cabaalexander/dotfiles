@@ -274,3 +274,15 @@ dkb(){
   docker build ${@:-.}
 }
 
+doscript(){
+  # Creates a simple bash script
+  local COMMAND=${1:-"echo \"Hello World\""}
+  local TARGET=${2:-"script.sh"}
+
+  echo -e "#!/bin/bash\n\n$COMMAND\n" > ${TARGET}
+
+  chmod u+x ${TARGET}
+
+  echo ":: Script \`${TARGET}\` created ::"
+}
+
