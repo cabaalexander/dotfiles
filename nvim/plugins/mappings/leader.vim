@@ -28,6 +28,7 @@ nnoremap <leader>R :source<space>$MYVIMRC<CR>
 
 " Show Git's Blame :: Plugin Related
 nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gd :Gdiff<CR>
 
 " Plugin Manager
 nnoremap <leader>pi :PlugInstall<CR>
@@ -38,6 +39,9 @@ nnoremap <leader>pU :PlugUpgrade<CR>
 
 " Sets the working directory to current buffer
 nnoremap <silent> <leader>lcd :call utils#toggleLCD()<CR>
+
+" Calls `Obsession` plugin
+nnoremap <leader>o :Obsession<CR>
 
 " ==================== Visual Mode
 
