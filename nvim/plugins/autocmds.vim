@@ -13,19 +13,25 @@ augroup vimrcEx
     \   execute "normal! g`\"" |
     \ endif
 
+  " On Enter
   autocmd VimEnter *
     \ :call utils#obsessed()
 
+  " Bash_*
   autocmd BufEnter bash_*
     \ set syntax=sh
 
+  " Vagrant
   autocmd BufEnter Vagrantfile
     \ set syntax=ruby
 
+  " TMUX
   autocmd BufEnter *tmux.*
     \ set syntax=tmux
 
+  " JavaScript
   autocmd FileType javascript call JavascriptMappings()
+
   function! JavascriptMappings()
     " Adds JS Function Documentation
     nnoremap <leader>d :call JSDocAdd()<CR>

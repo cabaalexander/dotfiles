@@ -90,3 +90,27 @@ function! utils#nerdtreeIgnore() abort
 
   return l:lines
 endfunction
+
+function! utils#toggleGrip() abort
+  " Starts or stops `grip` markdown server with the current `md` file
+  let l:ext=expand("%:e")
+
+  if l:ext != "md"
+    return 1
+  endif
+
+  let l:ip="0.0.0.0:8129"
+  let l:cmd="silent !(grip --quiet " . expand("%:p") . " " . l:ip ." &) &> /dev/null"
+
+  if !get(g:, 'toggleGripBool')
+    execute(l:cmd)
+    execute("redraw")
+    echom "Grip markdown server running at: " . l:ip
+    let g:toggleGripBool=1 " toggle true
+  else
+    execute("silent !killall grip")
+    execute("redraw")
+    echom "Grip markdown server turned off"
+    let g:toggleGripBool=0 " toggle false
+  endif
+endfunction
