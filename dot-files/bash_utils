@@ -286,3 +286,8 @@ doscript(){
   echo ":: Script \`${TARGET}\` created ::"
 }
 
+pfetch(){
+  # Uses `peerflix` from npm to download torrents (magnet link)
+  peerflix -f . "${1:?"Provide a magnet link to start the download"}"
+}
+
