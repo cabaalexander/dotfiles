@@ -93,12 +93,6 @@ endfunction
 
 function! utils#toggleGrip() abort
   " Starts or stops `grip` markdown server with the current `md` file
-  let l:ext=expand("%:e")
-
-  if l:ext != "md"
-    return 1
-  endif
-
   let l:ip="0.0.0.0:8129"
   let l:cmd="silent !(grip --quiet " . expand("%:p") . " " . l:ip ." &) &> /dev/null"
 

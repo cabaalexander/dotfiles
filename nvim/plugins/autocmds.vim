@@ -17,6 +17,10 @@ augroup vimrcEx
   autocmd VimEnter *
     \ :call utils#obsessed()
 
+  " On Leave
+  autocmd VimLeave * let g:toggleGripBool=1
+  autocmd VimLeave * :call utils#toggleGrip()
+
   " Bash_*
   autocmd BufEnter bash_*
     \ set syntax=sh
