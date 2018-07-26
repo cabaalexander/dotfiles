@@ -29,6 +29,3 @@ nnoremap <space> <NOP>
 nnoremap <backspace> <NOP>
 nnoremap <CR> <NOP>
 
-" Toggle `grip` markdown server
-nnoremap <C-p> :call utils#toggleGrip()<CR>
-

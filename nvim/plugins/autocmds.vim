@@ -29,12 +29,4 @@ augroup vimrcEx
   autocmd BufEnter *tmux.*
     \ set syntax=tmux
 
-  " JavaScript
-  autocmd FileType javascript call JavascriptMappings()
-
-  function! JavascriptMappings()
-    " Adds JS Function Documentation
-    nnoremap <leader>d :call JSDocAdd()<CR>
-  endfunction
-
 augroup END
