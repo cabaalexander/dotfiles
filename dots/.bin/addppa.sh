@@ -1,6 +1,13 @@
 #!/bin/bash
 
-. ~/bin/io.sh
+# Relative require
+addppa=${BASH_SOURCE%/*}
+if [[ ! -d "$addppa" ]]
+then
+  addppa=$(dirname $0)
+fi
+
+. $addppa/io.sh
 
 addPPA(){
   [ -n "$1" ] \

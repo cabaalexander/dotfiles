@@ -1,7 +1,14 @@
 #!/bin/bash
 
-. ~/bin/normalizepath.sh
-. ~/bin/io.sh
+# Relative require
+lndir=${BASH_SOURCE%/*}
+if [[ ! -d "$lndir" ]]
+then
+  lndir=$(dirname $0)
+fi
+
+. $lndir/normalizepath.sh
+. $lndir/io.sh
 
 lnDir(){
   SOURCE=$(normalizePath ${1}) || die "[lnDir] Give me a valid source dir to make a symlink"

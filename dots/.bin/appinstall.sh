@@ -1,7 +1,14 @@
 #!/bin/bash
 
-. ~/bin/getos.sh
-. ~/bin/io.sh
+# Relative require
+appinstall=${BASH_SOURCE%/*}
+if [[ ! -d "$appinstall" ]]
+then
+  appinstall=$(dirname $0)
+fi
+
+. $appinstall/getos.sh
+. $appinstall/io.sh
 
 appInstallLinux(){
   sudo apt-get install -y ${APP}

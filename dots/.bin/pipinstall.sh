@@ -1,6 +1,13 @@
 #!/bin/bash
 
-. ~/bin/io.sh
+# Relative require
+pipinstall=${BASH_SOURCE%/*}
+if [[ ! -d "$pipinstall" ]]
+then
+  pipinstall=$(dirname $0)
+fi
+
+. $pipinstall/io.sh
 
 pipInstall(){
   # Install modules for python

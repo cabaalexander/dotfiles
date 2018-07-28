@@ -1,7 +1,14 @@
 #!/bin/bash
 
-. ~/bin/normalizepath.sh
-. ~/bin/io.sh
+# Relative require
+lndotfiles=${BASH_SOURCE%/*}
+if [[ ! -d "$lndotfiles" ]]
+then
+  lndotfiles=$(dirname $0)
+fi
+
+. $lndotfiles/normalizepath.sh
+. $lndotfiles/io.sh
 
 lnDotFiles(){
   SOURCE_DIR=$(normalizePath ${1}) || die "[lnDotFiles] Give me a valid source dir (Where dot files are)"
