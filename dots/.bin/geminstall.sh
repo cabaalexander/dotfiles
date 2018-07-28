@@ -1,6 +1,13 @@
 #!/bin/bash
 
-. ~/bin/io.sh
+# Relative require
+geminstall=${BASH_SOURCE%/*}
+if [[ ! -d "$geminstall" ]]
+then
+  geminstall=$(dirname $0)
+fi
+
+. $geminstall/io.sh
 
 gemInstall(){
   # Install gems for ruby
