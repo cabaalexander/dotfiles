@@ -1,4 +1,4 @@
-. ~/bin/getos.sh
+. ~/.bin/getos.sh
 
 INSTALL_LOG="true"
 

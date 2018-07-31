@@ -4,13 +4,5 @@
 *.bk
 *.log
 *.netrwhist
-plugged
 .cache
-
-# vim-plug autoload-file
-**/autoload/plug.vim
-
-# Ignore all `ssh` files but the ones with the [!] ;)
-ssh/*
-!ssh/config
 

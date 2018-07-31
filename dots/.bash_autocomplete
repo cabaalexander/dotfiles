@@ -1,4 +1,4 @@
-. ~/bin/extractcaseoption.sh
+. ~/.bin/extractcaseoption.sh
 
-complete -W "$(extractCaseOption ~/bin/io.sh)" io.sh
+complete -W "$(extractCaseOption ~/.bin/io.sh)" io.sh
 

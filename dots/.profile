@@ -22,8 +22,8 @@ fi
 # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
-# User's private bin and utilities
-PATH="$HOME/utils:$HOME/bin:$HOME/.local/bin:$PATH"
+# BIN
+PATH="$HOME/.bin:$HOME/.local/bin:$PATH"
 
 # RVM
 PATH="$PATH:$HOME/.rvm/bin"
