@@ -11,14 +11,14 @@ echo "[Symlin-ing] dot-files"
 
 
 # Binaries
-. ~/bin/appinstall.sh
-. ~/bin/io.sh
-. ~/bin/updateapt.sh
-. ~/bin/geminstall.sh
-. ~/bin/pipinstall.sh
-. ~/bin/addppa.sh
-. ~/bin/iterateover.sh
-. ~/bin/redirecttopath.sh
+. ~/.bin/appinstall.sh
+. ~/.bin/io.sh
+. ~/.bin/updateapt.sh
+. ~/.bin/geminstall.sh
+. ~/.bin/pipinstall.sh
+. ~/.bin/addppa.sh
+. ~/.bin/iterateover.sh
+. ~/.bin/redirecttopath.sh
 
 # Configs
 . ./config/constants.sh
