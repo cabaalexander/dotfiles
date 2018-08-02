@@ -28,6 +28,7 @@ LINUX="
   haskell-platform
   libevent-dev
   libncurses5-dev
+  ncdu
 "
 
 PPA="
