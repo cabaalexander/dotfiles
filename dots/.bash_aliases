@@ -113,3 +113,5 @@ alias la='ls -A ${LS_OPTIONS}'
 alias ll='ls -lF ${LS_OPTIONS}'
 alias lla='ls -lFa ${LS_OPTIONS}'
 
+alias less='less -R'
+
