@@ -1,6 +1,7 @@
 #!/bin/bash
 
 commonOsInstall(){
+  echo "[Installing] Common"
   iterateOver "${COMMON}" redirectToPath appInstall
 
   echo "[Installing] Yarn"
