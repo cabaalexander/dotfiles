@@ -4,8 +4,8 @@ redirectToPath(){
   if [ "${INSTALL_LOG}" == "true" ]
   then
     TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)
-    INSTALL_LOG_PATH_CODE=/var/log/install-it-code-${TIMESTAMP}.log
-    INSTALL_LOG_PATH=/var/log/install-it-${TIMESTAMP}.log
+    INSTALL_LOG_PATH_CODE=./install-it-code.log
+    INSTALL_LOG_PATH=./install-it.log
     APP_NAME=":: cmd -> $@ ::"
 
     echo -e "\n${APP_NAME}\n" &>> ${INSTALL_LOG_PATH}

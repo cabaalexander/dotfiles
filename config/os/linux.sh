@@ -5,6 +5,9 @@ linuxOsInstall(){
   echo "[Setting Timezone]"
   sudo timedatectl set-timezone America/Santo_Domingo
 
+  echo "[Installing] Apps Dependencies"
+  iterateOver "${LINUX_DEPS}" redirectToPath appInstall
+
   echo "[Installing] Apps"
   iterateOver "${LINUX}" redirectToPath appInstall
 

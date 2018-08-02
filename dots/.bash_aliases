@@ -1,4 +1,4 @@
-OS="$(${HOME}/.bin/getos.sh)"
+OS="$(~/.bin/getos.sh)"
 
 # Git Aliases
 alias gb='git branch'
