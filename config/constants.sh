@@ -9,26 +9,28 @@ TMUX_PATH="${HOME}/.tmux/plugins/tpm"
 OS="$(getOS)"
 
 COMMON="
-  tree
-  git
   curl
+  git
   htop
+  tree
 "
 
 MAC="
-  neovim
   hh
+  neovim
+"
+
+LINUX_DEPS="
+  libevent-dev
+  libncurses5-dev
+  software-properties-common
 "
 
 LINUX="
-  build-essential
+  haskell-platform
+  ncdu
   python3
   python3-pip
-  software-properties-common
-  haskell-platform
-  libevent-dev
-  libncurses5-dev
-  ncdu
 "
 
 PPA="
@@ -36,17 +38,20 @@ PPA="
   ultradvorka/ppa
 "
 
-AFTER_PPA="neovim hh"
+AFTER_PPA="
+  hh
+  neovim
+"
 
 GEMS="
   neovim
 "
 
 PIP="
-  neovim
   docker-compose
-  tmuxp
   grip
+  neovim
+  tmuxp
 "
 
 # This meant to be used when `install-it.sh` script is executed :'V
