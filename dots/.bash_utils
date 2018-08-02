@@ -262,11 +262,11 @@ dotar(){
 untar(){
   # Decompress stuff
   local NAME=${1:?"Filename required ¯\_(ツ)_/¯ <name>.tar.gz"}
-  local SOURCE=${2:?"Source file(s) required ¯\_(ツ)_/¯ <./foo ./bar>"}
+  local DIST=${2:?"Distribution folder required ¯\_(ツ)_/¯ <./ | my/path/>"}
 
-  [ -d "${SOURCE}" ] || mkdir -p ${SOURCE}
+  [ -d "${DIST}" ] || mkdir -p ${DIST}
 
-  tar -xvpzf ${NAME} -C ${SOURCE}
+  tar -xvpzf ${NAME} -C ${DIST}
 }
 
 
