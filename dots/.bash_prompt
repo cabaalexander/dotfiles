@@ -1,0 +1,23 @@
+# Colors
+RED="\e[31m"
+GREEN="\e[32m"
+LIGHT_BLUE="\e[94m\]"
+WHITE="\e[39m"
+RESET="\e[0m\]"
+
+getBaseDIR(){
+  local BASE_DIR=${PWD%/*}
+  BASE_DIR=~${BASE_DIR#$HOME}/
+  [ "$PWD" == "$HOME" ] || echo $BASE_DIR
+}
+
+# Prompt
+PS1="\
+${LIGHT_BLUE}[ \
+${RED}\$(getBaseDIR)\
+${WHITE}\W\
+${LIGHT_BLUE} ]\
+${GREEN}\$(__git_ps1)\
+${RESET} (╯°□°）╯︵ ┻━┻\n\
+> "
+
