@@ -1,15 +1,5 @@
 #!/bin/bash
 
-# Initialize submodules
-echo "[Initializing submodules]"
-git submodule update --init &> /dev/null
-
-# This needs to be the first thing that runs 'cause
-# all the bin and configuration files are available on the system
-echo "[Symlin-ing] dot-files"
-./symlink-it.sh &> /dev/null
-
-
 # Binaries
 . ~/.bin/appinstall.sh
 . ~/.bin/io.sh
