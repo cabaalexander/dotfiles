@@ -21,7 +21,12 @@ DOTS_OUT    := $(patsubst $(HOME_SRC_PATH)/%,$(HOME_DST_PATH)/%,$(DOTS_SRC))
 #########
 
 .PHONY: all
-all: $(DOTS_OUT)
+all: bootstrap $(DOTS_OUT)
+	./install-it.sh
+
+.PHONY: bootstrap
+bootstrap:
+	@git submodule update --init
 
 # dots
 # ====

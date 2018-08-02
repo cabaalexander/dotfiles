@@ -3,10 +3,15 @@
 redirectToPath(){
   if [ "${INSTALL_LOG}" == "true" ]
   then
-    INSTALL_LOG_PATH=/var/log/install-it.log
+    TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)
+    INSTALL_LOG_PATH_CODE=/var/log/install-it-code-${TIMESTAMP}.log
+    INSTALL_LOG_PATH=/var/log/install-it-${TIMESTAMP}.log
+    APP_NAME=":: cmd -> $@ ::"
 
-    echo -e "\n:: cmd -> $@ ::\n" &>> ${INSTALL_LOG_PATH:-/dev/null}
+    echo -e "\n${APP_NAME}\n" &>> ${INSTALL_LOG_PATH}
     $@ &>> ${INSTALL_LOG_PATH}
+
+    echo -e "\n$? ${APP_NAME}\n" &>> ${INSTALL_LOG_PATH_CODE}
   else
     TEMP_PATH=$1
     shift
