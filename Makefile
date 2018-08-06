@@ -6,7 +6,6 @@
 
 HOME_DST_PATH   := ${HOME}
 HOME_SRC_PATH   := ${PWD}/dots
-UNSYNC_SRC_PATH := ${PWD}/unsync
 
 # `dots`
 # ======
