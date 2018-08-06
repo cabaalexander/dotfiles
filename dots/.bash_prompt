@@ -4,6 +4,7 @@ GREEN="\e[32m"
 LIGHT_BLUE="\e[94m\]"
 WHITE="\e[39m"
 RESET="\e[0m\]"
+BOLD="\e[1m"
 
 getBaseDIR(){
   local BASE_DIR=${PWD%/*}
@@ -13,6 +14,7 @@ getBaseDIR(){
 
 # Prompt
 PS1="\
+${BOLD}\
 ${LIGHT_BLUE}[ \
 ${RED}\$(getBaseDIR)\
 ${WHITE}\W\

@@ -20,7 +20,10 @@ DOTS_OUT    := $(patsubst $(HOME_SRC_PATH)/%,$(HOME_DST_PATH)/%,$(DOTS_SRC))
 #########
 
 .PHONY: all
-all: bootstrap symlink
+all: bootstrap symlink install
+
+.PHONY: install
+install:
 	./install-it.sh
 
 .PHONY: bootstrap
