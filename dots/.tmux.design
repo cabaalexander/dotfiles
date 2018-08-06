@@ -16,9 +16,9 @@ set -g status-left "#[fg=default bg=red] #S "
 set -g status-left-length 50
 
 ## Right Status
-DATE="#[fg=default bg=${DARK_RED} bold] %d/%m"
-HOUR="#[fg=default bg=${DARK_BLUE} bold] %l:%M:%S %p "
-set -g status-right "${DATE} ${HOUR}"
+DATE="#[fg=default bg=${DARK_RED} bold] %d/%m "
+HOUR="#[fg=default bg=${DARK_BLUE} bold]%l:%M:%S %p "
+set -g status-right "${DATE}${HOUR}"
 set -g status-right-length 50
 
 # Panes
