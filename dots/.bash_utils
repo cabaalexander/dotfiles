@@ -216,6 +216,7 @@ inpm(){
 ee(){
   # Opens vin in current directory (And 'Session.vim' if exists)
   FILE=$1
+  clear
   if [ -f ./Session.vim ] && [ -z "${FILE}" ]
   then
     nvim -S
