@@ -1,7 +1,7 @@
 #!/bin/bash
 
 yarnInstall(){
-  curl -o- -L https://yarnpkg.com/install.sh | bash
+  curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
 }
 
 # If this file is running in terminal call the function `yarnInstall`
