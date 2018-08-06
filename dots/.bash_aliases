@@ -2,9 +2,9 @@ OS="$(~/.bin/getos.sh)"
 
 # Git Aliases
 alias gb='git branch'
-alias gs='clear && git status'
+alias gs='clear && git status 2> /dev/null'
 alias ga='git add'
-alias gall='git add -A && git status'
+alias gall='git add -A && gs'
 alias gau='git add -u'
 alias gl='git log'
 alias gk='gitk'
