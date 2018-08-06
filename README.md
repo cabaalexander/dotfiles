@@ -27,7 +27,7 @@ NVIM Plugins -> [dots/.config/nvim/plugins/pluginmanager.vim](/dots/.config/nvim
 
 ### Usage
 
-Linux
+Linux (Ubuntu)
 ```bash
 sudo apt-get update && sudo apt-get install build-essential -y && make
 ```

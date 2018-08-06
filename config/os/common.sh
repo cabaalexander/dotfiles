@@ -9,6 +9,9 @@ commonOsInstall(){
 
   echo "[Installing] Docker"
   redirectToPath dockerInstall
+
+  echo "[Installing] HTOP-VIM"
+  redirectToPath htopVIMInstall
 }
 
 # This meant to be used when `install-it.sh` script is executed :'V

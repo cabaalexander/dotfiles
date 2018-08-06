@@ -26,6 +26,7 @@
 . ./config/install/plug.sh
 . ./config/install/docker.sh
 . ./config/install/tmux.sh
+. ./config/install/htop-vim.sh
 
 # Begin install process
 
