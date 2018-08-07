@@ -12,6 +12,7 @@ COMMON="
   curl
   git
   htop
+  jq
   tree
 "
 
