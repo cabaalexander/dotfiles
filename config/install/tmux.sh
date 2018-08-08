@@ -1,7 +1,7 @@
 #!/bin/bash
 
 tmuxInstall(){
-  TEMP_TMUX_PATH="/tmp/tmux"
+  local TEMP_TMUX_PATH="/tmp/tmux"
 
   rm -rf ${TEMP_TMUX_PATH}
 

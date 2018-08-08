@@ -1,7 +1,7 @@
 #!/bin/bash
 
 htopVIMInstall(){
-  TEMP_HTOP_PATH="/tmp/htop-vim"
+  local TEMP_HTOP_PATH="/tmp/htop-vim"
 
   rm -rf ${TEMP_HTOP_PATH}
 
