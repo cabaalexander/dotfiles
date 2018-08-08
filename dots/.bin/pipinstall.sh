@@ -12,7 +12,7 @@ fi
 pipInstall(){
   # Install modules for python
   [ -n "$1" ] \
-    && MODULE=$1 \
+    && local MODULE=$1 \
     || die "What module do you want to install?"
 
   pip3 install --user ${MODULE}

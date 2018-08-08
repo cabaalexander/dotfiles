@@ -21,7 +21,7 @@ appInstallMac(){
 appInstall(){
   # This is to install apps without showing a bunch stuffs on the stdout
   [ -n "$1" ] \
-    && APP=$1 \
+    && local APP=$1 \
     || die "What app do you want to install?"
 
   case "$(getOS)" in
