@@ -6,6 +6,7 @@
 . ~/.bin/updateapt.sh
 . ~/.bin/geminstall.sh
 . ~/.bin/pipinstall.sh
+. ~/.bin/nodemoduleinstall.sh
 . ~/.bin/addppa.sh
 . ~/.bin/iterateover.sh
 . ~/.bin/redirecttopath.sh
