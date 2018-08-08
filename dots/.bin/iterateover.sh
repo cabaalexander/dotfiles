@@ -1,7 +1,7 @@
 #!/bin/bash
 
 iterateOver(){
-  LIST=$1
+  local LIST=$1
   shift
 
   for ITEM in ${LIST}

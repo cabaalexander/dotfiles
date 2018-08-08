@@ -1,7 +1,7 @@
 #!/bin/bash
 
 getOS(){
-  UNAME_OUT="$(uname -s)"
+  local UNAME_OUT="$(uname -s)"
 
   case "${UNAME_OUT}" in
     Linux*)   echo "linux";;

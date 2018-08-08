@@ -12,7 +12,7 @@ fi
 gemInstall(){
   # Install gems for ruby
   [ -n "$1" ] \
-    && GEM=$1 \
+    && local GEM=$1 \
     || die "What gem do you want to install?"
 
   gem install ${GEM}

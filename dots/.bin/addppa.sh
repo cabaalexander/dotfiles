@@ -11,7 +11,7 @@ fi
 
 addPPA(){
   [ -n "$1" ] \
-    && PPA=$1 \
+    && local PPA=$1 \
     || die "What PPA do you want to add?"
 
   sudo add-apt-repository -y ppa:${PPA}

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 extractCaseOption(){
-  FILE=$1
+  local FILE=$1
   echo $(grep "^[ ]\+\"\?[-_a-zA-Z0-9]\+\"\?)$" ${FILE} | sed 's:[") ]::g')
 }
 

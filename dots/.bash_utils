@@ -5,7 +5,7 @@ gcb(){
 
 gmtm(){
   # Merges current branch on master
-  currentBranch=$(gcb)
+  local currentBranch=$(gcb)
 
   git checkout master
   git fetch && git pull --rebase origin master
@@ -18,12 +18,12 @@ gprune(){
   # Deletes the git branches that are not on github
   git fetch --prune
 
-  remoteBranches=$(git branch -r | sed 's:[ ]\+origin/::')
-  localBranches=$(git branch | sed 's:[ *]::')
+  local remoteBranches=$(git branch -r | sed 's:[ ]\+origin/::')
+  local localBranches=$(git branch | sed 's:[ *]::')
 
   for branch in ${localBranches}
   do
-    isOnRemote=$(echo ${remoteBranches} | grep "${branch}")
+    local isOnRemote=$(echo ${remoteBranches} | grep "${branch}")
     if [ -z "${isOnRemote}" ]
     then
       git branch -D ${branch}
@@ -63,7 +63,7 @@ gpf(){
   read -p "Are you sure that you want to pull hard ? Really, reaaally hard ? ( ͡° ͜ʖ ͡°) [y, n]: " isHard
   if [ "$isHard" == "y" ]
   then
-    currentBranch=$(gcb)
+    local currentBranch=$(gcb)
     git fetch -v origin ${currentBranch}
     git reset --hard origin/${currentBranch}
   fi
@@ -71,7 +71,7 @@ gpf(){
 
 gps(){
   # Alias to push. Validated and stuffs
-  currentBranch=$(gcb)
+  local currentBranch=$(gcb)
 
   if [ "${currentBranch}" == "master" ]
   then
@@ -117,8 +117,8 @@ checkifmaster(){
 
 lstree(){
   # Displays files in a tree view
-  LEVEL=${1}
-  IGNORE="node_modules|build|bower_components"
+  local LEVEL=${1}
+  local IGNORE="node_modules|build|bower_components"
   clear
   tree -I ${IGNORE} -CL $((${LEVEL} + 1))
 }
@@ -140,7 +140,7 @@ filetypeb(){
 
 getresponsecode(){
   # Given a url prints if it was 'OK' or not
-  responseCode=$(curl -s -o /dev/null -I -L -w "%{http_code}" "$1")
+  local responseCode=$(curl -s -o /dev/null -I -L -w "%{http_code}" "$1")
   echo -e "$responseCode"
 }
 
@@ -166,9 +166,9 @@ nvmc() {
     echo -e "Options:\n\tnvmc\t[Version]\tE.g. => 6"
     return 1
   else
-    version="${1}"
-    versionToFind=$(echo "v$version")
-    versionFound=$(nvm list | grep $versionToFind)
+    local version="${1}"
+    local versionToFind=$(echo "v$version")
+    local versionFound=$(nvm list | grep $versionToFind)
 
     [[ ! ${versionFound} ]] && nvm install ${version}
     nvm use ${version}
@@ -177,8 +177,8 @@ nvmc() {
 
 isglobalflagfirstorlast(){
   # Checks if the global flag is the first or last parameter
-  first=${1}
-  last=${!#}
+  local first=${1}
+  local last=${!#}
 
   if [ "${first}" == "-g" ]
   then
@@ -191,17 +191,17 @@ isglobalflagfirstorlast(){
 
 inpm(){
   # Installs node.js packages and saves them automatically on its package.json
-  firstOrLast=$(isglobalflagfirstorlast ${@})
-  flag=$([[ -n "${firstOrLast}" ]] && echo '-g')
+  local firstOrLast=$(isglobalflagfirstorlast ${@})
+  local flag=$([[ -n "${firstOrLast}" ]] && echo '-g')
 
   if [ "${firstOrLast}" == "first" ]
   then
-    remainingArgs=${@: 2} # all but first
+    local remainingArgs=${@: 2} # all but first
   elif [ "${firstOrLast}" == "last" ]
   then
-    remainingArgs=${@: 1: ($#-1)} # all but last
+    local remainingArgs=${@: 1: ($#-1)} # all but last
   else
-    remainingArgs=${@}
+    local remainingArgs=${@}
   fi
 
 	if [ -z "$1" ]; then
@@ -215,7 +215,7 @@ inpm(){
 
 ee(){
   # Opens vin in current directory (And 'Session.vim' if exists)
-  FILE=$1
+  local FILE=$1
   clear
   if [ -f ./Session.vim ] && [ -z "${FILE}" ]
   then
@@ -227,13 +227,13 @@ ee(){
 
 gpr(){
   # Git rebases from origin [master]
-  BRANCH_NAME=$1
+  local BRANCH_NAME=$1
   git pull --rebase origin ${BRANCH_NAME:-"master"}
 }
 
 gprup(){
   # Git rebases from upstream [master]
-  BRANCH_NAME=$1
+  local BRANCH_NAME=$1
   git pull --rebase upstream ${BRANCH_NAME:-"master"}
 }
 
@@ -248,7 +248,7 @@ dkdoom(){
 }
 
 gdl(){
-  PARAM=$1
+  local PARAM=$1
   git log -p -${PARAM:-1}
 }
 

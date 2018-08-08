@@ -3,7 +3,7 @@
 INSTALL_LOG="true"
 
 NVM="0.33.8"
-NODE="8.9.0"
+NODE="10.8.0"
 RUBY="2.2"
 TMUX_PATH="${HOME}/.tmux/plugins/tpm"
 OS="$(getOS)"
@@ -53,6 +53,10 @@ PIP="
   grip
   neovim
   tmuxp
+"
+
+NODE_MODULES="
+  peerflix
 "
 
 # This meant to be used when `install-it.sh` script is executed :'V

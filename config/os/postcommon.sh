@@ -10,6 +10,9 @@ postCommonOsInstall(){
   echo "[Installing] PIPs"
   iterateOver "${PIP}" redirectToPath pipInstall
 
+  echo "[Installing] Node"
+  iterateOver "${NODE_MODULES}" redirectToPath nodeModuleInstall
+
   echo "[Installing] NVIM Plugins"
   redirectToPath plugInstall
 
