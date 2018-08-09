@@ -11,7 +11,6 @@ OS="$(getOS)"
 COMMON="
   curl
   git
-  htop
   jq
   tree
 "
