@@ -29,6 +29,11 @@ install:
 .PHONY: bootstrap
 bootstrap:
 	@git submodule update --init
+	@# Change protocol `http` -> `ssh` (for development purpose)
+	@sed -i \
+		-e 's#https://#git@#' \
+		-e 's#.com/#.com:#' \
+		.git/modules/dots/.config/nvim/config
 
 .PHONY: symlink
 symlink: $(DOTS_OUT)
