@@ -115,3 +115,6 @@ alias lla='ls -lFa ${LS_OPTIONS}'
 
 alias less='less -R'
 
+# Random
+alias doge-quotes='while true; do doge | lolcat -a -d 100 -s 100 -p 1; done'
+

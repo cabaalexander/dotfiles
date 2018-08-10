@@ -44,11 +44,13 @@ AFTER_PPA="
 "
 
 GEMS="
+  lolcat
   neovim
 "
 
 PIP="
   docker-compose
+  doge
   grip
   neovim
   tmuxp
