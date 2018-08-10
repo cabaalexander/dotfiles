@@ -9,7 +9,7 @@
 <div align="center">
   <p>My whole system configuration on one script away :tophat:</p>
 
-  </p>Based on TMUX + VIM :heart:</p>
+  <p>Based on TMUX + VIM :heart:</p>
 </div>
 
 ### Requirements
