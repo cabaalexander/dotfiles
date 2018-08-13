@@ -7,7 +7,7 @@ bind C-Space send-prefix
 bind C-k respawn-pane -k
 
 # Create a new session
-bind C-n new-session
+bind C-n command-prompt -p "Session's Name:" "new-session -c $HOME -AD -s %%"
 
 # Synchronize panes
 unbind S
@@ -40,4 +40,7 @@ bind -r H resize-pane -L 4
 bind -r J resize-pane -D 4
 bind -r K resize-pane -U 4
 bind -r L resize-pane -R 4
+
+bind -r M-j swap-pane -D
+bind -r M-k swap-pane -U
 
