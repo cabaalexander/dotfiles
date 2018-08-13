@@ -33,7 +33,8 @@ bootstrap:
 	@sed -i \
 		-e 's#https://#git@#' \
 		-e 's#.com/#.com:#' \
-		.git/modules/dots/.config/nvim/config
+		.git/modules/dots/.config/nvim/config \
+		.gitmodules
 
 .PHONY: symlink
 symlink: $(DOTS_OUT)
