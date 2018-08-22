@@ -255,9 +255,10 @@ gdl(){
 dotar(){
   # Compress stuff
   local NAME=${1:?"Filename required ¯\_(ツ)_/¯ <name>.tar.gz"}
-  local SOURCE=${2:?"Source file(s) required ¯\_(ツ)_/¯ <./foo ./bar>"}
+  shift
+  local SOURCE=${@:?"Source file(s) required ¯\_(ツ)_/¯ <./foo ./bar>"}
 
-  tar -cvpzf ${NAME}.tar.gz ${SOURCE}
+  tar -cvpzf ${NAME} ${SOURCE}
 }
 
 untar(){
@@ -268,6 +269,14 @@ untar(){
   [ -d "${DIST}" ] || mkdir -p ${DIST}
 
   tar -xvpzf ${NAME} -C ${DIST}
+}
+
+lstar(){
+  # List tar's files
+  local TARGET=${1:?"Filename required ¯\_(ツ)_/¯ <name>.tar.gz"}
+  local DEPTH=${2:-0}
+
+  tar -tf ${TARGET} | cut -d/ -f1-$((${DEPTH} + 1)) | uniq
 }
 
 
