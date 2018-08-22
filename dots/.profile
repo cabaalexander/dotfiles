@@ -16,6 +16,8 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
+[ -f "$HOME/.profile_init.sh" ] && . ~/.profile_init.sh
+
 # This loads nvm
 [[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"
 

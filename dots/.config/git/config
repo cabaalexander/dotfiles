@@ -10,6 +10,7 @@
   cong = config --global
   props = config --get-regexp
   del = branch -D
+  delremote = push --delete
   tagcommit = rev-list -n 1
 [merge]
   tool = vimdiff
