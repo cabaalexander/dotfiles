@@ -41,6 +41,10 @@ bind -r J resize-pane -D 4
 bind -r K resize-pane -U 4
 bind -r L resize-pane -R 4
 
+# Swap panes
 bind -r M-j swap-pane -D
 bind -r M-k swap-pane -U
+
+# Swap window
+bind C-m command-prompt -p "Swap window - New window index:" "swap-window -t %%"
 
