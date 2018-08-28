@@ -1,7 +1,5 @@
 # vim: ft=sh
 
-OS="$(~/.bin/getos.sh)"
-
 ###############
 #             #
 # Git Aliases #
@@ -73,11 +71,6 @@ alias gcman='git commit --amend --no-edit --no-verify'
 
 # LS'
 # ====
-alias l='ls -CF ${LS_OPTIONS}'
-alias ls='ls -CF ${LS_OPTIONS}'
-alias la='ls -A ${LS_OPTIONS}'
-alias ll='ls -lF ${LS_OPTIONS}'
-alias lla='ls -lFa ${LS_OPTIONS}'
 alias lsgem='gem list'
 alias lsnvm='nvm list'
 alias lspip='pip3 list'
@@ -130,13 +123,6 @@ alias tm='tmux'
 alias tma='tmux attach'
 alias lstmux='tmux ls'
 
-# Use color on `ls` across linux and mac
-# ======================================
-case "${OS}" in
-  linux)  LS_OPTIONS="--color=auto";;
-  mac)    LS_OPTIONS="-G";;
-esac
-
 ##########
 #        #
 # Random #
@@ -154,4 +140,5 @@ alias v='nvim'
 alias less='less -R'
 alias doge-quotes='while true; do doge | lolcat -a -d 100 -s 100 -p 1; done'
 alias gotop='gotop -c monokai'
+alias testunicode='curl -sL http://www.cl.cam.ac.uk/\~mgk25/ucs/examples/UTF-8-demo.txt'
 
