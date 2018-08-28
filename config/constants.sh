@@ -1,6 +1,7 @@
 . ~/.bin/getos.sh
 
 INSTALL_LOG="true"
+PROFILE_INIT="false"
 
 NVM="0.33.8"
 NODE="10.8.0"
@@ -54,6 +55,7 @@ PIP="
   grip
   neovim
   tmuxp
+  pip
 "
 
 NODE_MODULES="

@@ -8,34 +8,37 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
+addToPath(){
+  PATH="$1:$PATH"
+}
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-      . "$HOME/.bashrc"
+    if [ -f ~/.bashrc ]; then
+      . ~/.bashrc
     fi
 fi
 
-[ -f "$HOME/.profile_init.sh" ] && . ~/.profile_init.sh
+[ -f ~/.profile_init.sh -a -z "$PROFILE_INIT" ] && . ~/.profile_init.sh
 
 # This loads nvm
-[[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"
+[[ -s ~/.nvm/nvm.sh ]] && . ~/.nvm/nvm.sh
 
 # Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+[[ -s ~/.rvm/scripts/rvm ]] && . ~/.rvm/scripts/rvm
 
 # BIN
-PATH="$HOME/.bin:$HOME/.local/bin:$PATH"
+addToPath ~/.bin
+addToPath ~/.local/bin
 
 # RVM
-PATH="$PATH:$HOME/.rvm/bin"
+addToPath ~/.rvm/bin
 
 # Yarn
-PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-# Python pip installed bin by using --user flag
-PATH="$HOME/Library/Python/3.6/bin:$PATH"
+addToPath ~/.yarn/bin
+addToPath ~/.config/yarn/global/node_modules/.bin
 
 # Flutter
-PATH="$HOME/flutter/bin:$PATH"
+addToPath ~/flutter/bin
 
