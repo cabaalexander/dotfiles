@@ -14,8 +14,9 @@
 
 ### Requirements
 
+- System package manager up to date
 - [build-essential](https://packages.ubuntu.com/trusty/build-essential) (Linux)
-- Know VIM and TMUX <img height="18px" width="18px" src="/img/pacman.png" />
+- Know [VIM](https://www.vim.org/) and [TMUX](https://github.com/tmux/tmux/wiki) <img height="18px" width="18px" src="/img/pacman.png" />
 
 ### Relevant config files
 
@@ -27,13 +28,7 @@ NVIM Plugins -> [dots/.config/nvim/plugins/pluginmanager.vim](/dots/.config/nvim
 
 ### Usage
 
-Linux (Ubuntu)
 ```bash
-sudo apt-get update && sudo apt-get install build-essential -y && make
-```
-
-Other OS
-```bash
-<update-devel-stuffs> && make
+make && make install
 ```
 
