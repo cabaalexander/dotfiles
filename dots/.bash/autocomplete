@@ -1,4 +1,0 @@
-# vim: ft=sh:
-
-complete -W "$(~/.scripts/getcaseoptions ~/.bin/io.sh)" io.sh
-

@@ -1,0 +1,25 @@
+# vim: ft=sh:ts=4:sw=4
+# shellcheck disable=1090
+
+addToPath(){
+    PATH="$1:$PATH"
+}
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# Load RVM into a shell session *as a function*
+[[ -s ~/.rvm/scripts/rvm ]] && . ~/.rvm/scripts/rvm
+
+# Load FZF
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# BIN
+addToPath ~/.bin
+addToPath ~/.local/bin
+addToPath ~/.scripts
+
+# Yarn
+addToPath ~/.yarn/bin
+addToPath ~/.config/yarn/global/node_modules/.bin
+

@@ -1,4 +1,4 @@
-# Name,State,Description
+# Mapper,Name,State,Description
 
 ###########
 #         #
@@ -32,6 +32,16 @@ a,sc-im,off,
 ,bash-completion,on,
 ,shellcheck,on,
 ,fd,on,
+
+#######
+#     #
+# ZSH #
+#     #
+#######
+,zsh,on,
+f,ohmyzsh,on,
+a,antigen-git,on,
+a,powerline-fonts,off,
 
 ###########
 #         #
@@ -90,7 +100,13 @@ pip,docker-compose,on,
 #         #
 ###########
 f,gotop,off,
+f,libtinfo,on,
+
+#################
+#               #
+# End of things #
+#               #
+#################
 f,tpm,on,TMUX Plugin Manager
 f,plug,on,Vim Plugin Manager
-f,libtinfo,on,
 

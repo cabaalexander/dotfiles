@@ -32,3 +32,5 @@
   prompt = true
 [mergetool "fugitive"]
   cmd = nvim -f -c \"Gvdiff\" \"$MERGED\"
+[core]
+  pager = less -FRX
