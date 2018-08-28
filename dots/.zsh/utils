@@ -1,0 +1,166 @@
+# vim: ft=sh
+
+grsh(){
+    # Reset hard a range of commits from git
+    if [ -z "$1" ]; then
+        echo "How many resets?"
+        return 1
+    fi
+    git reset --hard HEAD~"${1}"
+}
+
+grss(){
+    # Reset soft a range of commits from git
+    if [ -z "$1" ]; then
+        echo "How many resets?"
+        return 1
+    fi
+    git reset --soft HEAD~"${1}"
+}
+
+gsq(){
+    # Squash a range of commits
+    if [ -z "$1" ]; then
+        echo "How many commits do you wanna squash?"
+        return 1
+    fi
+    git rebase -i HEAD~"${1}"
+}
+
+gps(){
+    # Alias to push. Validated and stuffs
+    local currentBranch
+    currentBranch=$(gcb)
+
+    if [ "${currentBranch}" = "master" ]
+    then
+        echo "¯\\_(ツ)_/¯"
+        return 1
+    fi
+
+    git push origin "${currentBranch}" "${@}"
+}
+
+ginfo(){
+    # Displays current github user, password and ssh key
+    clear
+    git config --global user.name
+    git config --global user.email
+    echo
+
+    if [ -f ~/.ssh/id_rsa.pub ]; then
+        grep -e "\scabaalexander.*$" < ~/.ssh/id_rsa.pub
+        ls -l ~/.ssh/
+    else
+        echo ':: NO SSH AVAILABLE ::'
+    fi
+}
+
+mk(){
+    # Creates the directory and cd to it right away
+    mkdir -p -- "$1"
+    cd -P -- "$1" || return 1
+}
+
+filetypeb(){
+    # To change the End lines of a file
+    local INPUT_FILE=$1
+
+    tr -d '\r' < "${INPUT_FILE}" > tmp
+    mv -f tmp "${INPUT_FILE}"
+}
+
+lsport(){
+    # Prints the port of the process running right now
+    if [ -n "$1" ]; then
+        clear
+        netstat -plen | grep "$1"
+    else
+        clear
+        netstat -plten
+    fi
+}
+
+killport(){
+    # Given a port kills its process
+    fuser -k "$1"/tcp
+}
+
+ee(){
+    # Opens vin in current directory (And 'Session.vim' if exists)
+    local FILE=$1
+    clear
+    if [ -f ./Session.vim ] && [ -z "${FILE}" ]
+    then
+        nvim -S
+    else
+        nvim "${@}"
+    fi
+}
+
+gpr(){
+    # Git rebases from origin [master]
+    local BRANCH_NAME=$1
+    git pull --rebase origin "${BRANCH_NAME:-master}"
+}
+
+gprup(){
+    # Git rebases from upstream [master]
+    local BRANCH_NAME=$1
+    git pull --rebase upstream "${BRANCH_NAME:-master}"
+}
+
+gdl(){
+    local PARAM=$1
+    git log -p -"${PARAM:-1}"
+}
+
+dotar(){
+    # Compress stuff
+    local NAME=${1:?"Filename required ¯\\_(ツ)_/¯ <name>.tar.gz"}
+    shift
+    local SOURCE=(
+        "${@:?Source file(s) required ¯\_(ツ)_/¯ <./foo ./bar>}"
+    )
+
+    tar -cvpzf "${NAME}" "${SOURCE[*]}"
+}
+
+untar(){
+    # Decompress stuff
+    local NAME=${1:?"Filename required ¯\\_(ツ)_/¯ <name>.tar.gz"}
+    local DIST=${2:?"Distribution folder required ¯\\_(ツ)_/¯ <./ | my/path/>"}
+
+    [ -d "${DIST}" ] || mkdir -p "${DIST}"
+
+    tar -xvpzf "${NAME}" -C "${DIST}"
+}
+
+lstar(){
+    # List tar's files
+    local TARGET=${1:?"Filename required ¯\\_(ツ)_/¯ <name>.tar.gz"}
+    local DEPTH=${2:-0}
+
+    tar -tf "${TARGET}" | cut -d/ -f1-$((DEPTH + 1)) | uniq
+}
+
+
+dkb(){
+    docker build "${@:-.}"
+}
+
+pfetch(){
+    # Uses `peerflix` from npm to download torrents (magnet link)
+    peerflix -f . "${1:?"Provide a magnet link to start the download"}"
+}
+
+# yarn
+lsyarn(){
+    if [ "$1" = "-g" ]
+    then
+        local O="global"
+        shift
+    fi
+    yarn $O list --depth=0 "$@"
+}
+

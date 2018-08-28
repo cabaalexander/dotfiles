@@ -1,0 +1,16 @@
+# vim: ft=sh:ts=4:sw=4
+
+export EDITOR=nvim
+
+# Setting fd as the default source for fzf
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# OH MY ZSH
+export DISABLE_AUTO_TITLE="true"
+
+# Spaceship PROMPT
+export SPACESHIP_VI_MODE_SHOW=false
+export SPACESHIP_USER_SHOW=false
+export SPACESHIP_HOST_SHOW=false
+export SPACESHIP_GIT_BRANCH_COLOR="green"
