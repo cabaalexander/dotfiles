@@ -1,3 +1,5 @@
+# vim: ft=tmux
+
 # Set prefix to Ctrl-Space
 unbind C-b
 set -g prefix C-Space

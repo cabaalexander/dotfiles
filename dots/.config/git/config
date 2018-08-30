@@ -1,8 +1,6 @@
 [user]
   email = cabaalexander321@gmail.com
   name = cabaalexander
-[core]
-  editor = nvim
 [alias]
   unstage = reset HEAD --
   lol = log --graph --pretty=oneline --abbrev-commit --decorate --all
