@@ -4,14 +4,20 @@
 #           #
 #############
 
-HOME_DST_PATH   := ${HOME}
-HOME_SRC_PATH   := ${PWD}/dots
+SHELL		:= /bin/bash
+
+HOME_SRC_PATH	:= ${PWD}/dots
+HOME_DST_PATH	:= ${HOME}
 
 # `dots`
 # ======
-DOTS_IGNORE := ! -path "*plugged/*" ! -name "Session.vim"
-DOTS_SRC    := $(shell find $(HOME_SRC_PATH) -type f $(DOTS_IGNORE))
-DOTS_OUT    := $(patsubst $(HOME_SRC_PATH)/%,$(HOME_DST_PATH)/%,$(DOTS_SRC))
+DOTS_IGNORE	:= ! -path "*plugged/*" ! -name "Session.vim"
+DOTS_SRC	:= $(shell find $(HOME_SRC_PATH) -type f $(DOTS_IGNORE))
+DOTS_OUT	:= $(patsubst $(HOME_SRC_PATH)/%,$(HOME_DST_PATH)/%,$(DOTS_SRC))
+
+# `clean`
+# =======
+CLEAN_OUT	:= $(patsubst $(HOME_SRC_PATH)/%,$(HOME_DST_PATH)/%.clean,$(DOTS_SRC))
 
 #########
 #       #
@@ -34,14 +40,15 @@ bootstrap:
 		-e 's#https://#git@#' \
 		-e 's#.com/#.com:#' \
 		.git/modules/dots/.config/nvim/config \
-		.gitmodules
 
 .PHONY: symlink
 symlink: $(DOTS_OUT)
-
-# dots
-# ====
 $(HOME_DST_PATH)/%: $(HOME_SRC_PATH)/%
 	@mkdir -p $(dir $@)
 	@ln -svf $< $@
+
+.PHONY: clean
+clean: $(CLEAN_OUT)
+$(HOME_DST_PATH)/%.clean::
+	@echo $@ | sed 's/.clean//' | xargs rm -vf
 

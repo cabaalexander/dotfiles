@@ -1,3 +1,5 @@
+# vim: ft=sh:
+
 # Colors
 RED="\e[31m"
 GREEN="\e[32m"
@@ -6,10 +8,24 @@ WHITE="\e[39m"
 RESET="\e[0m\]"
 BOLD="\e[1m"
 
+EMOJIS=(
+  "(づ￣ ³￣)づ"
+  "(ง •̀_•́)ง"
+  "(╥_╥)"
+  "(●__●)"
+  "(╯°□°）╯︵ ┻━┻"
+)
+
 getBaseDIR(){
   local BASE_DIR=${PWD%/*}
   BASE_DIR=~${BASE_DIR#$HOME}/
   [ "$PWD" == "$HOME" ] || echo $BASE_DIR
+}
+
+getEmojis(){
+  local SHUF_LAST=$((${#EMOJIS[@]} - 1))
+  local SHUF_ID=$(seq 0 $SHUF_LAST | shuf -n 1)
+  echo ${EMOJIS[$SHUF_ID]}
 }
 
 # Prompt
@@ -20,6 +36,6 @@ ${RED}\$(getBaseDIR)\
 ${WHITE}\W\
 ${LIGHT_BLUE} ]\
 ${GREEN}\$(__git_ps1)\
-${RESET} (╯°□°）╯︵ ┻━┻\n\
+${RESET} \$(getEmojis)\n\
 > "
 
