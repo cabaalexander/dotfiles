@@ -1,3 +1,5 @@
+# vim: ft=sh:
+
 gcb(){
   # Current git branch
   echo $(git symbolic-ref --short -q HEAD)
@@ -11,7 +13,6 @@ gmtm(){
   git fetch && git pull --rebase origin master
 
   git merge --ff-only ${currentBranch}
-  git branch -D ${currentBranch}
 }
 
 gprune(){
