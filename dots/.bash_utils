@@ -302,3 +302,13 @@ pfetch(){
   peerflix -f . "${1:?"Provide a magnet link to start the download"}"
 }
 
+# yarn
+lsyarn(){
+  if [ "$1" == "-g" ]
+  then
+    local O="global"
+    shift
+  fi
+  yarn $O list --depth=0 $@
+}
+

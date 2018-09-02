@@ -65,9 +65,6 @@ alias rstnpm='clear && rm -rf ./node_modules && npm i && npm i'
 alias lsnpm='npm ls --depth 0'
 alias rnpm='npm remove'
 
-# yarn
-alias lsyarn='yarn list --depth=0'
-
 # cds
 alias ..='cd ..'
 alias cdssh='cd ${HOME}/.ssh && ls'
