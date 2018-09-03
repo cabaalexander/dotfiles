@@ -15,16 +15,16 @@
 ### Requirements
 
 - System package manager up to date
-- [build-essential](https://packages.ubuntu.com/trusty/build-essential) (Linux)
+- [build-essential](https://packages.ubuntu.com/trusty/build-essential) (Ubuntu)
 - Know [VIM](https://www.vim.org/) and [TMUX](https://github.com/tmux/tmux/wiki) <img height="18px" width="18px" src="/img/pacman.png" />
 
 ### Relevant config files
 
-CONSTANT -> [config/constants.sh](/config/constants.sh)
+CONSTANT &nbsp; &nbsp; -> [config/constants.sh](/config/constants.sh)
 
 TMUX Plugins -> [dots/.tmux.conf](/dots/.tmux.conf)
 
-NVIM Plugins -> [dots/.config/nvim/plugins/pluginmanager.vim](/dots/.config/nvim/plugins/pluginmanager.vim)
+NVIM Plugins -> [dots/.config/nvim@](https://gitlab.com/cabaalexander/nvim/blob/master/plugins/pluginmanager.vim)
 
 ### Usage
 
