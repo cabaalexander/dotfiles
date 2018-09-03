@@ -26,10 +26,10 @@ CLEAN_OUT	:= $(patsubst $(HOME_SRC_PATH)/%,$(HOME_DST_PATH)/%.clean,$(DOTS_SRC))
 #########
 
 .PHONY: all
-all: bootstrap symlink
+all: bootstrap
 
 .PHONY: install
-install:
+install: symlink
 	./install-it.sh
 
 .PHONY: bootstrap
