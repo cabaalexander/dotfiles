@@ -61,7 +61,8 @@ gsq(){
 
 gpf(){
   # Git pulls "hard" from a repo
-  read -p "Are you sure that you want to pull hard ? Really, reaaally hard ? ( ͡° ͜ʖ ͡°) [y, n]: " isHard
+  read -rsn1 -p "Are you sure that you want to pull hard ? Really, reaaally hard ? ( ͡° ͜ʖ ͡°) [y, n]: " isHard
+  echo
   if [ "$isHard" == "y" ]
   then
     local currentBranch=$(gcb)
