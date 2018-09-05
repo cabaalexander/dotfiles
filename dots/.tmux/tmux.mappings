@@ -48,7 +48,6 @@ bind -r M-j swap-pane -D
 bind -r M-k swap-pane -U
 
 # Swap window
-# "Swap window - New window index:"
-TMUX_WINDOWS="tmux list-windows | cut -d' ' -f1-2 | sed -r 's/:|[*-]$//g' | tr '\n' ' ' | sed -r 's/[ ]+$//'"
-bind C-m command-prompt -p "Swap window with - (#($TMUX_WINDOWS)):" "swap-window -t %%"
+TMUX_WINDOWS="#(~/.tmux/scripts/tmux-windows.sh)"
+bind C-m command-prompt -p "Swap window with - (${TMUX_WINDOWS}):" "swap-window -t %%"
 
