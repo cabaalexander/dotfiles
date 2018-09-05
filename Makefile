@@ -1,3 +1,5 @@
+# vim: ts=8:sw=8
+
 #############
 #           #
 # Constants #
@@ -5,6 +7,7 @@
 #############
 
 SHELL		:= /bin/bash
+SYM_OUT		:= "symlink-dst-paths.out"
 
 HOME_SRC_PATH	:= ${PWD}/dots
 HOME_DST_PATH	:= ${HOME}
@@ -17,7 +20,7 @@ DOTS_OUT	:= $(patsubst $(HOME_SRC_PATH)/%,$(HOME_DST_PATH)/%,$(DOTS_SRC))
 
 # `clean`
 # =======
-CLEAN_OUT	:= $(patsubst $(HOME_SRC_PATH)/%,$(HOME_DST_PATH)/%.clean,$(DOTS_SRC))
+CLEAN_SRC	:= $(shell cat $(SYM_OUT) 2> /dev/null)
 
 #########
 #       #
@@ -46,9 +49,19 @@ symlink: $(DOTS_OUT)
 $(HOME_DST_PATH)/%: $(HOME_SRC_PATH)/%
 	@mkdir -p $(dir $@)
 	@ln -svf $< $@
+	@#Last symlinks (For cleaning porpuse) ¯\_(ツ)_/¯
+	@[ -f $(SYM_OUT) ] || touch $(SYM_OUT)
+	@echo $@.clean >> $(SYM_OUT)
+
+.PHONY: symlink-update
+symlink-update: clean symlink
 
 .PHONY: clean
-clean: $(CLEAN_OUT)
-$(HOME_DST_PATH)/%.clean::
+clean: $(CLEAN_SRC) post-clean
+$(HOME_DST_PATH)/%.clean:
 	@echo $@ | sed 's/.clean//' | xargs rm -vf
+
+.PHONY: post-clean
+post-clean:
+	@rm -f $(SYM_OUT)
 

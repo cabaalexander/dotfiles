@@ -17,9 +17,9 @@ gmtm(){
 
 gprune(){
   # Deletes the git branches that are not on github
-  git fetch --prune
+  git fetch --prune &> /dev/null
 
-  local remoteBranches=$(git branch -r | sed 's:[ ]\+origin/::')
+  local remoteBranches=$(git branch -r | tail -n +2 | sed 's:[ ]\+origin/::')
   local localBranches=$(git branch | sed 's:[ *]::')
 
   for branch in ${localBranches}
