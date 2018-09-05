@@ -58,6 +58,7 @@ alias lsnvm='nvm list'
 alias lspip='pip3 list'
 alias clr='clear && '
 alias cpp='rsync -aP '
+alias v='nvim'
 
 # npm
 alias npmprune='npm prune && npm i && npm i'
