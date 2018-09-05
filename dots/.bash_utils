@@ -122,7 +122,7 @@ lstree(){
   local LEVEL=${1}
   local IGNORE="node_modules|build|bower_components"
   clear
-  tree -I ${IGNORE} -CL $((${LEVEL} + 1))
+  tree -I ${IGNORE} -CL $((${LEVEL} + 1)) -a
 }
 
 mk(){
@@ -288,8 +288,8 @@ dkb(){
 
 doscript(){
   # Creates a simple bash script
-  local COMMAND=${1:-"echo \"Hello World\""}
-  local TARGET=${2:-"script.sh"}
+  local TARGET=${1:-"script.sh"}
+  local COMMAND=${2:-"echo \"Hello World\""}
 
   echo -e "#!/bin/bash\n\n$COMMAND\n" > ${TARGET}
 
