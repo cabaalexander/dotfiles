@@ -23,9 +23,6 @@ sourceIfExists(){
 sourceIfExists ~/.bash_*
 sourceIfExists ~/.git-*
 
-# Change command prompt
-sourceIfExists ~/.git-prompt.sh
-
 # Change GIT_PS1
 export GIT_PS1_SHOWSTASHSTATE=1
 export GIT_PS1_SHOWUNTRACKEDFILES=1
