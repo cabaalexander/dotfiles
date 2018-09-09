@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Deletes all containers and images
+
+MESSAGE="\
+Are you sure that you want to delete all docker \
+images/containers hard? Really, reaaally hard ? ( ͡° ͜ʖ ͡°) [y, n]: \
+"
+
+read -rsn1 -p "$MESSAGE" IS_HARD
+echo
+
+[ "$IS_HARD" != "y" ] && exit 1
+
+docker rm $(docker ps -aq)
+docker rmi $(docker images -aq)
+

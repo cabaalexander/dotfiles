@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Install a version of node using nvm
+if [ -z "$1" ]; then
+  echo -e "Options:\n\tnvmc\t<Version>\tE.g. => 6"
+  exit 1
+else
+  VERSION="${1}"
+  VERSION_TO_FIND=$(echo "v$VERSION")
+  VERSION_FOUND=$(. ~/.nvm/nvm.sh; nvm list | grep $VERSION_TO_FIND)
+
+  [[ "${VERSION_FOUND}" ]] || echo "nvm install ${VERSION}"
+  echo "nvm use ${VERSION}"
+fi
+

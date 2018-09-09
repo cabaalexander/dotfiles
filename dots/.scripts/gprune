@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Deletes the git branches that are not on github
+git fetch --prune &> /dev/null
+
+REMOTE_BRANCHES=$(git branch -r | sed 's:[ ]\+origin/::')
+LOCAL_BRANCHES=$(git branch | sed 's:[ *]\+::')
+
+for LOCAL_BRANCH in $LOCAL_BRANCHES
+do
+  IS_ON_REMOTE=$(echo $REMOTE_BRANCHES | grep "${LOCAL_BRANCH}")
+
+  if [ -z "${IS_ON_REMOTE}" ]
+  then
+    REMOVED="0"
+    git branch -D ${LOCAL_BRANCH}
+  fi
+done
+
+[[ "$REMOVED" ]] || echo "Your branches are up to date"
+
