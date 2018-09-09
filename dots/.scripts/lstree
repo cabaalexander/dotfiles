@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Displays files in a tree view
+IGNORE="node_modules|build|bower_components"
+
+while getopts ":d:a:" OPT
+do
+  case $OPT in
+    d)
+      LEVEL=$OPTARG
+      ;;
+    :)
+      echo "No argument provided for option (-$OPTARG)"
+      EXIT_FLAG="1"
+      ;;
+    \?)
+      echo "Invalid option (-$OPTARG)"
+      EXIT_FLAG="1"
+      ;;
+  esac
+done
+shift $(($OPTIND - 1))
+
+[ -z "$EXIT_FLAG" ] || exit 1
+
+clear
+tree -I ${IGNORE} -CL $(($LEVEL + 1)) -a $@
+
