@@ -31,6 +31,7 @@ fi
 # BIN
 addToPath ~/.bin
 addToPath ~/.local/bin
+addToPath ~/.scripts
 
 # RVM
 addToPath ~/.rvm/bin
