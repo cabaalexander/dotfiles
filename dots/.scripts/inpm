@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Installs node.js packages and saves them automatically on its package.json
+
 while getopts ":gt" OPT
 do
   case $OPT in

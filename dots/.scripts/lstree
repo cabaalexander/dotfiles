@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Displays files in a tree view
+
 IGNORE="node_modules|build|bower_components"
 
 while getopts ":d:a:" OPT
