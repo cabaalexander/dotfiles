@@ -20,8 +20,7 @@ sourceIfExists(){
 }
 
 # Import configurations
-sourceIfExists ~/.bash_*
-sourceIfExists ~/.git-*
+sourceIfExists ~/.bash/*
 
 # Change GIT_PS1
 export GIT_PS1_SHOWSTASHSTATE=1
