@@ -1,5 +1,6 @@
 #!/bin/bash
 
 # Current git branch
+
 echo $(git symbolic-ref --short -q HEAD)
 

@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # Deletes the git branches that are not on github
+
+echo "Fetching..."
 git fetch --prune &> /dev/null
 
 REMOTE_BRANCHES=$(git branch -r | sed 's:[ ]\+origin/::')
