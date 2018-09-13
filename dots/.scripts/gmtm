@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Merges current branch on master
+
 CURRENT_BRANCH=$(gcb)
 
 git checkout master
