@@ -10,6 +10,10 @@
   del = branch -D
   delremote = push --delete
   tagcommit = rev-list -n 1
+  bsort = for-each-ref --sort=committerdate refs/heads/ --format='%(committerdate:short) %(refname:short)'
+  unassume = update-index --no-assume-unchanged
+  assume = update-index --assume-unchanged
+  lsassumed = "!git ls-files -v | grep ^h | cut -c 3-"
 [merge]
   tool = vimdiff
   conflictstyle = diff3

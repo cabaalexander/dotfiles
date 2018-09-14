@@ -54,7 +54,6 @@ PIP="
   doge
   grip
   neovim
-  tmuxp
   pip
 "
 
