@@ -1,6 +1,4 @@
 # vim: ft=sh:
 
-. ~/.bin/extractcaseoption.sh
-
-complete -W "$(extractCaseOption ~/.bin/io.sh)" io.sh
+complete -W "$(~/.scripts/getcaseoptions ~/.bin/io.sh)" io.sh
 
