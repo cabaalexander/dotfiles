@@ -9,4 +9,3 @@ git fetch && git pull --rebase origin master
 
 git merge --ff-only ${CURRENT_BRANCH}
 
-
