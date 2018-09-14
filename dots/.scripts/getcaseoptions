@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Prints all the case options
+
 [[ "$1" ]] || exit 1
 
 grep -E '"?\w+"?)' $1 | cut -d')' -f1 | sed 's:[ "]::g'
