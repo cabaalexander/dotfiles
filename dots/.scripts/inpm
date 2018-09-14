@@ -2,7 +2,7 @@
 
 # Installs node.js packages and saves them automatically on its package.json
 
-while getopts ":gt" OPT
+while getopts ":g" OPT
 do
   case $OPT in
     g)
