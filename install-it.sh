@@ -28,6 +28,7 @@
 . ./config/install/docker.sh
 . ./config/install/tmux.sh
 . ./config/install/htop-vim.sh
+. ./config/install/gotop.sh
 
 # Begin install process
 
