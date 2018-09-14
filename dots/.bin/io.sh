@@ -34,18 +34,10 @@ then
   shift
 
   case "${IO}" in
-    "die")
-      die "${@}"
-      ;;
-    "echo_green")
-      echo_green "${@}"
-      ;;
-    "echo_red")
-      echo_red "${@}"
-      ;;
-    "echo_yellow")
-      echo_yellow "${@}"
-      ;;
+    die)          $IO "${@}";;
+    echo_green)   $IO "${@}";;
+    echo_red)     $IO "${@}";;
+    echo_yellow)  $IO "${@}";;
   esac
 fi
 
