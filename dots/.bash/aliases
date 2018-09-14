@@ -150,4 +150,5 @@ alias cpp='rsync -aP '
 alias v='nvim'
 alias less='less -R'
 alias doge-quotes='while true; do doge | lolcat -a -d 100 -s 100 -p 1; done'
+alias gotop='gotop -c monokai'
 

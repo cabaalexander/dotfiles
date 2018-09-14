@@ -12,6 +12,9 @@ commonOsInstall(){
 
   echo "[Installing] HTOP-VIM"
   redirectToPath htopVIMInstall
+
+  echo "[Installing] GOTOP"
+  redirectToPath gotopInstall
 }
 
 # This meant to be used when `install-it.sh` script is executed :'V
