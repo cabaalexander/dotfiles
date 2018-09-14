@@ -18,7 +18,11 @@ EMOJIS=(
 
 getBaseDIR(){
   local BASE_DIR=${PWD%/*}
-  BASE_DIR=~${BASE_DIR#$HOME}/
+
+  [[ "$BASE_DIR" =~ ^$HOME ]] \
+    && SNAKE="~"
+
+  BASE_DIR=$SNAKE${BASE_DIR#$HOME}/
   [ "$PWD" == "$HOME" ] || echo $BASE_DIR
 }
 
