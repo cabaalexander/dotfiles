@@ -1,26 +1,15 @@
+# Script to source (¯\_(ツ)_/¯)
+. ~/.scripts/sourceifexists
+
+# Import configurations
+sourceIfExists ~/.bash/*
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
 # Use VI mode in bash
 set -o vi
 export EDITOR=nvim
-
-sourceIfExists(){
-  local ALL=$@
-  local IGNORED_FILES=".bash_profile .bash_history"
-  for TARGET in ${ALL}
-  do
-    TARGET_BASENAME=$(basename ${TARGET})
-    IS_IGNORED=$(echo ${IGNORED_FILES} | grep ${TARGET_BASENAME})
-    if [ -z "${IS_IGNORED}" ]
-    then
-      [ -f ${TARGET} ] && source ${TARGET}
-    fi
-  done
-}
-
-# Import configurations
-sourceIfExists ~/.bash/*
 
 # Change GIT_PS1
 export GIT_PS1_SHOWSTASHSTATE=1
