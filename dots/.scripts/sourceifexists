@@ -14,7 +14,6 @@ __source_glob(){
 }
 
 sourceIfExists(){ # Source file if exists (glob pattern)
-
   local IGNORED_FILES=(
     .bash_profile
     .bash_history
@@ -36,11 +35,4 @@ sourceIfExists(){ # Source file if exists (glob pattern)
 
   __source_glob $@
 }
-
-# If this file is running in terminal call the function `sourceIfExists`
-# Otherwise just source it
-if [ "$(basename ${0})" = "sourceifexists" ]
-then
-  sourceIfExists "${@}"
-fi
 
