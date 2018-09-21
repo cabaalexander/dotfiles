@@ -14,6 +14,7 @@ COMMON="
   git
   jq
   tree
+  bc
 "
 
 MAC="
