@@ -20,6 +20,10 @@
 
 ### Relevant config files
 
+Makefile &nbsp; &nbsp; &nbsp; &nbsp; -> [Makefile](/Makefile)
+
+SCRIPTS &nbsp; &nbsp; &nbsp; &nbsp; -> [dots/.scripts](/dots/.scripts)
+
 CONSTANT &nbsp; &nbsp; -> [config/constants.sh](/config/constants.sh)
 
 TMUX Plugins -> [dots/.tmux.conf](/dots/.tmux.conf)
