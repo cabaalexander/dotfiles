@@ -15,6 +15,7 @@ COMMON="
   jq
   tree
   bc
+  ctags
 "
 
 MAC="
