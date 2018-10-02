@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Script to source (¯\_(ツ)_/¯)
+# Source script to source (¯\_(ツ)_/¯)
 . ~/.scripts/sourceifexists
 
 # Source all `bin` files
