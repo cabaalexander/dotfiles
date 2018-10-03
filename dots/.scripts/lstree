@@ -2,7 +2,13 @@
 
 # Displays files in a tree view
 
-IGNORE="node_modules|build|bower_components"
+IGNORE=(
+  node_modules
+  build
+  bower_components
+  .git
+)
+IGNORE=$(tr " " "|" <<<${IGNORE[*]})
 
 while getopts ":d:a:" OPT
 do
