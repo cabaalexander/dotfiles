@@ -39,7 +39,6 @@ ${LIGHT_BLUE}[ \
 ${RED}\$(getBaseDIR)\
 ${WHITE}\W\
 ${LIGHT_BLUE} ]\
-${GREEN}\$(__git_ps1)\
 ${RESET} \$(getEmojis)\n\
 > "
 
