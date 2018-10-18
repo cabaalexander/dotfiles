@@ -20,13 +20,18 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-[ -f ~/.profile_init.sh -a -z "$PROFILE_INIT" ] && . ~/.profile_init.sh
+[ -f ~/.bash_profile_init.sh -a -z "$PROFILE_INIT" ] && . ~/.bash_profile_init.sh
 
-# This loads nvm
-[[ -s ~/.nvm/nvm.sh ]] && . ~/.nvm/nvm.sh
+# Loads nvm and its autocompletion
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # Load RVM into a shell session *as a function*
 [[ -s ~/.rvm/scripts/rvm ]] && . ~/.rvm/scripts/rvm
+
+# Load FZF
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # BIN
 addToPath ~/.bin

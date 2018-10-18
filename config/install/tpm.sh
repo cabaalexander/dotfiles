@@ -1,6 +1,8 @@
 #!/bin/bash
 
 tpmInstall(){
+  local TMUX_PATH="${HOME}/.tmux/plugins/tpm"
+
   if [ ! -f ${TMUX_PATH} ]
   then
     git clone https://github.com/tmux-plugins/tpm ${TMUX_PATH}
@@ -22,5 +24,10 @@ tpmInstall(){
   tmux kill-server
 }
 
-# This meant to be used when `install-it.sh` script is executed :'V
+# If this file is running in terminal call the function `tpmInstall`
+# Otherwise just source it
+if [ "$(basename ${0})" = "tpm.sh" ]
+then
+  tpmInstall "${@}"
+fi
 

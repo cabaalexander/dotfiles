@@ -7,7 +7,7 @@
 #############
 
 SHELL		:= /bin/bash
-SYM_OUT		:= "symlink-dst-paths.out"
+SYM_OUT		:= "${HOME}/.symlink-dst-paths.out"
 
 HOME_SRC_PATH	:= ${PWD}/dots
 HOME_DST_PATH	:= ${HOME}
@@ -33,7 +33,7 @@ all: bootstrap
 
 .PHONY: install
 install: symlink
-	./install-it.sh
+	./install.sh
 
 .PHONY: bootstrap
 bootstrap:
@@ -42,7 +42,7 @@ bootstrap:
 	@sed -i \
 		-e 's#https://#git@#' \
 		-e 's#.com/#.com:#' \
-		.git/modules/dots/.config/nvim/config \
+		.git/modules/dots/.config/nvim/config
 
 .PHONY: symlink
 symlink: $(DOTS_OUT)
