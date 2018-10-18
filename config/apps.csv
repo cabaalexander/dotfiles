@@ -1,0 +1,69 @@
+# Name,State,Description
+
+########
+#      #
+# Apps #
+#      #
+########
+,curl,on,
+,git,on,
+,jq,off,
+,tree,on,
+,bc,off,
+,ctags,on,
+,ncdu,off,
+,neovim,on,
+,tmux,on,
+,bash-completion,on,
+
+###########
+#         #
+# Haskell #
+#         #
+###########
+,stack,off,Haskell Stack
+,ghc,off,Haskell Compiler
+
+########
+#      #
+# RUBY #
+#      #
+########
+f,rvm,on,
+gem,lolcat,off,
+gem,neovim,on,
+
+##########
+#        #
+# Python #
+#        #
+##########
+,python3,on,
+,python-pip,on,
+pip,docker-compose,on,
+pip,doge,off,
+pip,grip,on,
+pip,neovim,on,
+pip,pip,on,
+
+##########
+#        #
+# NodeJS #
+#        #
+##########
+f,nvm,on,
+f,yarn,on,
+node,peerflix,on,
+node,vtop,off,
+
+###########
+#         #
+# Scripts #
+#         #
+###########
+f,docker,off,
+f,htopVIM,on,
+f,gotop,off,
+f,tpm,on,TMUX Plugin Manager
+f,plug,on,Vim Plugin Manager
+

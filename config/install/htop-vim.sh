@@ -27,4 +27,3 @@ then
   htopVIMInstall "${@}"
 fi
 
-
