@@ -146,18 +146,6 @@ dkb(){
   docker build ${@:-.}
 }
 
-doscript(){
-  # Creates a simple bash script
-  local TARGET=${1:-"script.sh"}
-  local COMMAND=${2:-"echo \"Hello World\""}
-
-  echo -e "#!/bin/bash\n\n$COMMAND\n" > ${TARGET}
-
-  chmod u+x ${TARGET}
-
-  echo ":: Script \`${TARGET}\` created ::"
-}
-
 pfetch(){
   # Uses `peerflix` from npm to download torrents (magnet link)
   peerflix -f . "${1:?"Provide a magnet link to start the download"}"
