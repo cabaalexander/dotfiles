@@ -40,6 +40,23 @@ __function(){
   done
 }
 
+__make_pkg(){
+  local REPO_URL=$1
+  local BASE_NAME=$(basename $REPO_URL)
+  local BASE_NAME_NO_EXT=${BASE_NAME%.*}
+  local DST=/tmp/$BASE_NAME_NO_EXT
+
+  git clone $REPO_URL $DST
+  cd $DST
+  makepkg --noconfirm -si
+  cd -
+  rm -rf $DST
+}
+
+__aur(){
+  yay --noconfirm -S $@
+}
+
 # Prepare log files
 # =================
 rm -f install*.log
@@ -60,7 +77,9 @@ do
   [[ "$STATE" == "off" ]] && continue
 
   case $TYPE in
+    a) FUNC=__aur ;;
     f) FUNC=__function ;;
+    m) FUNC=__make_pkg ;;
     "") FUNC=__package_manager ;;
     gem) FUNC=__gem ;;
     pip) FUNC=__pip ;;
