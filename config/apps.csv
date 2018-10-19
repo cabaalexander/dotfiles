@@ -1,5 +1,19 @@
 # Name,State,Description
 
+###########
+#         #
+# Makepkg #
+#         #
+###########
+m,https://aur.archlinux.org/yay.git,on,
+
+#######
+#     #
+# AUR #
+#     #
+#######
+a,htop-vim-git,on,
+
 ########
 #      #
 # Apps #
@@ -62,7 +76,6 @@ node,vtop,off,
 #         #
 ###########
 f,docker,off,
-f,htopVIM,on,
 f,gotop,off,
 f,tpm,on,TMUX Plugin Manager
 f,plug,on,Vim Plugin Manager
