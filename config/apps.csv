@@ -66,7 +66,7 @@ pip,pip,on,
 #        #
 ##########
 f,nvm,on,
-f,yarn,on,
+,yarn,on,
 node,peerflix,on,
 node,vtop,off,
 
@@ -75,7 +75,7 @@ node,vtop,off,
 # Scripts #
 #         #
 ###########
-f,docker,off,
+f,docker,on,
 f,gotop,off,
 f,tpm,on,TMUX Plugin Manager
 f,plug,on,Vim Plugin Manager
