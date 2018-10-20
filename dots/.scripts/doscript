@@ -16,7 +16,7 @@ __scriptify(){
 while getopts ":b:" OPT
 do
   case $OPT in
-    "") BODY=$OPTARG ;;
+    b) BODY=$OPTARG ;;
   esac
 done
 shift $((OPTIND - 1))
