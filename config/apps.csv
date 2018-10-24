@@ -69,6 +69,9 @@ f,nvm,on,
 ,yarn,on,
 node,peerflix,on,
 node,vtop,off,
+node,elm,on,
+node,elm-oracle,on,
+node,elm-format,on,
 
 ###########
 #         #
