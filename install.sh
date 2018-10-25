@@ -39,10 +39,10 @@ do
 
   # Format `type` for loggin purposes
   [[ "$TYPE" ]] \
-    && TYPE="- $TYPE -"
+    && TYPE_HEADER="- $TYPE -"
 
   # If the app is already installed do nothing
-  __is_installed $LOG_DST_STATUS $NAME $TYPE \
+  __is_installed $LOG_DST_STATUS $NAME $TYPE_HEADER \
     && continue
 
   [[ "$STATE" == "off" ]] && continue
@@ -58,12 +58,12 @@ do
   esac
 
   # Mapper's header (Log)
-  echo "- $NAME $TYPE" | tee -a $LOG_DST
+  echo "- $NAME $TYPE_HEADER" | tee -a $LOG_DST
 
   $MAPPER $NAME >> $LOG_DST 2>&1
 
   # Status (Log)
-  echo -e "$TYPE :: $NAME :: $?\n" >> $LOG_DST_STATUS
+  echo -e "$TYPE_HEADER :: $NAME :: $?\n" >> $LOG_DST_STATUS
 
 done < $CSV
 
