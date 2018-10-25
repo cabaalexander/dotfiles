@@ -1,11 +1,11 @@
 #!/bin/bash
 
 __is_installed(){
-  LOG_FILE=${1:?"No file provided"}
-  APP=$2
-  TYPE=$3
+  local LOG_FILE=${1:?"No file provided"}
+  local APP=$2
+  local TYPE=$3
 
-  PATTERN="^$TYPE :: $APP :: 0$"
+  local PATTERN="^$TYPE :: $APP :: 0$"
 
   cat $LOG_FILE | egrep $PATTERN &> /dev/null
 

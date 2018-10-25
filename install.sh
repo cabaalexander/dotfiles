@@ -37,17 +37,18 @@ IFS=,
 while read -rs TYPE NAME STATE DESCRIPTION
 do
 
+  UNFORMATTED_TYPE=$TYPE
+
   # Format `type` for loggin purposes
   [[ "$TYPE" ]] \
-    && TYPE_HEADER="- $TYPE -"
+    && TYPE="- $TYPE -"
 
-  # If the app is already installed do nothing
-  __is_installed $LOG_DST_STATUS $NAME $TYPE_HEADER \
+  # If the app is installed or turned off do nothing
+  __is_installed $LOG_DST_STATUS $NAME $TYPE \
+    || [[ "$STATE" == "off" ]] \
     && continue
 
-  [[ "$STATE" == "off" ]] && continue
-
-  case $TYPE in
+  case $UNFORMATTED_TYPE in
     a) MAPPER=__aur ;;
     f) MAPPER=__function ;;
     m) MAPPER=__make_pkg ;;
@@ -58,12 +59,13 @@ do
   esac
 
   # Mapper's header (Log)
-  echo "- $NAME $TYPE_HEADER" | tee -a $LOG_DST
+  echo "• $NAME $TYPE" | tee -a $LOG_DST
 
+  # Execute
   $MAPPER $NAME >> $LOG_DST 2>&1
 
   # Status (Log)
-  echo -e "$TYPE_HEADER :: $NAME :: $?\n" >> $LOG_DST_STATUS
+  echo -e "$TYPE :: $NAME :: $?\n" >> $LOG_DST_STATUS
 
 done < $CSV
 
