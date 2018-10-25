@@ -7,7 +7,7 @@
 #############
 
 SHELL		:= /bin/bash
-SYM_OUT		:= "${HOME}/.symlink-dst-paths.out"
+SYM_OUT		:= "${HOME}/.dots/symlink-dst-paths.out"
 
 HOME_SRC_PATH	:= ${PWD}/dots
 HOME_DST_PATH	:= ${HOME}
@@ -44,8 +44,12 @@ bootstrap:
 		-e 's#.com/#.com:#' \
 		.git/modules/dots/.config/nvim/config
 
+.PHONY: make-dots
+make-dots:
+	mkdir -p ${HOME}/.dots
+
 .PHONY: symlink
-symlink: $(DOTS_OUT)
+symlink: make-dots $(DOTS_OUT)
 $(HOME_DST_PATH)/%: $(HOME_SRC_PATH)/%
 	@mkdir -p $(dir $@)
 	@ln -svf $< $@
