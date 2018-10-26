@@ -46,7 +46,7 @@ bootstrap:
 
 .PHONY: make-dots
 make-dots:
-	mkdir -p ${HOME}/.dots
+	@mkdir -p ${HOME}/.dots
 
 .PHONY: symlink
 symlink: make-dots $(DOTS_OUT)
