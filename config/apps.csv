@@ -29,6 +29,7 @@ a,htop-vim-git,on,
 ,neovim,on,
 ,tmux,on,
 ,bash-completion,on,
+,shellcheck,on,
 
 ###########
 #         #
