@@ -33,7 +33,7 @@ all: bootstrap
 
 .PHONY: install
 install: symlink
-	./install.sh
+	@./install.sh
 
 .PHONY: bootstrap
 bootstrap:

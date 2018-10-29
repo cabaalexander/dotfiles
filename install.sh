@@ -32,7 +32,7 @@ touch $LOG_DST_STATUS
 # Begin #
 #       #
 #########
-echo "[Installing]"
+echo "[Installing]..."
 IFS=,
 while read -rs TYPE NAME STATE DESCRIPTION
 do
