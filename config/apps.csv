@@ -83,4 +83,5 @@ f,docker,on,
 f,gotop,off,
 f,tpm,on,TMUX Plugin Manager
 f,plug,on,Vim Plugin Manager
+f,libtinfo,on,
 
