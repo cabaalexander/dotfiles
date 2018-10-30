@@ -3,9 +3,9 @@
 tpmInstall(){
   local TMUX_PATH="${HOME}/.tmux/plugins/tpm"
 
-  if [ ! -f ${TMUX_PATH} ]
+  if [ ! -f "${TMUX_PATH}" ]
   then
-    git clone https://github.com/tmux-plugins/tpm ${TMUX_PATH}
+    git clone https://github.com/tmux-plugins/tpm "${TMUX_PATH}"
   fi
 
   # Install TMUX plugins :: Taken from ->
@@ -26,7 +26,7 @@ tpmInstall(){
 
 # If this file is running in terminal call the function `tpmInstall`
 # Otherwise just source it
-if [ "$(basename ${0})" = "tpm.sh" ]
+if [ "$(basename "${0}")" = "tpm.sh" ]
 then
   tpmInstall "${@}"
 fi

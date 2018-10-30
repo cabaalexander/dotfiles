@@ -1,4 +1,5 @@
 #!/bin/bash
+# shellcheck disable=1090
 
 nvmInstall(){
   local NVM="0.33.8"
@@ -14,7 +15,7 @@ nvmInstall(){
 
 # If this file is running in terminal call the function `nvmInstall`
 # Otherwise just source it
-if [ "$(basename ${0})" = "nvm.sh" ]
+if [ "$(basename "${0}")" = "nvm.sh" ]
 then
   nvmInstall "${@}"
 fi

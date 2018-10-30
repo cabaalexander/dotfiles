@@ -1,8 +1,9 @@
 #!/bin/bash
+# shellcheck disable=1090
 
 plugInstall(){
   # Prepare yarn for VIM plugins
-  source ${HOME}/.profile
+  source "${HOME}"/.profile
 
   nvim -c PlugInstall -c qa!
 }

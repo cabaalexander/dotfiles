@@ -2,9 +2,9 @@
 
 __function(){
   local FUNC=""
-  for FUNC in $@
+  for FUNC in "$@"
   do
-    ${FUNC}Install
+    echo "${FUNC}"Install
   done
 }
 

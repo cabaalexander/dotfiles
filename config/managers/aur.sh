@@ -1,6 +1,6 @@
 #!/bin/bash
 
 __aur(){
-  yay --noconfirm -S $@
+  yay --noconfirm -S "$@"
 }
 
