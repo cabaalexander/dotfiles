@@ -1,19 +1,24 @@
 #!/bin/bash
 
 __make_pkg(){
-  local REPO_URL=$1
-  local BASE_NAME=$(basename $REPO_URL)
-  local BASE_NAME_NO_EXT=${BASE_NAME%.*}
-  local DST=/tmp/$BASE_NAME_NO_EXT
+    local \
+        REPO_URL \
+        BASE_NAME \
+        BASE_NAME_NO_EXT DST
 
-  git clone $REPO_URL $DST
+    REPO_URL=$1
+    BASE_NAME=$(basename "$REPO_URL")
+    BASE_NAME_NO_EXT=${BASE_NAME%.*}
+    DST=/tmp/$BASE_NAME_NO_EXT
 
-  cd $DST
+    git clone "$REPO_URL" "$DST"
 
-  makepkg --noconfirm -si
+    cd "$DST" || return 1
 
-  cd -
+    makepkg --noconfirm -si
 
-  rm -rf $DST
+    cd - || return 1
+
+    rm -rf "$DST"
 }
 

@@ -7,7 +7,7 @@ tmuxInstall(){
 
   git clone https://github.com/tmux/tmux.git ${TEMP_TMUX_PATH}
 
-  cd ${TEMP_TMUX_PATH}
+  cd ${TEMP_TMUX_PATH} || return 1
 
   sh autogen.sh
 
@@ -15,14 +15,14 @@ tmuxInstall(){
 
   sudo make install
 
-  cd -
+  cd - &> /dev/null || return 1
 
   rm -rf ${TEMP_TMUX_PATH}
 }
 
 # If this file is running in terminal call the function `tmuxInstall`
 # Otherwise just source it
-if [ "$(basename ${0})" = "tmux.sh" ]
+if [ "$(basename "${0}")" = "tmux.sh" ]
 then
   tmuxInstall "${@}"
 fi
