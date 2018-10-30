@@ -1,15 +1,17 @@
 #!/bin/bash
 
+DEFAULT_BODY=(echo \"Hello World\")
+
 __message(){
   echo ":: Script \`$1\` created ::"
 }
 
 __scriptify(){
-  echo -e "#!/bin/bash\n\n${BODY:-"echo \"Hello World\""}\n" > $1
+  echo -e "#!/bin/bash\\n\\n${BODY:-"${DEFAULT_BODY[*]}"}\\n" > "$1"
 
-  chmod u+x $1
+  chmod u+x "$1"
 
-  __message $1
+  __message "$1"
 }
 
 # Parse options
@@ -17,19 +19,20 @@ while getopts ":b:" OPT
 do
   case $OPT in
     b) BODY=$OPTARG ;;
+    *) echo "Option (-$OPTARG) not supported"
   esac
 done
 shift $((OPTIND - 1))
 
 [ $# -lt 1 ] && {
-  __scriptify script.sh $BODY
+  __scriptify script.sh "$BODY"
   exit 0
 }
 
 # Begin
 # =====
-for SCRIPT in $@
+for SCRIPT in "$@"
 do
-  __scriptify $SCRIPT $BODY
+  __scriptify "$SCRIPT" "$BODY"
 done
 

@@ -1,7 +1,12 @@
 #!/bin/bash
 
 libtinfoInstall(){
-    BASE="/usr/lib/"
+    local \
+        BASE \
+        LIB_NCURSES \
+        LIB_TINFO
+
+    BASE="/usr/lib"
     LIB_NCURSES="${BASE}/libncurses++w.so.6.1"
     LIB_TINFO="${BASE}/libtinfo.so.5"
 
@@ -15,7 +20,7 @@ libtinfoInstall(){
 
 # If this file is running in terminal call the function `libtinfoInstall`
 # Otherwise just source it
-if [ "$(basename ${0})" = "libtinfo.sh" ]
+if [ "$(basename "${0}")" = "libtinfo.sh" ]
 then
     libtinfoInstall "${@}"
 fi
