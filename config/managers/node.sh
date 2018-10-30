@@ -1,6 +1,6 @@
 #!/bin/bash
 
 __node(){
-  yarn global add $@
+  yarn global add "$@"
 }
 

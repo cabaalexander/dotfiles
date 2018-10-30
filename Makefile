@@ -69,3 +69,7 @@ $(HOME_DST_PATH)/%.clean:
 post-clean:
 	@rm -f $(SYM_OUT)
 
+.PHONY: test
+test:
+	@shellcheck **/*.sh
+

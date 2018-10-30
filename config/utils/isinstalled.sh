@@ -7,14 +7,14 @@ __is_installed(){
 
   local PATTERN="^$TYPE :: $APP :: 0$"
 
-  cat $LOG_FILE | egrep $PATTERN &> /dev/null
+  grep -E "$PATTERN" &> /dev/null < "$LOG_FILE"
 
   return $?
 }
 
 # If this file is running in terminal call the function `__is_installed`
 # Otherwise just source it
-if [ "$(basename ${0})" = "isinstalled.sh" ]
+if [ "$(basename "${0}")" = "isinstalled.sh" ]
 then
   __is_installed "${@}"
 fi

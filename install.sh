@@ -1,4 +1,5 @@
 #!/bin/bash
+# shellcheck disable=1090
 
 # Source script to source (¯\_(ツ)_/¯)
 # ===================================
@@ -12,8 +13,8 @@ sourceIfExists ./config/{.,install,managers,utils}/*.sh
 # Strip comments and empty lines
 # ==============================
 CSV=$(mktemp)
-sed -e '/^#/d' -e '/^$/d' ./config/apps.csv > $CSV
-trap "{ rm -f $CSV; }" SIGINT SIGTERM EXIT
+sed -e '/^#/d' -e '/^$/d' ./config/apps.csv > "$CSV"
+trap '{ rm -f "$CSV" ; }' SIGINT SIGTERM EXIT
 
 #####################
 #                   #
@@ -44,7 +45,7 @@ do
     && TYPE="- $TYPE -"
 
   # If the app is installed or turned off do nothing
-  __is_installed $LOG_DST_STATUS $NAME $TYPE \
+  __is_installed $LOG_DST_STATUS "$NAME" "$TYPE" \
     || [[ "$STATE" == "off" ]] \
     && continue
 
@@ -58,14 +59,17 @@ do
     node) MAPPER=__node ;;
   esac
 
+  [[ "$DESCRIPTION" ]] \
+      && DESCRIPTION="\\n\\t$DESCRIPTION"
+
   # Mapper's header (Log)
-  echo "• $NAME $TYPE" | tee -a $LOG_DST
+  echo "• $NAME $TYPE $DESCRIPTION" | tee -a $LOG_DST
 
   # Execute
-  $MAPPER $NAME >> $LOG_DST 2>&1
+  $MAPPER "$NAME" >> $LOG_DST 2>&1
 
   # Status (Log)
-  echo -e "$TYPE :: $NAME :: $?\n" >> $LOG_DST_STATUS
+  echo -e "$TYPE :: $NAME :: $?\\n" >> $LOG_DST_STATUS
 
-done < $CSV
+done < "$CSV"
 

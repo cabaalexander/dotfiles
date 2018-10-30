@@ -1,9 +1,11 @@
 #!/bin/bash
 
 gotopInstall(){
-  local TEMP_PATH=$(mktemp -d)
+  local TEMP_PATH
 
-  cd $TEMP_PATH
+  TEMP_PATH=$(mktemp -d)
+
+  cd "$TEMP_PATH" || return 1
 
   # Begin
 
@@ -15,14 +17,14 @@ gotopInstall(){
 
   # End
 
-  cd - &> /dev/null
+  cd - &> /dev/null || return 1
 
-  rm -rf $TEMP_PATH
+  rm -rf "$TEMP_PATH"
 }
 
 # If this file is running in terminal call the function `gotopInstall`
 # Otherwise just source it
-if [ "$(basename ${0})" = "gotop.sh" ]
+if [ "$(basename "${0}")" = "gotop.sh" ]
 then
   gotopInstall "${@}"
 fi

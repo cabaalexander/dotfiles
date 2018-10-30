@@ -9,7 +9,7 @@ nginxInstall(){
 
 # If this file is running in terminal call the function `nginxInstall`
 # Otherwise just source it
-if [ "$(basename ${0})" = "nginx.sh" ]
+if [ "$(basename "${0}")" = "nginx.sh" ]
 then
   nginxInstall "${@}"
 fi
