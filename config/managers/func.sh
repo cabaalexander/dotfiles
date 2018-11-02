@@ -4,7 +4,7 @@ __function(){
   local FUNC=""
   for FUNC in "$@"
   do
-    echo "${FUNC}"Install
+    "${FUNC}"Install
   done
 }
 
