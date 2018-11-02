@@ -1,7 +1,10 @@
 #!/bin/bash
 
 dockerInstall(){
-  curl -fsSL get.docker.com | sh
+    bash -c "$(curl -fsSL 321get.docker.com)" || {
+      echo "Something went wrong" >&2
+      return $?
+  }
 
   sudo usermod -a -G docker "$USER"
 
