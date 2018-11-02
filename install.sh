@@ -1,5 +1,5 @@
 #!/bin/bash
-# shellcheck disable=1090
+# shellcheck disable=1090,1117
 
 set -e
 
@@ -62,16 +62,16 @@ do
   esac
 
   [[ "$DESCRIPTION" ]] \
-      && DESCRIPTION="\\n\\t$DESCRIPTION"
+      && DESCRIPTION="\n\t$DESCRIPTION"
 
   # Mapper's header (Log)
-  echo "• $NAME $TYPE $DESCRIPTION" | tee -a $LOG_DST
+  echo "# $NAME $TYPE $DESCRIPTION" | tee -a $LOG_DST
 
   # Execute
-  $MAPPER "$NAME" >> $LOG_DST 2>&1
+  $MAPPER "$NAME" | tee -a $LOG_DST 2>&1
 
   # Status (Log)
-  echo -e "$TYPE :: $NAME :: $?\\n" >> $LOG_DST_STATUS
+  echo -e "$TYPE :: $NAME :: $?\n" >> $LOG_DST_STATUS
 
 done < "$CSV"
 
