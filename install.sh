@@ -1,6 +1,8 @@
 #!/bin/bash
 # shellcheck disable=1090
 
+set -e
+
 # Source script to source (¯\_(ツ)_/¯)
 # ===================================
 . ~/.scripts/sourceifexists

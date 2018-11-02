@@ -12,6 +12,9 @@ SYM_OUT		:= "${HOME}/.dots/symlink-dst-paths.out"
 HOME_SRC_PATH	:= ${PWD}/dots
 HOME_DST_PATH	:= ${HOME}
 
+SH_FILES_IGNORE	:= ! -path "*.git/*"
+SH_FILES	:= $(shell find . -name "*.sh" $(SH_FILES_IGNORE))
+
 # `dots`
 # ======
 DOTS_IGNORE	:= ! -path "*plugged/*" ! -name "Session.vim"
@@ -71,5 +74,5 @@ post-clean:
 
 .PHONY: test
 test:
-	@shellcheck **/*.sh
+	@shellcheck $(SH_FILES)
 
