@@ -5,7 +5,7 @@ nvmInstall(){
   local NVM="0.33.8"
   local NODE="10"
 
-  curl -o- https://raw.githubusercontent.com/creationix/nvm/v${NVM}/install.sh | bash
+  bash -c "$(curl -o- https://raw.githubusercontent.com/creationix/nvm/v${NVM}/install.sh)"
 
   # Source `nvm`
   [[ -s ~/.nvm/nvm.sh ]] && . ~/.nvm/nvm.sh
