@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dockerInstall(){
-    bash -c "$(curl -fsSL 321get.docker.com)" || {
+    bash -c "$(curl -fsSL get.docker.com)" || {
       echo "Something went wrong" >&2
       return $?
   }
