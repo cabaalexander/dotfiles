@@ -1,8 +1,8 @@
 #!/bin/bash
 
 IP_AND_MASK=$(
-    ip addr show eth1 | egrep '^[[:space:]]+inet ' | awk '{print $2}'
+    ip addr show eth1 | grep -E '^[[:space:]]+inet ' | awk '{print $2}'
 )
 
-echo ${IP_AND_MASK%/*}
+echo "${IP_AND_MASK%/*}"
 
