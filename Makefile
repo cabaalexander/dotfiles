@@ -66,7 +66,8 @@ symlink-update: clean symlink
 .PHONY: clean
 clean: $(CLEAN_SRC) post-clean
 $(HOME_DST_PATH)/%.clean:
-	@echo $@ | sed 's/.clean//' | xargs rm -vf
+	@sed 's/.clean//' <<<"$@" \
+		| xargs rm -rf
 
 .PHONY: post-clean
 post-clean:
@@ -75,4 +76,11 @@ post-clean:
 .PHONY: test
 test:
 	@shellcheck $(SH_FILES)
+
+.PHONY: test-fix
+test-fix:
+	@shellcheck $(SH_FILES) \
+		| grep "^In" \
+		| cut -d' ' -f2 \
+		| xargs nvim
 

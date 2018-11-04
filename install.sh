@@ -65,7 +65,7 @@ do
       && DESCRIPTION="\n\t$DESCRIPTION"
 
   # Mapper's header (Log)
-  echo "# $NAME $TYPE $DESCRIPTION" | tee -a $LOG_DST
+  echo -e "# $NAME $TYPE $DESCRIPTION" | tee -a $LOG_DST
 
   # Execute
   $MAPPER "$NAME" | tee -a $LOG_DST 2>&1
