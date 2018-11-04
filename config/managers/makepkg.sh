@@ -22,3 +22,10 @@ __make_pkg(){
     rm -rf "$DST"
 }
 
+# If this file is running in terminal call the function `__make_pkg`
+# Otherwise just source it
+if [ "$(basename "${0}")" = "makepkg.sh" ]
+then
+  __make_pkg "${@}"
+fi
+
