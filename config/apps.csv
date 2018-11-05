@@ -55,7 +55,6 @@ gem,neovim,on,
 ##########
 ,python3,on,
 ,python-pip,on,
-pip,docker-compose,on,
 pip,doge,off,
 pip,grip,on,
 pip,neovim,on,
@@ -74,12 +73,20 @@ node,elm@0.18.0,on,
 node,elm-oracle,on,
 node,elm-format,on,
 
+##########
+#        #
+# Docker #
+#        #
+##########
+a,docker,on,
+f,docker,on,Add user to docker group
+pip,docker-compose,on,
+
 ###########
 #         #
 # Scripts #
 #         #
 ###########
-f,docker,on,
 f,gotop,off,
 f,tpm,on,TMUX Plugin Manager
 f,plug,on,Vim Plugin Manager
