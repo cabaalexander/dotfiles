@@ -13,6 +13,7 @@ m,https://aur.archlinux.org/yay.git,on,
 #     #
 #######
 a,htop-vim-git,on,
+a,sc-im,off,
 
 ########
 #      #
