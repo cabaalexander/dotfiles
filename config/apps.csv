@@ -31,6 +31,7 @@ a,sc-im,off,
 ,tmux,on,
 ,bash-completion,on,
 ,shellcheck,on,
+,fd,on,
 
 ###########
 #         #
