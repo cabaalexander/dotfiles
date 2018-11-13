@@ -90,9 +90,9 @@ node,elm-format,on,
 # Docker #
 #        #
 ##########
-a,docker,on,
-f,docker,on,Add user to docker group
-pip,docker-compose,on,
+a,docker,off,
+f,docker,off,Add user to docker group
+pip,docker-compose,off,
 
 ###########
 #         #
@@ -100,7 +100,7 @@ pip,docker-compose,on,
 #         #
 ###########
 f,gotop,off,
-f,libtinfo,on,
+f,libtinfo,on,Thing for `elm repl` to work
 
 #################
 #               #
