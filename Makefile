@@ -67,7 +67,7 @@ symlink-update: clean symlink
 clean: $(CLEAN_SRC) post-clean
 $(HOME_DST_PATH)/%.clean:
 	@sed 's/.clean//' <<<"$@" \
-		| xargs rm -rf
+		| xargs rm -rfv
 
 .PHONY: post-clean
 post-clean:
