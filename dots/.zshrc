@@ -16,4 +16,5 @@ sourceIfExists ~/.antigenrc
 
 # Use VI mode in bash
 setopt vi
+setopt menu_complete
 
