@@ -14,3 +14,7 @@ export SPACESHIP_VI_MODE_SHOW=false
 export SPACESHIP_USER_SHOW=false
 export SPACESHIP_HOST_SHOW=false
 export SPACESHIP_GIT_BRANCH_COLOR="green"
+
+# TMUX
+export ZSH_TMUX_AUTOSTART=true
+

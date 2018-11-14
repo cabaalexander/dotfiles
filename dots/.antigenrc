@@ -8,6 +8,7 @@ antigen use oh-my-zsh
 
 # Packages
 antigen bundles <<EOBUNDLES
+    tmux
     zsh-users/zsh-syntax-highlighting
 EOBUNDLES
 

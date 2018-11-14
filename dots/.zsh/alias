@@ -117,12 +117,6 @@ alias celm-repl="./node_modules/.bin/elm-repl"
 # ===
 alias conto='gall && gcman && gps -f --no-verify'
 
-# Tmux
-# ====
-alias tm='tmux'
-alias tma='tmux attach'
-alias lstmux='tmux ls'
-
 ##########
 #        #
 # Random #
