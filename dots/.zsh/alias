@@ -107,11 +107,9 @@ alias dkinfo='clear && dki && echo -e "\n\n#######################\n\n" && dkps 
 
 # Elm
 # ===
-alias celm="./node_modules/.bin/elm"
-alias celm-make="./node_modules/.bin/elm-make"
-alias celm-package="./node_modules/.bin/elm-package"
-alias celm-reactor="./node_modules/.bin/elm-reactor"
-alias celm-repl="./node_modules/.bin/elm-repl"
+alias em='elm make'
+alias er='elm repl'
+alias epi='elm package install'
 
 # HAM
 # ===
