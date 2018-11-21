@@ -18,3 +18,5 @@ sourceIfExists ~/.antigenrc
 setopt vi
 setopt menu_complete
 
+# Press enter once to execute
+bindkey -M menuselect '^M' .accept-line
