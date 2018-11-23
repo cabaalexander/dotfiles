@@ -4,7 +4,6 @@
 # Script to source (¯\_(ツ)_/¯)
 . ~/.scripts/sourceifexists
 
-
 # Import configurations
 sourceIfExists ~/.zsh/zshenv
 sourceIfExists ~/.zsh/alias

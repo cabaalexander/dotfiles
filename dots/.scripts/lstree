@@ -7,6 +7,7 @@ IGNORE=(
   build
   bower_components
   .git
+  elm-stuff
 )
 IGNORE=$(tr " " "|" <<<${IGNORE[*]})
 
