@@ -17,14 +17,14 @@ doWhile(){
 
   while :
   do
-    $@
-    sleep ${TIME:-1}
+    "$@"
+    sleep "${TIME:-1}"
   done
 }
 
 # If this file is running in terminal call the function `doWhile`
 # Otherwise just source it
-if [ "$(basename ${0})" = "dowhile.sh" ]
+if [ "$(basename "${0}")" = "dowhile.sh" ]
 then
   doWhile "${@}"
 fi
