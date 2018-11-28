@@ -14,8 +14,11 @@ sourceIfExists ~/.zsh/path
 sourceIfExists ~/.antigenrc
 
 # Use VI mode in bash
-setopt vi
-setopt menu_complete
+setopt VI
+setopt MENU_COMPLETE
+
+# Autoexecute double bang history
+unsetopt HIST_VERIFY
 
 # Press enter once to execute
 bindkey -M menuselect '^M' .accept-line
