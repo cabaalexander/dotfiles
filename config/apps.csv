@@ -32,6 +32,8 @@ a,sc-im,off,
 ,bash-completion,on,
 ,shellcheck,on,
 ,fd,on,
+,curlftpfs,off,
+,fontconfig,off,
 
 #######
 #     #
