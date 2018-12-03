@@ -1,0 +1,33 @@
+#!/bin/bash
+
+parseFile(){
+    local VARS=(
+        SERVER
+        USER
+        PASSWORD
+    )
+    eval MOUNT="$HOME/.ftp/mount/$(basename "$1")"
+
+    local i=0
+    while read -rs
+    do
+        eval "${VARS[i]}"="$REPLY"
+        i=$((i + 1))
+    done <"$1"
+}
+
+if [ -f "$1" ]
+then
+    parseFile "$1"
+else
+    MOUNT=${1?Mount point not provided}
+    SERVER=${2?Host not provided}
+    USER=${3?User not provided}
+    PASSWORD=${4?Password not provided}
+fi
+
+[ -f "$MOUNT" ] || mkdir -p "$MOUNT"
+curlftpfs "$SERVER" "$MOUNT" -o user="$USER:$PASSWORD" && {
+    echo "Ftp server ${USER}@${SERVER} is mounted on $MOUNT"
+}
+

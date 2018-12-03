@@ -154,3 +154,7 @@ pfetch(){
     peerflix -f . "${1:?"Provide a magnet link to start the download"}"
 }
 
+uftp(){
+    local DST=${1?Mount point not provided}
+    fusermount -u "$DST"
+}
