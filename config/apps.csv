@@ -34,6 +34,7 @@ a,sc-im,off,
 ,fd,on,
 ,curlftpfs,off,
 ,fontconfig,off,
+,editorconfig-core-c,on,
 
 #######
 #     #
