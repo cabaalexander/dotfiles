@@ -84,3 +84,7 @@ test-fix:
 		| cut -d' ' -f2 \
 		| xargs nvim
 
+.PHONY: log
+log:
+	@less ~/.dots/install-status.log
+
