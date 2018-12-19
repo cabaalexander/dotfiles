@@ -7,6 +7,14 @@
 ###########
 m,https://aur.archlinux.org/yay.git,on,
 
+#####################
+#                   #
+# Dependencies/Keys #
+#                   #
+#####################
+
+f,tiv,on,
+
 #######
 #     #
 # AUR #
@@ -14,6 +22,7 @@ m,https://aur.archlinux.org/yay.git,on,
 #######
 a,htop-vim-git,on,
 a,sc-im,off,
+a,tiv,on,
 
 ########
 #      #
