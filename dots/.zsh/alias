@@ -59,6 +59,7 @@ alias grbc='git rebase --continue'
 
 # Commit
 # ======
+alias gcz='npx git-cz'
 alias gcm='git commit'
 alias gcma='git commit --amend'
 alias gcman='git commit --amend --no-edit --no-verify'
