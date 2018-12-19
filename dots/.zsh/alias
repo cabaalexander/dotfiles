@@ -64,6 +64,9 @@ alias gcm='git commit'
 alias gcma='git commit --amend'
 alias gcman='git commit --amend --no-edit --no-verify'
 
+# Release
+alias grls='npx semantic-release'
+
 #################
 #               #
 # Other Aliases #
