@@ -7,14 +7,6 @@
 ###########
 m,https://aur.archlinux.org/yay.git,on,
 
-#####################
-#                   #
-# Dependencies/Keys #
-#                   #
-#####################
-
-f,tiv,on,
-
 #######
 #     #
 # AUR #
@@ -22,7 +14,7 @@ f,tiv,on,
 #######
 a,htop-vim-git,on,
 a,sc-im,off,
-a,tiv,on, TERM Img viewer (Smooth)
+a,catimg,on, TERM Img viewer (Smooth)
 a,libcaca,on, TERM Img viewer (Functional)
 
 ########
