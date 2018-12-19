@@ -22,7 +22,8 @@ f,tiv,on,
 #######
 a,htop-vim-git,on,
 a,sc-im,off,
-a,tiv,on,
+a,tiv,on, TERM Img viewer (Smooth)
+a,libcaca,on, TERM Img viewer (Functional)
 
 ########
 #      #
