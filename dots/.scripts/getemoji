@@ -1,0 +1,77 @@
+#!/bin/bash
+
+DEFAULT="https://unicode.org/Public/emoji/1.0/emoji-data.txt"
+DEFAULT_MAPPER="__defaultFilter"
+
+# Parse options
+while getopts ":s:" OPT
+do
+  case $OPT in
+      s)
+          OP="$OPTARG"
+          ;;
+      *)
+          OP="$DEFAULT"
+  esac
+done
+shift $((OPTIND - 1))
+
+__getUrlAndMapper(){
+    local _OP=$1
+    case "$_OP" in
+        luke)
+            URL="https://raw.githubusercontent.com/LukeSmithxyz/voidrice/master/.emoji"
+            MAPPER="__lukeFilter"
+            ;;
+        *)
+            URL="$DEFAULT"
+            MAPPER="$DEFAULT_MAPPER"
+            ;;
+    esac
+}
+
+__getSource(){
+    local URL URL_DASHED FILE_PATH
+
+    mkdir -p ~/.emojis
+
+    URL=$1
+    URL_DASHED=$(tr '/' '-' <<<"${URL#*//}")
+
+    FILE_PATH="${HOME}/.emojis/${URL_DASHED}"
+
+    if [ -f "$FILE_PATH" ]
+    then
+        cat "$FILE_PATH"
+    else
+        curl -s "$URL" | tee "$FILE_PATH"
+    fi
+}
+
+__getUrlAndMapper "$OP"
+
+__defaultFilter(){
+    __getSource "$1" \
+        | grep -v "^#" \
+        | cut -d'#' -f2 \
+        | cut -d' ' -f3- \
+        | fzf \
+        | sed -r 's/.*\((.*)\).*/\1/g'
+}
+
+__lukeFilter(){
+    __getSource "$1" \
+        | cut -d';' -f1 \
+        | fzf \
+        | cut -d' ' -f1
+}
+
+
+EMOJI=$(eval "$MAPPER $URL")
+
+if tmux set-buffer "$EMOJI"; then
+    echo "$EMOJI : Copied to TMUX Clipboard"
+else
+    echo "TMUX Server might be not running"
+fi
+
