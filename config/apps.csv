@@ -34,6 +34,7 @@ a,libcaca,on, TERM Img viewer (Functional)
 ,bash-completion,on,
 ,shellcheck,on,
 ,fd,on,
+,ripgrep,on,
 ,curlftpfs,off,
 ,fontconfig,off,
 ,editorconfig-core-c,on,
