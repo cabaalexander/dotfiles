@@ -2,16 +2,24 @@
 
 DEFAULT="https://unicode.org/Public/emoji/1.0/emoji-data.txt"
 DEFAULT_MAPPER="__defaultFilter"
+SUPPORTED_CLIPBOARDS=(
+    pbcopy
+    xsel
+    xclip
+    lemonade
+    doitclient
+    tmux
+)
 
 # Parse options
 while getopts ":s:" OPT
 do
   case $OPT in
       s)
-          OP="$OPTARG"
+          OPTION_VALUE="$OPTARG"
           ;;
       *)
-          OP="$DEFAULT"
+          OPTION_VALUE="$DEFAULT"
   esac
 done
 shift $((OPTIND - 1))
@@ -48,7 +56,49 @@ __getSource(){
     fi
 }
 
-__getUrlAndMapper "$OP"
+__getClipboard(){
+    local CLIP GOOD
+    for CLIP in ${SUPPORTED_CLIPBOARDS[*]}
+    do
+        GOOD=$(command -v "$CLIP")
+        if [ -n "$GOOD" ]
+        then
+            echo "$CLIP"
+            break
+        fi
+    done
+}
+
+__toClipboard(){
+    local CLIP RETURN_VALUE
+    CLIP=$(__getClipboard)
+    if [ $# -eq 0 ]
+    then
+        read -rs RETURN_VALUE
+    else
+        RETURN_VALUE=$1
+    fi
+    if [ -z "$RETURN_VALUE" ]
+    then
+        echo "[Error] You tried to copy \"Empty String\" to the clipboard"
+        return 1
+    fi
+    CLIP=klk
+    case "$CLIP" in
+        tmux)
+            if tmux set-buffer "$RETURN_VALUE"
+            then
+                echo "$RETURN_VALUE : Copied to TMUX Clipboard"
+            else
+                echo "TMUX Server might be not running"
+            fi
+            ;;
+        *)
+            echo "$RETURN_VALUE : Not copied to Clipboard"
+            echo -e "\nCheck the script to see the supported clipboards"
+            ;;
+    esac
+}
 
 __defaultFilter(){
     __getSource "$1" \
@@ -66,12 +116,9 @@ __lukeFilter(){
         | cut -d' ' -f1
 }
 
+__getUrlAndMapper "$OPTION_VALUE"
 
 EMOJI=$(eval "$MAPPER $URL")
 
-if tmux set-buffer "$EMOJI"; then
-    echo "$EMOJI : Copied to TMUX Clipboard"
-else
-    echo "TMUX Server might be not running"
-fi
+[ -n "$EMOJI" ] && __toClipboard "$EMOJI"
 
