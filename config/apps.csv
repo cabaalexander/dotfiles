@@ -90,6 +90,7 @@ node,vtop,off,
 node,elm@0.18.0,on,
 node,elm-oracle,on,
 node,elm-format,on,
+node,diff-so-fancy,on,
 
 ##########
 #        #
