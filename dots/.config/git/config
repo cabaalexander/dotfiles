@@ -1,36 +1,36 @@
 [user]
-  email = cabaalexander321@gmail.com
-  name = cabaalexander
+    email = cabaalexander321@gmail.com
+    name = cabaalexander
 [alias]
-  unstage = reset HEAD --
-  lol = log --graph --pretty=oneline --abbrev-commit --decorate --all
-  co = checkout
-  cong = config --global
-  props = config --get-regexp
-  del = branch -D
-  delremote = push --delete
-  tagcommit = rev-list -n 1
-  bsort = for-each-ref --sort=committerdate refs/heads/ --format='%(committerdate:short) %(refname:short)'
-  unassume = update-index --no-assume-unchanged
-  assume = update-index --assume-unchanged
-  lsassumed = "!git ls-files -v | grep ^h | cut -c 3-"
+    unstage = reset HEAD --
+    lol = log --graph --pretty=oneline --abbrev-commit --decorate --all
+    co = checkout
+    cong = config --global
+    props = config --get-regexp
+    del = branch -D
+    delremote = push --delete
+    tagcommit = rev-list -n 1
+    bsort = for-each-ref --sort=committerdate refs/heads/ --format='%(committerdate:short) %(refname:short)'
+    unassume = update-index --no-assume-unchanged
+    assume = update-index --assume-unchanged
+    lsassumed = "!git ls-files -v | grep ^h | cut -c 3-"
 [merge]
-  tool = fugitive
-  conflictstyle = diff3
+    tool = fugitive
+    conflictstyle = diff3
 [push]
-  default = simple
+    default = simple
 [color]
-  ui = true
+    ui = true
 [color "diff"]
-  old = red
+    old = red
 [diff]
-  tool = fugitive
+    tool = fugitive
 [difftool]
-  prompt = false
+    prompt = false
 [mergetool]
-  keepBackup = false
-  prompt = true
+    keepBackup = false
+    prompt = true
 [mergetool "fugitive"]
-  cmd = nvim -f -c \"Gvdiff\" \"$MERGED\"
+    cmd = nvim -f -c \"Gvdiff\" \"$MERGED\"
 [core]
-  pager = less -FRX
+    pager = diff-so-fancy | less --tabs=4 -RFX
