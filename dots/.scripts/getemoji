@@ -1,4 +1,5 @@
 #!/bin/bash
+set -eo pipefail
 
 DEFAULT="https://unicode.org/Public/emoji/1.0/emoji-data.txt"
 DEFAULT_MAPPER="__defaultFilter"
@@ -10,23 +11,11 @@ SUPPORTED_CLIPBOARDS=(
     doitclient
     tmux
 )
-
-# Parse options
-while getopts ":s:" OPT
-do
-  case $OPT in
-      s)
-          OPTION_VALUE="$OPTARG"
-          ;;
-      *)
-          OPTION_VALUE="$DEFAULT"
-  esac
-done
-shift $((OPTIND - 1))
+FZF=$(command -v fzf)
 
 __getUrlAndMapper(){
-    local _OP=$1
-    case "$_OP" in
+    local OPTION=$1
+    case "$OPTION" in
         luke)
             URL="https://raw.githubusercontent.com/LukeSmithxyz/voidrice/master/.emoji"
             MAPPER="__lukeFilter"
@@ -71,7 +60,7 @@ __getClipboard(){
 
 __toClipboard(){
     local CLIP RETURN_VALUE
-    CLIP=$(__getClipboard)
+    # CLIP=$(__getClipboard)
     if [ $# -eq 0 ]
     then
         read -rs RETURN_VALUE
@@ -83,7 +72,6 @@ __toClipboard(){
         echo "[Error] You tried to copy \"Empty String\" to the clipboard"
         return 1
     fi
-    CLIP=klk
     case "$CLIP" in
         tmux)
             if tmux set-buffer "$RETURN_VALUE"
@@ -95,9 +83,33 @@ __toClipboard(){
             ;;
         *)
             echo "$RETURN_VALUE : Not copied to Clipboard"
-            echo -e "\nCheck the script to see the supported clipboards"
+            echo
+            echo "Check the script to see the supported clipboards ¯\_(ツ)_/¯"
+            echo "Or if you want you have the chance grab your mouse and copy it ;)"
             ;;
     esac
+}
+
+__grepIt(){
+    local REPLY RETURN_VALUE
+    read -rp "What emoji do you want? :: " </dev/tty
+    RETURN_VALUE=$(grep -i "$REPLY" | head -n1)
+    if [ -n "$RETURN_VALUE" ]
+    then
+        echo "$RETURN_VALUE"
+    else
+        >&2 echo "No match for : $REPLY, try again..."
+        exit 1
+    fi
+}
+
+__toFilter(){
+    if [ -n "$FZF" ]
+    then
+        fzf
+    else
+        __grepIt
+    fi
 }
 
 __defaultFilter(){
@@ -105,16 +117,29 @@ __defaultFilter(){
         | grep -v "^#" \
         | cut -d'#' -f2 \
         | cut -d' ' -f3- \
-        | fzf \
-        | sed -r 's/.*\((.*)\).*/\1/g'
+        | __toFilter \
+        | sed -E 's/.*\((.*)\).*/\1/g'
 }
 
 __lukeFilter(){
     __getSource "$1" \
         | cut -d';' -f1 \
-        | fzf \
+        | __toFilter \
         | cut -d' ' -f1
 }
+
+# Parse options
+while getopts ":s:" OPT
+do
+  case $OPT in
+      s)
+          OPTION_VALUE="$OPTARG"
+          ;;
+      *)
+          OPTION_VALUE="$DEFAULT"
+  esac
+done
+shift $((OPTIND - 1))
 
 __getUrlAndMapper "$OPTION_VALUE"
 
