@@ -1,5 +1,11 @@
 #!/bin/bash
-set -eo pipefail
+set -e -o pipefail
+
+# This script gets an emoji from an URL
+# right now, you can get emojis from two sources
+# unicode.org and luke's
+# e.g.
+# getemoji -s luke (This will get the emojis from luke's)
 
 DEFAULT="https://unicode.org/Public/emoji/1.0/emoji-data.txt"
 DEFAULT_MAPPER="__defaultFilter"
@@ -11,7 +17,7 @@ SUPPORTED_CLIPBOARDS=(
     doitclient
     tmux
 )
-FZF=$(command -v fzf)
+FZF=$(command -v fzf || true)
 
 __getUrlAndMapper(){
     local OPTION=$1
@@ -82,10 +88,7 @@ __toClipboard(){
             fi
             ;;
         *)
-            echo "$RETURN_VALUE : Not copied to Clipboard"
-            echo
-            echo "Check the script to see the supported clipboards ¯\_(ツ)_/¯"
-            echo "Or if you want you have the chance grab your mouse and copy it ;)"
+            echo "$RETURN_VALUE"
             ;;
     esac
 }
@@ -94,11 +97,12 @@ __grepIt(){
     local REPLY RETURN_VALUE
     read -rp "What emoji do you want? :: " </dev/tty
     RETURN_VALUE=$(grep -i "$REPLY" | head -n1)
+    echo
     if [ -n "$RETURN_VALUE" ]
     then
         echo "$RETURN_VALUE"
     else
-        >&2 echo "No match for : $REPLY, try again..."
+        >&2 echo -e "\nNo match for : $REPLY, try again..."
         exit 1
     fi
 }
