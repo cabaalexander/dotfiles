@@ -112,6 +112,7 @@ gprup(){
 
 gdl(){
     local PARAM=$1
+    clear
     git log -p -"${PARAM:-1}"
 }
 
