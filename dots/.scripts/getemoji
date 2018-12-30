@@ -2,10 +2,17 @@
 set -e -o pipefail
 
 # This script gets an emoji from an URL
-# right now, you can get emojis from two sources
-# unicode.org and luke's
+#
+# This script UX is way better when you have 'fzf' installed ;)
+#
+# You can get emojis from two sources
+# which are unicode.org and luke's
 # e.g.
 # getemoji -s luke (This will get the emojis from luke's)
+#
+# for no user interaction you can pass the emoji as a parameter
+# e.g.
+# getemoji [emoji-name]
 
 DEFAULT="https://unicode.org/Public/emoji/1.0/emoji-data.txt"
 DEFAULT_MAPPER="__defaultFilter"
@@ -93,26 +100,31 @@ __toClipboard(){
     esac
 }
 
-__grepIt(){
-    local REPLY RETURN_VALUE
-    read -rp "What emoji do you want? :: " </dev/tty
-    RETURN_VALUE=$(grep -i "$REPLY" | head -n1)
+__toGrep(){
+    local REPLY RETURN_VALUE VAL
+    if [ -n "$PATTERN" ]
+    then
+        VAL="$PATTERN"
+    else
+        read -rp "What emoji do you want? :: " VAL </dev/tty
+    fi
+    RETURN_VALUE=$(grep -i "$VAL" | head -n1)
     echo
     if [ -n "$RETURN_VALUE" ]
     then
         echo "$RETURN_VALUE"
     else
-        >&2 echo -e "\nNo match for : $REPLY, try again..."
+        >&2 echo -e "\nNo match for : $VAL\ntry again..."
         exit 1
     fi
 }
 
 __toFilter(){
-    if [ -n "$FZF" ]
+    if [ -n "$FZF" ] && [ -z "$PATTERN" ]
     then
         fzf
     else
-        __grepIt
+        __toGrep
     fi
 }
 
@@ -144,6 +156,9 @@ do
   esac
 done
 shift $((OPTIND - 1))
+
+#First argument
+PATTERN=${1:-""}
 
 __getUrlAndMapper "$OPTION_VALUE"
 
