@@ -15,7 +15,7 @@ set -e -o pipefail
 # getemoji [emoji-name]
 
 DEFAULT="https://unicode.org/Public/emoji/1.0/emoji-data.txt"
-DEFAULT_MAPPER="__defaultFilter"
+DEFAULT_MAPPER="__default_filter"
 SUPPORTED_CLIPBOARDS=(
     pbcopy
     xsel
@@ -26,7 +26,7 @@ SUPPORTED_CLIPBOARDS=(
 )
 FZF=$(command -v fzf || true)
 
-__showHelp(){
+__show_help(){
 echo "
 getemoji - search for an emoji
 
@@ -48,12 +48,12 @@ SOURCES
 exit 0
 }
 
-__getUrlAndMapper(){
+__get_url_and_mapper(){
     local OPTION=$1
     case "$OPTION" in
         luke)
             URL="https://raw.githubusercontent.com/LukeSmithxyz/voidrice/master/.emoji"
-            MAPPER="__lukeFilter"
+            MAPPER="__luke_filter"
             ;;
         *)
             URL="$DEFAULT"
@@ -62,7 +62,7 @@ __getUrlAndMapper(){
     esac
 }
 
-__getSource(){
+__get_source(){
     local URL URL_DASHED FILE_PATH
 
     mkdir -p ~/.emojis
@@ -80,7 +80,7 @@ __getSource(){
     fi
 }
 
-__getClipboard(){
+__get_clipboard(){
     local CLIP GOOD
     for CLIP in ${SUPPORTED_CLIPBOARDS[*]}
     do
@@ -93,9 +93,9 @@ __getClipboard(){
     done
 }
 
-__toClipboard(){
+__to_clipboard(){
     local CLIP RETURN_VALUE
-    # CLIP=$(__getClipboard)
+    # CLIP=$(__get_clipboard)
     if [ $# -eq 0 ]
     then
         read -rs RETURN_VALUE
@@ -122,7 +122,7 @@ __toClipboard(){
     esac
 }
 
-__toGrep(){
+__to_grep(){
     local REPLY RETURN_VALUE VAL
     if [ -n "$PATTERN" ]
     then
@@ -141,28 +141,28 @@ __toGrep(){
     fi
 }
 
-__toFilter(){
+__to_filter(){
     if [ -n "$FZF" ] && [ -z "$PATTERN" ]
     then
         fzf
     else
-        __toGrep
+        __to_grep
     fi
 }
 
-__defaultFilter(){
-    __getSource "$1" \
+__default_filter(){
+    __get_source "$1" \
         | grep -v "^#" \
         | cut -d'#' -f2 \
         | cut -d' ' -f3- \
-        | __toFilter \
+        | __to_filter \
         | sed -E 's/.*\((.*)\).*/\1/g'
 }
 
-__lukeFilter(){
-    __getSource "$1" \
+__luke_filter(){
+    __get_source "$1" \
         | cut -d';' -f1 \
-        | __toFilter \
+        | __to_filter \
         | cut -d' ' -f1
 }
 
@@ -171,7 +171,7 @@ while getopts ":s:h" OPT
 do
   case $OPT in
       h)
-          __showHelp ;;
+          __show_help ;;
       s)
           OPTION_VALUE="$OPTARG"
           ;;
@@ -184,9 +184,9 @@ shift $((OPTIND - 1))
 #First argument
 PATTERN=${1:-""}
 
-__getUrlAndMapper "$OPTION_VALUE"
+__get_url_and_mapper "$OPTION_VALUE"
 
 EMOJI=$(eval "$MAPPER $URL")
 
-[ -n "$EMOJI" ] && __toClipboard "$EMOJI"
+[ -n "$EMOJI" ] && __to_clipboard "$EMOJI"
 
