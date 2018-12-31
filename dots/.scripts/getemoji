@@ -26,6 +26,28 @@ SUPPORTED_CLIPBOARDS=(
 )
 FZF=$(command -v fzf || true)
 
+__showHelp(){
+echo "
+getemoji - search for an emoji
+
+USAGE
+    getemoji [option] [emoji-name]
+
+OPTIONS
+    -h          Show help and exit
+
+    -s source   Source from where to take the emoji
+
+SOURCES
+    default
+        https://unicode.org/Public/emoji/1.0/emoji-data.txt
+
+    luke
+        https://raw.githubusercontent.com/LukeSmithxyz/voidrice/master/.emoji
+"
+exit 0
+}
+
 __getUrlAndMapper(){
     local OPTION=$1
     case "$OPTION" in
@@ -145,9 +167,11 @@ __lukeFilter(){
 }
 
 # Parse options
-while getopts ":s:" OPT
+while getopts ":s:h" OPT
 do
   case $OPT in
+      h)
+          __showHelp ;;
       s)
           OPTION_VALUE="$OPTARG"
           ;;
