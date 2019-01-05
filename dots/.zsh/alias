@@ -80,6 +80,7 @@ alias lsnvm='nvm list'
 alias lspip='pip3 list'
 alias lsnpm='npm ls --depth 0'
 alias lspath='for I in $(tr : " " <<<$PATH);do echo $I; done'
+alias lsfonts='fc-list'
 
 # NVM
 # ===
