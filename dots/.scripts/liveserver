@@ -1,0 +1,25 @@
+#!/bin/bash -e
+
+# Run node package `live-server`
+# my way
+
+
+# Parse options
+while getopts ":p:" OPT
+do
+  case $OPT in
+      p) PORT=$OPTARG ;;
+      *) PORT=8000
+  esac
+done
+shift $((OPTIND - 1))
+
+
+if command -v live-server
+then
+    live-server --port="${PORT:-8000}" --no-browser "$@"
+else
+    echo "@npm : live-server not installed"
+fi
+
+exit 0
