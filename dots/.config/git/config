@@ -23,6 +23,11 @@
     ui = true
 [color "diff"]
     old = red
+    meta = yellow
+    frag = magenta
+    commit = yellow
+    new = green
+    whitespace = red reverse
 [diff]
     tool = fugitive
 [difftool]
@@ -34,3 +39,8 @@
     cmd = nvim -f -c \"Gvdiff\" \"$MERGED\"
 [core]
     pager = diff-so-fancy | less --tabs=4 -RFX
+[color "diff-highlight"]
+    oldNormal = red
+    oldHighlight = red 52
+    newNormal = green
+    newHighlight = green 22
