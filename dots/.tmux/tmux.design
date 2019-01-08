@@ -1,23 +1,26 @@
 # vim: ft=tmux
+# TMUX_DESIGN_ prefix on each variable
+# serves as a namespace for it not to
+# collide with other global variables
 
 # Colors
 # ======
-DARK_RED="#cc575d"
-KINDA_WHITE="#fffffe"
-DARK_GRAY="#343843"
-DARK_BLUE="#5294e2"
-DARK_WHITE="#dfdfdf"
+TMUX_DESIGN_DARK_RED="#cc575d"
+TMUX_DESIGN_KINDA_WHITE="#fffffe"
+TMUX_DESIGN_DARK_GRAY="#343843"
+TMUX_DESIGN_DARK_BLUE="#5294e2"
+TMUX_DESIGN_DARK_WHITE="#dfdfdf"
 
 # Status
 # ======
-WHITE_OVER_BLUE="#[fg=default bg=${DARK_BLUE} bold]"
-WHITE_OVER_RED="#[fg=default bg=${DARK_RED} bold]"
+TMUX_DESIGN_WHITE_OVER_BLUE="#[fg=default bg=${TMUX_DESIGN_DARK_BLUE} bold]"
+TMUX_DESIGN_WHITE_OVER_RED="#[fg=default bg=${TMUX_DESIGN_DARK_RED} bold]"
 
 # Default status line style
 # =========================
 set -g status-justify left
-set -g status-fg ${KINDA_WHITE}
-set -g status-bg ${DARK_GRAY}
+set -g status-fg ${TMUX_DESIGN_KINDA_WHITE}
+set -g status-bg ${TMUX_DESIGN_DARK_GRAY}
 
 ## Left Status
 set -g status-left "#[fg=default bg=red] #S "
@@ -25,10 +28,10 @@ set -g status-left-length 50
 
 # Right Status
 # ============
-IP="${WHITE_OVER_RED} #(~/.scripts/getip) -"
-DATE="${WHITE_OVER_RED} %d/%m "
-HOUR="${WHITE_OVER_BLUE} %l:%M:%S %p "
-set -g status-right "${IP}${DATE}${HOUR}"
+TMUX_DESIGN_IP="${TMUX_DESIGN_WHITE_OVER_RED} #(~/.scripts/getip) -"
+TMUX_DESIGN_DATE="${TMUX_DESIGN_WHITE_OVER_RED} %d/%m "
+TMUX_DESIGN_HOUR="${TMUX_DESIGN_WHITE_OVER_BLUE} %l:%M:%S %p "
+set -g status-right "${TMUX_DESIGN_IP}${TMUX_DESIGN_DATE}${TMUX_DESIGN_HOUR}"
 set -g status-right-length 50
 
 #########
@@ -39,12 +42,12 @@ set -g status-right-length 50
 
 # Active Pane
 # ===========
-set -g pane-active-border-fg ${DARK_RED}
+set -g pane-active-border-fg ${TMUX_DESIGN_DARK_RED}
 set -g pane-active-border-bg default
 
 # Inactive Pane
 # =============
-set -g pane-border-fg ${DARK_BLUE}
+set -g pane-border-fg ${TMUX_DESIGN_DARK_BLUE}
 set -g pane-border-bg default
 
 # Window
@@ -55,24 +58,24 @@ setw -g window-status-activity-style "fg=#111111 bg=#cc575d bold" # ¯\_(ツ)_/�
 
 # Inactive Window
 # ===============
-WINDOW_INACTIVE_STYLE="#[fg=${KINDA_WHITE} bg=${DARK_GRAY}]#{?window_activity_flag,#[fg=${KINDA_WHITE} bg=${DARK_RED}],}"
+WINDOW_INACTIVE_STYLE="#[fg=${TMUX_DESIGN_KINDA_WHITE} bg=${TMUX_DESIGN_DARK_GRAY}]#{?window_activity_flag,#[fg=${TMUX_DESIGN_KINDA_WHITE} bg=${TMUX_DESIGN_DARK_RED}],}"
 WINDOW_CLEAR_STYLE="#{?window_bell_flag,,}#{?window_content_flag,,}#{?window_silence_flag,,}#{?window_last_flag,,}"
 setw -g window-status-format "${WINDOW_INACTIVE_STYLE} #I #W ${WINDOW_CLEAR_STYLE}"
 
 # Active Window
 # =============
-WINDOW_ACTIVE_STYLE="#[fg=default bg=${DARK_BLUE} bold]"
+WINDOW_ACTIVE_STYLE="#[fg=default bg=${TMUX_DESIGN_DARK_BLUE} bold]"
 setw -g window-status-current-format "${WINDOW_ACTIVE_STYLE} #I #W "
 
 # Messaging
 # =========
 set -g message-fg default
-set -g message-bg ${DARK_BLUE}
+set -g message-bg ${TMUX_DESIGN_DARK_BLUE}
 set -g message-attr bold
 
 # Clock color
 # ===========
-setw -g clock-mode-colour ${DARK_WHITE}
+setw -g clock-mode-colour ${TMUX_DESIGN_DARK_WHITE}
 
 # ¯\_(ツ)_/¯
 # =========
@@ -82,7 +85,7 @@ set -g message-command-bg black
 # Window mode
 # ===========
 setw -g mode-fg white
-setw -g mode-bg ${DARK_RED}
+setw -g mode-bg ${TMUX_DESIGN_DARK_RED}
 
 # ¯\_(ツ)_/¯
 # =========
