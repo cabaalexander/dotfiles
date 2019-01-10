@@ -41,6 +41,9 @@ install: symlink
 .PHONY: bootstrap
 bootstrap:
 	@git submodule update --init
+	@${PWD}/config/utils/change-git-protocol.sh \
+		.git/modules/dots/.config/nvim/config \
+		.git/modules/dots/.secrets/config
 
 .PHONY: make-dots
 make-dots:
