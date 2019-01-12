@@ -6,14 +6,14 @@
 #           #
 #############
 
-SHELL		:= /bin/bash
 SYM_OUT		:= "${HOME}/.dots/symlink-dst-paths.out"
 
 HOME_SRC_PATH	:= ${PWD}/dots
 HOME_DST_PATH	:= ${HOME}
 
-SH_FILES_IGNORE	:= ! -path "*.git/*"
-SH_FILES	:= $(shell find . -name "*.sh" $(SH_FILES_IGNORE))
+# `SHs`
+# =====
+SH_FILES	:= $(shell ${PWD}/config/utils/find-sh-files.sh)
 
 # `dots`
 # ======
