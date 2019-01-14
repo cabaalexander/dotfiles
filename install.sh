@@ -9,10 +9,25 @@
 # ======================
 sourceIfExists ./config/{.,install,managers,utils}/*.sh
 
+case "$(uname -s)" in
+    [Dd]arwin)
+        export OS="mac"
+        export CSV_SUFFIX="-mac"
+        ;;
+    *) echo ""
+esac
+
+# If you pass a file it takes precedence
+if [ -n "$1" ]; then
+    APPS_FILE="$1"
+else
+    APPS_FILE="./config/apps${CSV_SUFFIX}.csv"
+fi
+
 # Strip comments and empty lines
 # ==============================
 CSV=$(mktemp)
-sed -e '/^#/d' -e '/^$/d' ./config/apps.csv > "$CSV"
+sed -e '/^#/d' -e '/^$/d' "$APPS_FILE" > "$CSV"
 trap '{ rm -f "$CSV" ; }' SIGINT SIGTERM EXIT
 
 #####################
@@ -37,7 +52,7 @@ IFS=,
 while read -rs TYPE NAME STATE DESCRIPTION
 do
 
-  UNFORMATTED_TYPE=$TYPE
+  MAPPER_TYPE=$TYPE
 
   # Format `type` for loggin purposes
   [[ "$TYPE" ]] \
@@ -48,7 +63,7 @@ do
     || [[ "$STATE" == "off" ]] \
     && continue
 
-  case $UNFORMATTED_TYPE in
+  case $MAPPER_TYPE in
     a) MAPPER=__aur ;;
     f) MAPPER=__function ;;
     m) MAPPER=__make_pkg ;;

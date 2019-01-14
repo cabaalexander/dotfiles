@@ -1,7 +1,10 @@
 #!/bin/bash
 
 __aur(){
-  yay --noconfirm -S "$@"
+  case "$OS" in
+      mac) brew cask install "$@" ;;
+      *) yay --noconfirm -S "$@" ;;
+  esac
 }
 
 # If this file is running in terminal call the function `__aur`

@@ -2,8 +2,14 @@
 # shellcheck disable=1090
 
 __gem(){
-  . ~/.rvm/scripts/rvm
-  gem install "$@"
+  case "$OS" in
+      mac) sudo gem install "$@" ;;
+      *)
+          . ~/.rvm/scripts/rvm
+          gem install "$@"
+          ;;
+
+  esac
 }
 
 # If this file is running in terminal call the function `__gem`

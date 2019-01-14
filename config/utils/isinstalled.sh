@@ -7,7 +7,13 @@ __is_installed(){
 
   local PATTERN="^$TYPE :: $APP :: 0$"
 
-  grep -E "$PATTERN" &> /dev/null < "$LOG_FILE"
+  if grep -E "$PATTERN" &> /dev/null < "$LOG_FILE"
+  then
+      echo "$APP ($TYPE) :: Already installed"
+      return 0
+  else
+      return 1
+  fi
 
   return $?
 }

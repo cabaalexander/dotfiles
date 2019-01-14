@@ -1,4 +1,4 @@
-# vim: ft=sh
+# vim: ft=zsh:ts=4:sw=4
 
 grsh(){
     # Reset hard a range of commits from git

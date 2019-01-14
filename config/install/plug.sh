@@ -1,12 +1,16 @@
-#!/bin/bash
+#!/bin/bash -e
 # shellcheck disable=1090
 
 plugInstall(){
   # Prepare yarn for VIM plugins
-  source "${HOME}"/.profile
+  [ -f "${HOME}/.profile" ] && source "${HOME}/.profile"
 
-  nvim -c PlugInstall -c qa!
+  nvim -c PlugInstall -c qa! &> /dev/null
 }
 
-# This meant to be used when `install-it.sh` script is executed :'V
-
+# If this file is running in terminal call the function `plugInstall`
+# Otherwise just source it
+if [ "$(basename "$0")" = "plug.sh" ]
+then
+    plugInstall "${@}"
+fi
