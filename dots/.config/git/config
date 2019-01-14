@@ -8,7 +8,7 @@
     cong = config --global
     props = config --get-regexp
     del = branch -D
-    delremote = push --delete
+    delremote = push --delete origin
     tagcommit = rev-list -n 1
     bsort = for-each-ref --sort=committerdate refs/heads/ --format='%(committerdate:short) %(refname:short)'
     unassume = update-index --no-assume-unchanged

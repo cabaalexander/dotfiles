@@ -1,4 +1,4 @@
-# vim: ft=zsh
+# vim: ft=zsh:ts=4:sw=4
 
 function __edit_file_widget {
     # Uses fzf to search for files and open then with
