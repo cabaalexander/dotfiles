@@ -8,8 +8,17 @@
 
 SYM_OUT		:= "${HOME}/.dots/symlink-dst-paths.out"
 
-HOME_SRC_PATH	:= ${PWD}/dots
-HOME_DST_PATH	:= ${HOME}
+# `Main Paths`
+# ============
+HOME_DIST	:= ${HOME}
+DOTS_PATH	:= ${PWD}/dots
+SECRETS_PATH	:= ${PWD}/secrets
+
+# `secrets`
+# =========
+SECRETS_IGNORE	:= ! -name ".git" ! -name "Session.vim"
+SECRETS_SRC	:= $(shell find $(SECRETS_PATH) -type f $(SECRETS_IGNORE))
+SECRETS_OUT	:= $(patsubst $(SECRETS_PATH)/%,$(HOME_DIST)/%,$(SECRETS_SRC))
 
 # `SHs`
 # =====
@@ -18,8 +27,8 @@ SH_FILES	:= $(shell ${PWD}/config/utils/find-sh-files.sh)
 # `dots`
 # ======
 DOTS_IGNORE	:= ! -path "*plugged/*" ! -name "Session.vim"
-DOTS_SRC	:= $(shell find $(HOME_SRC_PATH) -type f $(DOTS_IGNORE))
-DOTS_OUT	:= $(patsubst $(HOME_SRC_PATH)/%,$(HOME_DST_PATH)/%,$(DOTS_SRC))
+DOTS_SRC	:= $(shell find $(DOTS_PATH) -type f $(DOTS_IGNORE))
+DOTS_OUT	:= $(patsubst $(DOTS_PATH)/%,$(HOME_DIST)/%,$(DOTS_SRC))
 
 # `clean`
 # =======
@@ -51,7 +60,7 @@ make-dots:
 
 .PHONY: symlink
 symlink: make-dots $(DOTS_OUT)
-$(HOME_DST_PATH)/%: $(HOME_SRC_PATH)/%
+$(HOME_DIST)/%: $(DOTS_PATH)/%
 	@mkdir -p $(dir $@)
 	@ln -svf $< $@
 	@#Last symlinks (For cleaning porpuse) ¯\_(ツ)_/¯
@@ -63,7 +72,7 @@ symlink-update: clean symlink
 
 .PHONY: clean
 clean: $(CLEAN_SRC) post-clean
-$(HOME_DST_PATH)/%.clean:
+$(HOME_DIST)/%.clean:
 	@sed 's/.clean//' <<<"$@" \
 		| xargs rm -rfv
 
