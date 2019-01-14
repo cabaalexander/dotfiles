@@ -6,4 +6,4 @@
 *.netrwhist
 .cache
 *.out
-
+.DS_Store

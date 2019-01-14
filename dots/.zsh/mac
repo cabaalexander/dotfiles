@@ -1,8 +1,9 @@
-# vim: ft=sh:ts=4:sw=4
+# vim: ft=zsh:ts=4:sw=4
 
 # Java
-JAVA=$(/usr/libexec/java_home -v 1.7)
-export JAVA_HOME=$JAVA
+if [ /usr/libexec/java_home -v 1.7 &> /dev/null ]; then
+    export JAVA_HOME="$(/usr/libexec/java_home -v 1.7)"
+fi
 
 # Path
 PATH="${HOME}/Library/Python/3.7/bin/:$PATH"

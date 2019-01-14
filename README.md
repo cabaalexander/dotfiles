@@ -16,7 +16,7 @@
 
 - System package manager up to date
 - Know [VIM](https://www.vim.org/) and [TMUX](https://github.com/tmux/tmux/wiki) <img height="18px" width="18px" src="/imgs/pacman.png" />
-- Btw, I use arch... ⩓
+- Btw, I use arch... ⩓ ( and   ¯\\_(ツ)_/¯ )
 
 ### Relevant config files
 

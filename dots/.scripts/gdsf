@@ -4,7 +4,7 @@
 
 PATH_TO_FILE=${1:?"Provide a file to destroy from history..."}
 
-git filter-branch --force --index-filter \
-"'git rm --cached --ignore-unmatch $PATH_TO_FILE'" \
---prune-empty --tag-name-filter cat -- --all
+eval "git filter-branch --force --index-filter \
+'git rm --cached --ignore-unmatch $PATH_TO_FILE' \
+--prune-empty --tag-name-filter cat -- --all"
 
