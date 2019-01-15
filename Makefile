@@ -34,6 +34,20 @@ DOTS_OUT	:= $(patsubst $(DOTS_PATH)/%,$(HOME_DIST)/%,$(DOTS_SRC))
 # =======
 CLEAN_SRC	:= $(shell cat $(SYM_OUT) 2> /dev/null)
 
+#############
+#           #
+# Functions #
+#           #
+#############
+
+define do_symlink
+	@mkdir -p $(dir $(1))
+	@ln -svf $(2) $(1)
+	@#Last symlinks (For cleaning porpuse) ¯\_(ツ)_/¯
+	@[ -f $(SYM_OUT) ] || touch $(SYM_OUT)
+	@echo $(1).clean >> $(SYM_OUT)
+endef
+
 #########
 #       #
 # RuleZ #
@@ -59,13 +73,17 @@ make-dots:
 	@mkdir -p ${HOME}/.dots
 
 .PHONY: symlink
-symlink: make-dots $(DOTS_OUT)
+symlink: symlink-dots symlink-secrets
+
+.PHONY: symlink-secrets
+symlink-secrets: make-dots $(SECRETS_OUT)
+$(HOME_DIST)/%: $(SECRETS_PATH)/%
+	$(call do_symlink,$@,$<)
+
+.PHONY: symlink-dots
+symlink-dots: make-dots $(DOTS_OUT)
 $(HOME_DIST)/%: $(DOTS_PATH)/%
-	@mkdir -p $(dir $@)
-	@ln -svf $< $@
-	@#Last symlinks (For cleaning porpuse) ¯\_(ツ)_/¯
-	@[ -f $(SYM_OUT) ] || touch $(SYM_OUT)
-	@echo $@.clean >> $(SYM_OUT)
+	$(call do_symlink,$@,$<)
 
 .PHONY: symlink-update
 symlink-update: clean symlink
