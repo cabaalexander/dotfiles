@@ -5,10 +5,7 @@
 . ~/.scripts/sourceifexists
 
 # Import configurations
-sourceIfExists ~/.zsh/zshenv
-sourceIfExists ~/.zsh/alias
-sourceIfExists ~/.zsh/utils
-sourceIfExists ~/.zsh/path
+sourceIfExists ~/.zsh/*
 
 # Package manager for `zsh`
 sourceIfExists ~/.antigenrc
