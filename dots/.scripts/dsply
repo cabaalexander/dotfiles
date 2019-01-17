@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# Shows a notification depending on what OS you are
+
+SCRIPT_NAME='dsply'
+
+__mac(){
+    osascript -e "display notification \"$MESSAGE\" with title \"$TITLE\" $SOUND"
+}
+
+__tmux(){
+    tmux display "$MESSAGE"
+}
+
+# Parse options
+while getopts ":b" OPT
+do
+  case $OPT in
+      b) SOUND="sound name \"Submarine\"" ;;
+      *) SOUND="" ;;
+  esac
+done
+shift $((OPTIND - 1))
+
+MESSAGE="${1:-Hello}"
+TITLE="${2:-Title}"
+
+case "$(uname -s)" in
+    [Dd]arwin)
+        __mac
+        ;;
+    *)
+        if [[ "$TMUX" ]]
+        then
+            __tmux
+        else
+            echo "\`$SCRIPT_NAME\` Cannot be used at this time ¯\\_(ツ)_/¯"
+        fi
+        ;;
+esac
+
+

@@ -42,7 +42,7 @@ CLEAN_SRC	:= $(shell cat $(SYM_OUT) 2> /dev/null)
 
 define do_symlink
 	@mkdir -p $(dir $(1))
-	@ln -svf $(2) $(1)
+	@ln -sf $(2) $(1)
 	@#Last symlinks (For cleaning porpuse) ¯\_(ツ)_/¯
 	@[ -f $(SYM_OUT) ] || touch $(SYM_OUT)
 	@echo $(1).clean >> $(SYM_OUT)
@@ -77,11 +77,13 @@ symlink: symlink-dots symlink-secrets
 
 .PHONY: symlink-secrets
 symlink-secrets: make-dots $(SECRETS_OUT)
+	@echo "secrets linked..."
 $(HOME_DIST)/%: $(SECRETS_PATH)/%
 	$(call do_symlink,$@,$<)
 
 .PHONY: symlink-dots
 symlink-dots: make-dots $(DOTS_OUT)
+	@echo "dots linked..."
 $(HOME_DIST)/%: $(DOTS_PATH)/%
 	$(call do_symlink,$@,$<)
 
@@ -90,9 +92,10 @@ symlink-update: clean symlink
 
 .PHONY: clean
 clean: $(CLEAN_SRC) post-clean
+	@echo "Links deleted..."
 $(HOME_DIST)/%.clean:
 	@sed 's/.clean//' <<<"$@" \
-		| xargs rm -rfv
+		| xargs rm -rf
 
 .PHONY: post-clean
 post-clean:
