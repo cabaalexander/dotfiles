@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Swap current window for an existing one
+# Show the windows for the current TMUX session
 
 tmux lsw -F " #I #{window_name}" \
   | tr '\n' ' ' \

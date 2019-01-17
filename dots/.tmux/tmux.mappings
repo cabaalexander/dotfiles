@@ -48,6 +48,6 @@ bind -r M-j swap-pane -D
 bind -r M-k swap-pane -U
 
 # Swap window
-TMUX_SWAP_WINDOWS="#(~/.tmux/scripts/swapwindow.sh)"
+TMUX_SWAP_WINDOWS="#(~/.tmux/scripts/listwindows.sh)"
 bind C-m command-prompt -p " #S ${TMUX_SWAP_WINDOWS} : Select window to swap :" "swap-window -t %%"
 
