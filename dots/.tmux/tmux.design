@@ -28,9 +28,9 @@ set -g status-left-length 50
 
 # Right Status
 # ============
-TMUX_DESIGN_IP="${TMUX_DESIGN_WHITE_OVER_RED} #(~/.scripts/getip) -"
-TMUX_DESIGN_DATE="${TMUX_DESIGN_WHITE_OVER_RED} %d/%m "
-TMUX_DESIGN_HOUR="${TMUX_DESIGN_WHITE_OVER_BLUE} %l:%M:%S %p "
+TMUX_DESIGN_IP="#{?#(~/.scripts/getip),${TMUX_DESIGN_WHITE_OVER_RED} #(~/.scripts/getip) -,}"
+TMUX_DESIGN_DATE="${TMUX_DESIGN_WHITE_OVER_RED} %d/%m 📅 "
+TMUX_DESIGN_HOUR="${TMUX_DESIGN_WHITE_OVER_BLUE}%l:%M:%S %p 🕰  "
 set -g status-right "${TMUX_DESIGN_IP}${TMUX_DESIGN_DATE}${TMUX_DESIGN_HOUR}"
 set -g status-right-length 50
 
