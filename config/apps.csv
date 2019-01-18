@@ -76,6 +76,7 @@ gem,neovim,on,
 pip,doge,off,
 pip,grip,on,
 pip,neovim,on,
+pip,vim-vint,on,
 pip,pip,on,
 
 ##########
