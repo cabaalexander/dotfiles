@@ -48,6 +48,12 @@ define do_symlink
 	@echo $(1).clean >> $(SYM_OUT)
 endef
 
+define do_update_submodule
+	@git submodule update --init $(1)
+	@${PWD}/config/utils/change-git-protocol.sh \
+		.git/modules/$(1)/config
+endef
+
 #########
 #       #
 # RuleZ #
@@ -62,11 +68,15 @@ install: symlink
 	@./install.sh
 
 .PHONY: bootstrap
-bootstrap:
-	@git submodule update --init
-	@${PWD}/config/utils/change-git-protocol.sh \
-		.git/modules/dots/.config/nvim/config \
-		.git/modules/secrets/config
+bootstrap: bootstrap-nvim bootstrap-secrets
+
+.PHONY: bootstrap-nvim
+bootstrap-nvim:
+	$(call do_update_submodule,dots/.config/nvim)
+
+.PHONY: bootstrap-secrets
+bootstrap-secrets:
+	$(call do_update_submodule,secrets)
 
 .PHONY: make-dots
 make-dots:
