@@ -3,4 +3,4 @@
 	url = https://github.com/cabaalexander/nvim.git
 [submodule "secrets"]
 	path = secrets
-	url = git@github.com:cabaalexander/secrets.git
+	url = https://github.com/cabaalexander/secrets.git

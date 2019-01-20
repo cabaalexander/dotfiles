@@ -21,7 +21,7 @@ __change_git_protocol(){
     do
         __validate_git_config "$FILE_PATH"
 
-        sed -i \
+        sed -i '' \
             -e 's#https://#git@#' \
             -e 's#.com/#.com:#' \
             "$FILE_PATH"
