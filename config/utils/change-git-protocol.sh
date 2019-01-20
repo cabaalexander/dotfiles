@@ -9,7 +9,7 @@ __validate_git_config(){
 
     if ! [[ "$FILE_PATH" =~ ^\.git\/.*config$ ]]
     then
-        echo File provided is not a valid git config
+        echo "File provided is not a valid git config"
         return 1
     fi
     return 0
