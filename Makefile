@@ -66,7 +66,7 @@ bootstrap:
 	@git submodule update --init
 	@${PWD}/config/utils/change-git-protocol.sh \
 		.git/modules/dots/.config/nvim/config \
-		.git/modules/dots/.secrets/config
+		.git/modules/secrets/config
 
 .PHONY: make-dots
 make-dots:
