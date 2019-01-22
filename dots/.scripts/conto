@@ -1,0 +1,38 @@
+#!/bin/bash -e
+
+# This `add`, `commit --amend` and `git push -f --no-verify`
+# all the changes in the current branch to its remote one
+
+__validate_master(){
+    if [ "$BYPASS" ]
+    then
+        return 0
+    fi
+    if [ "$(gcb)" = "master" ]
+    then
+        echo "¯\\_(ツ)_/¯"
+        echo "You're on master, sorry bruh..."
+        echo "Use (-f) if you want to bypass the security measures ;)"
+        return 1
+    fi
+}
+
+# Parse options
+while getopts ":f" OPT
+do
+  case $OPT in
+      f) BYPASS=true ;;
+      *)
+          echo "Bad option (-$OPTARG)"
+          exit 1
+          ;;
+  esac
+done
+shift $((OPTIND - 1))
+
+__validate_master
+
+git add -A
+git commit --amend --no-edit --no-verify
+git push origin "$(gcb)" -f
+
