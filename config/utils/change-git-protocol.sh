@@ -16,15 +16,17 @@ __validate_git_config(){
 }
 
 __change_git_protocol(){
-    local FILE_PATH
+    local FILE_PATH OVERWRITE
     for FILE_PATH in "$@"
     do
         __validate_git_config "$FILE_PATH"
 
-        sed -i '' \
-            -e 's#https://#git@#' \
-            -e 's#.com/#.com:#' \
-            "$FILE_PATH"
+        case "$(uname -s)" in
+            [Dd]arwin) OVERWRITE='-i ""' ;;
+            *)         OVERWRITE='-i'
+        esac
+
+        eval "sed $OVERWRITE -e 's#https://#git@#' -e 's#.com/#.com:#' \"$FILE_PATH\""
     done
 }
 
