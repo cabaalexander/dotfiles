@@ -1,0 +1,25 @@
+# vim: ft=sh
+
+gcl(){
+    # Clones a repository and cd into it ( :
+    local \
+        REPO \
+        REPO_BASENAME \
+        REPO_DIR_NAME
+
+    REPO="$1"
+    REPO_BASENAME=$(basename "$REPO")
+    REPO_DIR_NAME=${REPO_BASENAME%.*}
+
+    # Validate that you only pass one parameter
+    if [ $# -gt 1 ]
+    then
+      echo "Just pass the repo URL as a parameter"
+      exit 1
+    fi
+
+    git clone "$REPO"
+    cd -P -- "$REPO_DIR_NAME" || exit
+}
+
+

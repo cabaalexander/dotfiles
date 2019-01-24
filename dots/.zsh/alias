@@ -18,7 +18,6 @@ alias gr='git remote'
 alias grl='git reflog'
 alias gst='git stash'
 alias grs='git reset'
-alias gcl='git clone'
 alias uptrefs='git fetch origin --prune'
 
 # Fetch
