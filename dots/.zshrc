@@ -5,7 +5,12 @@
 . ~/.scripts/sourceifexists
 
 # Import configurations
-sourceIfExists ~/.zsh/*
+sourceIfExists -imac ~/.zsh/*
+
+# Mac related (¯\\_(ツ)_/¯)
+case "$(uname -s)" in
+    [Dd]arwin) sourceIfExists ~/.zsh/mac ;;
+esac
 
 # Package manager for `zsh`
 sourceIfExists ~/.antigenrc

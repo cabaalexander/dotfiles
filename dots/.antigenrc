@@ -1,7 +1,12 @@
-# shellcheck disable=1094
+# shellcheck disable=1094,1091
 # vim: ft=sh
 
-source /usr/share/zsh/share/antigen.zsh
+case "$(uname -s)" in
+    [Dd]arwin)
+        . /usr/local/Cellar/antigen/2.2.3/share/antigen/antigen.zsh ;;
+    *)
+        . /usr/share/zsh/share/antigen.zsh ;;
+esac
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
