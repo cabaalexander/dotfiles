@@ -2,8 +2,8 @@
 
 # Deletes all containers and images
 
-MESSAGE="\
-Are you sure that you want to delete all docker \
+MESSAGE="
+Are you sure that you want to delete all docker
 images/containers hard? Really, reaaally hard ? ( ͡° ͜ʖ ͡°) [y, n]: \
 "
 
@@ -12,6 +12,6 @@ echo
 
 [ "$IS_HARD" != "y" ] && exit 1
 
-docker rm $(docker ps -aq)
-docker rmi $(docker images -aq)
+docker rm "$(docker ps -aq)"
+docker rmi "$(docker images -aq)"
 

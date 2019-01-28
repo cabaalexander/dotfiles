@@ -2,5 +2,4 @@
 
 # Current git branch
 
-echo $(git symbolic-ref --short -q HEAD)
-
+git symbolic-ref --short -q HEAD
