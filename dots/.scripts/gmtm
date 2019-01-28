@@ -7,5 +7,5 @@ CURRENT_BRANCH=$(gcb)
 git checkout master
 git fetch && git pull --rebase origin master
 
-git merge --ff-only ${CURRENT_BRANCH}
+git merge --ff-only "${CURRENT_BRANCH}"
 

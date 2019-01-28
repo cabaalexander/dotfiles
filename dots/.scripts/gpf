@@ -15,6 +15,6 @@ echo
 CURRENT_BRANCH=$(gcb)
 
 echo "Fetching..."
-git fetch origin $CURRENT_BRANCH &> /dev/null
-git reset --hard origin/$CURRENT_BRANCH
+git fetch origin "$CURRENT_BRANCH" &> /dev/null
+git reset --hard "origin/$CURRENT_BRANCH"
 

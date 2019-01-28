@@ -4,6 +4,6 @@
 
 URL=${1:?"Non URL provided"}
 
-RESPONSE_CODE=$(curl -sIL -o /dev/null -w "%{http_code}" $URL)
+RESPONSE_CODE=$(curl -sIL -o /dev/null -w "%{http_code}" "$URL")
 echo -e "$RESPONSE_CODE"
 

@@ -3,7 +3,8 @@
 function __edit_file_widget {
     # Uses fzf to search for files and open then with
     # your default editor
-    local FILES="$(__fsel)"
+    local FILES
+    FILES="$(__fsel)"
     if [ -z "$FILES" ]
     then
         zle reset-prompt
