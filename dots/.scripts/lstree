@@ -6,12 +6,12 @@ IGNORE=(
   node_modules
   build
   bower_components
-  .git
+  .git*
   elm-stuff
 )
-IGNORE=$(tr " " "|" <<<${IGNORE[*]})
+IGNORE_TREE=$(tr " " "|" <<<"${IGNORE[*]}")
 
-while getopts ":d:a:" OPT
+while getopts ":d:" OPT
 do
   case $OPT in
     d)
@@ -27,10 +27,10 @@ do
       ;;
   esac
 done
-shift $(($OPTIND - 1))
+shift $((OPTIND - 1))
 
 [ -z "$EXIT_FLAG" ] || exit 1
 
 clear
-tree -I ${IGNORE} -CL $(($LEVEL + 1)) -a $@
+tree -I "${IGNORE_TREE[*]}" -CL $((LEVEL + 1)) -a "$@"
 

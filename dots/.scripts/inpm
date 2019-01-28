@@ -13,9 +13,9 @@ do
       ;;
   esac
 done
-shift $(($OPTIND - 1))
+shift $((OPTIND - 1))
 
 [ $# -lt 1 ] && npm i $FLAG
 
-npm i $FLAG $@
+npm i "$FLAG" "$@"
 
