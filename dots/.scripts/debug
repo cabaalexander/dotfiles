@@ -1,0 +1,7 @@
+#!/bin/bash -e
+
+export SHELLOPTS
+export PS4='+ Line ${LINENO}: '
+
+set -x
+eval "$@"

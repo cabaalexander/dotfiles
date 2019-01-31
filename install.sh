@@ -1,7 +1,5 @@
-#!/bin/bash
+#!/bin/bash -e
 # shellcheck disable=1090,1117
-
-set -e
 
 # Source script to source (¯\_(ツ)_/¯)
 # ===================================
@@ -9,7 +7,6 @@ set -e
 
 # Source BEGINS
 # ======================
-sourceIfExists ~/.bin/*.sh
 sourceIfExists ./config/{.,install,managers,utils}/*.sh
 
 # Strip comments and empty lines
