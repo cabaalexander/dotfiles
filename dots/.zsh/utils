@@ -152,7 +152,7 @@ dkb(){
 
 pfetch(){
     # Uses `peerflix` from npm to download torrents (magnet link)
-    peerflix -f . "${1:?"Provide a magnet link to start the download"}"
+    peerflix -f . "${@:?"Provide a magnet link to start the download"}"
 }
 
 uftp(){

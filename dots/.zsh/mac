@@ -4,3 +4,6 @@
 JAVA=$(/usr/libexec/java_home -v 1.7)
 export JAVA_HOME=$JAVA
 
+# Path
+PATH="${HOME}/Library/Python/3.7/bin/:$PATH"
+
