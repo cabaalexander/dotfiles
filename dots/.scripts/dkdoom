@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Deletes all containers and images
+# Deletes all docker containers and images
 
 MESSAGE="
 Are you sure that you want to delete all docker

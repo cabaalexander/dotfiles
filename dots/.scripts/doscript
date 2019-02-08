@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Create a `hello.sh` world and change the mod to add execute priviledge
+
 DEFAULT_BODY=(echo \"Hello World\")
 
 __message(){
