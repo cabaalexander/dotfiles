@@ -1,5 +1,8 @@
 #!/bin/bash -e
 
+# Enables debug mode on the given file and sets a custom PS4
+# (debug line prompt)
+
 export SHELLOPTS
 export PS4='+ Line ${LINENO}: '
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# gdsf - git destroy file
+# Destroy a file from git history following every commit it was present
 
 PATH_TO_FILE=${1:?"Provide a file to destroy from history..."}
 
