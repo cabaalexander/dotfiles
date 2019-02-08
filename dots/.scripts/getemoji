@@ -63,19 +63,18 @@ __get_url_and_mapper(){
 }
 
 __get_source(){
-    local URL URL_DASHED FILE_PATH
+    local URL URL_DASHED FILE_PATH CACHE_PATH
+    CACHE_PATH="${HOME}/.cache/getemoji"
 
-    mkdir -p ~/.emojis
+    mkdir -p "$CACHE_PATH"
 
     URL=$1
     URL_DASHED=$(tr '/' '-' <<<"${URL#*//}")
 
-    FILE_PATH="${HOME}/.emojis/${URL_DASHED}"
+    FILE_PATH="$CACHE_PATH/${URL_DASHED}"
 
-    if [ -f "$FILE_PATH" ]
+    if ! cat "$FILE_PATH" 2> /dev/null 
     then
-        cat "$FILE_PATH"
-    else
         curl -s "$URL" | tee "$FILE_PATH"
     fi
 }
