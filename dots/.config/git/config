@@ -2,8 +2,10 @@
     email = cabaalexander321@gmail.com
     name = cabaalexander
 [alias]
+    chp = cherry-pick
     unstage = reset HEAD --
-    lol = log --graph --pretty=oneline --abbrev-commit --decorate --all
+    lol = log --color --graph --pretty=format:'%C(auto)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
+    rlol = log --stat --graph --pretty=oneline --abbrev-commit --date=relative
     co = checkout
     cong = config --global
     props = config --get-regexp
@@ -14,6 +16,9 @@
     unassume = update-index --no-assume-unchanged
     assume = update-index --assume-unchanged
     lsassumed = "!git ls-files -v | grep ^h | cut -c 3-"
+    temp = "!git checkout -b temp && git add . && git commit -m temp"
+    untemp = "!git checkout temp && git reset --soft HEAD~1 && git checkout master && git branch -D temp"
+    rank = shortlog -sn --no-merges
 [merge]
     tool = fugitive
     conflictstyle = diff3
