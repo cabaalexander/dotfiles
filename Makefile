@@ -6,6 +6,7 @@
 #         #
 ###########
 CSV		?= ""
+GPG_PHRASE	?= ""
 
 #############
 #           #
@@ -19,7 +20,7 @@ SYM_OUT		:= "${HOME}/.dots/symlink-dst-paths.out"
 # ============
 HOME_DIST	:= ${HOME}
 DOTS_PATH	:= ${PWD}/dots
-SECRETS_PATH	:= ${PWD}/secrets
+SECRETS_PATH	:= ${PWD}/secrets/decrypted
 
 # `secrets`
 # =========
@@ -84,6 +85,8 @@ bootstrap-nvim:
 .PHONY: bootstrap-secrets
 bootstrap-secrets:
 	$(call do_update_submodule,secrets)
+	@export GPG_PHRASE="$(GPG_PHRASE)" ; \
+	cd secrets && $(MAKE)
 
 .PHONY: make-dots
 make-dots:
