@@ -20,3 +20,6 @@ export SPACESHIP_JOBS_SYMBOL="♦"
 # TMUX
 export ZSH_TMUX_AUTOSTART=true
 
+# GPG
+export GPG_TTY=$(tty)
+
