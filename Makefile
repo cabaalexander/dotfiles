@@ -24,7 +24,7 @@ SECRETS_PATH	:= ${PWD}/secrets/decrypted
 
 # `secrets`
 # =========
-SECRETS_IGNORE	:= ! -name ".git" ! -name "Session.vim"
+SECRETS_IGNORE	:= ! -wholename "*.git/*" ! -name "Session.vim"
 SECRETS_SRC	:= $(shell find $(SECRETS_PATH) -type f $(SECRETS_IGNORE))
 SECRETS_OUT	:= $(patsubst $(SECRETS_PATH)/%,$(HOME_DIST)/%,$(SECRETS_SRC))
 
