@@ -38,6 +38,7 @@ a,libcaca,on, TERM Img viewer (Functional)
 ,curlftpfs,off,
 ,fontconfig,off,
 ,editorconfig-core-c,on,
+,ranger,on,
 
 #######
 #     #
