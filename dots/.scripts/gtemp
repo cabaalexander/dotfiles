@@ -1,0 +1,15 @@
+#!/bin/bash -e
+
+git fetch -v
+
+if ! git checkout temp 2> /dev/null; then
+    git checkout -b temp
+fi
+
+git pull origin temp 2> /dev/null || true
+
+git add .
+
+git commit -m "temp"
+
+git push origin temp

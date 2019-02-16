@@ -1,0 +1,19 @@
+#!/bin/bash -e
+
+HOW_MANY_COMMITS=$(
+    git log --pretty=format:'%s' --grep='temp' | wc -w
+)
+
+GIT_COMMANDS=(
+    "fetch -v"
+    "pull origin temp"
+    "reset --soft HEAD~$HOW_MANY_COMMITS"
+    "checkout master"
+    "push --delete origin temp"
+    "branch -D temp"
+)
+
+IFS=$'\n'
+for COMMAND in ${GIT_COMMANDS[*]}; do
+    eval "git $COMMAND"
+done

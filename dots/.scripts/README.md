@@ -4,6 +4,7 @@ Cool stuffs I got on my PC 🤯 🎩
 
 List of stuffs here: :point_down:
 
+- [cdtmux](#cdtmux)
 - [conto](#conto)
 - [debug](#debug)
 - [dkdoom](#dkdoom)
@@ -20,11 +21,17 @@ List of stuffs here: :point_down:
 - [gmtm](#gmtm)
 - [gpf](#gpf)
 - [gprune](#gprune)
+- [gtemp](#gtemp)
+- [guntemp](#guntemp)
 - [lstree](#lstree)
 - [lvserver](#lvserver)
 - [mftp](#mftp)
 - [nvmc](#nvmc)
 - [sourceifexists](#sourceifexists)
+
+## [cdtmux](/dots/.scripts/cdtmux)
+
+Creates a new tmux pane with the given path ;)
 
 ## [conto](/dots/.scripts/conto)
 
@@ -176,6 +183,14 @@ Git pulls "hard" from a repo ( ͡° ͜ʖ ͡°)
 ## [gprune](/dots/.scripts/gprune)
 
 Deletes the git branches that are not on the remote (github)
+
+## [gtemp](/dots/.scripts/gtemp)
+
+Creates a git `temp` branch with the current modified and untracked files (and push it)
+
+## [guntemp](/dots/.scripts/guntemp)
+
+This stages all the last temp commits and change to `master` so you do what ever with those
 
 ## [lstree](/dots/.scripts/lstree)
 

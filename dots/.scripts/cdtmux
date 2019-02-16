@@ -1,0 +1,10 @@
+#!/bin/bash
+
+FILE_PATH=${1:?¯\\_(ツ)_/¯}
+
+FILE_PATH_ABS=$(
+    cd "$FILE_PATH" || exit
+    pwd
+)
+
+tmux split-window -vd -c "$FILE_PATH_ABS"

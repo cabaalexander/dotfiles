@@ -9,7 +9,7 @@ __message(){
 }
 
 __scriptify(){
-  echo -e "#!/bin/bash\\n\\n${BODY:-"${DEFAULT_BODY[*]}"}\\n" > "$1"
+  echo -e "#!/bin/bash -e\\n\\n${BODY:-"${DEFAULT_BODY[*]}"}\\n" > "$1"
 
   chmod u+x "$1"
 
