@@ -5,6 +5,7 @@ Cool stuffs I got on my PC 🤯 🎩
 List of stuffs here: :point_down:
 
 - [cdtmux](#cdtmux)
+- [clipboard](#clipboard)
 - [conto](#conto)
 - [debug](#debug)
 - [dkdoom](#dkdoom)
@@ -32,6 +33,31 @@ List of stuffs here: :point_down:
 ## [cdtmux](/dots/.scripts/cdtmux)
 
 Creates a new tmux pane with the given path ;)
+
+    Name
+        cdtmux
+
+    Usage:
+        cdtmux [OPTION_ARG] [PATH]
+
+    Options:
+        h,l     Split the new pane horizontal
+        j,k     Split the new pane vertical
+
+## [clipboard](/dots/.scripts/clipboard)
+
+Quick copy or paste scripterino
+
+    Name
+        clipboard
+
+    Usage:
+
+        clipboard [OPTION] [ARG]...
+
+    Options
+        -c, --copy
+        -p, --paste
 
 ## [conto](/dots/.scripts/conto)
 

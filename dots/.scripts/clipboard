@@ -1,0 +1,115 @@
+#!/bin/bash -e
+
+# NAME
+#     clipboard
+
+# Usage:
+#     clipboard [OPTION] [ARG]...
+
+# Options
+#     -c      Copy mode
+#     -p      Paste mode
+
+SUPPORTED_CLIPBOARDS=(
+    pbcopy
+    xsel
+    xclip
+    lemonade
+    doitclient
+    tmux
+)
+
+__show_help(){
+echo "
+NAME
+    clipboard
+
+Usage:
+    clipboard [OPTION] [ARG]...
+
+Options
+    -c      Copy mode
+    -p      Paste mode
+"
+}
+
+__get_clipboard(){
+    local CLIP
+    for CLIP in ${SUPPORTED_CLIPBOARDS[*]}; do
+        if command -v "$CLIP" &> /dev/null; then
+            echo "$CLIP"
+            break
+        fi
+    done
+}
+
+__pbcopy(){
+    pbcopy <<<"$COPY_ME"
+    echo "$COPY_ME : Copied to clipboard"
+}
+
+__tmux_copy(){
+    if [ "$MODE" != "c" ]; then
+        return 0
+    fi
+    if tmux set-buffer "$COPY_ME"
+    then
+        echo "$COPY_ME : Copied to TMUX Clipboard"
+    else
+        echo "TMUX Server might be not running"
+    fi
+}
+
+__tmux_paste(){
+    if [ "$MODE" != "p" ]; then
+        return 0
+    fi
+    tmux showb
+}
+
+__copy_mode(){
+    if [ "$MODE" != "c" ]; then
+        return 0
+    fi
+    if [ $# -eq 0 ]; then
+        read -rs COPY_ME
+    else
+        COPY_ME=$*
+    fi
+    if [ -z "$COPY_ME" ]; then
+        return 1
+    fi
+}
+
+while getopts ":cp" OPT; do
+    case $OPT in
+        p)
+            MODE="p"
+            ;;
+        c)
+            shift
+            MODE="c"
+            __copy_mode "$@"
+            ;;
+        *) # do default stuff ;;
+    esac
+done
+shift $((OPTIND - 1))
+
+if [ -z "$MODE" ]; then
+    __show_help
+    exit 1
+fi
+
+case "$(__get_clipboard)" in
+    pbcopy)
+        __pbcopy
+        ;;
+    tmux)
+        __tmux_copy
+        __tmux_paste
+        ;;
+    *)
+        echo "$COPY_ME"
+        ;;
+esac

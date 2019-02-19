@@ -1,10 +1,20 @@
 #!/bin/bash
 
-FILE_PATH=${1:?¯\\_(ツ)_/¯}
+case "$1" in
+    h|l) SPLIT="h" ;;
+    j|k) SPLIT="v" ;;
+    *)   SPLIT="v"
+esac
+
+if [[ $1 =~ ^[hjkl]$ ]]; then
+    shift
+fi
+
+FILE_PATH=${1:-.}
 
 FILE_PATH_ABS=$(
     cd "$FILE_PATH" || exit
     pwd
 )
 
-tmux split-window -vd -c "$FILE_PATH_ABS"
+tmux split-window -"$SPLIT" -c "$FILE_PATH_ABS"
