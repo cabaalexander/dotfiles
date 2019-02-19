@@ -73,7 +73,7 @@ all: bootstrap
 
 .PHONY: install
 install: symlink
-	@./install.sh
+	@./install.sh $(CSV)
 
 .PHONY: bootstrap
 bootstrap: bootstrap-nvim bootstrap-secrets
