@@ -1,40 +1,18 @@
 #!/bin/bash
 
-# Create a `hello.sh` world and change the mod to add execute priviledge
+ALL="${*:-script.sh}"
 
-DEFAULT_BODY=(echo \"Hello World\")
-
-__message(){
-  echo ":: Script \`$1\` created ::"
+__make_script()
+{
+    local SCRIPT_NAME
+    SCRIPT_NAME=$1
+    echo "#!/bin/bash -e" > "$SCRIPT_NAME"
+    chmod u+x "$SCRIPT_NAME"
+    echo ":: Script \`$SCRIPT_NAME\` created ::"
 }
 
-__scriptify(){
-  echo -e "#!/bin/bash -e\\n\\n${BODY:-"${DEFAULT_BODY[*]}"}\\n" > "$1"
-
-  chmod u+x "$1"
-
-  __message "$1"
-}
-
-# Parse options
-while getopts ":b:" OPT
-do
-  case $OPT in
-    b) BODY=$OPTARG ;;
-    *) echo "Option (-$OPTARG) not supported"
-  esac
-done
-shift $((OPTIND - 1))
-
-[ $# -lt 1 ] && {
-  __scriptify script.sh "$BODY"
-  exit 0
-}
-
-# Begin
-# =====
-for SCRIPT in "$@"
-do
-  __scriptify "$SCRIPT" "$BODY"
+for SCRIPT in ${ALL[*]}; do
+    __make_script "$SCRIPT"
 done
 
+eval "$EDITOR ${ALL[*]}"
