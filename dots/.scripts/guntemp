@@ -1,12 +1,16 @@
 #!/bin/bash -e
 
 HOW_MANY_COMMITS=$(
-    git log --pretty=format:'%s' --grep='temp' | wc -w
+    git log --pretty=format:'%s' --grep='^temp' |
+        wc -w |
+        tr -d '[:space:]'
 )
 
 GIT_COMMANDS=(
     "fetch -v"
+    "checkout temp"
     "pull origin temp"
+    "reset --hard origin/temp"
     "reset --soft HEAD~$HOW_MANY_COMMITS"
     "checkout master"
     "push --delete origin temp"

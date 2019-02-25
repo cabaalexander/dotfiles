@@ -1,15 +1,16 @@
 #!/bin/bash -e
 
-git fetch -v
+GIT_COMMANDS=(
+    "fetch -v"
+    "branch temp 2> /dev/null || true"
+    "checkout temp"
+    "pull origin temp 2> /dev/null || true"
+    "add ."
+    "commit -m temp"
+    "push origin temp"
+)
 
-if ! git checkout temp 2> /dev/null; then
-    git checkout -b temp
-fi
-
-git pull origin temp 2> /dev/null || true
-
-git add .
-
-git commit -m "temp"
-
-git push origin temp
+IFS=$'\n'
+for COMMAND in ${GIT_COMMANDS[*]}; do
+    eval "git $COMMAND"
+done
