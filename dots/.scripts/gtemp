@@ -8,6 +8,7 @@ GIT_COMMANDS=(
     "add ."
     "commit -m temp"
     "push origin temp"
+    "checkout master"
 )
 
 IFS=$'\n'

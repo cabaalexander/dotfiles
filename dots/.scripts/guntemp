@@ -1,20 +1,21 @@
 #!/bin/bash -e
+# shellcheck disable=2016
 
-HOW_MANY_COMMITS=$(
+__get_temps(){
     git log --pretty=format:'%s' --grep='^temp' |
-        wc -w |
-        tr -d '[:space:]'
-)
+    wc -w |
+    tr -d '[:space:]'
+}
 
 GIT_COMMANDS=(
-    "fetch -v"
-    "checkout temp"
-    "pull origin temp"
-    "reset --hard origin/temp"
-    "reset --soft HEAD~$HOW_MANY_COMMITS"
-    "checkout master"
-    "push --delete origin temp"
-    "branch -D temp"
+    'fetch -v'
+    'checkout temp'
+    'pull origin temp'
+    'reset --hard origin/temp'
+    'reset --soft HEAD~$(__get_temps)'
+    'checkout master'
+    'push --delete origin temp'
+    'branch -D temp'
 )
 
 IFS=$'\n'
