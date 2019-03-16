@@ -15,7 +15,7 @@ shift $((OPTIND - 1))
 
 while :
 do
-    "$@"
+    eval "$@"
     sleep "${TIME:-1}"
 done
 

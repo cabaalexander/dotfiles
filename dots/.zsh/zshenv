@@ -23,3 +23,7 @@ export ZSH_TMUX_AUTOSTART=true
 # GPG
 export GPG_TTY=$(tty)
 
+# GoLang
+export GOROOT="$HOME/.go"
+export GOPATH="$HOME/go"
+

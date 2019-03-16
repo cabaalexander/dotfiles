@@ -2,7 +2,10 @@
 # shellcheck disable=1090
 
 addToPath(){
-    PATH="$1:$PATH"
+    local ITEM
+    for ITEM in $@; do
+        PATH="$ITEM:$PATH"
+    done
 }
 
 export NVM_DIR="$HOME/.nvm"
@@ -22,4 +25,7 @@ addToPath ~/.scripts
 # Yarn
 addToPath ~/.yarn/bin
 addToPath ~/.config/yarn/global/node_modules/.bin
+
+# GoLang
+addToPath ~/{.,}go/bin
 

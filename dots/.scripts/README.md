@@ -5,6 +5,7 @@ Cool stuffs I got on my PC 🤯 🎩
 List of stuffs here: :point_down:
 
 - [cdtmux](#cdtmux)
+- [chksha256](#chksha256)
 - [clipboard](#clipboard)
 - [conto](#conto)
 - [debug](#debug)
@@ -29,6 +30,7 @@ List of stuffs here: :point_down:
 - [mftp](#mftp)
 - [nvmc](#nvmc)
 - [sourceifexists](#sourceifexists)
+- [spinner](#spinner)
 
 ## [cdtmux](/dots/.scripts/cdtmux)
 
@@ -43,6 +45,10 @@ Creates a new tmux pane with the given path ;)
     Options:
         h,l     Split the new pane horizontal
         j,k     Split the new pane vertical
+
+## [chksha256](/dots/.scripts/chksha256)
+
+tk tk tk
 
 ## [clipboard](/dots/.scripts/clipboard)
 
@@ -239,3 +245,6 @@ My wrapper around `nvm i`
 
 This as the name says, source a file if it exists. Also supports globbing
 
+## [spinner](/dots/.scripts/spinner)
+
+tk tk tk

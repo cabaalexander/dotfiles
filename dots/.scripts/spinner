@@ -1,0 +1,31 @@
+#!/bin/bash -e
+
+GET_MOVIES_TEMP_FILE=$(mktemp)
+
+trap '{ rm -f "$GET_MOVIES_TEMP_FILE" ; }' SIGINT SIGTERM EXIT
+
+while getopts ":o:" OPT; do
+    case $OPT in
+        o) STDOUT_DST="$OPTARG" ;;
+        *) # do default stuff ;;
+    esac
+done
+shift $((OPTIND - 1))
+
+eval "${@:-sleep 1}" &> "$GET_MOVIES_TEMP_FILE" &
+PID=$!
+IDX=1
+SP="/-\|"
+echo -n ' '
+while [ -d /proc/$PID ]
+do
+    printf "\b%s" "${SP:IDX++%${#SP}:1}"
+    sleep .1
+done
+echo -en "\b"
+
+if [ -n "$STDOUT_DST" ]; then
+    cat "$GET_MOVIES_TEMP_FILE" > "$STDOUT_DST"
+else
+    cat "$GET_MOVIES_TEMP_FILE"
+fi
