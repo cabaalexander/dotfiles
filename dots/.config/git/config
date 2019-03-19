@@ -19,8 +19,13 @@
     lsassumed = "!git ls-files -v | grep ^h | cut -c 3-"
     rank = shortlog -sn --no-merges
 [merge]
-    tool = fugitive
+    tool = vim_mergetool
     conflictstyle = diff3
+[mergetool]
+    keepBackup = false
+[mergetool "vim_mergetool"]
+    cmd = nvim -c "MergetoolStart" "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
+    trustExitCode = true
 [push]
     default = simple
 [color]
@@ -36,11 +41,6 @@
     tool = fugitive
 [difftool]
     prompt = false
-[mergetool]
-    keepBackup = false
-    prompt = true
-[mergetool "fugitive"]
-    cmd = nvim -f -c \"Gvdiff\" \"$MERGED\"
 [core]
     pager = diff-so-fancy | less --tabs=4 -RFX
 [color "diff-highlight"]
