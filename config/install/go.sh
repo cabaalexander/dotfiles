@@ -1,8 +1,8 @@
 #!/bin/bash -e
 
-TMP_SUFFIX=".clean"
+DOWNLOADED_FILE=$(mktemp)
 
-trap '{ rm -f /tmp/*$TMP_SUFFIX ; }' SIGINT SIGTERM EXIT
+trap '{ rm -f $DOWNLOADED_FILE ; }' SIGINT SIGTERM EXIT
 
 # Go install
 
@@ -73,18 +73,35 @@ __remove_env_vars(){
         SANITIZED_LINE=$(__sanitize "$LINE")
         MATCH="$(sed -En "/^($SANITIZED_LINE)$/p" "$FILE")"
 
+        # Don't match blank(s) [base condition]
         test -z "$MATCH" && continue
 
+        # If the file is a symlink, follow it
+        if [ -L "$FILE" ]; then
+            FILE=$(readlink "$FILE")
+        fi
+
+        # Verbosity
         test -n "$MATCH" && echo "[Deleted] $MATCH"
-        sed --follow-symlinks -i -E "/^($SANITIZED_LINE)$/d" "$FILE"
+
+        # For mac issues ¯\\_(ツ)_/¯
+        case "$OS_NAME" in
+            linux)
+                sed -i -E "/^($SANITIZED_LINE)$/d" "$FILE"
+                ;;
+            darwin)
+                sed -i '' -E "/^($SANITIZED_LINE)$/d" "$FILE"
+                ;;
+            *) echo "Script not supported for OS: $OS_NAME"
+        esac
     done <<<"$ENV_VARS"
 }
 
 __uninstall(){
-    __remove_env_vars "$SHELL_PROFILE"
     [ -d "$GOROOT" ] || exit 1
     echo -n "Uninstalling... "
     spinner rm -rf "$GOROOT"
+    echo
     __remove_env_vars "$SHELL_PROFILE"
     echo "Go uninstalled."
 }
@@ -99,8 +116,7 @@ __install(){
         ENDPOINT_AND_VERSION \
         ENDPOINT \
         GO_LATEST_VERSION \
-        FILE_TO_DOWNLOAD \
-        DOWNLOADED_FILE
+        FILE_TO_DOWNLOAD
 
     ENDPOINT_AND_VERSION=$(
         curl -s https://golang.org/dl/ |
@@ -120,8 +136,6 @@ __install(){
 
     FILE_TO_DOWNLOAD="go${GO_LATEST_VERSION}.${SYSTEM}.tar.gz"
 
-    DOWNLOADED_FILE=$(mktemp --suffix="$TMP_SUFFIX")
-
     echo -en "Downloading Golang ${GO_LATEST_VERSION}\n... "
     if spinner curl -sL "${ENDPOINT}/${FILE_TO_DOWNLOAD}" -o"$DOWNLOADED_FILE"; then
         echo "Finished."
@@ -134,7 +148,7 @@ __install(){
 
     echo "Extracting file... "
     spinner tar -xzf "$DOWNLOADED_FILE" -C /tmp/
-    mv /tmp/go "$GOROOT"
+    mv -f /tmp/go "$GOROOT"
 
     # Create GoLang workspace
     mkdir -vp "$GOPATH"/{bin,src,pkg}

@@ -17,10 +17,9 @@ PID=$!
 IDX=1
 SP="/-\|"
 echo -n ' '
-while [ -d /proc/$PID ]
-do
+while ps a | awk '{print $1}' | grep -q "${PID}"; do
     printf "\b%s" "${SP:IDX++%${#SP}:1}"
-    sleep .1
+    sleep .15
 done
 echo -en "\b"
 

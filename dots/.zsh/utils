@@ -121,10 +121,11 @@ dotar(){
     local NAME=${1:?"Filename required ¯\\_(ツ)_/¯ <name>.tar.gz"}
     shift
     local SOURCE=(
-        "${@:?Source file(s) required ¯\_(ツ)_/¯ <./foo ./bar>}"
+        "${@:?Source file(s) required ¯\\_(ツ)_/¯ <./foo ./bar>}"
     )
-
-    tar -cvpzf "${NAME}" "${SOURCE[*]}"
+    echo -n "Tarring... "
+    spinner tar -cpzf "${NAME}.tar.gz" "${SOURCE[*]}"
+    echo "Done."
 }
 
 untar(){

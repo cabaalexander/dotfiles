@@ -22,4 +22,3 @@ gcl(){
     cd -P -- "$REPO_DIR_NAME" || exit
 }
 
-
