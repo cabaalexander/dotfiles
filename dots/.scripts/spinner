@@ -1,30 +1,32 @@
 #!/bin/bash -e
 
-GET_MOVIES_TEMP_FILE=$(mktemp)
+# Display a spinner for long running commands
+# (this script leaves no trail of the spinner at finishing)
 
-trap '{ rm -f "$GET_MOVIES_TEMP_FILE" ; }' SIGINT SIGTERM EXIT
+# Usage:
+# spinner [long-running-command]
 
-while getopts ":o:" OPT; do
-    case $OPT in
-        o) STDOUT_DST="$OPTARG" ;;
-        *) # do default stuff ;;
-    esac
-done
-shift $((OPTIND - 1))
+# tl;dr
+# `stdout` will be whatever the output of your command is and
+# `stderr` will be the spinner spinning around round oud und nd d
+# So you can pipe stuff without problem ;)
 
-eval "${@:-sleep 1}" &> "$GET_MOVIES_TEMP_FILE" &
+# Execute your stuffs in a background job
+eval "${@:-sleep 1}" &
+
+# Point fd#3 to fd#1 (Save it for later use), then point fd#1 to fd#2
+# PD: This does not interfere with the variable for the PID i.e. $!
+exec 3>&1 >&2
+
 PID=$!
-IDX=1
-SP="/-\|"
-echo -n ' '
+SPINNER_PARTS="/-\|"
+ACC=1
+
+printf " "
 while ps a | awk '{print $1}' | grep -q "${PID}"; do
-    printf "\b%s" "${SP:IDX++%${#SP}:1}"
+    printf "\b%s" "${SPINNER_PARTS:ACC++%${#SPINNER_PARTS}:1}"
     sleep .15
 done
-echo -en "\b"
+printf "\b"
 
-if [ -n "$STDOUT_DST" ]; then
-    cat "$GET_MOVIES_TEMP_FILE" > "$STDOUT_DST"
-else
-    cat "$GET_MOVIES_TEMP_FILE"
-fi
+exec >&3 3>&-

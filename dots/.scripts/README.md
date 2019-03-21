@@ -48,7 +48,7 @@ Creates a new tmux pane with the given path ;)
 
 ## [chksha256](/dots/.scripts/chksha256)
 
-tk tk tk
+Checks the sha256 of a file
 
 ## [clipboard](/dots/.scripts/clipboard)
 
@@ -194,7 +194,6 @@ You can supply different words that you think would match the title
         "link": "<link-to-the-movie>"
       }
     ]
-tk tk
 
 ## [getpid](/dots/.scripts/getpid)
 
@@ -247,4 +246,13 @@ This as the name says, source a file if it exists. Also supports globbing
 
 ## [spinner](/dots/.scripts/spinner)
 
-tk tk tk
+Display a spinner for long running commands
+(this script leaves no trail of the spinner at finishing)
+
+### Usage:
+    $ spinner [long-running-command]
+
+### tl;dr
+`stdout` will be whatever the output of your command is and
+`stderr` will be the spinner spinning around.
+So you can pipe stuff without problem ;)

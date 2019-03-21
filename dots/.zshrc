@@ -25,4 +25,8 @@ unsetopt HIST_VERIFY
 # Press enter once to execute
 bindkey -M menuselect '^M' .accept-line
 
+# Source FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# File Descriptor stuff
+unsetopt MULTIOS

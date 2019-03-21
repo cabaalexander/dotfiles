@@ -123,7 +123,7 @@ __install(){
             grep -E "$OS_NAME" |
             grep -E 'go1.' |
             head -1 |
-            sed -E 's/^.*href="(.*).*\/go([0-9](\.[0-9]+){1}).*$/\1 \2/'
+            sed -E 's/^.*href="(.*).*\/go([0-9](\.[0-9]+)+).*$/\1 \2/'
     )
 
     ENDPOINT=$(cut -d' ' -f1 <<<"$ENDPOINT_AND_VERSION")
@@ -137,7 +137,7 @@ __install(){
     FILE_TO_DOWNLOAD="go${GO_LATEST_VERSION}.${SYSTEM}.tar.gz"
 
     echo -en "Downloading Golang ${GO_LATEST_VERSION}\n... "
-    if spinner curl -sL "${ENDPOINT}/${FILE_TO_DOWNLOAD}" -o"$DOWNLOADED_FILE"; then
+    if spinner curl -sL "${ENDPOINT}/${FILE_TO_DOWNLOAD}" > "$DOWNLOADED_FILE"; then
         echo "Finished."
     else
         echo -e "\n\nSomething happened while downloading! Try later." 1>&2

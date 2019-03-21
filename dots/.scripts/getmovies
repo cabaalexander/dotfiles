@@ -59,11 +59,11 @@ function __get_ids {
 }
 
 function __fetch_movies {
-    curl -s "$GET_MOVIES_ENDPOINT"
+    spinner curl -s "$GET_MOVIES_ENDPOINT"
 }
 
 function __fetch_movie {
-    curl -s "${GET_MOVIES_ENDPOINT}/$1"
+    spinner curl -s "${GET_MOVIES_ENDPOINT}/$1"
 }
 
 function __filter_by_title {
