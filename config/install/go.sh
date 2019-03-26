@@ -175,7 +175,7 @@ goInstall(){
     done
     shift $((OPTIND - 1))
 
-    eval "${MAPPER-__install}"
+    eval "${MAPPER:-__install}"
 }
 
 # If this file is running in terminal call the function `goInstall`
