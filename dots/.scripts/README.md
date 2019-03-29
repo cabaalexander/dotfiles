@@ -249,8 +249,20 @@ This as the name says, source a file if it exists. Also supports globbing
 Display a spinner for long running commands
 (this script leaves no trail of the spinner at finishing)
 
-### Usage:
-    $ spinner [long-running-command]
+### Usage
+    $ spinner [OPTION] [long-running-command]
+
+### Option
+
+    -t <TYPE>
+            Type/shape of spinner
+
+### Types
+
+    default
+            This shows bar spinning
+    clock
+            Clock duhh... :v
 
 ### tl;dr
 `stdout` will be whatever the output of your command is and

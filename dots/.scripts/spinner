@@ -3,8 +3,26 @@
 # Display a spinner for long running commands
 # (this script leaves no trail of the spinner at finishing)
 
-# Usage:
-# spinner [long-running-command]
+# Usage
+# $ spinner [OPTION] [LONG-RUNNING-COMMAND]
+
+# Options
+# -t <TYPE>
+#         Type/shape of spinner
+
+# Types
+# default
+#         This shows bar spinnign
+# clock
+#         Clock duhh... :v
+
+while getopts ":t:" OPT; do
+    case $OPT in
+        t) TYPE="clock" ;;
+        *) # do default stuff ;;
+    esac
+done
+shift $((OPTIND - 1))
 
 # tl;dr
 # `stdout` will be whatever the output of your command is and
@@ -19,14 +37,24 @@ eval "${@:-sleep 1}" &
 exec 3>&1 >&2
 
 PID=$!
-SPINNER_PARTS="/-\|"
 ACC=1
+
+case "$TYPE" in
+    clock)
+        CLEAN_TRAIL="\\b\\b"
+        SPINNER_PARTS="🕛🕐🕑🕒🕓🕔🕕🕖🕗🕘🕙🕚"
+        ;;
+    *)
+        CLEAN_TRAIL="\\b"
+        SPINNER_PARTS="/-\|"
+        ;;
+esac
 
 printf " "
 while ps a | awk '{print $1}' | grep -q "${PID}"; do
-    printf "\b%s" "${SPINNER_PARTS:ACC++%${#SPINNER_PARTS}:1}"
+    eval "printf '${CLEAN_TRAIL}%s' '${SPINNER_PARTS:ACC++%${#SPINNER_PARTS}:1}'"
     sleep .15
 done
-printf "\b"
+eval "printf '$CLEAN_TRAIL'"
 
 exec >&3 3>&-
