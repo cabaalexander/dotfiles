@@ -1,0 +1,7 @@
+#!/bin/bash -e
+
+case "$(uname -s)" in
+    [Dd]arwin) echo "mac" ;;
+    [Ll]inux)  echo "linux" ;;
+    *) echo "plop" ;;
+esac

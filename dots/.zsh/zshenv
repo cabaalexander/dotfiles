@@ -27,3 +27,5 @@ export GPG_TTY=$(tty)
 export GOROOT="$HOME/.go"
 export GOPATH="$HOME/go"
 
+export OS=$(getos 2> /dev/null)
+

@@ -1,7 +1,6 @@
 #!/bin/bash
 
 __pip(){
-  
   case "$OS" in
       mac) pip3 install "$@" \
           --trusted-host pypi.python.org \

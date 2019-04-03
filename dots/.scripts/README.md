@@ -17,6 +17,7 @@ List of stuffs here: :point_down:
 - [gdsf](#gdsf)
 - [getemoji](#getemoji)
 - [getip](#getip)
+- [getos](#getos)
 - [getpid](#getpid)
 - [getresponsecode](#getresponsecode)
 - [gmtm](#gmtm)
@@ -139,6 +140,20 @@ This can be the name of the emoji or a match for it
 ## [getip](/dots/.scripts/getip)
 
 Echo the ip of the current HOST
+
+## [getos](/dots/.scripts/getos)
+
+Prints the name of your current OS
+
+### Usage
+
+    $ getos # This returns: <SUPPORTED_OS>
+
+### Supported OS(s)
+
+    mac
+
+    linux
 
 ## [getpid](/dots/.scripts/getpid)
 
