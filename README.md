@@ -1,7 +1,7 @@
 <h1 align="center">dotfiles</h1>
 
 <div align="center">
-  <img src="/imgs/logo.png" />
+  <img src="./imgs/logo.png" />
 </div>
 
 <br>
@@ -15,7 +15,7 @@
 ### Requirements
 
 - System package manager up to date
-- Know [VIM](https://www.vim.org/) and [TMUX](https://github.com/tmux/tmux/wiki) <img height="18px" width="18px" src="/imgs/pacman.png" />
+- Know [VIM](https://www.vim.org/) and [TMUX](https://github.com/tmux/tmux/wiki) <img height="18px" width="18px" src="./imgs/pacman.png" />
 - Btw, I use arch... ⩓ ( and   ¯\\_(ツ)_/¯ )
 
 ### Relevant config files
@@ -39,5 +39,5 @@ make && make install
 ## Design
 
 ### Terminal
-![Terminal](/imgs/terminal.png)
+![Terminal](./imgs/terminal.png)
 

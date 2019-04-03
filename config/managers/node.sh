@@ -1,7 +1,7 @@
 #!/bin/bash
 
 __node(){
-  yarn global "$@"
+  yarn global add "$@"
 }
 
 # If this file is running in terminal call the function `__node`
