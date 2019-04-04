@@ -43,7 +43,7 @@ SOURCES
         https://unicode.org/Public/emoji/1.0/emoji-data.txt
 
     luke
-        https://raw.githubusercontent.com/LukeSmithxyz/voidrice/master/.emoji
+    https://raw.githubusercontent.com/LukeSmithxyz/voidrice/master/.config/emoji
 "
 exit 0
 }
@@ -52,7 +52,7 @@ __get_url_and_mapper(){
     local OPTION=$1
     case "$OPTION" in
         luke)
-            URL="https://raw.githubusercontent.com/LukeSmithxyz/voidrice/master/.emoji"
+            URL="https://raw.githubusercontent.com/LukeSmithxyz/voidrice/master/.config/emoji"
             MAPPER="__luke_filter"
             ;;
         *)

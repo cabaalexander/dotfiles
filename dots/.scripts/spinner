@@ -51,7 +51,7 @@ case "$TYPE" in
 esac
 
 printf " "
-while ps a | awk '{print $1}' | grep -q "${PID}"; do
+while ps a "${PID}" &> /dev/null; do
     eval "printf '${CLEAN_TRAIL}%s' '${SPINNER_PARTS:ACC++%${#SPINNER_PARTS}:1}'"
     sleep .15
 done

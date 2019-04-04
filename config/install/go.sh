@@ -23,7 +23,6 @@ SHELL_PROFILE="${HOME}/.$(basename "$SHELL")rc"
 
 ENV_VARS=$(
 cat <<EOF
-
 # GoLang
 export GOROOT="$GOROOT"
 export GOPATH="$GOPATH"
