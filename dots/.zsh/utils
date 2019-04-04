@@ -71,14 +71,7 @@ filetypeb(){
 }
 
 lsport(){
-    # Prints the port of the process running right now
-    if [ -n "$1" ]; then
-        clear
-        netstat -plen | grep "$1"
-    else
-        clear
-        netstat -plten
-    fi
+    cat /etc/services | tail +2 | grep " ${1:?What port...}/"
 }
 
 killport(){
