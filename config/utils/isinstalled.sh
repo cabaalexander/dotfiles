@@ -9,7 +9,7 @@ __is_installed(){
 
   if grep -E "$PATTERN" &> /dev/null < "$LOG_FILE"
   then
-      echo "$APP ($TYPE) :: Already installed"
+      echo "✔ $APP ($TYPE)"
       return 0
   else
       return 1

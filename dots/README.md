@@ -20,7 +20,6 @@ This folder should reflect how the files should be in your `$HOME` directory
     │   ├── gdsf
     │   ├── getemoji
     │   ├── getip
-    │   ├── getmovies
     │   ├── getpid
     │   ├── getresponsecode
     │   ├── gmtm

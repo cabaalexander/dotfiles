@@ -24,12 +24,6 @@ else
     APPS_FILE="./config/apps${CSV_SUFFIX}.csv"
 fi
 
-# Strip comments and empty lines
-# ==============================
-CSV=$(mktemp)
-sed -e '/^#/d' -e '/^$/d' "$APPS_FILE" > "$CSV"
-trap '{ rm -f "$CSV" ; }' SIGINT SIGTERM EXIT
-
 #####################
 #                   #
 # Prepare log files #
@@ -42,48 +36,60 @@ mkdir -p $BASE_PATH
 touch $LOG_DST
 touch $LOG_DST_STATUS
 
+__install(){
+    local APPS_CSV CSV MAPPER MAPPER_TYPE TYPE NAME STATE DESCRIPTION
+    APPS_CSV=$1
+
+    # Strip comments and empty lines
+    CSV=$(mktemp)
+    sed -e '/^#/d' -e '/^$/d' "$APPS_CSV" > "$CSV"
+    trap '{ rm -f "$CSV" ; }' SIGINT SIGTERM EXIT
+
+    IFS=,
+    while read -rs TYPE NAME STATE DESCRIPTION
+    do
+      MAPPER_TYPE=$TYPE
+
+      # Format `type` for loggin purposes
+      [[ "$TYPE" ]] \
+        && TYPE="- $TYPE -"
+
+      # If the app is installed or turned off do nothing
+      __is_installed $LOG_DST_STATUS "$NAME" "$TYPE" \
+        || [[ "$STATE" == "off" ]] \
+        && continue
+
+      case $MAPPER_TYPE in
+        a) MAPPER=__aur ;;
+        f) MAPPER=__function ;;
+        m) MAPPER=__make_pkg ;;
+        "") MAPPER=__package_manager ;;
+        gem) MAPPER=__gem ;;
+        pip) MAPPER=__pip ;;
+        node) MAPPER=__node ;;
+      esac
+
+      [[ "$DESCRIPTION" ]] \
+          && DESCRIPTION="\n\t$DESCRIPTION"
+
+      # Mapper's header (Log)
+      echo -e "🏃 $NAME $TYPE $DESCRIPTION" | tee -a $LOG_DST
+
+      # Execute
+      $MAPPER "$NAME" | tee -a $LOG_DST 2>&1
+
+      # Status (Log)
+      echo -e "$TYPE :: $NAME :: $?\n" >> $LOG_DST_STATUS
+    done < "$CSV"
+}
+
 #########
 #       #
 # Begin #
 #       #
 #########
 echo "[Installing]..."
-IFS=,
-while read -rs TYPE NAME STATE DESCRIPTION
-do
 
-  MAPPER_TYPE=$TYPE
-
-  # Format `type` for loggin purposes
-  [[ "$TYPE" ]] \
-    && TYPE="- $TYPE -"
-
-  # If the app is installed or turned off do nothing
-  __is_installed $LOG_DST_STATUS "$NAME" "$TYPE" \
-    || [[ "$STATE" == "off" ]] \
-    && continue
-
-  case $MAPPER_TYPE in
-    a) MAPPER=__aur ;;
-    f) MAPPER=__function ;;
-    m) MAPPER=__make_pkg ;;
-    "") MAPPER=__package_manager ;;
-    gem) MAPPER=__gem ;;
-    pip) MAPPER=__pip ;;
-    node) MAPPER=__node ;;
-  esac
-
-  [[ "$DESCRIPTION" ]] \
-      && DESCRIPTION="\n\t$DESCRIPTION"
-
-  # Mapper's header (Log)
-  echo -e "# $NAME $TYPE $DESCRIPTION" | tee -a $LOG_DST
-
-  # Execute
-  $MAPPER "$NAME" | tee -a $LOG_DST 2>&1
-
-  # Status (Log)
-  echo -e "$TYPE :: $NAME :: $?\n" >> $LOG_DST_STATUS
-
-done < "$CSV"
+__install $APPS_FILE
+__install ./config/common.csv
 
