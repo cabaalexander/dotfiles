@@ -8,24 +8,25 @@ addToPath(){
     done
 }
 
+# nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # Load RVM into a shell session *as a function*
 [[ -s ~/.rvm/scripts/rvm ]] && . ~/.rvm/scripts/rvm
 
-# Load FZF
+# fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# BIN
+# bin
 addToPath ~/.bin
 addToPath ~/.local/bin
 addToPath ~/.scripts
 
-# Yarn
+# yarn
 addToPath ~/.yarn/bin
 addToPath ~/.config/yarn/global/node_modules/.bin
 
-# GoLang
+# golang
 addToPath ~/{.,}go/bin
 

@@ -1,0 +1,43 @@
+# vim: ft=zsh:ts=4:sw=4
+
+# init hooks auto-function
+autoload -U add-zsh-hook
+
+# load .env* files
+load_env() {
+    local ENV_FILE found_env
+    ENV_FILE=".nic"
+    ls -a |
+        grep "^$ENV_FILE" 2> /dev/null |
+        sed "s:^:$PWD/:" |
+        while read -rs found_env ; do
+            test -n "$found_env" && . "$found_env"
+        done
+}
+chpwd_functions+=(load_env)
+load_env
+
+# change emoji in the PS1
+change_emoji(){
+    local EMOJIS EMOJI_INDEX
+    if ! [[ $(uname -s) =~ ^[Dd]arwin$ ]] && [ -z "$DISPLAY" ]; then
+        EMOJIS=(
+            "(づ￣ ³￣)づ"
+            "(ง •̀_•́)ง"
+            "(╥_╥)"
+            "(●__●)"
+            "(╯°□°）╯︵ ┻━┻"
+        )
+    else
+        EMOJIS=(
+            🌟
+            🌚
+            🎩
+            🤨\ 
+        )
+    fi
+    EMOJI_INDEX=$((RANDOM % ${#EMOJIS[@]} + 1))
+    SPACESHIP_CHAR_SUFFIX="$EMOJIS[$EMOJI_INDEX] "
+}
+chpwd_functions+=(change_emoji)
+change_emoji
