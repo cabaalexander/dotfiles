@@ -1,8 +1,5 @@
 #!/bin/bash -e
 
-if [ "$#" -ne 1 ]; then
-    echo "" 1>&2
-    exit 1
-fi
+FILE="${1:?Provide a file to get its sha256...}"
 
-openssl dgst -sha256 "$1" | cut -d' ' -f2
+openssl dgst -sha256 "$FILE" | cut -d' ' -f2
