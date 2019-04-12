@@ -7,13 +7,21 @@ __get_temps(){
     tr -d '[:space:]'
 }
 
+__saved_branch(){
+    local BRANCH
+    BRANCH=$(<.branch)
+    echo "${BRANCH:-master}"
+    rm -rf .branch
+}
+
 GIT_COMMANDS=(
     'fetch -v'
     'checkout temp'
     'pull origin temp'
     'reset --hard origin/temp'
     'reset --soft HEAD~$(__get_temps)'
-    'checkout master'
+    'reset'
+    'checkout $(__saved_branch)'
     'push --delete origin temp'
     'branch -D temp'
 )

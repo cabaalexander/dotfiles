@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+git symbolic-ref --short -q HEAD > .branch
+
 GIT_COMMANDS=(
     "fetch -v"
     "branch temp 2> /dev/null || true"
@@ -8,7 +10,7 @@ GIT_COMMANDS=(
     "add ."
     "commit -m temp"
     "push origin temp"
-    "checkout master"
+    "checkout $(<.branch)"
 )
 
 IFS=$'\n'
