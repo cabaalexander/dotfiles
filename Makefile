@@ -6,7 +6,6 @@
 #         #
 ###########
 CSV		?= ""
-GPG_PHRASE	?= ""
 
 #############
 #           #
@@ -25,7 +24,7 @@ SECRETS_PATH	:= ${PWD}/secrets/decrypted
 # `secrets`
 # =========
 SECRETS_IGNORE	:= ! -wholename "*.git/*" ! -name "Session.vim"
-SECRETS_SRC	:= $(shell find $(SECRETS_PATH) -type f $(SECRETS_IGNORE))
+SECRETS_SRC	:= $(shell find $(SECRETS_PATH) -type f $(SECRETS_IGNORE) 2> /dev/null)
 SECRETS_OUT	:= $(patsubst $(SECRETS_PATH)/%,$(HOME_DIST)/%,$(SECRETS_SRC))
 
 # `SHs`
@@ -76,7 +75,7 @@ install: symlink
 	@./install.sh $(CSV)
 
 .PHONY: bootstrap
-bootstrap: bootstrap-nvim bootstrap-secrets
+bootstrap: bootstrap-nvim
 
 .PHONY: bootstrap-nvim
 bootstrap-nvim:
@@ -85,8 +84,7 @@ bootstrap-nvim:
 .PHONY: bootstrap-secrets
 bootstrap-secrets:
 	$(call do_update_submodule,secrets)
-	@export GPG_PHRASE="$(GPG_PHRASE)" ; \
-	cd secrets && $(MAKE)
+	@cd secrets && $(MAKE)
 
 .PHONY: make-dots
 make-dots:

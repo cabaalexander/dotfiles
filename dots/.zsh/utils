@@ -128,7 +128,7 @@ untar(){
 
     [ -d "${DIST}" ] || mkdir -p "${DIST}"
 
-    echo -n "Untarring... "
+    echo "Untarring... "
     spinner tar -xvpzf "${NAME}" -C "${DIST}"
     echo "Done."
 }

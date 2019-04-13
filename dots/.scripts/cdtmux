@@ -18,3 +18,4 @@ FILE_PATH_ABS=$(
 )
 
 tmux split-window -"$SPLIT" -c "$FILE_PATH_ABS"
+clear
