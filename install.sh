@@ -90,6 +90,6 @@ __install(){
 #########
 echo "[Installing]..."
 
-__install $APPS_FILE
 __install ./config/common.csv
+__install $APPS_FILE
 

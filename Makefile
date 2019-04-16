@@ -85,6 +85,7 @@ bootstrap-nvim:
 bootstrap-secrets:
 	$(call do_update_submodule,secrets)
 	@cd secrets && $(MAKE)
+	@$(MAKE) symlink
 
 .PHONY: make-dots
 make-dots:
