@@ -83,6 +83,11 @@ __install(){
     done < "$CSV"
 }
 
+__post_install(){
+    # set zsh as default shell
+    chsh -s $(grep /zsh$ /etc/shells | tail -1)
+}
+
 #########
 #       #
 # Begin #
@@ -92,4 +97,5 @@ echo "[Installing]..."
 
 __install ./config/common.csv
 __install $APPS_FILE
+__post_install
 

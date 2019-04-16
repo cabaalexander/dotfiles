@@ -25,13 +25,11 @@ a,postman,off,
 ,editorconfig,on,
 a,font-firacode-nerd-font-mono,on,
 
-#######
-#     #
-# ZSH #
-#     #
-#######
-,zsh,on,
-f,ohmyzsh,on,
+#################
+#               #
+# Antigen / ZSH #
+#               #
+#################
 ,antigen,on,
 
 ###########
@@ -41,19 +39,6 @@ f,ohmyzsh,on,
 ###########
 ,ghc,off,Haskell Compiler
 ,cabal-install,off,
-
-# ##########
-# #        #
-# # Python #
-# #        #
-# ##########
-# ssl non-sense (Tired of googling and no no answer ¯\\_(ツ)_/¯)
-# ,python3,on,
-# pip,doge,off,
-# pip,grip,on,
-# pip,neovim,on,
-# pip,vim-vint,on,
-# pip,pip,on,
 
 ##########
 #        #

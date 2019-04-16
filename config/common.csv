@@ -44,9 +44,30 @@ node,alex,on,
 #      #
 ########
 f,rvm,on,
-gem,lolcat,off,
+gem,lolcat,on,
 gem,neovim,on,
 gem,mdl,on,
+
+##########
+#        #
+# Python #
+#        #
+##########
+,python3,on,
+,python-pip,on,
+pip,doge,off,
+pip,neovim,on,
+pip,vim-vint,on,
+pip,speedtest-cli,off,
+pip,pip,on,
+
+#######
+#     #
+# ZSH #
+#     #
+#######
+,zsh,on,
+f,ohmyzsh,on,
 
 ###########
 #         #
@@ -54,7 +75,7 @@ gem,mdl,on,
 #         #
 ###########
 f,gotop,on,
-f,libtinfo,on,Thing for `elm repl` to work
+f,libtinfo,off,Thing for `elm repl` to work
 
 #################
 #               #

@@ -16,6 +16,7 @@ a,htop-vim-git,on,
 a,sc-im,off,
 a,catimg,on, TERM Img viewer (Smooth)
 a,libcaca,on, TERM Img viewer (Functional)
+a,powerline-fonts,off,
 
 ########
 #      #
@@ -26,37 +27,20 @@ a,libcaca,on, TERM Img viewer (Functional)
 ,fontconfig,off,
 ,git,on,
 
-#######
-#     #
-# ZSH #
-#     #
-#######
-,zsh,on,
-f,ohmyzsh,on,
+#################
+#               #
+# Antigen / ZSH #
+#               #
+#################
 a,antigen-git,on,
-a,powerline-fonts,off,
 
 ###########
 #         #
 # Haskell #
 #         #
 ###########
-,stack,on,Haskell Stack
-,ghc,on,Haskell Compiler
-
-##########
-#        #
-# Python #
-#        #
-##########
-,python3,on,
-,python-pip,on,
-pip,doge,off,
-pip,grip,on,
-pip,neovim,on,
-pip,vim-vint,on,
-pip,speedtest-cli,on,
-pip,pip,on,
+,stack,off,Haskell Stack
+,ghc,off,Haskell Compiler
 
 ##########
 #        #
