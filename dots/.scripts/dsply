@@ -5,7 +5,7 @@
 SCRIPT_NAME='dsply'
 
 __mac(){
-    osascript -e "display notification \"$MESSAGE\" with title \"$TITLE\" $SOUND"
+    osascript -e "display notification \"${MESSAGE:-Hello}\" with title \"${TITLE:-Title}\" $SOUND"
 }
 
 __tmux(){
@@ -13,17 +13,16 @@ __tmux(){
 }
 
 # Parse options
-while getopts ":b" OPT
+while getopts ":bt:m:" OPT
 do
   case $OPT in
+      t) TITLE="$OPTARG" ;;
+      m) MESSAGE="$OPTARG" ;;
       b) SOUND="sound name \"Submarine\"" ;;
       *) SOUND="" ;;
   esac
 done
 shift $((OPTIND - 1))
-
-MESSAGE="${1:-Hello}"
-TITLE="${2:-Title}"
 
 case "$(uname -s)" in
     [Dd]arwin)

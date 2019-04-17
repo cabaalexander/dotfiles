@@ -1,13 +1,30 @@
 #!/bin/bash -e
 # shellcheck disable=1090,1117
 
+#################
+#               #
+# Trapped files #
+#               #
+#################
+TEMP_PASSWORD=$(mktemp)
+CSV=$(mktemp)
+trap '{ rm -rf $TEMP_PASSWORD $CSV ; }' SIGINT SIGTERM EXIT
+
+# Consant
+# =======
+IS_ZSH=$(
+    if [ "$(basename "$SHELL")" == "zsh" ]; then
+        echo "true"
+    fi
+)
+
 # Source script to source (¯\_(ツ)_/¯)
 # ===================================
 . ~/.scripts/sourceifexists
 
 # Source BEGINS
 # ======================
-sourceIfExists ./config/{.,install,managers,utils}/*.sh
+sourceIfExists ./config/{install,managers,utils}/*.sh
 
 case "$(uname -s)" in
     [Dd]arwin)
@@ -37,13 +54,11 @@ touch $LOG_DST
 touch $LOG_DST_STATUS
 
 __install(){
-    local APPS_CSV CSV MAPPER MAPPER_TYPE TYPE NAME STATE DESCRIPTION
+    local APPS_CSV MAPPER MAPPER_TYPE TYPE NAME STATE DESCRIPTION
     APPS_CSV=$1
 
     # Strip comments and empty lines
-    CSV=$(mktemp)
     sed -e '/^#/d' -e '/^$/d' "$APPS_CSV" > "$CSV"
-    trap '{ rm -f "$CSV" ; }' SIGINT SIGTERM EXIT
 
     IFS=,
     while read -rs TYPE NAME STATE DESCRIPTION
@@ -83,9 +98,29 @@ __install(){
     done < "$CSV"
 }
 
-__post_install(){
+__prompt_password(){
+    local PROMPT_PASSWORD
+
+    if [ "$IS_ZSH" ]; then
+        return 0
+    fi
+
+    if [ "$PASSWORD" ]; then
+        echo "$PASSWORD" > "$TEMP_PASSWORD"
+    else
+        read -rsp "Type sudo password for later use 😉🔒:" PROMPT_PASSWORD
+        echo
+        echo "$PROMPT_PASSWORD" > "$TEMP_PASSWORD"
+    fi
+}
+
+__set_shell_zsh(){
     # set zsh as default shell
-    chsh -s $(grep /zsh$ /etc/shells | tail -1)
+    if [ "$IS_ZSH" ]; then
+        return 0
+    fi
+
+    chsh -s "$(grep /zsh$ /etc/shells | tail -1)" <<<"$(<"$TEMP_PASSWORD")"
 }
 
 #########
@@ -95,7 +130,8 @@ __post_install(){
 #########
 echo "[Installing]..."
 
+__prompt_password
 __install ./config/common.csv
 __install $APPS_FILE
-__post_install
+__set_shell_zsh
 
