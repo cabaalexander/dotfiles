@@ -1,8 +1,8 @@
 # vim: ft=zsh:ts=4:sw=4
 
+# Uses fzf to search for files and open then with your default editor
+# ===================================================================
 function __edit_file_widget {
-    # Uses fzf to search for files and open then with
-    # your default editor
     local FILES
     FILES="$(__fsel)"
     if [ -z "$FILES" ]
@@ -15,3 +15,13 @@ function __edit_file_widget {
 }
 zle -N __edit_file_widget
 bindkey -M viins '^E' __edit_file_widget
+
+# map 'C-z' to 'fg' command, this would allow you to toggle
+# between your current program and the terminal
+# =========================
+__foreground_job(){
+    fg 2> /dev/null
+    zle reset-prompt
+}
+zle -N __foreground_job
+bindkey -M viins '^Z' __foreground_job
