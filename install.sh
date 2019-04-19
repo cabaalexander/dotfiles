@@ -101,10 +101,6 @@ __install(){
 __prompt_password(){
     local PROMPT_PASSWORD
 
-    if [ "$IS_ZSH" ]; then
-        return 0
-    fi
-
     if [ "$PASSWORD" ]; then
         echo "$PASSWORD" > "$TEMP_PASSWORD"
     else
