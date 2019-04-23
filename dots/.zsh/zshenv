@@ -1,5 +1,6 @@
 # vim: ft=zsh:ts=4:sw=4
 
+export OS=$(getos 2> /dev/null)
 export EDITOR=nvim
 
 # Setting fd as the default source for fzf
@@ -26,6 +27,4 @@ export GPG_TTY=$(tty)
 # GoLang
 export GOROOT="$HOME/.go"
 export GOPATH="$HOME/go"
-
-export OS=$(getos 2> /dev/null)
 

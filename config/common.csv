@@ -20,6 +20,7 @@
 ,curlftpfs,off,
 ,ranger,on,
 ,asciinema,on,Terminal recorder
+,figlet,on,ASCII art text
 
 ##########
 #        #

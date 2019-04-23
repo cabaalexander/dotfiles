@@ -8,7 +8,7 @@
 #################
 TEMP_PASSWORD=$(mktemp)
 CSV=$(mktemp)
-trap '{ rm -rf $TEMP_PASSWORD $CSV ; }' SIGINT SIGTERM EXIT
+trap '{ rm -rf $CSV ; }' SIGINT SIGTERM EXIT
 
 # Consant
 # =======
@@ -112,11 +112,11 @@ __prompt_password(){
 
 __set_shell_zsh(){
     # set zsh as default shell
-    if [ "$IS_ZSH" ]; then
+    if [ "$IS_ZSH" ] || ! command -v zsh; then
         return 0
     fi
 
-    chsh -s "$(grep /zsh$ /etc/shells | tail -1)" <<<"$(<"$TEMP_PASSWORD")"
+    chsh -s "$(grep /zsh$ /etc/shells | tail -1)" <"$TEMP_PASSWORD"
 }
 
 #########
