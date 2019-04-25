@@ -1,0 +1,27 @@
+#!/bin/bash -e
+
+while getopts ":p:s:" OPT; do
+    case $OPT in
+        p) PREFIX="$OPTARG" ;;
+        s) SUFFIX="$OPTARG" ;;
+        *) # do default stuff ;;
+    esac
+done
+shift $((OPTIND - 1))
+
+TEMP=$(mktemp)
+
+DIRNAME=$(dirname "$TEMP")
+BASENAME=$(basename "$TEMP")
+
+# apply the `prefix` or `suffix`
+NEW_NAME="${PREFIX}$BASENAME${SUFFIX}"
+
+# what we want
+NEW_PATH="$DIRNAME/$NEW_NAME"
+
+# rename the default temp file using `prefix` or `suffix`
+mv "$TEMP" "$NEW_PATH"
+
+# Print to stdout the new path for the temp file
+echo "$NEW_PATH"
