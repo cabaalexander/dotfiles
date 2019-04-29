@@ -5,11 +5,11 @@ gcl(){
     local \
         REPO \
         REPO_BASENAME \
-        REPO_DIR_NAME
+        REPO_NAME
 
     REPO="$1"
     REPO_BASENAME=$(basename "$REPO")
-    REPO_DIR_NAME=${REPO_BASENAME%.*}
+    REPO_NAME=${REPO_BASENAME%.*}
 
     # Validate that you only pass one parameter
     if [ $# -gt 1 ]
@@ -19,6 +19,9 @@ gcl(){
     fi
 
     git clone "$REPO"
-    cd -P -- "$REPO_DIR_NAME" || exit
+    # cd -P -- "$REPO_NAME" || exit
+    cdtmux "$REPO_NAME"
+    tmux rename-window "$REPO_NAME"
+    exit
 }
 

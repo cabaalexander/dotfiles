@@ -2,6 +2,7 @@
 
 export OS=$(getos 2> /dev/null)
 export EDITOR=nvim
+export MANPAGER='nvim +Man!'
 
 # Setting fd as the default source for fzf
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g !.git'
