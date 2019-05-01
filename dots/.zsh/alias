@@ -115,6 +115,12 @@ alias em='elm make'
 alias er='elm repl'
 alias epi='elm package install'
 
+# tmux
+# ====
+alias tmuxinstall="~/.tmux/plugins/tpm/bin/install_plugins"
+alias tmuxupdate="~/.tmux/plugins/tpm/bin/update_plugins"
+alias tmuxclean="~/.tmux/plugins/tpm/bin/clean_plugins"
+
 ##########
 #        #
 # Random #
