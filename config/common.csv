@@ -48,6 +48,7 @@ f,rvm,on,
 gem,lolcat,on,
 gem,neovim,on,
 gem,mdl,on,
+gem,vimgolf,on,
 
 ##########
 #        #

@@ -1,8 +1,6 @@
 #!/bin/bash
 set -Eeuo pipefail
 
-all="${*:-script.sh}"
-
 make_script()
 {
     local script_name
@@ -17,8 +15,26 @@ EOF
     echo ":: Script \`$script_name\` created ::"
 }
 
-for script in ${all[*]}; do
-    make_script "$script"
+main(){
+    for script in ${all[*]}; do
+        make_script "$script"
+    done
+}
+
+while getopts ":q" OPT; do
+    case $OPT in
+        q) QUIET="yup" ;;
+        *) # do default stuff ;;
+    esac
 done
+shift $((OPTIND - 1))
+
+all="${*:-script.sh}"
+
+main
+
+if [ -n "${QUIET:-}" ]; then
+    exit 0
+fi
 
 eval "$EDITOR -c'norm G' ${all[*]}"
