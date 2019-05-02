@@ -9,6 +9,8 @@ gotopInstall(){
 
   # Begin
 
+  mkdir ~/.bin
+
   local URL="https://raw.githubusercontent.com/cjbassi/gotop/master/scripts/download.sh"
 
   bash -c "$(curl -s $URL)"
