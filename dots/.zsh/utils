@@ -16,6 +16,7 @@ grss(){
         return 1
     fi
     git reset --soft HEAD~"${1}"
+    git reset
 }
 
 gsq(){
