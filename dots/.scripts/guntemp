@@ -1,6 +1,8 @@
 #!/bin/bash -e
 # shellcheck disable=2016
 
+TEMP_BRANCH_NAME="temp"
+
 __get_temps(){
     git log --pretty=format:'%s' --grep='^temp' |
     wc -w |
@@ -16,14 +18,14 @@ __saved_branch(){
 
 GIT_COMMANDS=(
     'fetch -v'
-    'checkout temp'
-    'pull origin temp'
-    'reset --hard origin/temp'
+    'checkout $TEMP_BRANCH_NAME'
+    'pull origin $TEMP_BRANCH_NAME'
+    'reset --hard origin/$TEMP_BRANCH_NAME'
     'reset --soft HEAD~$(__get_temps)'
     'reset'
     'checkout $(__saved_branch)'
-    'push --delete origin temp'
-    'branch -D temp'
+    'push --delete origin $TEMP_BRANCH_NAME'
+    'branch -D $TEMP_BRANCH_NAME'
 )
 
 IFS=$'\n'

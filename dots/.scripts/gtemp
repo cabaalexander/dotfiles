@@ -2,14 +2,16 @@
 
 git symbolic-ref --short -q HEAD > .branch
 
+TEMP_BRANCH_NAME="temp"
+
 GIT_COMMANDS=(
     "fetch -v"
-    "branch temp 2> /dev/null || true"
-    "checkout temp"
-    "pull origin temp 2> /dev/null || true"
+    "branch $TEMP_BRANCH_NAME 2> /dev/null || true"
+    "checkout $TEMP_BRANCH_NAME"
+    "pull origin $TEMP_BRANCH_NAME 2> /dev/null || true"
     "add ."
-    "commit -m temp"
-    "push origin temp"
+    "commit -m $TEMP_BRANCH_NAME"
+    "push origin $TEMP_BRANCH_NAME"
     "checkout $(<.branch)"
 )
 
@@ -17,3 +19,6 @@ IFS=$'\n'
 for COMMAND in ${GIT_COMMANDS[*]}; do
     eval "git $COMMAND"
 done
+
+# delete the temp branch so it only leaves in the remote
+git branch -D $TEMP_BRANCH_NAME
