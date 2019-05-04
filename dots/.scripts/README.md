@@ -15,6 +15,7 @@ List of stuffs here: :point_down:
 - [dsply](#dsply)
 - [gcb](#gcb)
 - [gdsf](#gdsf)
+- [ges](#ges)
 - [getemoji](#getemoji)
 - [getip](#getip)
 - [getos](#getos)
@@ -112,6 +113,10 @@ Echo the current git branch
 ## [gdsf](/dots/.scripts/gdsf)
 
 Destroy a file from git history following every commit it was present
+
+## [ges](/dots/.scripts/ges)
+
+Edit all the staged files in your default $EDITOR
 
 ## [getemoji](/dots/.scripts/getemoji)
 

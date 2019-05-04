@@ -61,6 +61,7 @@ pip,doge,off,
 pip,neovim,on,
 pip,vim-vint,on,
 pip,speedtest-cli,off,
+pip,termtosvg,on,
 pip,pip,on,
 
 #######

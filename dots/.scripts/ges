@@ -1,0 +1,16 @@
+#!/bin/bash
+set -Eeuo pipefail
+
+# git-edit-staged - ges
+# This script edit all the staged files in your default $EDITOR
+
+get_staged(){
+    git status --porcelain=v1 2>/dev/null |
+        grep -v '^ D\|??' |
+        awk '{print $2}' |
+        sed "s#^#$PWD/#" |
+        tr '\n' ' '
+}
+
+eval "$EDITOR $(get_staged)"
+
