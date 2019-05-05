@@ -1,8 +1,6 @@
 #!/bin/bash
 set -Eeuo pipefail
 
-# TODO: add the new repo to the .gitignore if not already in
-
 main(){
     local repo repo_local_path
 
@@ -13,7 +11,7 @@ main(){
         git clone "$repo" "$repo_local_path"
     fi
 
-    if ! grep "$repo_local_path" .gitignore; then
+    if ! grep -q "$repo_local_path" .gitignore; then
         echo "$repo_local_path" >> .gitignore
     fi
 }

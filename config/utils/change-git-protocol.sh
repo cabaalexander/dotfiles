@@ -21,8 +21,8 @@ __change_git_protocol(){
     do
         __validate_git_config "$FILE_PATH"
 
-        # if http is found means it is already using ssh
-        grep "http" <<<"$FILE_PATH" || return 0
+        # if 'git@github.com:' is found means it is already using ssh
+        grep -q "git@github.com:" "$FILE_PATH" && return 0
 
         case "$(uname -s)" in
             [Dd]arwin) OVERWRITE='-i ""' ;;
@@ -34,10 +34,4 @@ __change_git_protocol(){
     done
 }
 
-# If this file is running in terminal call the function `__change_git_protocol`
-# Otherwise just source it
-if [ "$(basename "${0}")" = "change-git-protocol.sh" ]
-then
-  __change_git_protocol "${@}"
-fi
-
+__change_git_protocol "${@}"
