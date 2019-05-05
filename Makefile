@@ -55,10 +55,10 @@ define do_symlink
 	@echo $(1).clean >> $(SYM_OUT)
 endef
 
-define do_update_submodule
-	@git submodule update --init $(1)
+define do_update_repo
+	@${PWD}/config/utils/update-repo.sh $(1) $(2)
 	@${PWD}/config/utils/change-git-protocol.sh \
-		.git/modules/$(1)/config
+		$(addsuffix /.git/config,$(2))
 endef
 
 #########
@@ -79,11 +79,15 @@ bootstrap: bootstrap-nvim
 
 .PHONY: bootstrap-nvim
 bootstrap-nvim:
-	$(call do_update_submodule,dots/.config/nvim)
+	$(call do_update_repo \
+		,https://github.com/cabaalexander/nvim.git \
+		,dots/.config/nvim )
 
 .PHONY: bootstrap-secrets
 bootstrap-secrets:
-	$(call do_update_submodule,secrets)
+	$(call do_update_repo \
+		,https://github.com/cabaalexander/secrets.git \
+		,secrets)
 	@cd secrets && $(MAKE)
 	@$(MAKE) symlink
 

@@ -1,6 +1,0 @@
-[submodule "dots/.config/nvim"]
-	path = dots/.config/nvim
-	url = https://github.com/cabaalexander/nvim.git
-[submodule "secrets"]
-	path = secrets
-	url = https://github.com/cabaalexander/secrets.git

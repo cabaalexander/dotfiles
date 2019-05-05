@@ -7,3 +7,6 @@
 .cache
 *.out
 .DS_Store
+
+dots/.config/nvim
+secrets
