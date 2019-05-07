@@ -8,9 +8,9 @@
 
 # Utils
 # =====
-alias gb='git branch'
+alias gb='git branch -a'
 alias gs='clear && git status 2> /dev/null'
-alias gl='git log'
+alias gl='f(){git log --grep="$1"};f'
 alias co='git checkout'
 alias gclean='git clean -df'
 alias lsgst='git stash list'

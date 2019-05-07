@@ -1,5 +1,4 @@
-#!/bin/bash
-set -Eeuo pipefail
+#!/bin/bash -e
 
 main(){
     local repo repo_local_path

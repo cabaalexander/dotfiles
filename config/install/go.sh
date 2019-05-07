@@ -1,5 +1,4 @@
-#!/bin/bash
-set -Eeuo pipefail
+#!/bin/bash -e
 
 REPO_URL="https://github.com/cabaalexander/another-go-installer.git"
 
