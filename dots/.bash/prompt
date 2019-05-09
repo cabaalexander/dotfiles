@@ -1,0 +1,44 @@
+# vim: ft=sh
+
+# Colors
+RED="\e[31m"
+LIGHT_BLUE="\e[94m\]"
+WHITE="\e[39m"
+RESET="\e[0m\]"
+BOLD="\e[1m"
+
+EMOJIS=(
+    "(づ￣ ³￣)づ"
+    "(ง •̀_•́)ง"
+    "(╥_╥)"
+    "(●__●)"
+    "(╯°□°）╯︵ ┻━┻"
+)
+
+getBaseDIR(){
+    local BASE_DIR SNAKE
+    BASE_DIR=${PWD%/*}
+
+    [[ "$BASE_DIR" =~ ^$HOME ]] \
+        && SNAKE="~"
+
+    BASE_DIR=$SNAKE${BASE_DIR#$HOME}/
+    [ "$PWD" == "$HOME" ] || echo $BASE_DIR
+}
+
+getEmojis(){
+    local EMOJIS_INDEX
+    EMOJIS_INDEX=$((RANDOM % ${#EMOJIS[@]}))
+    echo ${EMOJIS[$EMOJIS_INDEX]}
+}
+
+# Prompt
+PS1="\
+${BOLD}\
+${LIGHT_BLUE}[ \
+${RED}\$(getBaseDIR)\
+${WHITE}\W\
+${LIGHT_BLUE} ]\
+${RESET} \$(getEmojis)\n\
+> "
+
