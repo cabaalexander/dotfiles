@@ -33,7 +33,11 @@ SH_FILES	:= $(shell ${PWD}/config/utils/find-sh-files.sh)
 
 # `dots`
 # ======
-DOTS_IGNORE	:= ! -name "*.md" ! -path "*plugged/*" ! -name "Session.vim"
+DOTS_IGNORE	:= \
+	! -name "*.md" \
+	! -path "*plugged/*" \
+	! -name "Session.vim" \
+	! -path "*.git*"
 DOTS_SRC	:= $(shell find $(DOTS_PATH) -type f $(DOTS_IGNORE))
 DOTS_OUT	:= $(patsubst $(DOTS_PATH)/%,$(HOME_DIST)/%,$(DOTS_SRC))
 
@@ -114,6 +118,7 @@ symlink-update: clean symlink
 .PHONY: clean
 clean: $(CLEAN_SRC) post-clean
 $(HOME_DIST)/%.clean:
+	@printf "x "
 	@sed 's/.clean//' <<<"$@" \
 		| xargs rm -rfv
 
