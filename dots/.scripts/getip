@@ -1,8 +1,31 @@
 #!/bin/bash
+set -Eeuo pipefail
 
-IP_AND_MASK=$(
-    ip addr show eth1 | grep -E '^[[:space:]]+inet ' | awk '{print $2}'
-)
+ip_decoder(){
+    grep 'UP' |
+        head -1 |
+        awk '{sub(/\/[0-9]+/, ""); print $3}'
+}
 
-echo "${IP_AND_MASK%/*}"
+get_ip(){
+    local CMD OPT DEC
+    CMD=$1
+    OPT=$2
+    DEC=$3
+    if command -v "$CMD" &> /dev/null; then
+        eval "$CMD $OPT" | "$DEC" && return 0
+    fi
+    return 1
+}
 
+main(){
+    local COMMAND OPTIONS
+    IFS=$':'
+    while read -rs COMMAND OPTIONS DECODER; do
+        # if you get any valid IP you break and 'DA SET'
+        get_ip "$COMMAND" "$OPTIONS" "$DECODER" && break
+    done
+}
+main <<EOF
+ip:-br addr show:ip_decoder
+EOF
