@@ -1,10 +1,19 @@
 #!/bin/bash
 set -Eeuo pipefail
 
+# getip - gets your machine ip. It will try to use the commands `ip` or
+# `ifconfig` to get you the ip. You only get print only one ip. (as expected)
+
 ip_decoder(){
     grep 'UP' |
         head -1 |
         awk '{sub(/\/[0-9]+/, ""); print $3}'
+}
+
+ipconfig_decoder(){
+    grep 'broadcast' |
+        head -1 |
+        awk '{print $2}'
 }
 
 get_ip(){
@@ -19,7 +28,7 @@ get_ip(){
 }
 
 main(){
-    local COMMAND OPTIONS
+    local COMMAND OPTIONS DECODER
     IFS=$':'
     while read -rs COMMAND OPTIONS DECODER; do
         # if you get any valid IP you break and 'DA SET'
@@ -28,4 +37,5 @@ main(){
 }
 main <<EOF
 ip:-br addr show:ip_decoder
+ifconfig::ipconfig_decoder
 EOF
