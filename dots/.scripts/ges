@@ -6,11 +6,13 @@ set -Eeuo pipefail
 
 get_staged(){
     git status --porcelain=v1 2>/dev/null |
-        grep -v '^ D\|??' |
+        grep -v '^ D' |
         awk '{print $2}' |
         sed "s#^#$PWD/#" |
         tr '\n' ' '
 }
+
+[[ -z "$(get_staged)" ]] && exit 0
 
 eval "$EDITOR $(get_staged)"
 

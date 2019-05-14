@@ -3,7 +3,7 @@
 # init hooks auto-function
 autoload -U add-zsh-hook
 
-# load .env* files
+# load env files
 load_env() {
     local ENV_FILE found_env
     ENV_FILE=".nic"
@@ -31,8 +31,8 @@ change_emoji(){
     else
         EMOJIS=(
             🌟
-            🌚
-            🎩
+            🤑
+            💰
             🤨\ 
         )
     fi

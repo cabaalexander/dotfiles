@@ -1,15 +1,33 @@
 #!/bin/bash
+set -Eeuo pipefail
 
-# Shows a notification depending on what OS you are
+# dsply - Shows a notification depending on what OS you are
+# $ dsply [OPTIONS] [COMMAND]
 
-SCRIPT_NAME='dsply'
+# USAGE:
+#   $ dsply echo "Hello notification"
+#   $ sleep 3 && dsply -t"Sleeping" -m"sshhh"
 
-__mac(){
-    osascript -e "display notification \"${MESSAGE:-Hello}\" with title \"${TITLE:-Title}\" $SOUND"
+# OPTIONS:
+#   -t      Sets the title of the notification
+#   -m      Sets the body of the notification
+#   -b      Make a sound if available (on mac)
+
+# COMMAND:
+#   Runs the command and then display information on finish example:
+#   $ dsply echo "hello"
+#   # hello (and display the notification)
+
+TITLE="Title"
+BODY="Hello"
+
+mac(){
+    osascript -e "display notification \"$BODY\" \
+        with title \"$TITLE\" ${SOUND:-}"
 }
 
-__tmux(){
-    tmux display "$MESSAGE"
+tmux_dsply(){
+    tmux display "$TITLE: $BODY"
 }
 
 # Parse options
@@ -17,23 +35,29 @@ while getopts ":bt:m:" OPT
 do
   case $OPT in
       t) TITLE="$OPTARG" ;;
-      m) MESSAGE="$OPTARG" ;;
+      m) BODY="$OPTARG" ;;
       b) SOUND="sound name \"Submarine\"" ;;
-      *) SOUND="" ;;
   esac
 done
 shift $((OPTIND - 1))
 
+if [ ${#@} -gt 0 ]; then
+    TITLE="Done"
+    BODY="$*"
+fi
+
 case "$(uname -s)" in
     [Dd]arwin)
-        __mac
+        eval "$@"
+        mac
         ;;
     *)
         if [[ "$TMUX" ]]
         then
-            __tmux
+            eval "$@"
+            tmux_dsply
         else
-            echo "\`$SCRIPT_NAME\` Cannot be used at this time ¯\\_(ツ)_/¯"
+            echo "'$0' Cannot be used at this time ¯\\_(ツ)_/¯"
         fi
         ;;
 esac
