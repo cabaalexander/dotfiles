@@ -25,3 +25,7 @@ __foreground_job(){
 }
 zle -N __foreground_job
 bindkey -M viins '^Z' __foreground_job
+
+# edit commandline
+bindkey -M viins '^X^E' edit-command-line
+
