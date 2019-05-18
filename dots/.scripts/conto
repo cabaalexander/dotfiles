@@ -3,12 +3,14 @@
 # This `add`, `commit --amend` and `git push -f --no-verify`
 # all the changes in the current branch to its remote one
 
-__validate_master(){
+CURRENT_BBRANCH=$(git symbolic-ref --short -q HEAD)
+
+validate_master(){
     if [ "$BYPASS" ]
     then
         return 0
     fi
-    if [ "$(gcb)" = "master" ]
+    if [ "$CURRENT_BBRANCH" = "master" ]
     then
         echo "¯\\_(ツ)_/¯"
         echo "You're on master, sorry bruh..."
@@ -30,9 +32,9 @@ do
 done
 shift $((OPTIND - 1))
 
-__validate_master
+validate_master
 
 git add -A
 git commit --amend --no-edit --no-verify
-git push origin "$(gcb)" -f
+git push origin "$CURRENT_BBRANCH" -f
 
