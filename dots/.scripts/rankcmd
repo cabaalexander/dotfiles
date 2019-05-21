@@ -1,0 +1,20 @@
+#!/bin/bash
+set -Eeuo pipefail
+
+if [ "$OS" == "mac" ]; then
+    LC_CTYPE=C
+fi
+
+main(){
+    awk -F'[; ]' '
+    {CMD[$3]++; count++;}
+    END {
+    for (k in CMD)
+        printf "%d %05.2f%% %s\n", CMD[k], CMD[k]/count*100, k
+    }' <"$HOME/.zsh_history" |
+        sort -nr |
+        column -t |
+        head
+}
+main
+
