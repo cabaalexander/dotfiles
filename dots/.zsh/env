@@ -30,3 +30,6 @@ export GPG_TTY=$(tty)
 export GOROOT="$HOME/.go"
 export GOPATH="$HOME/go"
 
+# vifm
+export VIFM="$HOME/.vifm"
+
