@@ -19,15 +19,6 @@ grss(){
     git reset
 }
 
-gsq(){
-    # Squash a range of commits
-    if [ -z "$1" ]; then
-        echo "How many commits do you wanna squash?"
-        return 1
-    fi
-    git rebase -i HEAD~"${1}"
-}
-
 gps(){
     # Alias to push. Validated and stuffs
     local currentBranch

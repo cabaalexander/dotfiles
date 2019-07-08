@@ -1,0 +1,8 @@
+#!/bin/bash
+set -Eeuo pipefail
+
+# Squash all the commits ahead of master for the current branch
+
+AHEAD=$(git rev-list --left-right --count origin/master.. | cut -f2)
+
+git rebase -i HEAD~"$AHEAD"
