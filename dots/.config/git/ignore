@@ -5,3 +5,6 @@ Session.vim
 # NPM
 .tern-port
 
+# custom
+.nic
+
