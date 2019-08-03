@@ -6,8 +6,7 @@ set -Eeuo pipefail
 
 ip_decoder(){
     grep 'UP' |
-        head -1 |
-        awk '{sub(/\/[0-9]+/, ""); print $3}'
+        awk '{sub(/\/[0-9]+/, ""); if (NR == 2) print $3}'
 }
 
 ipconfig_decoder(){

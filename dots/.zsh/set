@@ -25,3 +25,9 @@ gcl(){
     exit
 }
 
+createreactapp(){
+    npx create-react-app $1
+    cdtmux $1
+    tmux rename-window $1
+    exit
+}
