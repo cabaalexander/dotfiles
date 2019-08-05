@@ -4,13 +4,15 @@
 # Script to source (¯\_(ツ)_/¯)
 . ~/.scripts/sourceifexists
 
-# Import configurations
-sourceIfExists -imac ~/.zsh/*
-
 # Mac related (¯\\_(ツ)_/¯)
 case "$(uname -s)" in
     [Dd]arwin) sourceIfExists ~/.zsh/mac ;;
 esac
+
+# Import configurations
+sourceIfExists -imac -ihooks ~/.zsh/*
+
+sourceIfExists ~/.zsh/hooks
 
 # Package manager for `zsh`
 sourceIfExists ~/.antigenrc
