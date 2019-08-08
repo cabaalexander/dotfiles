@@ -22,12 +22,26 @@ gcl(){
     # cd -P -- "$REPO_NAME" || exit
     cdtmux "$REPO_NAME"
     tmux rename-window "$REPO_NAME"
-    exit
+    exit 0
 }
 
 createreactapp(){
-    npx create-react-app $1
-    cdtmux $1
+    local opt
+
+    while getopts ":i" opt; do
+        case $opt in
+            i) opt_val="init" ;;
+            *) # do default stuff ;;
+        esac
+    done
+    shift $((OPTIND - 1))
+
+    npx create-react-app ${1:?Provide a name for your new react app ;)}
+    cd $1
+
+    test -z "$opt_val" && return 0
+
+    tmux split-window -p 20 "npm run start"
     tmux rename-window $1
-    exit
+    $EDITOR
 }
