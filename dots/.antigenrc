@@ -13,7 +13,6 @@ antigen use oh-my-zsh
 
 # Packages
 antigen bundles <<EOBUNDLES
-    tmux
     yarn
     rupa/z
     zsh-users/zsh-syntax-highlighting

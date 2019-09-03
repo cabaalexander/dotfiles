@@ -20,9 +20,6 @@ export SPACESHIP_GIT_BRANCH_COLOR="green"
 export SPACESHIP_CHAR_SYMBOL="↪ "
 export SPACESHIP_JOBS_SYMBOL="♦"
 
-# TMUX
-export ZSH_TMUX_AUTOSTART=true
-
 # GPG
 export GPG_TTY=$(tty)
 
