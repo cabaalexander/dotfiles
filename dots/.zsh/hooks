@@ -5,13 +5,19 @@ autoload -U add-zsh-hook
 
 # load env files
 load_env(){
-    local ENV_FILE found_env
+    local ENV_FILE file_found
+    # TODO: Maybe this should load multiple files ¯\\_(ツ)_/¯
     ENV_FILE=".nic"
     ls -a |
         grep "^$ENV_FILE" 2> /dev/null |
         sed "s:^:$PWD/:" |
-        while read -rs found_env ; do
-            test -n "$found_env" && . "$found_env"
+        while read -rs file_found ; do
+            if [ -n "$file_found" ]; then
+                echo "Using environment file '$file_found'"
+                # TODO: check if the variables has the `export` prefix and if
+                # not add it on the fly
+                . "$file_found"
+            fi
         done
 }
 chpwd_functions+=(load_env)
