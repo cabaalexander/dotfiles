@@ -43,5 +43,5 @@ createreactapp(){
 
     tmux split-window -p 20 "npm run start"
     tmux rename-window $1
-    $EDITOR
+    $EDITOR ./src/App.js
 }
