@@ -120,6 +120,8 @@ alias epi='elm package install'
 alias tmuxinstall="~/.tmux/plugins/tpm/bin/install_plugins"
 alias tmuxupdate="~/.tmux/plugins/tpm/bin/update_plugins"
 alias tmuxclean="~/.tmux/plugins/tpm/bin/clean_plugins"
+alias tm='tmux'
+alias tma='tmux attach'
 
 ##########
 #        #
@@ -141,4 +143,3 @@ alias testunicode='curl -sL http://www.cl.cam.ac.uk/\~mgk25/ucs/examples/UTF-8-d
 alias tp='command -v'
 alias rgr='ranger'
 alias xcat='xargs cat'
-
