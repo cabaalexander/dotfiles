@@ -5,6 +5,7 @@
 # Requirements #
 #              #
 ################
+f,brew,on,
 f,brewfonts,on,
 
 ############
@@ -46,4 +47,3 @@ a,font-firacode-nerd-font-mono,on,
 #        #
 ##########
 a,docker,off,
-
