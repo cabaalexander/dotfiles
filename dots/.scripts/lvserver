@@ -1,23 +1,38 @@
-#!/bin/bash -e
+#!/bin/bash
+set -Eeuo pipefail
 
-# Run node package `live-server`
-# my way
+BROWSERS_MAC=(
+    /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
+)
 
+__open() {
+    local browser
+    IFS=$'\n'
+    for browser in ${BROWSERS_MAC[*]}; do
+        if command -v "$browser" &>/dev/null; then
+            $browser "$1"
+            break
+        fi
+    done
+}
 
 # Parse options
-while getopts ":p:" OPT
-do
-  case $OPT in
-      p) PORT=$OPTARG ;;
-      *) PORT=8000
-  esac
+while getopts ":rp:o:" OPT; do
+    case $OPT in
+    r) random=$RANDOM ;;
+    p) port=$OPTARG ;;
+    o) file=$OPTARG ;;
+    *) port=8000 ;;
+    esac
 done
 shift $((OPTIND - 1))
 
+# compute port for later use below
+port=${port:-${random:-8000}}
 
-if command -v live-server
-then
-    live-server --port="${PORT:-8000}" --no-browser "$@"
+if command -v live-server; then
+    eval "live-server --port=\"$port\" --no-browser &"
+    test -n "${file:-}" && __open "http://localhost:$port/$file"
 else
     echo "@npm : live-server not installed"
 fi
