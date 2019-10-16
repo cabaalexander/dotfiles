@@ -1,0 +1,14 @@
+#!/bin/bash
+set -Eeuo pipefail
+
+main() {
+    local arg
+    arg=${1:-1}
+
+    clear
+    files=$(git log -p -"$arg" --name-only --oneline | tail -n+2 | tr '\n' ' ')
+
+    eval "$EDITOR $files"
+}
+
+main "$@"
