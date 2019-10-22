@@ -5,4 +5,6 @@ set -Eeuo pipefail
 
 AHEAD=$(git rev-list --left-right --count origin/master.. | cut -f2)
 
+test "$AHEAD" -lt 2 && exit 0
+
 git rebase -i HEAD~"${1:-$AHEAD}"
