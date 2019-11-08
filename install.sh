@@ -26,21 +26,6 @@ IS_ZSH=$(
 # ======================
 sourceIfExists ./config/{install,managers,utils}/*.sh
 
-case "$(uname -s)" in
-    [Dd]arwin)
-        export OS="mac"
-        export CSV_SUFFIX="-mac"
-        ;;
-    *) echo ""
-esac
-
-# If you pass a file it takes precedence
-if [ -n "$1" ]; then
-    APPS_FILE="$1"
-else
-    APPS_FILE="./config/apps${CSV_SUFFIX}.csv"
-fi
-
 #####################
 #                   #
 # Prepare log files #
@@ -53,28 +38,27 @@ mkdir -p $BASE_PATH
 touch $LOG_DST
 touch $LOG_DST_STATUS
 
-__install(){
+__install() {
     local APPS_CSV MAPPER MAPPER_TYPE TYPE NAME STATE DESCRIPTION
     APPS_CSV=$1
 
     # Strip comments and empty lines
-    sed -e '/^#/d' -e '/^$/d' "$APPS_CSV" > "$CSV"
+    sed -e '/^#/d' -e '/^$/d' "$APPS_CSV" >"$CSV"
 
     IFS=,
-    while read -rs TYPE NAME STATE DESCRIPTION
-    do
-      MAPPER_TYPE=$TYPE
+    while read -rs TYPE NAME STATE DESCRIPTION; do
+        MAPPER_TYPE=$TYPE
 
-      # Format `type` for loggin purposes
-      [[ "$TYPE" ]] \
-        && TYPE="- $TYPE -"
+        # Format `type` for loggin purposes
+        [[ "$TYPE" ]] &&
+            TYPE="- $TYPE -"
 
-      # If the app is installed or turned off do nothing
-      __is_installed $LOG_DST_STATUS "$NAME" "$TYPE" \
-        || [[ "$STATE" == "off" ]] \
-        && continue
+        # If the app is installed or turned off do nothing
+        __is_installed $LOG_DST_STATUS "$NAME" "$TYPE" ||
+            [[ "$STATE" == "off" ]] &&
+            continue
 
-      case $MAPPER_TYPE in
+        case $MAPPER_TYPE in
         a) MAPPER=__aur ;;
         f) MAPPER=__function ;;
         m) MAPPER=__make_pkg ;;
@@ -82,35 +66,35 @@ __install(){
         gem) MAPPER=__gem ;;
         pip) MAPPER=__pip ;;
         node) MAPPER=__node ;;
-      esac
+        esac
 
-      [[ "$DESCRIPTION" ]] \
-          && DESCRIPTION="\n\t$DESCRIPTION"
+        [[ "$DESCRIPTION" ]] &&
+            DESCRIPTION="\n\t$DESCRIPTION"
 
-      # Mapper's header (Log)
-      echo -e "🏃 $NAME $TYPE $DESCRIPTION" | tee -a $LOG_DST
+        # Mapper's header (Log)
+        echo -e "🏃 $NAME $TYPE $DESCRIPTION" | tee -a $LOG_DST
 
-      # Execute
-      $MAPPER "$NAME" | tee -a $LOG_DST 2>&1
+        # Execute
+        $MAPPER "$NAME" | tee -a $LOG_DST 2>&1
 
-      # Status (Log)
-      echo -e "$TYPE :: $NAME :: $?\n" >> $LOG_DST_STATUS
-    done < "$CSV"
+        # Status (Log)
+        echo -e "$TYPE :: $NAME :: $?\n" >>$LOG_DST_STATUS
+    done <"$CSV"
 }
 
-__prompt_password(){
+__prompt_password() {
     local PROMPT_PASSWORD
 
     if [ "$PASSWORD" ]; then
-        echo "$PASSWORD" > "$TEMP_PASSWORD"
+        echo "$PASSWORD" >"$TEMP_PASSWORD"
     else
         read -rsp "Type sudo password for later use 😉🔒:" PROMPT_PASSWORD
         echo
-        echo "$PROMPT_PASSWORD" > "$TEMP_PASSWORD"
+        echo "$PROMPT_PASSWORD" >"$TEMP_PASSWORD"
     fi
 }
 
-__set_shell_zsh(){
+__set_shell_zsh() {
     # set zsh as default shell
     if [ "$IS_ZSH" ] || ! command -v zsh; then
         return 0
@@ -124,10 +108,40 @@ __set_shell_zsh(){
 # Begin #
 #       #
 #########
-echo "[Installing]..."
 
-__prompt_password
-__install ./config/common.csv
-__install $APPS_FILE
-__set_shell_zsh
+main() {
+    echo "[Installing]..."
 
+    local OS CSV_SUFFIX DEFAULT_APPS_FILES APPS_FILES APPS_FILE
+
+    # mac related stuffs
+    case "$(uname -s)" in
+    [Dd]arwin)
+        export OS="mac"
+        export CSV_SUFFIX="-mac"
+        ;;
+    *) echo "" ;;
+    esac
+
+    DEFAULT_APPS_FILES=(
+        "./config/common.csv"
+        "./config/apps${CSV_SUFFIX}.csv"
+    )
+
+    APPS_FILES=("${@:-${DEFAULT_APPS_FILES[*]}}")
+
+    # __prompt_password
+
+    for APPS_FILE in ${APPS_FILES[*]}; do
+        if ! [ -f "$APPS_FILE" ]; then
+            echo "$APPS_FILE -- This file does not exists"
+            continue
+        fi
+
+        __install "$APPS_FILE"
+    done
+
+    __set_shell_zsh
+}
+
+main "$@"

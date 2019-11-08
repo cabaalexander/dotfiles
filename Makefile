@@ -141,3 +141,6 @@ test-fix:
 log:
 	@less ~/.dots/install-status.log
 
+.PHONY: log-raw
+log-raw:
+	@less ~/.dots/install.log
