@@ -6,13 +6,13 @@
 # Trapped files #
 #               #
 #################
-TEMP_PASSWORD=$(mktemp)
-CSV=$(mktemp)
-trap '{ rm -rf $CSV ; }' SIGINT SIGTERM EXIT
+G_TEMP_PASSWORD=$(mktemp)
+G_CSV=$(mktemp)
+trap '{ rm -rf $G_CSV ; }' SIGINT SIGTERM EXIT
 
 # Consant
 # =======
-IS_ZSH=$(
+G_IS_ZSH=$(
     if [ "$(basename "$SHELL")" == "zsh" ]; then
         echo "true"
     fi
@@ -43,7 +43,7 @@ __install() {
     APPS_CSV=$1
 
     # Strip comments and empty lines
-    sed -e '/^#/d' -e '/^$/d' "$APPS_CSV" >"$CSV"
+    sed -e '/^#/d' -e '/^$/d' "$APPS_CSV" >"$G_CSV"
 
     IFS=,
     while read -rs TYPE NAME STATE DESCRIPTION; do
@@ -79,28 +79,28 @@ __install() {
 
         # Status (Log)
         echo -e "$TYPE :: $NAME :: $?\n" >>$LOG_DST_STATUS
-    done <"$CSV"
+    done <"$G_CSV"
 }
 
 __prompt_password() {
     local PROMPT_PASSWORD
 
     if [ "$PASSWORD" ]; then
-        echo "$PASSWORD" >"$TEMP_PASSWORD"
+        echo "$PASSWORD" >"$G_TEMP_PASSWORD"
     else
         read -rsp "Type sudo password for later use 😉🔒:" PROMPT_PASSWORD
         echo
-        echo "$PROMPT_PASSWORD" >"$TEMP_PASSWORD"
+        echo "$PROMPT_PASSWORD" >"$G_TEMP_PASSWORD"
     fi
 }
 
 __set_shell_zsh() {
     # set zsh as default shell
-    if [ "$IS_ZSH" ] || ! command -v zsh; then
+    if [ "$G_IS_ZSH" ] || ! command -v zsh; then
         return 0
     fi
 
-    chsh -s "$(grep /zsh$ /etc/shells | tail -1)" <"$TEMP_PASSWORD"
+    chsh -s "$(grep /zsh$ /etc/shells | tail -1)" <"$G_TEMP_PASSWORD"
 }
 
 #########
@@ -113,6 +113,9 @@ main() {
     echo "[Installing]..."
 
     local OS CSV_SUFFIX DEFAULT_APPS_FILES APPS_FILES APPS_FILE
+
+    # This is to catch the password for later use if needed ;)
+    __prompt_password
 
     # mac related stuffs
     case "$(uname -s)" in
@@ -129,8 +132,6 @@ main() {
     )
 
     APPS_FILES=("${@:-${DEFAULT_APPS_FILES[*]}}")
-
-    # __prompt_password
 
     for APPS_FILE in ${APPS_FILES[*]}; do
         if ! [ -f "$APPS_FILE" ]; then
