@@ -95,12 +95,6 @@ gprup(){
     git pull --rebase upstream "${BRANCH_NAME:-master}"
 }
 
-gdl(){
-    local PARAM=$1
-    clear
-    git log -p -"${PARAM:-1}"
-}
-
 dotar(){
     # Compress stuff
     local NAME=${1:?"Filename required ¯\\_(ツ)_/¯ <name>.tar.gz"}
