@@ -24,6 +24,15 @@ trap '{ rm -rf $G_CSV ; }' SIGINT SIGTERM EXIT
 # Consant
 # =======
 G_PASSWORD="$BASE_PATH/.password-install"
+G_PASSWORD_TIMER="$((60 * 10))"
+G_INSTALL_MANAGER_TYPES=(
+    a
+    f
+    m
+    gem
+    pip
+    node
+)
 
 # Source script to source (¯\_(ツ)_/¯)
 # ===================================
@@ -53,6 +62,12 @@ __install() {
             [[ "$STATE" == "off" ]] &&
             continue
 
+        if [ -n "$INSTALL_MANAGER_TYPE" ] &&
+            ! __includes "${G_INSTALL_MANAGER_TYPES[*]}" "$INSTALL_MANAGER_TYPE"; then
+            echo "❌ $NAME | Wrong installer type ( $INSTALL_MANAGER_TYPE )"
+            continue
+        fi
+
         case $INSTALL_MANAGER_TYPE in
         a) INSTALL_MANAGER=__aur ;;
         f) INSTALL_MANAGER=__function ;;
@@ -67,7 +82,7 @@ __install() {
             DESCRIPTION="\n\t$DESCRIPTION"
 
         # Mapper's header (Log)
-        echo -e "# $NAME $TYPE $DESCRIPTION" | tee -a $LOG_DST
+        echo -e "🏃 $NAME $TYPE $DESCRIPTION #$" | tee -a $LOG_DST
 
         # Execute
         $INSTALL_MANAGER "$NAME" | tee -a $LOG_DST 2>&1
@@ -81,16 +96,17 @@ __prompt_password() {
     local PROMPT_PASSWORD
 
     (
-        sleep "$((60 * 5))"
+        sleep "$G_PASSWORD_TIMER"
         rm -rf "$G_PASSWORD"
     ) &
 
-    if [ "$PASSWORD" ]; then
+    if [ "${PASSWORD:-}" ]; then
         echo "$PASSWORD" >"$G_PASSWORD"
     elif [ -f "$G_PASSWORD" ] && [ -n "$(cat $G_PASSWORD)" ]; then
         return 0
     else
         read -rsp "Type sudo password for later use 😉🔒: " PROMPT_PASSWORD
+        echo
         echo
         echo "$PROMPT_PASSWORD" >"$G_PASSWORD"
     fi
@@ -103,12 +119,13 @@ __prompt_password() {
 #########
 
 main() {
-    echo "[Installing]..."
-
     local OS CSV_SUFFIX DEFAULT_APPS_FILES APPS_FILES APPS_FILE
 
     # This is to catch the password for later use if needed ;)
     __prompt_password
+
+    echo "[Installing]..."
+    echo
 
     # mac related stuffs
     case "$(uname -s)" in
@@ -128,11 +145,14 @@ main() {
 
     for APPS_FILE in ${APPS_FILES[*]}; do
         if ! [ -f "$APPS_FILE" ]; then
-            echo "$APPS_FILE -- This file does not exists, just in case ;)"
+            echo "---> $APPS_FILE -- This file does not exists, just in case (˘_˘٥)"
             continue
         fi
 
         __install "$APPS_FILE"
+
+        echo -e "\n$APPS_FILE -- Finished...\n\t(ﾉ^_^)ﾉ"
+        echo
     done
 }
 
