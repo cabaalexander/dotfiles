@@ -5,7 +5,8 @@
 # Options #
 #         #
 ###########
-CSV		?= ""
+CSV		?=
+PASSWORD	?=
 
 #############
 #           #
@@ -76,7 +77,7 @@ all: bootstrap
 
 .PHONY: install
 install: symlink
-	@./install.sh $(CSV)
+	@PASSWORD=$(PASSWORD) ./install.sh $(CSV)
 
 .PHONY: bootstrap
 bootstrap: bootstrap-nvim

@@ -1,17 +1,29 @@
 #!/bin/bash -e
 # shellcheck disable=1090,1117
 
+#####################
+#                   #
+# Prepare log files #
+#                   #
+#####################
+BASE_PATH=~/.dots
+LOG_DST="${BASE_PATH}/install.log"
+LOG_DST_STATUS="${BASE_PATH}/install-status.log"
+mkdir -p $BASE_PATH
+touch $LOG_DST
+touch $LOG_DST_STATUS
+
 #################
 #               #
 # Trapped files #
 #               #
 #################
-G_TEMP_PASSWORD=$(mktemp)
 G_CSV=$(mktemp)
 trap '{ rm -rf $G_CSV ; }' SIGINT SIGTERM EXIT
 
 # Consant
 # =======
+G_PASSWORD="$BASE_PATH/.password-install"
 G_IS_ZSH=$(
     if [ "$(basename "$SHELL")" == "zsh" ]; then
         echo "true"
@@ -25,18 +37,6 @@ G_IS_ZSH=$(
 # Source BEGINS
 # ======================
 sourceIfExists ./config/{install,managers,utils}/*.sh
-
-#####################
-#                   #
-# Prepare log files #
-#                   #
-#####################
-BASE_PATH=~/.dots
-LOG_DST="${BASE_PATH}/install.log"
-LOG_DST_STATUS="${BASE_PATH}/install-status.log"
-mkdir -p $BASE_PATH
-touch $LOG_DST
-touch $LOG_DST_STATUS
 
 __install() {
     local APPS_CSV MAPPER MAPPER_TYPE TYPE NAME STATE DESCRIPTION
@@ -85,12 +85,19 @@ __install() {
 __prompt_password() {
     local PROMPT_PASSWORD
 
+    (
+        sleep "$((60 * 5))"
+        rm -rf "$G_PASSWORD"
+    ) &
+
     if [ "$PASSWORD" ]; then
-        echo "$PASSWORD" >"$G_TEMP_PASSWORD"
+        echo "$PASSWORD" >"$G_PASSWORD"
+    elif [ -f "$G_PASSWORD" ] && [ -n "$(cat $G_PASSWORD)" ]; then
+        return 0
     else
-        read -rsp "Type sudo password for later use 😉🔒:" PROMPT_PASSWORD
+        read -rsp "Type sudo password for later use 😉🔒: " PROMPT_PASSWORD
         echo
-        echo "$PROMPT_PASSWORD" >"$G_TEMP_PASSWORD"
+        echo "$PROMPT_PASSWORD" >"$G_PASSWORD"
     fi
 }
 
@@ -100,7 +107,7 @@ __set_shell_zsh() {
         return 0
     fi
 
-    chsh -s "$(grep /zsh$ /etc/shells | tail -1)" <"$G_TEMP_PASSWORD"
+    chsh -s "$(grep /zsh$ /etc/shells | tail -1)" <"$G_PASSWORD"
 }
 
 #########
@@ -127,7 +134,7 @@ main() {
     esac
 
     DEFAULT_APPS_FILES=(
-        "./config/common.csv"
+        "./config/apps-common.csv"
         "./config/apps${CSV_SUFFIX}.csv"
     )
 
