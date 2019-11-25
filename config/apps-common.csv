@@ -73,19 +73,19 @@ pip,pip,on,
 ,zsh,on,
 f,ohmyzsh,on,
 
-###########
-#         #
-# Scripts #
-#         #
-###########
+#############
+#           #
+# Functions #
+#           #
+#############
 f,gotop,on,
 f,libtinfo,off,Thing for `elm repl` to work
 
 #################
 #               #
-# End of things #
+# Run this last #
 #               #
 #################
 f,tpm,on,TMUX Plugin Manager
 f,plug,on,Vim Plugin Manager
-
+f,setzsh,on,

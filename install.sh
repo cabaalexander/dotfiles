@@ -24,11 +24,6 @@ trap '{ rm -rf $G_CSV ; }' SIGINT SIGTERM EXIT
 # Consant
 # =======
 G_PASSWORD="$BASE_PATH/.password-install"
-G_IS_ZSH=$(
-    if [ "$(basename "$SHELL")" == "zsh" ]; then
-        echo "true"
-    fi
-)
 
 # Source script to source (¯\_(ツ)_/¯)
 # ===================================
@@ -36,10 +31,10 @@ G_IS_ZSH=$(
 
 # Source BEGINS
 # ======================
-sourceIfExists ./config/{install,managers,utils}/*.sh
+sourceIfExists ./config/{functions,managers,utils}/*.sh
 
 __install() {
-    local APPS_CSV MAPPER MAPPER_TYPE TYPE NAME STATE DESCRIPTION
+    local APPS_CSV INSTALL_MANAGER INSTALL_MANAGER_TYPE TYPE NAME STATE DESCRIPTION
     APPS_CSV=$1
 
     # Strip comments and empty lines
@@ -47,7 +42,7 @@ __install() {
 
     IFS=,
     while read -rs TYPE NAME STATE DESCRIPTION; do
-        MAPPER_TYPE=$TYPE
+        INSTALL_MANAGER_TYPE=$TYPE
 
         # Format `type` for loggin purposes
         [[ "$TYPE" ]] &&
@@ -58,24 +53,24 @@ __install() {
             [[ "$STATE" == "off" ]] &&
             continue
 
-        case $MAPPER_TYPE in
-        a) MAPPER=__aur ;;
-        f) MAPPER=__function ;;
-        m) MAPPER=__make_pkg ;;
-        "") MAPPER=__package_manager ;;
-        gem) MAPPER=__gem ;;
-        pip) MAPPER=__pip ;;
-        node) MAPPER=__node ;;
+        case $INSTALL_MANAGER_TYPE in
+        a) INSTALL_MANAGER=__aur ;;
+        f) INSTALL_MANAGER=__function ;;
+        m) INSTALL_MANAGER=__make_pkg ;;
+        "") INSTALL_MANAGER=__package_manager ;;
+        gem) INSTALL_MANAGER=__gem ;;
+        pip) INSTALL_MANAGER=__pip ;;
+        node) INSTALL_MANAGER=__node ;;
         esac
 
         [[ "$DESCRIPTION" ]] &&
             DESCRIPTION="\n\t$DESCRIPTION"
 
         # Mapper's header (Log)
-        echo -e "🏃 $NAME $TYPE $DESCRIPTION" | tee -a $LOG_DST
+        echo -e "# $NAME $TYPE $DESCRIPTION" | tee -a $LOG_DST
 
         # Execute
-        $MAPPER "$NAME" | tee -a $LOG_DST 2>&1
+        $INSTALL_MANAGER "$NAME" | tee -a $LOG_DST 2>&1
 
         # Status (Log)
         echo -e "$TYPE :: $NAME :: $?\n" >>$LOG_DST_STATUS
@@ -99,15 +94,6 @@ __prompt_password() {
         echo
         echo "$PROMPT_PASSWORD" >"$G_PASSWORD"
     fi
-}
-
-__set_shell_zsh() {
-    # set zsh as default shell
-    if [ "$G_IS_ZSH" ] || ! command -v zsh; then
-        return 0
-    fi
-
-    chsh -s "$(grep /zsh$ /etc/shells | tail -1)" <"$G_PASSWORD"
 }
 
 #########
@@ -142,14 +128,12 @@ main() {
 
     for APPS_FILE in ${APPS_FILES[*]}; do
         if ! [ -f "$APPS_FILE" ]; then
-            echo "$APPS_FILE -- This file does not exists"
+            echo "$APPS_FILE -- This file does not exists, just in case ;)"
             continue
         fi
 
         __install "$APPS_FILE"
     done
-
-    __set_shell_zsh
 }
 
 main "$@"
