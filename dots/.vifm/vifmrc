@@ -410,16 +410,28 @@ nnoremap : ;
 " list messages
 nnoremap ,m :messages<cr>
 
+" ##########
+" #        #
+" # Leader #
+" #        #
+" ##########
+
 " clean space mapping (setting it to <nop>)
 nnoremap <space> <nop>
 
 " mappings for closing vifm
 nnoremap <space>q  :q<cr>
-nnoremap <space>qa :qa<cr>
-nnoremap <space>qa :qa<cr>
 nnoremap <space>x  :qa<cr>
 nnoremap <space>X  :qa!<cr>
 nnoremap <space>tp :echo filetype('.')<cr>
+
+" ###############
+" #             #
+" # LocalLeader #
+" #             #
+" ###############
+
+nnoremap ,e :write | edit $MYVIFMRC | restart<cr>
 
 " ####################
 " #                  #
@@ -450,9 +462,6 @@ nnoremap yf :!echo %c:p | clipboard -c %i<cr>
 nnoremap I cw<c-a>
 nnoremap cc cw<c-u>
 nnoremap A cw
-
-" Open editor to edit vifmrc and apply settings after returning to vifm
-nnoremap ,c :write | edit $MYVIFMRC | restart<cr>
 
 " Toggle wrap setting on ,w key
 nnoremap ,w :set wrap!<cr>
