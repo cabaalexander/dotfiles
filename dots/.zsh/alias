@@ -104,9 +104,10 @@ alias cdvagrant='cd /vagrant/'
 # ======
 alias dk='docker'
 alias dkc='docker-compose'
-alias dki='docker images'
+alias dki='docker images -a'
 alias dkps='docker ps'
 alias dkrit='docker run -it'
+alias dkeit='docker exec -it'
 alias dkinfo='clear && dki && echo -e "\n\n#######################\n\n" && dkps -a'
 
 # Elm
