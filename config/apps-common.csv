@@ -39,6 +39,7 @@ node,elm-format,on,
 node,diff-so-fancy,on,
 node,live-server,on,
 node,alex,on,
+node,bs-platform,on,
 
 ########
 #      #

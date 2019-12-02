@@ -473,6 +473,7 @@ mark h ~/
 mark d ~/dotfiles
 mark v ~/dotfiles/dots/.config/nvim
 mark s /sync
+mark c ~/.config
 " }}}
 
 " {{{ file icons
