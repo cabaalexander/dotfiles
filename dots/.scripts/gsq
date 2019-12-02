@@ -3,8 +3,14 @@ set -Eeuo pipefail
 
 # Squash all the commits ahead of master for the current branch
 
-AHEAD=$(git rev-list --left-right --count origin/master.. | cut -f2)
+USER_INPUT="${1:-}"
 
-test "$AHEAD" -lt 2 && exit 0
+if [ -n "$USER_INPUT" ]; then
+    SQUASH="$USER_INPUT"
+else
+    SQUASH=$(git rev-list --left-right --count origin/master.. | cut -f2)
+    test "$SQUASH" -lt 2 && exit 0
+fi
 
-git rebase -i HEAD~"${1:-$AHEAD}"
+
+git rebase -i HEAD~"$SQUASH"
