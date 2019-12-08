@@ -1,7 +1,7 @@
 #!/bin/bash
 
 rvmInstall(){
-  bash -c "$(curl -sL get.rvm.io)" -s --ruby=2.2
+  bash -c "$(curl -sL get.rvm.io)" -s --ruby
   return $?
 }
 

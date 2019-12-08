@@ -1,13 +1,5 @@
 # Mapper,Name,State,Description
 
-################
-#              #
-# Requirements #
-#              #
-################
-f,brew,on,
-f,brewfonts,on,
-
 ############
 #          #
 # GUI Apps #

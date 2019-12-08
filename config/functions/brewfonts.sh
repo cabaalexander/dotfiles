@@ -1,7 +1,9 @@
 #!/bin/bash -e
 
 brewfontsInstall(){
-    brew tap homebrew/cask-fonts
+    if [ "$OS" == "mac" ]; then
+        brew tap homebrew/cask-fonts
+    fi
 }
 
 # If this file is running in terminal call the function `brewfontsInstall`

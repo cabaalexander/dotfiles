@@ -10,7 +10,7 @@ setzshInstall() {
     )
 
     # set zsh as default shell
-    if [ -z "$IS_ZSH" ] || ! command -v zsh &>/dev/null; then
+    if [ -n "$IS_ZSH" ] || ! command -v zsh &>/dev/null; then
         return 0
     fi
 

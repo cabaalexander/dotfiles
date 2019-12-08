@@ -1,7 +1,13 @@
 #!/bin/bash -e
 
+
+
 brewInstall() {
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    if [ "$OS" == "mac" ]; then
+        yes | /usr/bin/ruby -e "$(curl \
+            -fsSL \
+            https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    fi
 }
 
 # If this file is running in terminal call the function `brewInstall`

@@ -1,5 +1,13 @@
 # Mapper,Name,State,Description
 
+##############################################################################
+#                                                                            #
+# Mac requirements ( This needed to be here and depends on ruby ¯\_(ツ)_/¯ ) #
+#                                                                            #
+##############################################################################
+f,brew,on,
+f,brewfonts,on,
+
 ########
 #      #
 # Apps #
