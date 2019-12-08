@@ -20,6 +20,7 @@ touch $LOG_DST_STATUS
 #################
 G_CSV=$(mktemp)
 trap '{ rm -rf $G_CSV ; }' SIGINT SIGTERM EXIT
+trap '{ __delete_password_temp ; }' SIGINT SIGTERM EXIT
 
 # Consant
 # =======
@@ -92,13 +93,15 @@ __install() {
     done <"$G_CSV"
 }
 
-__prompt_password() {
-    local PROMPT_PASSWORD
-
+__delete_password_temp(){
     (
         sleep "$G_PASSWORD_TIMER"
         rm -rf "$G_PASSWORD"
     ) &
+}
+
+__prompt_password() {
+    local PROMPT_PASSWORD
 
     if [ "${PASSWORD:-}" ]; then
         echo "$PASSWORD" >"$G_PASSWORD"
