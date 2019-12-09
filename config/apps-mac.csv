@@ -8,7 +8,8 @@
 a,spotify,on,
 a,google-chrome,on,
 a,iterm2,on,
-a,postman,off,
+a,postman,on,
+a,slack,on,
 
 ########
 #      #
@@ -38,4 +39,4 @@ a,font-firacode-nerd-font-mono,on,
 # Docker #
 #        #
 ##########
-a,docker,off,
+a,docker,on,

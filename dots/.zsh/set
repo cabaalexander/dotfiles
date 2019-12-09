@@ -18,11 +18,18 @@ gcl(){
       exit 1
     fi
 
-    git clone "$REPO"
-    # cd -P -- "$REPO_NAME" || exit
-    cdtmux "$REPO_NAME"
-    tmux rename-window "$REPO_NAME"
-    exit 0
+    # if cloning the repo fails finish this function
+    if ! git clone "$REPO"; then
+        return 1
+    fi
+
+    if [ -n "$TMUX" ]; then
+        cdtmux "$REPO_NAME"
+        tmux rename-window "$REPO_NAME"
+        exit 0
+    else
+        cd "$REPO_NAME"
+    fi
 }
 
 createreactapp(){

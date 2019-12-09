@@ -26,10 +26,10 @@ f,brewfonts,on,
 ,fd,on,
 ,ripgrep,on,
 ,curlftpfs,off,
-,ranger,on,
 ,asciinema,on,Terminal recorder
 ,figlet,on,ASCII art text
 ,unzip,on,
+,vifm,on,
 
 ##########
 #        #
