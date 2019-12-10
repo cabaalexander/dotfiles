@@ -1,9 +1,7 @@
 # vim: ft=tmux
 
 # Set prefix to Ctrl-Space
-unbind C-b
 set -g prefix C-Space
-bind C-Space send-prefix
 
 # Reset a pane
 bind C-k respawn-pane -k
@@ -12,18 +10,16 @@ bind C-k respawn-pane -k
 bind C-n command-prompt -p "Session's Name:" "new-session -c $HOME -AD -s %%"
 
 # Synchronize panes
-unbind S
 bind S setw synchronize-panes
 
 # Move to the last active session
-unbind l
 bind l switch-client -l
 
 # Move to the last active window
-bind C-\ last-window
+bind C-\\ last-window
 
 # Better split
-bind \ split-window -h -c "#{pane_current_path}"
+bind \\ split-window -h -c "#{pane_current_path}"
 bind - split-window -v -c "#{pane_current_path}"
 
 # Bind clear screen to `<prefix> + C-l
@@ -42,10 +38,6 @@ bind -r H resize-pane -L 4
 bind -r J resize-pane -D 4
 bind -r K resize-pane -U 4
 bind -r L resize-pane -R 4
-
-# Swap panes
-bind -r M-j swap-pane -D
-bind -r M-k swap-pane -U
 
 # Swap window
 TMUX_SWAP_WINDOWS="#(~/.tmux/scripts/listwindows.sh)"
