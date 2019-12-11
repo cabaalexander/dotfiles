@@ -9,7 +9,7 @@ __validate_git_config(){
 
     if ! [[ "$FILE_PATH" =~ \.git\/.*config$ ]]
     then
-        echo "File provided is not a valid git config"
+        echo "File provided ($FILE_PATH) is not a valid git config"
         return 1
     fi
     return 0
@@ -19,7 +19,9 @@ __change_git_protocol(){
     local FILE_PATH OVERWRITE
     for FILE_PATH in "$@"
     do
-        __validate_git_config "$FILE_PATH"
+        if ! __validate_git_config "$FILE_PATH"; then
+            continue
+        fi
 
         # if 'git@github.com:' is found means it is already using ssh
         grep -q "git@github.com:" "$FILE_PATH" && return 0
@@ -36,7 +38,7 @@ __change_git_protocol(){
 
 # If this file is running in terminal call the function `__change_git_protocol`
 # Otherwise just source it
-if [ "$(basename "${0}")" = "find-sh-files.sh" ]
+if [ "$(basename "${0}")" = "change-git-protocol.sh" ]
 then
   __change_git_protocol "${@}"
 fi
