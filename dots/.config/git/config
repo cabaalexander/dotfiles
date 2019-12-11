@@ -48,5 +48,3 @@
     oldHighlight = red 52
     newNormal = green
     newHighlight = green 22
-[commit]
-    gpgsign = true

@@ -10,6 +10,7 @@ a,google-chrome,on,
 a,iterm2,on,
 a,postman,on,
 a,slack,on,
+a,virtualbox,on,
 
 ########
 #      #
@@ -18,6 +19,8 @@ a,slack,on,
 ########
 ,editorconfig,on,
 a,font-firacode-nerd-font-mono,on,
+,htop,on,
+a,vagrant,on,
 
 #################
 #               #

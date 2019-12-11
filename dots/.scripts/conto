@@ -3,6 +3,10 @@
 # This `add`, `commit --amend` and `git push -f --no-verify`
 # all the changes in the current branch to its remote one
 
+if gpg -K | grep 'cabaalexander' &> /dev/null; then
+    sighned="-S";
+fi
+
 CURRENT_BBRANCH=$(git symbolic-ref --short -q HEAD)
 
 validate_master(){
@@ -35,6 +39,6 @@ shift $((OPTIND - 1))
 validate_master
 
 git add -A
-git commit --amend --no-edit --no-verify
+eval "git commit $sighned --amend --no-edit --no-verify"
 git push origin "$CURRENT_BBRANCH" -f
 
