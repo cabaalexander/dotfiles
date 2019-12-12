@@ -11,7 +11,10 @@ main() {
     fi
 
     git clone "$repo" "$repo_local_path"
-    echo "$repo_local_path" >>.gitignore
+
+    if ! grep "$repo_local_path" .gitignore &> /dev/null; then
+        echo "$repo_local_path" >>.gitignore
+    fi
 }
 
 main "$@"

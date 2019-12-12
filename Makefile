@@ -91,7 +91,7 @@ bootstrap-nvim:
 .PHONY: bootstrap-secrets
 bootstrap-secrets:
 	$(call do_update_repo \
-		,https://github.com/cabaalexander/secrets.git \
+		,git@github.com:cabaalexander/secrets.git \
 		,secrets)
 	@cd secrets && $(MAKE)
 	@$(MAKE) symlink
