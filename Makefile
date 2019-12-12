@@ -93,7 +93,7 @@ bootstrap-secrets:
 	$(call do_update_repo \
 		,git@github.com:cabaalexander/secrets.git \
 		,secrets)
-	@cd secrets && $(MAKE)
+	@cd secrets && $(MAKE) init
 	@$(MAKE) symlink
 
 .PHONY: make-dots
@@ -145,3 +145,8 @@ log:
 .PHONY: log-raw
 log-raw:
 	@less ~/.dots/install.log
+
+.PHONY: destroy
+destroy: clean
+	@cd secrets &> /dev/null && $(MAKE) destroy || true
+	@cd .. ; rm -rf dotfiles
