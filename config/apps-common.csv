@@ -37,8 +37,8 @@ f,brewfonts,on,
 # NodeJS #
 #        #
 ##########
-,yarn,on,
 f,nvm,on,
+,yarn,on,
 node,pnpm,on,
 node,peerflix,on,
 node,vtop,on,
@@ -98,4 +98,3 @@ f,libtinfo,off,Thing for `elm repl` to work
 #################
 f,tpm,on,TMUX Plugin Manager
 f,plug,on,Vim Plugin Manager
-f,setzsh,on,

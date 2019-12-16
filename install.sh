@@ -93,6 +93,34 @@ __install() {
     done <"$G_CSV"
 }
 
+__set_zsh() {
+    local IS_ZSH PASS
+
+    IS_ZSH=$(
+        if [ "$(basename "$SHELL")" == "zsh" ]; then
+            echo "true"
+        fi
+    )
+
+    # set zsh as default shell
+    if [ -n "$IS_ZSH" ]; then
+        echo "You have zsh already set"
+        return 0
+    elif ! command -v zsh &>/dev/null; then
+        echo "You do not have zsh installet m8..."
+        return 0
+    fi
+
+    # set zsh as default shell
+    if ! [ -f "$G_PASSWORD" ]; then
+        G_PASSWORD=$(mktemp)
+        read -rsp "Sudo password: " PASS
+        echo "$PASS" > "$G_PASSWORD"
+    fi
+
+    chsh -s "$(grep "/zsh$" /etc/shells | tail -1)" <"$G_PASSWORD"
+}
+
 __delete_password_temp(){
     (
         sleep "$G_PASSWORD_TIMER"
@@ -157,6 +185,9 @@ main() {
         echo -e "\n$APPS_FILE -- Finished...\n\t(ﾉ^_^)ﾉ"
         echo
     done
+
+    # this is needs to be here if you're using zsh
+    __set_zsh
 }
 
 main "$@"
