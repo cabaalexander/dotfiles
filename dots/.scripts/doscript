@@ -1,40 +1,62 @@
 #!/bin/bash
 set -Eeuo pipefail
 
-make_script()
-{
-    local script_name
-    script_name=$1
+FILES_CREATED=()
 
-cat <<EOF > "$script_name"
+# {{{ Script templates
+BASH_TEMPLATE=$(
+cat <<EOF
 #!/bin/bash
 set -Eeuo pipefail
 EOF
+)
+
+NODE_TEMPLATE=$(
+cat <<EOF
+#!/usr/bin/env node
+EOF
+)
+# }}}
+
+make_script(){
+    local script_name template
+    script_name=$1
+    template=${2:-$BASH_TEMPLATE}
+
+    echo "$template" > "$script_name"
 
     chmod u+x "$script_name"
     echo ":: Script \`$script_name\` created ::"
 }
 
 main(){
-    for script in ${all[*]}; do
-        make_script "$script"
+    local script opt
+
+    while getopts ":b:n:" opt; do
+        FILES_CREATED+=($OPTARG)
+
+        case $opt in
+            b)
+                make_script "$OPTARG" "$BASH_TEMPLATE"
+                ;;
+            n)
+                make_script "$OPTARG" "$NODE_TEMPLATE"
+                ;;
+            *)
+                echo "Option (-$opt) is not valid..."
+                exit 1
+                ;;
+        esac
+    done
+    shift $((OPTIND - 1))
+
+    for script in $@; do
+        FILES_CREATED+=($script)
+
+        make_script "$script" "$BASH_TEMPLATE"
     done
 }
 
-while getopts ":q" OPT; do
-    case $OPT in
-        q) QUIET="yup" ;;
-        *) # do default stuff ;;
-    esac
-done
-shift $((OPTIND - 1))
+main "$@"
 
-all="${*:-script.sh}"
-
-main
-
-if [ -n "${QUIET:-}" ]; then
-    exit 0
-fi
-
-eval "$EDITOR -c'norm G' ${all[*]}"
+eval "$EDITOR -c'norm G' ${FILES_CREATED[*]}"
