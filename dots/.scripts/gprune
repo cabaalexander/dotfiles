@@ -2,22 +2,41 @@
 
 # Deletes the git branches that are not on github
 
+PREFIX=$(pwd |
+    sed -e 's:^.::' -e 's:/:-:g' |
+    tr '[:upper:]' '[:lower:]')
+PRUNE_BRANCHES="${HOME}/.dots/${PREFIX}-prune-remote-branches"
+
 echo "Fetching..."
 git fetch --prune &> /dev/null
 
-REMOTE_BRANCHES=$(git branch -r | sed 's:[ ]\+origin/::')
+REMOTE_BRANCHES=$(git branch -r | sed -E 's:[ ]+origin/::' | tail +2)
 LOCAL_BRANCHES=$(git branch | sed 's#[ *]##g')
 
-for LOCAL_BRANCH in $LOCAL_BRANCHES
-do
-  IS_ON_REMOTE=$(echo "$REMOTE_BRANCHES" | grep "${LOCAL_BRANCH}")
-
-  if [ -z "${IS_ON_REMOTE}" ]
-  then
-    REMOVED="0"
-    git branch -D "${LOCAL_BRANCH}"
-  fi
+####################################################
+#                                                  #
+# Prune all local repos that are not in the remote #
+#                                                  #
+####################################################
+for local_branch in $LOCAL_BRANCHES; do
+    if ! grep "^${local_branch}$" <<<"$REMOTE_BRANCHES" &> /dev/null; then
+        removed=0
+        git branch -D "$local_branch"
+    fi
 done
 
-[[ "$REMOVED" ]] || echo "Your branches are up to date"
+##############################################################
+#                                                            #
+# Prune all the repos that are successfully merged to master #
+#                                                            #
+##############################################################
+if [ -f "$PRUNE_BRANCHES" ]; then
+    while read -rs branch ; do
+        if grep "^${branch}$" <<<"$REMOTE_BRANCHES" &> /dev/null; then
+            git push --delete origin "$branch"
+        fi
+    done <"$PRUNE_BRANCHES"
+    rm -rf "$PRUNE_BRANCHES"
+fi
 
+[[ "$removed" ]] || echo "Your branches are up to date"
