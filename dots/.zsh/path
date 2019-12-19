@@ -29,3 +29,6 @@ addToPath ~/.config/yarn/global/node_modules/.bin
 
 # golang
 addToPath ~/{.,}go/bin
+
+# rust
+addToPath ~/.cargo/bin
