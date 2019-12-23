@@ -33,6 +33,14 @@ f,brewfonts,on,
 ,gnupg,on,
 f,rust,on,
 
+######
+#    #
+# Go #
+#    #
+######
+f,go,on,
+g,github.com/Dentrax/GMDB,on,Movie Library in GO *arrg*
+
 ##########
 #        #
 # NodeJS #

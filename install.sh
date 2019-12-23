@@ -29,10 +29,11 @@ G_PASSWORD_TIMER="$((60 * 30))"
 G_INSTALL_MANAGER_TYPES=(
     a
     f
-    m
+    g
     gem
-    pip
+    m
     node
+    pip
 )
 
 # Source script to source (¯\_(ツ)_/¯)
@@ -73,6 +74,7 @@ __install() {
         a) INSTALL_MANAGER=__aur ;;
         f) INSTALL_MANAGER=__function ;;
         m) INSTALL_MANAGER=__make_pkg ;;
+        g) INSTALL_MANAGER=__go_pkg ;;
         "") INSTALL_MANAGER=__package_manager ;;
         gem) INSTALL_MANAGER=__gem ;;
         pip) INSTALL_MANAGER=__pip ;;
@@ -104,7 +106,7 @@ __set_zsh() {
 
     # set zsh as default shell
     if [ -n "$IS_ZSH" ]; then
-        echo "You have zsh already set"
+        echo "✔ You have zsh already set"
         return 0
     elif ! command -v zsh &>/dev/null; then
         echo "You do not have zsh installet m8..."

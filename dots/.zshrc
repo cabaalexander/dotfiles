@@ -11,8 +11,7 @@ esac
 
 # Import configurations
 sourceIfExists -imac -ihooks ~/.zsh/*
-
-sourceIfExists ~/.zsh/hooks
+sourceIfExists ~/.zsh/hooks # this order matters
 
 # Package manager for `zsh`
 sourceIfExists ~/.antigenrc
