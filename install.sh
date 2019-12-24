@@ -25,7 +25,7 @@ trap '{ __delete_password_temp ; }' SIGINT SIGTERM EXIT
 # Consant
 # =======
 G_PASSWORD="$BASE_PATH/.password-install"
-G_PASSWORD_TIMER="$((60 * 10))"
+G_PASSWORD_TIMER="$((60 * 30))"
 G_INSTALL_MANAGER_TYPES=(
     a
     f
