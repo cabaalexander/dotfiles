@@ -65,8 +65,11 @@ __install() {
             continue
 
         if [ -n "$INSTALL_MANAGER_TYPE" ] &&
-            ! __includes "${G_INSTALL_MANAGER_TYPES[*]}" "$INSTALL_MANAGER_TYPE"; then
-            echo "❌ $NAME | Wrong installer type ( $INSTALL_MANAGER_TYPE )"
+            ! __includes \
+            "${G_INSTALL_MANAGER_TYPES[*]}" \
+            "$INSTALL_MANAGER_TYPE"
+        then
+            echo "✗ $NAME | Wrong installer type ( $INSTALL_MANAGER_TYPE )"
             continue
         fi
 
@@ -81,17 +84,18 @@ __install() {
         node) INSTALL_MANAGER=__node ;;
         esac
 
+        # Format `description` for reasons ¯\_(ツ)_/¯
         [[ "$DESCRIPTION" ]] &&
             DESCRIPTION="\n\t$DESCRIPTION"
 
         # Mapper's header (Log)
-        echo -e "🏃 $NAME $TYPE $DESCRIPTION #$" | tee -a $LOG_DST
+        echo -e ":: $NAME $TYPE ::$DESCRIPTION" | tee -a $LOG_DST
 
         # Execute
         $INSTALL_MANAGER "$NAME" | tee -a $LOG_DST 2>&1
 
         # Status (Log)
-        echo -e "$TYPE :: $NAME :: $?\n" >>$LOG_DST_STATUS
+        echo -e "$TYPE :: $NAME :: ${PIPESTATUS[0]}\n" >>$LOG_DST_STATUS
     done <"$G_CSV"
 }
 
@@ -104,12 +108,8 @@ __set_zsh() {
         fi
     )
 
-    # set zsh as default shell
-    if [ -n "$IS_ZSH" ]; then
-        echo "✔ You have zsh already set"
-        return 0
-    elif ! command -v zsh &>/dev/null; then
-        echo "You do not have zsh installet m8..."
+    # terminate this function if you already have zsh or it is not installed
+    if [ -n "$IS_ZSH" ] || ! command -v zsh &>/dev/null; then
         return 0
     fi
 
@@ -135,7 +135,7 @@ __prompt_password() {
 
     if [ "${PASSWORD:-}" ]; then
         echo "$PASSWORD" >"$G_PASSWORD"
-    elif [ -f "$G_PASSWORD" ] && [ -n "$(cat $G_PASSWORD)" ]; then
+    elif [ -f "$G_PASSWORD" ] && [ -n "$(cat "$G_PASSWORD")" ]; then
         return 0
     else
         read -rsp "Type sudo password for later use 😉🔒: " PROMPT_PASSWORD
