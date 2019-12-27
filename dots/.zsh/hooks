@@ -1,4 +1,6 @@
+#!/bin/bash
 # vim: ft=zsh:ts=4:sw=4
+# shellcheck disable=2010,1090,2034
 
 # init hooks auto-function
 autoload -U add-zsh-hook
@@ -56,14 +58,18 @@ change_emoji(){
         )
     else
         EMOJIS=(
-            🌟
-            🤑
-            💰
-            🤨\ 
+            "🌟"
+            "🤑"
+            "💰"
+            "🥺 "
+            "🤩 "
+            "🤬 "
+            "🥱 "
+            "🤨 "
         )
     fi
     EMOJI_INDEX=$((RANDOM % ${#EMOJIS[@]} + 1))
-    SPACESHIP_CHAR_SUFFIX="$EMOJIS[$EMOJI_INDEX] "
+    SPACESHIP_CHAR_SUFFIX="${EMOJIS[$EMOJI_INDEX]} "
 }
 chpwd_functions+=(change_emoji)
 change_emoji

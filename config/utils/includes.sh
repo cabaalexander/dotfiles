@@ -7,7 +7,7 @@ __includes() {
 
     files_length=${#@}
 
-    if [ $files_length -lt 2 ]; then
+    if [ "$files_length" -lt 2 ]; then
         return 1
     fi
 

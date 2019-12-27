@@ -7,7 +7,7 @@ DIR_ARR=(
 
 __find_sh_files() {
     local DIR_PATH OPTIONS
-    OPTIONS='! -path "*.git/*" ! -name "Session.vim"'
+    OPTIONS='! -path "*.git/*" ! -name "Session.vim" ! -name "*.md"'
 
     eval "find . -name '*.sh' -type f $OPTIONS"
 

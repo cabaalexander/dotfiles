@@ -1,3 +1,4 @@
+#!/bin/bash
 # vim: ft=zsh:ts=4:sw=4
 
 grsh(){
@@ -63,7 +64,7 @@ filetypeb(){
 }
 
 lsport(){
-    cat /etc/services | tail +2 | grep " ${1:?What port...}/"
+    tail +2 /etc/services | grep " ${1:?What port...}/"
 }
 
 killport(){

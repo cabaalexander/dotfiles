@@ -33,7 +33,7 @@ main(){
     local script opt
 
     while getopts ":b:n:" opt; do
-        FILES_CREATED+=($OPTARG)
+        FILES_CREATED+=("$OPTARG")
 
         case $opt in
             b)
@@ -50,8 +50,8 @@ main(){
     done
     shift $((OPTIND - 1))
 
-    for script in $@; do
-        FILES_CREATED+=($script)
+    for script in "$@"; do
+        FILES_CREATED+=("$script")
 
         make_script "$script" "$BASH_TEMPLATE"
     done

@@ -1,9 +1,10 @@
+#!/bin/bash
 # vim: ft=zsh:ts=4:sw=4
 # shellcheck disable=1090
 
 addToPath(){
     local ITEM
-    for ITEM in $@; do
+    for ITEM in "$@"; do
         PATH="$ITEM:$PATH"
     done
 }

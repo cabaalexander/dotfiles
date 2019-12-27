@@ -1,4 +1,6 @@
+#!/bin/bash
 # vim: ft=zsh:ts=4:sw=4
+# shellcheck disable=2155
 
 export OS=$(getos 2> /dev/null)
 export EDITOR=nvim

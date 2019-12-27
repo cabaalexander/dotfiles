@@ -1,4 +1,5 @@
 #!/bin/bash -e
+# shellcheck disable=SC2064
 
 REPO_URL="https://github.com/cabaalexander/another-go-installer.git"
 
@@ -7,7 +8,7 @@ goInstall(){
     local options
 
     temp_dir=$(mktemp -d)
-    options=$@
+    options=$*
 
     # TRAP: delete temp folder ;)
     trap "{ rm -rf $temp_dir ; }" SIGINT SIGTERM EXIT
