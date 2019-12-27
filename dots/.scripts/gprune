@@ -13,12 +13,35 @@ git fetch --prune &> /dev/null
 REMOTE_BRANCHES=$(git branch -r | sed -E 's:[ ]+origin/::' | tail +2)
 LOCAL_BRANCHES=$(git branch | sed 's#[ *]##g')
 
+__protected(){
+    local branch
+    local PROTECTED_BRANCHES
+
+    PROTECTED_BRANCHES=(
+        master
+        develop
+    )
+    branch=$1
+
+    for protected_branch in ${PROTECTED_BRANCHES[*]}; do
+        if [ "$protected_branch" = "$branch" ]; then
+            return 0
+        fi
+    done
+
+    return 1
+}
+
 ####################################################
 #                                                  #
 # Prune all local repos that are not in the remote #
 #                                                  #
 ####################################################
 for local_branch in $LOCAL_BRANCHES; do
+    if __protected "$local_branch"; then
+        continue
+    fi
+
     if ! grep "^${local_branch}$" <<<"$REMOTE_BRANCHES" &> /dev/null; then
         removed=0
         git branch -D "$local_branch"
