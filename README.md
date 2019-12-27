@@ -22,8 +22,6 @@
 
 Makefile &nbsp; &nbsp; &nbsp; &nbsp; -> [Makefile](/Makefile)
 
-SCRIPTS &nbsp; &nbsp; &nbsp; &nbsp; -> [dots/.scripts](/dots/.scripts)
-
 TMUX Plugins -> [dots/.tmux.conf](/dots/.tmux.conf)
 
 NVIM Plugins -> [dots/.config/nvim@](https://github.com/cabaalexander/nvim/blob/master/settings/pluginmanager.vim)
@@ -40,4 +38,3 @@ make && make install
 
 ### Terminal
 ![Terminal](./imgs/terminal.png)
-

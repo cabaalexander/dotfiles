@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # Merges current branch on master
 
