@@ -14,7 +14,8 @@ PASSWORD	?=
 #           #
 #############
 
-SYM_OUT		:= "${HOME}/.dots/symlink-dst-paths.out"
+SYM_HOME	:= "${HOME}/.dots"
+SYM_OUT		:= "$(SYM_HOME)/symlink-dst-paths.out"
 
 # `Main Paths`
 # ============
@@ -149,4 +150,5 @@ log-raw:
 .PHONY: destroy
 destroy: clean
 	@cd secrets &> /dev/null && $(MAKE) destroy || true
+	@${PWD}/config/utils/destroy-paths.sh "$(SYM_HOME)/destroy_paths"
 	@cd .. ; rm -rf dotfiles

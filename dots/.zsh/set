@@ -1,15 +1,23 @@
 #!/bin/bash
 # vim: ft=zsh:ts=4:sw=4
 
+######################################################################
+#                                                                    #
+# all inside this file will be initialized at the login of the shell #
+#                                                                    #
+######################################################################
+
 gcl(){
     # Clones a repository and cd into it ( :
-    local REPO
-    local REPO_BASENAME
-    local REPO_NAME
+    local repo
+    local repo_basename
+    local repo_name
+    local DOTS_BASEPATH
 
-    REPO="$1"
-    REPO_BASENAME=$(basename "$REPO")
-    REPO_NAME=${REPO_BASENAME%.*}
+    repo="$1"
+    repo_basename=$(basename "$repo")
+    repo_name=${repo_basename%.*} # this remove the `.git` at the end
+    DOTS_BASEPATH="$HOME/.dots"
 
     # Validate that you only pass one parameter
     if [ $# -gt 1 ]
@@ -19,16 +27,19 @@ gcl(){
     fi
 
     # if cloning the repo fails finish this function
-    if ! git clone "$REPO"; then
+    if ! git clone "$repo"; then
         return 1
     fi
 
+    # adds this realpath for destroying it later ;)
+    echo "$(realpath $repo_name)" >> "$DOTS_BASEPATH/destroy_paths"
+
     if [ -n "$TMUX" ]; then
-        cdtmux "$REPO_NAME"
-        tmux rename-window "$REPO_NAME"
+        cdtmux "$repo_name"
+        tmux rename-window "$repo_name"
         exit 0
     else
-        cd "$REPO_NAME" || exit
+        cd "$repo_name" || exit
     fi
 }
 
