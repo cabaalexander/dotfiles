@@ -12,7 +12,7 @@ __is_installed(){
       echo "✔ $APP ($TYPE)"
       return 0
   elif grep -E "$PATTERN_FALSE" &> /dev/null < "$LOG_FILE"; then
-      echo "✗ $APP ($TYPE) <----"
+      echo -e "✗ $APP ($TYPE) <----\n\tError"
       return 0
   fi
 

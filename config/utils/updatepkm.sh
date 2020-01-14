@@ -3,7 +3,7 @@
 __updatepkm() {
     case "$OS" in
         mac) brew update && brew upgrade ;;
-        *) sudo pacman -Syu ;;
+        *) sudo pacman -Syu --noconfirm ;;
     esac
 }
 

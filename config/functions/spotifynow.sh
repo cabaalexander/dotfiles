@@ -15,6 +15,7 @@ spotifynowInstall() {
     cd "$temp_dir"
 
     mkdir ~/.bin 2> /dev/null || true
+
     cp ./spotify-now ~/.bin
 }
 

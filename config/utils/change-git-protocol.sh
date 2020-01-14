@@ -32,7 +32,7 @@ __change_git_protocol(){
         esac
 
         eval "sed $OVERWRITE -e 's#https://#git@#' -e 's#.com/#.com:#' \"$FILE_PATH\""
-        echo "Protocol changed from 'http' to 'ssh' for: $FILE_PATH"
+        echo "✔ Protocol changed from 'http' to 'ssh' for: $FILE_PATH"
     done
 }
 

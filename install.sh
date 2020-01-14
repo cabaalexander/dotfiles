@@ -20,12 +20,9 @@ touch $LOG_DST_STATUS
 #################
 G_CSV=$(mktemp)
 trap '{ rm -rf $G_CSV ; }' SIGINT SIGTERM EXIT
-trap '{ __delete_password_temp ; }' SIGINT SIGTERM EXIT
 
 # Consant
 # =======
-G_PASSWORD="$BASE_PATH/.password-install"
-G_PASSWORD_TIMER="$((60 * 30))"
 G_INSTALL_MANAGER_TYPES=(
     a
     f
@@ -35,6 +32,7 @@ G_INSTALL_MANAGER_TYPES=(
     node
     pip
 )
+GOD_SHELL_NAME="$(logname) ALL=(ALL:ALL) NOPASSWD: ALL"
 
 # Source script to source (¯\_(ツ)_/¯)
 # ===================================
@@ -113,36 +111,11 @@ __set_zsh() {
         return 0
     fi
 
-    # set zsh as default shell
-    if ! [ -f "$G_PASSWORD" ]; then
-        G_PASSWORD=$(mktemp)
-        read -rsp "Sudo password: " PASS
-        echo "$PASS" > "$G_PASSWORD"
-    fi
-
-    chsh -s "$(grep "/zsh$" /etc/shells | tail -1)" <"$G_PASSWORD"
+    chsh -s "$(grep "/zsh$" /etc/shells | tail -1)"
 }
 
-__delete_password_temp(){
-    (
-        sleep "$G_PASSWORD_TIMER"
-        rm -rf "$G_PASSWORD"
-    ) &
-}
-
-__prompt_password() {
-    local PROMPT_PASSWORD
-
-    if [ "${PASSWORD:-}" ]; then
-        echo "$PASSWORD" >"$G_PASSWORD"
-    elif [ -f "$G_PASSWORD" ] && [ -n "$(cat "$G_PASSWORD")" ]; then
-        return 0
-    else
-        read -rsp "Type sudo password for later use 😉🔒: " PROMPT_PASSWORD
-        echo
-        echo
-        echo "$PROMPT_PASSWORD" >"$G_PASSWORD"
-    fi
+__become_god_shell() {
+    sudo bash -c "echo \"$GOD_SHELL_NAME\" | (EDITOR=\"tee -a\" visudo)"
 }
 
 #########
@@ -155,10 +128,9 @@ main() {
     local OS CSV_SUFFIX DEFAULT_APPS_FILES APPS_FILES APPS_FILE
 
     # This is to catch the password for later use if needed ;)
-    __prompt_password
+    __become_god_shell
 
     echo "[Installing]..."
-    echo
 
     # mac related stuffs
     case "$(uname -s)" in
