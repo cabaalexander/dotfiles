@@ -6,7 +6,7 @@
 autoload -U add-zsh-hook
 
 # load env files
-load_env(){
+__load_env(){
     local ENV_FILE file_found
     # TODO: Maybe this should load multiple files ¯\\_(ツ)_/¯
     ENV_FILE=".nic"
@@ -22,11 +22,11 @@ load_env(){
             fi
         done
 }
-chpwd_functions+=(load_env)
-load_env
+chpwd_functions+=(__load_env)
+__load_env
 
 # use .nvmrc to load node project version
-load_nvmrc(){
+__load_nvmrc(){
     local node_version nvmrc_path nvmrc_node_version
     node_version="$(nvm version)"
     nvmrc_path="$(nvm_find_nvmrc)"
@@ -42,11 +42,11 @@ load_nvmrc(){
         nvm use default
     fi
 }
-chpwd_functions+=(load_nvmrc)
-load_nvmrc
+chpwd_functions+=(__load_nvmrc)
+__load_nvmrc
 
 # change emoji in the PS1
-change_emoji(){
+__change_emoji(){
     local EMOJIS EMOJI_INDEX
     if ! [[ $(uname -s) =~ ^[Dd]arwin$ ]] && [ -z "$DISPLAY" ]; then
         EMOJIS=(
@@ -61,15 +61,39 @@ change_emoji(){
             "🌟"
             "🤑"
             "💰"
-            "🥺 "
-            "🤩 "
-            "🤬 "
-            "🥱 "
-            "🤨 "
+            "🥺"
+            "🤩"
+            "🤬"
+            "🥱"
+            "🤨"
         )
     fi
     EMOJI_INDEX=$((RANDOM % ${#EMOJIS[@]} + 1))
     SPACESHIP_CHAR_SUFFIX="${EMOJIS[$EMOJI_INDEX]} "
 }
-chpwd_functions+=(change_emoji)
-change_emoji
+chpwd_functions+=(__change_emoji)
+__change_emoji
+
+# open spotify-tui (spt) now on enter to `spotify-tui` directory
+__spotify_tui(){
+    local cwd_basename
+    local RE
+
+    RE="spotify-tui"
+    cwd_basename=$(basename $PWD)
+
+    if ! [[ $cwd_basename =~ "^$RE$" ]]; then
+        return 0
+    fi
+
+    if [ -n "$TMUX" ]; then
+        tmux rename-window "$cwd_basename"
+    fi
+
+    # open spotify-tui
+    if command -v spt &> /dev/null; then
+        spt
+    fi
+}
+chpwd_functions+=(__spotify_tui)
+__spotify_tui

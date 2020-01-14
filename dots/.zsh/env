@@ -2,27 +2,35 @@
 # vim: ft=zsh:ts=4:sw=4
 # shellcheck disable=2155
 
+# Default
+# =======
 export OS=$(getos 2> /dev/null)
 export EDITOR=nvim
+export TERMINAL=termite
 export MANPAGER='nvim +Man!'
 export IS_VAGRANT="$(test -d /vagrant && echo "1")"
 
 # Setting fd as the default source for fzf
+# ========================================
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g !.git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # OH MY ZSH
+# =========
 export DISABLE_AUTO_TITLE="true"
 
 # Spaceship PROMPT
+# ================
 export SPACESHIP_VI_MODE_SHOW=false
 export SPACESHIP_USER_SHOW=false
 export SPACESHIP_HOST_SHOW=false
 export SPACESHIP_GIT_BRANCH_COLOR="green"
 export SPACESHIP_CHAR_SYMBOL="↪ "
 export SPACESHIP_JOBS_SYMBOL="♦"
+export SPACESHIP_DOCKER_SHOW="false"
 
 # GPG
+# ===
 export GPG_TTY=$(tty)
 
 # GoLang
@@ -30,9 +38,11 @@ export GOROOT="$HOME/.go"
 export GOPATH="$HOME/go"
 
 # vifm
+# ====
 export VIFM="$HOME/.vifm"
 
 # tmux
+# ====
 if [ -n "$IS_VAGRANT" ]; then
     export ZSH_TMUX_AUTOSTART=true
 fi
