@@ -7,10 +7,23 @@ fi
 
 base_command="git commit ${sighned:-}"
 
-case ${1:-} in
+user_input="${1:-}"
+
+case $user_input in
     a) git_command="$base_command --amend";;
     z) git_command="npx git-cz ${sighned:-}";;
     n) git_command="$base_command --amend --no-edit --no-verify";;
+    m) git_command="$base_command -m";;
+    *)
+        if [ -n "$user_input" ]; then
+            echo "Option not available ($user_input)"
+            exit 0
+        fi
+        ;;
 esac
 
-eval "${git_command:-$base_command}"
+if [ $# -gt 0 ]; then
+    shift
+fi
+
+eval "${git_command:-$base_command} $*"
