@@ -6,9 +6,9 @@ main() {
     arg=${1:-1}
 
     clear
-    files=$(git log -p -"$arg" --name-only --oneline | tail -n+2 | tr '\n' ' ')
+    files=$(git log -p -1 --name-status --oneline | awk '$1 != "D" && NR != 1 {print $2}' | tr '\n' ' ')
 
-    eval "$EDITOR $files"
+    eval "${EDITOR:-vim} $files"
 }
 
 main "$@"
