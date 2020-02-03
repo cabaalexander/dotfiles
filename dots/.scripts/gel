@@ -1,14 +1,18 @@
 #!/bin/bash
 set -Eeuo pipefail
 
-main() {
-    local arg
-    arg=${1:-1}
+FIRST_PARAM=${1:-}
+AHEAD=$(git rev-list --left-right --count origin/master.. | cut -f2)
 
-    clear
-    files=$(git log -p -1 --name-status --oneline | awk '$1 != "D" && NR != 1 {print $2}' | tr '\n' ' ')
+if [ "$AHEAD" -eq 0 ]; then
+    AHEAD=1
+fi
 
-    eval "${EDITOR:-vim} $files"
-}
+clear
+files=$(
+    git log -p -"${FIRST_PARAM:-$AHEAD}" --name-status --oneline |
+        awk '$1 ~ /^[a-zA-Z]$/ && $1 != "D" && NR != 1 {print $2}' |
+        tr '\n' ' '
+)
 
-main "$@"
+eval "${EDITOR:-vim} $files"
