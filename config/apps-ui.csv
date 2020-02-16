@@ -19,6 +19,7 @@ a,synergy,on,
 ,dmenu,on,
 ,i3,on,
 ,xorg-xev,on,
+,xss-lock,on,
 
 #########
 #       #

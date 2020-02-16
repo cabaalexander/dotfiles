@@ -58,11 +58,14 @@ bindsym $mod+Return exec termite
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+# bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec  "rofi \
+    -show-icons -drun-icon-theme \
+    -combi-modi window,drun -show combi -modi combi"
 
 # change focus
 bindsym $mod+h focus left
@@ -199,7 +202,11 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-set $Locker i3lock && sleep 1
+set $Locker i3lock \
+    -i ~/.imgs/windows-desktop.png \
+    -p win \
+    -t -u \
+    && sleep 1
 set $mode_system\
  System (l) lock,\
  (e) logout,\
