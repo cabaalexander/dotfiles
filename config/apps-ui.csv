@@ -20,6 +20,7 @@ a,synergy,on,
 ,i3,on,
 ,xorg-xev,on,
 ,xss-lock,on,
+,polybar-git,on,
 
 #########
 #       #
