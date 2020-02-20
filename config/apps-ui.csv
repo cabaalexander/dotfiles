@@ -21,6 +21,8 @@ a,synergy,on,
 ,xorg-xev,on,
 ,xss-lock,on,
 ,polybar-git,on,
+,bluez,on,
+,bluez-utils,on,
 
 #########
 #       #

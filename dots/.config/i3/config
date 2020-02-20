@@ -7,6 +7,10 @@ exec termite
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 # }}}
 
+# {{{ globals
+focus_follows_mouse no
+# }}}
+
 # {{{ key swaps
 
 # swap keys `esc` -> `cap locks`
@@ -26,10 +30,6 @@ font pango:monospace 10
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
-
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -228,6 +228,10 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 bindsym $mod+Shift+x mode "$mode_system"
+
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. Use loginctl lock-session to lock your screen.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- $Locker
 
 ## Manual management of external displays
 # Set the shortcuts and what they do
