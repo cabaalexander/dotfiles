@@ -19,3 +19,5 @@ export GIT_PS1_STATESEPARATOR=" "
 export GIT_PS1_DESCRIBE_STYLE="branch"
 export GIT_PS1_SHOWCOLORHINTS=1
 
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

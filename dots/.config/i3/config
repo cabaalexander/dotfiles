@@ -1,25 +1,43 @@
-# i3 config file (v4)
-# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+#{{{ auto starts
 
-# {{{ auto starts
-exec "~/.scripts/brightcontrol"
-exec termite
+exec --no-startup-id i3-msg 'workspace $ws2 ; exec termite'
 exec_always --no-startup-id ~/.config/polybar/launch.sh
-# }}}
 
-# {{{ globals
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. Use loginctl lock-session to lock your screen.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- $Locker
+
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+exec --no-startup-id nm-applet
+
+#}}}
+
+#{{{ triggers
+
+for_window [class="Google-chrome"] move to workspace $ws1
+for_window [class="Slack"] move to workspace $ws3
+for_window [class="Spotify"] move to workspace $ws4
+for_window [class="discord"] move to workspace $ws5
+
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+
+#}}}
+
+#{{{ globals
 focus_follows_mouse no
-# }}}
+#}}}
 
-# {{{ key swaps
+#{{{ key swaps
 
 # swap keys `esc` -> `cap locks`
 exec --no-startup-id xmodmap -e "clear lock"
 exec --no-startup-id xmodmap -e "keysym Caps_Lock = Escape"
 
-# }}}
+#}}}
 
-# {{{ defaults
+#{{{ defaults
 
 # set mod to alt
 set $mod Mod1
@@ -30,24 +48,6 @@ font pango:monospace 10
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
-
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
-
-# Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id \
-    pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-
-bindsym XF86AudioLowerVolume exec --no-startup-id \
-    pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-
-bindsym XF86AudioMute exec --no-startup-id pactl \
-    set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-
-bindsym XF86AudioMicMute exec --no-startup-id \
-    pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -92,12 +92,6 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
-bindsym $mod+x split h
-
-# split in vertical orientation
-bindsym $mod+v split v
-
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
@@ -118,12 +112,9 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="task_dialog"] floating enable
+#}}}
 
-# }}}
-
-# {{{ workspaces
+#{{{ workspaces
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -162,46 +153,73 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-# }}}
+#}}}
 
-# {{{ modes
+#########
+#       #
+# Modes #
+#       #
+#########
 
-mode "brightness" {
-        bindsym j exec "~/.scripts/brightcontrol -"
-        bindsym k exec "~/.scripts/brightcontrol +"
+#{{{ volume
 
+# Use pactl to adjust volume in PulseAudio.
+# =========================================
+
+set $media_keys_step 5
+set $volume_mode_label "volume"
+mode $volume_mode_label {
+        bindsym j exec --no-startup-id \
+            pactl set-sink-volume @DEFAULT_SINK@ -$media_keys_step%
+        bindsym k exec --no-startup-id \
+            pactl set-sink-volume @DEFAULT_SINK@ +$media_keys_step%
+        bindsym m exec --no-startup-id \
+            pactl set-sink-mute @DEFAULT_SINK@ toggle
+        bindsym M exec --no-startup-id \
+            pactl set-source-mute @DEFAULT_SOURCE@ toggle
+        # back to normal
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+v mode "default"
+}
+bindsym $mod+v mode $volume_mode_label
+
+#}}}
+
+#{{{ brightness
+
+set $brightness_mode_label "brightness"
+set $brightness_mode_step 5
+mode $brightness_mode_label {
+        bindsym k exec xbacklight -inc $brightness_mode_step
+        bindsym j exec xbacklight -dec $brightness_mode_step
         # back to normal
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+b mode "default"
 }
-bindsym $mod+b mode "brightness"
+bindsym $mod+b mode $brightness_mode_label
+
+#}}}
+
+#{{{ resize
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
         bindsym h esize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
         bindsym l resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
 bindsym $mod+r mode "resize"
+
+#}}}
+
+#{{{ user lock
 
 set $Locker i3lock \
     -i ~/.imgs/windows-desktop.png \
@@ -222,16 +240,32 @@ mode "$mode_system" {
     bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
-
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 bindsym $mod+Shift+x mode "$mode_system"
 
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- $Locker
+#}}}
+
+#{{{ split
+
+set $split_mode_label "split vertical(j/k), horizontal(h/l)"
+mode $split_mode_label {
+    bindsym j split vertical ; mode "default"
+    bindsym k split vertical ; mode "default"
+    bindsym h split horizontal ; mode "default"
+    bindsym l split horizontal ; mode "default"
+    # back to normal
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+x mode "default"
+}
+bindsym $mod+x mode $split_mode_label
+
+#}}}
+
+#{{{ external displays
 
 ## Manual management of external displays
 # Set the shortcuts and what they do
@@ -241,7 +275,6 @@ mode "$mode_display" {
     bindsym h exec --no-startup-id xrandr --output HDMI1 --auto --right-of LVDS1, mode "default"
     bindsym x exec --no-startup-id xrandr --output VGA1 --auto --off, mode "default"
     bindsym y exec --no-startup-id xrandr --output HDMI1 --auto --off, mode "default"
-
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -249,6 +282,6 @@ mode "$mode_display" {
 # Declare here the shortcut to bring the display selection menu
 bindsym $mod+Shift+z mode "$mode_display"
 
-# }}}
+#}}}
 
 # vim: ts=4:sw=4

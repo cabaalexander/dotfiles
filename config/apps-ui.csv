@@ -23,6 +23,7 @@ a,synergy,on,
 ,polybar-git,on,
 ,bluez,on,
 ,bluez-utils,on,
+,xorg-xbacklight,on,
 
 #########
 #       #
