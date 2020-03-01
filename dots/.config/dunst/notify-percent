@@ -1,0 +1,52 @@
+#!/bin/bash
+set -Eeuo pipefail
+
+notify(){
+    value=$1
+    message_icon=$2
+    msgId=$3
+    filled_icon=$4
+    not_filled_icon=$5
+
+    if [[ $value =~ ^0 ]]; then
+        message[0]="Muted"
+    else
+        volume_percentage="$(\
+            ~/.config/dunst/notify-percent-process-string \
+            10 "$filled_icon " "$not_filled_icon " "$value" \
+            )"
+        message[0]="$value"
+        message[1]=$volume_percentage
+    fi
+
+    dunstify \
+        -a "changeVolume" \
+        -u low \
+        -i audio-volume-muted \
+        -r "$msgId" \
+        -t 1000 \
+        "$message_icon: ${message[0]}" \
+        "${message[1]:-}"
+}
+
+case "${1:-}" in
+    "-v")
+        volume="$(pamixer --get-volume-human || true)"
+        message_icon="🔊"
+        msgId="9991048"
+        filled_icon="🔴"
+        not_filled_icon="⭕"
+        notify "${volume%\%*}" "$message_icon" $msgId $filled_icon $not_filled_icon
+        ;;
+    "-b")
+        bright=$(xbacklight)
+        message_icon="🔆"
+        msgId="9991049"
+        filled_icon="🌞"
+        not_filled_icon="🌑"
+        notify "$bright" "$message_icon" "$msgId" "$filled_icon" "$not_filled_icon"
+        ;;
+    *)
+        echo "Help"
+esac
+

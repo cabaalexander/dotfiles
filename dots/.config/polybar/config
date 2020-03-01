@@ -47,7 +47,7 @@ font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-3 = siji:pixelsize=10;1
 
 modules-left = i3
-modules-right = xbacklight pulseaudio cpu filesystem memory temperature battery wlan date powermenu
+modules-right = cpu filesystem memory temperature battery wlan date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -171,15 +171,6 @@ bar-empty-foreground = ${colors.foreground-alt}
 
 ;}}}
 
-;{{{ module/blacklist-acpi
-
-[module/backlight-acpi]
-inherit = module/xbacklight
-type = internal/backlight
-card = intel_backlight
-
-;}}}
-
 ;{{{ module/cpu
 
 [module/cpu]
@@ -254,37 +245,6 @@ format-prefix-foreground = ${self.underline}
 format-underline = ${self.underline}
 
 label = %date% | %time%
-
-;}}}
-
-;{{{ module/pulseaudio
-
-[module/pulseaudio]
-type = internal/pulseaudio
-
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL %percentage%%
-label-volume-foreground = ${root.foreground}
-
-label-muted = >> muted <<
-label-muted-foreground = #666
-
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
 
 ;}}}
 

@@ -20,11 +20,15 @@ a,synergy,on,
 ,i3,on,
 ,xorg-xev,on,
 ,xss-lock,on,
-,polybar-git,on,
+a,polybar-git,on,
 ,bluez,on,
 ,bluez-utils,on,
 ,xorg-xbacklight,on,
 ,caffeine,on,
+,scrot,on,
+,discord,on,
+,feh,on,
+a,dunst-git,on,
 
 #########
 #       #

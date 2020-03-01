@@ -115,7 +115,8 @@ __set_zsh() {
 }
 
 __become_god_shell() {
-    sudo bash -c "echo \"$GOD_SHELL_NAME\" | (EDITOR=\"tee -a\" visudo)"
+    sudo bash -c "echo \"$GOD_SHELL_NAME\" | (EDITOR=\"tee -a\" visudo)" \
+        &> /dev/null
 }
 
 #########

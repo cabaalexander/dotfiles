@@ -9,6 +9,8 @@ exec --no-startup-id i3-msg 'workspace $ws2 ; exec termite'
 # launch polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
+exec_always --no-startup-id killall dunst;notify-send "dunst initialized"
+
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- $Locker
@@ -169,15 +171,19 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 # Use pactl to adjust volume in PulseAudio.
 # =========================================
 
-set $media_keys_step 5
+set $media_keys_step 10
 set $volume_mode_label "volume"
 mode $volume_mode_label {
         bindsym j exec --no-startup-id \
-            pactl set-sink-volume @DEFAULT_SINK@ -$media_keys_step%
+            pactl set-sink-volume @DEFAULT_SINK@ -$media_keys_step% ; \
+            exec ~/.config/dunst/notify-percent -v
         bindsym k exec --no-startup-id \
-            pactl set-sink-volume @DEFAULT_SINK@ +$media_keys_step%
+            pactl set-sink-volume @DEFAULT_SINK@ +$media_keys_step% ; \
+            exec ~/.config/dunst/notify-percent -v
         bindsym m exec --no-startup-id \
-            pactl set-sink-mute @DEFAULT_SINK@ toggle
+            pactl set-sink-mute @DEFAULT_SINK@ toggle ; \
+            exec ~/.config/dunst/notify-percent -v
+        bindsym m exec --no-startup-id \
         bindsym M exec --no-startup-id \
             pactl set-source-mute @DEFAULT_SOURCE@ toggle
         # back to normal
@@ -194,8 +200,10 @@ bindsym $mod+v mode $volume_mode_label
 set $brightness_mode_label "brightness"
 set $brightness_mode_step 10
 mode $brightness_mode_label {
-        bindsym k exec xbacklight -inc $brightness_mode_step
-        bindsym j exec xbacklight -dec $brightness_mode_step
+        bindsym k exec xbacklight -inc 10 ; \
+            exec ~/.config/dunst/notify-percent -b
+        bindsym j exec xbacklight -dec 10 ; \
+            exec ~/.config/dunst/notify-percent -b
         # back to normal
         bindsym Return mode "default"
         bindsym Escape mode "default"

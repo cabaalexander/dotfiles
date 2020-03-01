@@ -1,0 +1,24 @@
+#!/bin/bash
+# getProgressString <total_items> <filled_icon> <not_filed_icon> <volume_value>
+# Example:
+# $ getProgressString 10 "#" "-" 50
+# #####-----
+
+total_items="$1" # The total number of items(the width of the bar)
+filled_icon="$2" # The look of a filled item 
+not_filed_icon="$3" # The look of a not filled item
+volume_value="$4" # The current progress volume in percent
+
+# calculate how many items need to be filled and not filled
+filled_items=$(bc <<<"((${total_items} * ${volume_value})/100 + 0.5) / 1")
+not_filled_items=$(bc <<<"$total_items - $filled_items")
+
+# prepare the icons
+filled_icons=$(printf "%${filled_items}s" | sed "s| |${filled_icon}|g")
+not_filled_icons=$(printf "%${not_filled_items}s" | sed "s| |${not_filed_icon}|g")
+
+if [ $filled_items -gt 10 ]; then
+    echo "$filled_icons"
+else
+    echo "${filled_icons}${not_filled_icons}"
+fi
