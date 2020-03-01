@@ -1,5 +1,9 @@
 #{{{ auto starts
 
+#bright
+exec xbacklight -set 100
+exec ~/.scripts/brightcontrol
+
 # caffeine
 exec --no-startup-id caffeine -a
 
@@ -186,6 +190,7 @@ mode $volume_mode_label {
         bindsym m exec --no-startup-id \
         bindsym M exec --no-startup-id \
             pactl set-source-mute @DEFAULT_SOURCE@ toggle
+        bindsym c exec ~/.config/dunst/notify-percent -v
         # back to normal
         bindsym Return mode "default"
         bindsym Escape mode "default"
@@ -200,10 +205,11 @@ bindsym $mod+v mode $volume_mode_label
 set $brightness_mode_label "brightness"
 set $brightness_mode_step 10
 mode $brightness_mode_label {
-        bindsym k exec xbacklight -inc 10 ; \
-            exec ~/.config/dunst/notify-percent -b
-        bindsym j exec xbacklight -dec 10 ; \
-            exec ~/.config/dunst/notify-percent -b
+        bindsym k exec ~/.scripts/brightcontrol +$brightness_mode_step ; \
+            exec "sleep .1 && ~/.config/dunst/notify-percent -b"
+        bindsym j exec ~/.scripts/brightcontrol -$brightness_mode_step ; \
+            exec "sleep .1 && ~/.config/dunst/notify-percent -b"
+        bindsym c exec "sleep .1 && ~/.config/dunst/notify-percent -b"
         # back to normal
         bindsym Return mode "default"
         bindsym Escape mode "default"

@@ -17,7 +17,7 @@ not_filled_items=$(bc <<<"$total_items - $filled_items")
 filled_icons=$(printf "%${filled_items}s" | sed "s| |${filled_icon}|g")
 not_filled_icons=$(printf "%${not_filled_items}s" | sed "s| |${not_filed_icon}|g")
 
-if [ $filled_items -gt 10 ]; then
+if [ "$filled_items" -gt 10 ]; then
     echo "$filled_icons"
 else
     echo "${filled_icons}${not_filled_icons}"

@@ -1,0 +1,58 @@
+#!/bin/bash
+set -Eeuo pipefail
+
+BRIGHT_PATH="${HOME}/.bright"
+
+if ! [ -f "$BRIGHT_PATH" ] || [ -z "$(cat "$BRIGHT_PATH")" ]; then
+    echo "0" > "$BRIGHT_PATH"
+fi
+
+BRIGHT_STEP="0.1"
+BRIGHT=$(cat "$BRIGHT_PATH")
+
+compare() (IFS=" "
+  exec awk "BEGIN{if (!($*)) exit(1)}"
+)
+
+main(){
+    if compare "$new_bright > 1"; then
+        echo 1.0 > "$BRIGHT_PATH"
+    elif compare "$new_bright < 0"; then
+        echo 0.0 > "$BRIGHT_PATH"
+    else
+        echo "$new_bright" > "$BRIGHT_PATH"
+    fi
+
+    xrandr --output "$(
+    xrandr -q |
+        grep connected |
+        head -n1 |
+        cut -d ' ' -f1
+            )" --brightness "$(<"$BRIGHT_PATH")"
+}
+
+option=${1:-}
+
+case "$option" in
+    +)
+        echo "Bright up by $BRIGHT_STEP"
+        new_bright=$(bc <<<"$BRIGHT + $BRIGHT_STEP")
+        ;;
+    -)
+        echo "Bright down by $BRIGHT_STEP"
+        new_bright=$(bc <<<"$BRIGHT - $BRIGHT_STEP")
+        ;;
+    +*)
+        value="${option#*+}"
+        new_bright=$(bc <<<"$BRIGHT + ($value * 0.01)")
+        ;;
+    -*)
+        value="${option#*-}"
+        new_bright=$(bc <<<"$BRIGHT - ($value * 0.01)")
+        ;;
+    *)
+        new_bright=$(<"$BRIGHT_PATH")
+        ;;
+esac
+
+main

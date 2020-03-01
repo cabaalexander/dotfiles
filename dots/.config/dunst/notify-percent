@@ -8,16 +8,13 @@ notify(){
     filled_icon=$4
     not_filled_icon=$5
 
-    if [[ $value =~ ^0 ]]; then
-        message[0]="Muted"
-    else
-        volume_percentage="$(\
-            ~/.config/dunst/notify-percent-process-string \
-            10 "$filled_icon " "$not_filled_icon " "$value" \
-            )"
-        message[0]="$value"
-        message[1]=$volume_percentage
-    fi
+    volume_percentage="$(\
+        ~/.config/dunst/notify-percent-process-string \
+        10 "$filled_icon " "$not_filled_icon " "$value" \
+        )"
+
+    message[0]="$value"
+    message[1]=$volume_percentage
 
     dunstify \
         -a "changeVolume" \
@@ -39,11 +36,13 @@ case "${1:-}" in
         notify "${volume%\%*}" "$message_icon" $msgId $filled_icon $not_filled_icon
         ;;
     "-b")
-        bright=$(xbacklight)
+        bright="$(bc <<<"$(<~/.bright) * 100")"
+        bright="${bright%.*}"
         message_icon="🔆"
         msgId="9991049"
         filled_icon="🌞"
         not_filled_icon="🌑"
+        echo "$bright"
         notify "$bright" "$message_icon" "$msgId" "$filled_icon" "$not_filled_icon"
         ;;
     *)
