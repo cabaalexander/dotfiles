@@ -55,7 +55,7 @@ case "$(uname -s)" in
     *)
         if [[ "$TMUX" ]]
         then
-            eval "$@"
+            eval "$@" || true
             tmux_dsply
         else
             echo "'$0' Cannot be used at this time ¯\\_(ツ)_/¯"
