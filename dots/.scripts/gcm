@@ -11,7 +11,7 @@ user_input="${1:-}"
 
 case $user_input in
     a) git_command="$base_command --amend";;
-    z) git_command="npx git-cz ${sighned:-}";;
+    z) git_command="git cz ${sighned:-}";;
     n) git_command="$base_command --amend --no-edit --no-verify";;
     m) git_command="$base_command -m";;
     *)

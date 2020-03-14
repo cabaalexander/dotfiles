@@ -388,7 +388,7 @@ filextype */
 "
 filextype *.jpg,*.jpeg,*.png,*.gif
         \ {View in feh}
-        \ feh -Z %d --start-at %d/%c 2>/dev/null,
+        \ feh --scale-down --auto-zoom -Z %d --start-at %d/%c 2>/dev/null,
         \ img2txt -W %pw %c,
         \ catimg -w $((%pw * 2)) %c
 
