@@ -74,7 +74,6 @@ __install() {
         case $INSTALL_MANAGER_TYPE in
         a) INSTALL_MANAGER=__aur ;;
         f) INSTALL_MANAGER=__function ;;
-        m) INSTALL_MANAGER=__make_pkg ;;
         g) INSTALL_MANAGER=__go_pkg ;;
         "") INSTALL_MANAGER=__package_manager ;;
         gem) INSTALL_MANAGER=__gem ;;

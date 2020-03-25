@@ -1,11 +1,11 @@
 # Mapper,Name,State,Description
 
-###########
-#         #
-# Makepkg #
-#         #
-###########
-m,https://aur.archlinux.org/yay.git,on,
+################
+#              #
+# Dependencies #
+#              #
+################
+f,yay,on,
 
 #######
 #     #
@@ -14,8 +14,8 @@ m,https://aur.archlinux.org/yay.git,on,
 #######
 a,htop-vim-git,on,
 a,sc-im,off,
-a,catimg,on, TERM Img viewer (Smooth)
-a,libcaca,on, TERM Img viewer (Functional)
+a,catimg,on,TERM Img viewer (Smooth)
+a,libcaca,on,TERM Img viewer (Functional)
 a,powerline-fonts,off,
 
 ########

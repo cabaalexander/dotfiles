@@ -4,7 +4,7 @@ set -Eeuo pipefail
 BRIGHT_PATH="${HOME}/.bright"
 
 if ! [ -f "$BRIGHT_PATH" ] || [ -z "$(cat "$BRIGHT_PATH")" ]; then
-    echo "0" > "$BRIGHT_PATH"
+    echo ".50" > "$BRIGHT_PATH"
 fi
 
 BRIGHT_STEP="0.1"

@@ -9,7 +9,7 @@ gotopInstall(){
 
   # Begin
 
-  mkdir ~/.bin
+  mkdir ~/.bin &> /dev/null || true
 
   local URL="https://raw.githubusercontent.com/cjbassi/gotop/master/scripts/download.sh"
 

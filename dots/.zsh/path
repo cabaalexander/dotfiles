@@ -13,9 +13,6 @@ addToPath(){
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-# Load RVM into a shell session *as a function*
-[[ -s ~/.rvm/scripts/rvm ]] && . ~/.rvm/scripts/rvm
-
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -33,3 +30,12 @@ addToPath ~/{.,}go/bin
 
 # rust
 addToPath ~/.cargo/bin
+
+########################
+#                      #
+# This need to go last #
+#                      #
+########################
+
+# Load RVM into a shell session *as a function*
+[[ -s ~/.rvm/scripts/rvm ]] && . ~/.rvm/scripts/rvm
