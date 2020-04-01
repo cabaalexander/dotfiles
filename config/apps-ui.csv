@@ -33,6 +33,8 @@ a,dunst-git,on,
 a,woeusb-git,on,
 a,termite,on,
 a,pamixer,on,
+a,arandr,on,
+,dotnet-sdk,off,
 
 #########
 #       #

@@ -2,6 +2,7 @@
 
 # bright
 exec xbacklight -set 100
+exec xset m 26/10 4
 exec ~/.scripts/brightcontrol
 
 # caffeine
@@ -112,6 +113,7 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
+workspace_layout tabbed
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
@@ -194,9 +196,10 @@ mode $volume_mode_label {
         bindsym m exec --no-startup-id \
             pactl set-sink-mute @DEFAULT_SINK@ toggle ; \
             exec ~/.config/dunst/notify-percent -v
-        bindsym m exec --no-startup-id \
-        bindsym M exec --no-startup-id \
-            pactl set-source-mute @DEFAULT_SOURCE@ toggle
+        bindsym Shift+m exec --no-startup-id \
+            pactl set-source-mute @DEFAULT_SOURCE@ toggle ; \
+            exec ~/.config/dunst/notify-percent \
+            -vt "$(~/.scripts/pulsesourcevalue)"
         bindsym c exec ~/.config/dunst/notify-percent -v
         # back to normal
         bindsym Return mode "default"

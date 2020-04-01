@@ -45,6 +45,7 @@
     startup_notification = false
     verbosity = mesg
     force_xinerama = false
+
     # behavior
     # ========
     mouse_left_click = close_current

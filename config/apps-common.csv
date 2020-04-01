@@ -63,6 +63,8 @@ node,alex,on,
 node,bs-platform,on,
 node,commitizen,on,
 node,git-cz,on,
+node,gatsby-cli,off,
+node,surge,on,
 
 ########
 #      #

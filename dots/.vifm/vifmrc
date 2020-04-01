@@ -479,6 +479,7 @@ mark s /sync
 mark S ~/dotfiles/secrets
 mark c ~/.config
 mark p ~/projects
+mark w ~/work
 " }}}
 
 " {{{ file icons

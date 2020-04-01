@@ -31,6 +31,9 @@ addToPath ~/{.,}go/bin
 # rust
 addToPath ~/.cargo/bin
 
+# dotnet
+addToPath ~/.dotnet
+
 ########################
 #                      #
 # This need to go last #

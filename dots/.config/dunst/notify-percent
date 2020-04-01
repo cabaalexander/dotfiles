@@ -8,44 +8,57 @@ notify(){
     filled_icon=$4
     not_filled_icon=$5
 
+    user_title=${6:-}
+
     volume_percentage="$(\
         ~/.config/dunst/notify-percent-process-string \
         10 "$filled_icon " "$not_filled_icon " "$value" \
         )"
 
-    message[0]="$value"
-    message[1]=$volume_percentage
+    messages[0]="$value"
+    messages[1]=$volume_percentage
+
+    message_title=${user_title:-${messages[0]:-}}
 
     dunstify \
         -a "changeVolume" \
         -u low \
         -i audio-volume-muted \
         -r "$msgId" \
-        -t 1000 \
-        "$message_icon: ${message[0]}" \
-        "${message[1]:-}"
-}
+        -t 2000 \
+        "$message_icon: $message_title" \
+        "${messages[1]:-}"
+    }
 
-case "${1:-}" in
-    "-v")
-        volume="$(pamixer --get-volume-human || true)"
-        message_icon="🔊"
-        msgId="9991048"
-        filled_icon="🔴"
-        not_filled_icon="⭕"
-        notify "${volume%\%*}" "$message_icon" $msgId $filled_icon $not_filled_icon
-        ;;
-    "-b")
-        bright="$(bc <<<"$(<~/.bright) * 100")"
-        bright="${bright%.*}"
-        message_icon="🔆"
-        msgId="9991049"
-        filled_icon="🌞"
-        not_filled_icon="🌑"
-        echo "$bright"
-        notify "$bright" "$message_icon" "$msgId" "$filled_icon" "$not_filled_icon"
-        ;;
-    *)
-        echo "Help"
-esac
+while getopts ":t:vb" opt; do
+    case $opt in
+        t) title="$OPTARG" ;;
+        v)
+            volume="$(pamixer --get-volume-human || true)"
+            message_icon="🔊"
+            msgId="9991048"
+            filled_icon="🔴"
+            not_filled_icon="⭕"
+            RUN="notify ${volume%\%*} $message_icon $msgId $filled_icon $not_filled_icon"
+            ;;
+        b)
+            bright="$(bc <<<"$(<~/.bright) * 100")"
+            bright="${bright%.*}"
+            message_icon="🔆"
+            msgId="9991049"
+            filled_icon="🌞"
+            not_filled_icon="🌑"
+            echo "$bright"
+            RUN="notify $bright $message_icon $msgId $filled_icon $not_filled_icon"
+            ;;
+        :)
+            echo "No argument provided for option (-$OPTARG)"
+            ;;
+        \?)
+            echo "Invalid option (-$OPTARG)"
+            ;;
+    esac
+done
+shift $((OPTIND - 1))
 
+eval "$RUN \"${title:-}\""
