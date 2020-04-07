@@ -1,7 +1,10 @@
 #!/bin/bash -e
 
-case "$(uname -s)" in
-    [Dd]arwin) echo "mac" ;;
-    [Ll]inux)  echo "linux" ;;
+case "$(cat /etc/issue)" in
+    [Uu]buntu*) echo "ubuntu" ;;
+    [Aa]rch[[:space:]][Ll]inux*) echo "arch" ;;
+    [Dd]arwin*) echo "mac" ;;
     *) echo "plop" ;;
 esac
+
+

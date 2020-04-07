@@ -2,8 +2,10 @@
 
 __aur(){
   case "$OS" in
+      ubuntu) <ubuntu comunity manager goes here> "$@" ;;
+      arch) yay --noconfirm -S "$@" ;;
       mac) brew cask install "$@" ;;
-      *) yay --noconfirm -S "$@" ;;
+      *) echo "plop" ; exit 1 ;;
   esac
 }
 

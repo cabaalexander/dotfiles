@@ -2,8 +2,10 @@
 
 __package_manager(){
   case "$OS" in
+      ubuntu) sudo apt-get install --assume-yes "$@" ;;
+      arch) sudo pacman --needed --noconfirm -S "$@" ;;
       mac) brew install "$@" ;;
-      *) sudo pacman --needed --noconfirm -S "$@" ;;
+      *) echo "plop" ; exit 1 ;;
   esac
 }
 

@@ -2,8 +2,10 @@
 
 __updatepkm() {
     case "$OS" in
+        ubuntu) sudo apt-get update ;;
+        arch) sudo pacman -Syu --noconfirm ;;
         mac) brew update && brew upgrade ;;
-        *) sudo pacman -Syu --noconfirm ;;
+	*) echo "plop" ; exit 1 ;;
     esac
 }
 
