@@ -133,13 +133,11 @@ main() {
     echo "[Installing]..."
 
     # mac related stuffs
-    case "$(uname -s)" in
-    [Dd]arwin)
-        export OS="mac"
+    # SET THE OS
+    export OS="$(dots/.scripts/getos)"
+    if [ "$OS" == "mac" ]; then
         export CSV_SUFFIX="-mac"
-        ;;
-    *) echo "" ;;
-    esac
+    fi
 
     DEFAULT_APPS_FILES=(
         "./config/apps-common.csv"
@@ -147,9 +145,6 @@ main() {
     )
 
     APPS_FILES=("${@:-${DEFAULT_APPS_FILES[*]}}")
-
-    echo ${APPS_FILES[*]}
-    return 0
 
     for APPS_FILE in ${APPS_FILES[*]}; do
         if ! [ -f "$APPS_FILE" ]; then

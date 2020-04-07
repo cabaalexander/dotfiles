@@ -17,100 +17,100 @@ f,brewfonts,on,
 ,jq,on,
 ,tree,on,
 ,bc,off,
-,ctags,on,
-,ncdu,on,
-,neovim,on,
-,tmux,on,
-,bash-completion,on,
-,shellcheck,on,
-,fd,on,
-,ripgrep,on,
-,curlftpfs,off,
-,asciinema,on,Terminal recorder
-,figlet,on,ASCII art text
-,unzip,on,
-,vifm,on,
-,gnupg,on,
-f,rust,on,
-f,spotifynow,on,
-,httpie,on,
-,gcc,on,
-
-######
-#    #
-# Go #
-#    #
-######
-f,go,on,
-g,github.com/Dentrax/GMDB,on,Movie Library in GO *arrg*
-
-##########
-#        #
-# NodeJS #
-#        #
-##########
-f,nvm,on,
-,yarn,on,
-node,pnpm,on,
-node,peerflix,on,
-node,vtop,on,
-node,elm@0.18.0,on,
-node,elm-oracle,on,
-node,elm-format,on,
-node,diff-so-fancy,on,
-node,live-server,on,
-node,alex,on,
-node,bs-platform,on,
-node,commitizen,on,
-node,git-cz,on,
-node,gatsby-cli,off,
-node,surge,on,
-
-########
-#      #
-# Ruby #
-#      #
-########
-f,rvm,on,
-gem,lolcat,on,
-gem,neovim,on,
-gem,mdl,on,
-gem,vimgolf,on,
-
-##########
-#        #
-# Python #
-#        #
-##########
-,python3,on,
-,python-pip,on,
-pip,doge,off,
-pip,neovim,on,
-pip,vim-vint,on,
-pip,speedtest-cli,off,
-pip,termtosvg,on,
-pip,pip,on,
-
+#,ctags,on,
+#,ncdu,on,
+#,neovim,on,
+#,tmux,on,
+#,bash-completion,on,
+#,shellcheck,on,
+#,fd,on,
+#,ripgrep,on,
+#,curlftpfs,off,
+#,asciinema,on,Terminal recorder
+#,figlet,on,ASCII art text
+#,unzip,on,
+#,vifm,on,
+#,gnupg,on,
+#f,rust,on,
+#f,spotifynow,on,
+#,httpie,on,
+#,gcc,on,
+#
 #######
-#     #
-# ZSH #
-#     #
+##    #
+## Go #
+##    #
 #######
-,zsh,on,
-f,ohmyzsh,on,
-
-#############
-#           #
-# Functions #
-#           #
-#############
-f,gotop,on,
-f,libtinfo,off,Thing for `elm repl` to work
-
-#################
-#               #
-# Run this last #
-#               #
-#################
-f,tpm,on,TMUX Plugin Manager
-f,plug,on,Vim Plugin Manager
+#f,go,on,
+#g,github.com/Dentrax/GMDB,on,Movie Library in GO *arrg*
+#
+###########
+##        #
+## NodeJS #
+##        #
+###########
+#f,nvm,on,
+#,yarn,on,
+#node,pnpm,on,
+#node,peerflix,on,
+#node,vtop,on,
+#node,elm@0.18.0,on,
+#node,elm-oracle,on,
+#node,elm-format,on,
+#node,diff-so-fancy,on,
+#node,live-server,on,
+#node,alex,on,
+#node,bs-platform,on,
+#node,commitizen,on,
+#node,git-cz,on,
+#node,gatsby-cli,off,
+#node,surge,on,
+#
+#########
+##      #
+## Ruby #
+##      #
+#########
+#f,rvm,on,
+#gem,lolcat,on,
+#gem,neovim,on,
+#gem,mdl,on,
+#gem,vimgolf,on,
+#
+###########
+##        #
+## Python #
+##        #
+###########
+#,python3,on,
+#,python-pip,on,
+#pip,doge,off,
+#pip,neovim,on,
+#pip,vim-vint,on,
+#pip,speedtest-cli,off,
+#pip,termtosvg,on,
+#pip,pip,on,
+#
+########
+##     #
+## ZSH #
+##     #
+########
+#,zsh,on,
+#f,ohmyzsh,on,
+#
+##############
+##           #
+## Functions #
+##           #
+##############
+#f,gotop,on,
+#f,libtinfo,off,Thing for `elm repl` to work
+#
+##################
+##               #
+## Run this last #
+##               #
+##################
+#f,tpm,on,TMUX Plugin Manager
+#f,plug,on,Vim Plugin Manager
