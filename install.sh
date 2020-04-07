@@ -32,7 +32,7 @@ G_INSTALL_MANAGER_TYPES=(
     node
     pip
 )
-GOD_SHELL_NAME="$(logname) ALL=(ALL:ALL) NOPASSWD: ALL"
+GOD_SHELL_NAME="$(whoami) ALL=(ALL:ALL) NOPASSWD: ALL"
 
 # Source script to source (¯\_(ツ)_/¯)
 # ===================================
@@ -128,7 +128,7 @@ main() {
     local OS CSV_SUFFIX DEFAULT_APPS_FILES APPS_FILES APPS_FILE
 
     # This is to catch the password for later use if needed ;)
-    __become_god_shell
+    # __become_god_shell
 
     echo "[Installing]..."
 
@@ -147,6 +147,9 @@ main() {
     )
 
     APPS_FILES=("${@:-${DEFAULT_APPS_FILES[*]}}")
+
+    echo ${APPS_FILES[*]}
+    return 0
 
     for APPS_FILE in ${APPS_FILES[*]}; do
         if ! [ -f "$APPS_FILE" ]; then
