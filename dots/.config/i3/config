@@ -28,7 +28,7 @@ exec --no-startup-id xmodmap -e "keysym Caps_Lock = Escape"
 # Initial programs
 # ================
 exec google-chrome-stable
-exec i3-msg 'workspace $ws2 ; exec termite -e tmux -t ""'
+exec i3-msg 'workspace $ws2 ; exec termite'
 exec slack
 exec spotify
 exec discord
@@ -206,7 +206,7 @@ mode $volume_mode_label {
         bindsym Escape mode "default"
         bindsym $mod+v mode "default"
 }
-bindsym $mod+v mode $volume_mode_label
+bindsym $mod+v mode $volume_mode_label ; exec ~/.config/dunst/notify-percent -v
 
 #}}}
 
@@ -225,7 +225,7 @@ mode $brightness_mode_label {
         bindsym Escape mode "default"
         bindsym $mod+b mode "default"
 }
-bindsym $mod+b mode $brightness_mode_label
+bindsym $mod+b mode $brightness_mode_label ; exec "sleep .1 && ~/.config/dunst/notify-percent -b"
 
 #}}}
 
@@ -289,25 +289,6 @@ mode $split_mode_label {
     bindsym $mod+x mode "default"
 }
 bindsym $mod+x mode $split_mode_label
-
-#}}}
-
-#{{{ external displays
-
-## Manual management of external displays
-# Set the shortcuts and what they do
-set $mode_display Ext Screen (v) VGA ON, (h) HDMI ON, (x) VGA OFF, (y) HDMI OFF
-mode "$mode_display" {
-    bindsym v exec --no-startup-id xrandr --output VGA1 --auto --right-of LVDS1, mode "default"
-    bindsym h exec --no-startup-id xrandr --output HDMI1 --auto --right-of LVDS1, mode "default"
-    bindsym x exec --no-startup-id xrandr --output VGA1 --auto --off, mode "default"
-    bindsym y exec --no-startup-id xrandr --output HDMI1 --auto --off, mode "default"
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-# Declare here the shortcut to bring the display selection menu
-bindsym $mod+Shift+z mode "$mode_display"
 
 #}}}
 

@@ -20,4 +20,3 @@ tmux switch-client -t "$FIRST_NO_NUMBER_SESSION"
 
 __get_numbered_sessions | __to_tmux_kill
 
-exit 0
