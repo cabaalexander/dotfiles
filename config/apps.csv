@@ -17,6 +17,7 @@ a,sc-im,off,
 a,catimg,on,TERM Img viewer (Smooth)
 a,libcaca,on,TERM Img viewer (Functional)
 a,powerline-fonts,off,
+a,ctop-bin,on, Htop like for docker
 
 ########
 #      #

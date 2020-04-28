@@ -56,7 +56,7 @@
     per_monitor_dpi = false
 
 [shortcuts]
-    close = ctrl+space
+    close = shift+space
     close_all = ctrl+shift+space
     history = ctrl+grave
     context = ctrl+shift+period
