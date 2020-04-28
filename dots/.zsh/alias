@@ -111,6 +111,7 @@ alias dkps='docker ps'
 alias dkrit='docker run -it'
 alias dkeit='docker exec -it'
 alias dkinfo='clear && dki && echo -e "\n\n#######################\n\n" && dkps -a'
+alias dkprune='docker rmi $(docker images -f "dangling=true" -q)'
 
 # Elm
 # ===

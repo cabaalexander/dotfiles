@@ -12,5 +12,5 @@ echo
 
 [ "$IS_HARD" != "y" ] && exit 1
 
-docker rm "$(docker ps -aq)"
-docker rmi "$(docker images -q)"
+docker rm "$(docker ps -aq)" -f
+docker rmi "$(docker images -q)" -f
