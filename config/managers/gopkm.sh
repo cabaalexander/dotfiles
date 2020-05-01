@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 __go_pkg() {
-    go get -v -u "$@"
+    $HOME/.go/bin/go get -v -u "$@"
 }
 
 # If this file is on the terminal $PATH's just run the function `__go_pkg`

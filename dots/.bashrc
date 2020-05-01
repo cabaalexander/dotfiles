@@ -3,6 +3,9 @@
 
 # Import configurations
 sourceIfExists ~/.bash/*
+sourceIfExists ~/.zsh/path
+sourceIfExists ~/.zsh/alias
+sourceIfExists ~/.zsh/env
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
