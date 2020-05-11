@@ -227,8 +227,10 @@ fileviewer *.flac soxi
 
 " Video
 filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
-         \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
-         \*.as[fx]
+        \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
+        \*.as[fx]
+        \ {View using mpv}
+        \ mpv --fs %f,
         \ {View using ffplay}
         \ ffplay -fs -autoexit %f,
         \ {View using Dragon}
@@ -391,6 +393,13 @@ filextype *.jpg,*.jpeg,*.png,*.gif
         \ feh --scale-down --auto-zoom -Z %d --start-at %d/%c 2>/dev/null,
         \ img2txt -W %pw %c,
         \ catimg -w $((%pw * 2)) %c
+
+" SVG
+filextype *.svg
+        \ {View in gthumb}
+        \ gthumb %f,
+        \ {View in Google Chrome}
+        \ google-chrome-stable %f
 
 " Open all other files with default system programs (you can also remove all
 " :file[x]type commands above to ensure they don't interfere with system-wide

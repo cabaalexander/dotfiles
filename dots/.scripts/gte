@@ -1,0 +1,13 @@
+#!/bin/bash
+set -Eeuo pipefail
+
+VIM_COMMAND=$(
+git grep -EIn "TODO|FIXME" |
+    cut -d: -f-2 |
+    sed -e 's/:/|:/' \
+    -e 's/^/:e /' |
+    tr '\n' '|' |
+    sed 's/|$//'
+)
+
+${EDITOR:-} -c "$VIM_COMMAND"
