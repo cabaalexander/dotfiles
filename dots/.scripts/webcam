@@ -1,0 +1,17 @@
+#!/bin/bash
+set -Eeuo pipefail
+
+if ! command -v mpv &> /dev/null; then
+    echo "\`mpv\` not installed"
+    exit 1
+fi
+
+WIDTH="400"
+X=12
+Y=90
+
+mpv \
+    --demuxer-lavf-format=video4linux2 \
+    --demuxer-lavf-o-set=input_format=mjpeg \
+    --geometry=$WIDTH-$X-$Y \
+    av://v4l2:/dev/video0
