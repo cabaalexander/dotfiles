@@ -3,6 +3,9 @@
 # Set prefix to Ctrl-Space
 set -g prefix C-Space
 
+# hide bar
+bind C-h set -g status
+
 # Reset a pane
 bind C-k respawn-pane -k
 

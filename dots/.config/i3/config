@@ -69,6 +69,9 @@ font pango:monospace 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
+#}}}
+
+#{{{ mappings
 
 # start a terminal
 bindsym $mod+Return exec termite
@@ -130,6 +133,9 @@ bindsym $mod+Shift+c reload
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+
+# toggle last workspace
+bindsym $mod+backslash workspace back_and_forth
 
 #}}}
 
