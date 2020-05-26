@@ -89,6 +89,9 @@ bindsym $mod+d exec  "rofi \
     -show-icons -drun-icon-theme \
     -combi-modi window,drun -show combi -modi combi"
 
+# rofi-emoji
+bindsym $mod+Shift+e exec "rofi -show emoji -modi emoji"
+
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
