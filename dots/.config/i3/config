@@ -1,9 +1,22 @@
+# {{{ variables
+
+# set mod to super
+set $mod Mod4
+
+set $terminal termite
+
+set $Locker i3lock \
+    -i ~/.imgs/windows-desktop.png \
+    -p win \
+    -t -u \
+    && sleep 1
+
+# }}}
+
 #{{{ auto starts
 
-# bright
-exec xbacklight -set 100
+# set trackpad speed
 exec xset m 26/10 4
-exec ~/.scripts/brightcontrol
 
 # caffeine
 exec --no-startup-id caffeine -a
@@ -21,18 +34,21 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- $Locker
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
-# swap keys `esc` -> `cap locks`
-exec --no-startup-id xmodmap -e "clear lock"
-exec --no-startup-id xmodmap -e "keysym Caps_Lock = Escape"
-
 # Initial programs
 # ================
 exec google-chrome-stable
-exec i3-msg 'workspace $ws2 ; exec termite'
+exec i3-msg 'workspace $ws2 ; exec $terminal -e "tmux" --hold'
 exec slack
 exec spotify
 exec discord
 exec popcorntime
+
+#}}}
+
+#{{{ options
+
+# change container layout (stacked, tabbed, toggle split)
+workspace_layout tabbed
 
 #}}}
 
@@ -56,10 +72,6 @@ focus_follows_mouse no
 
 #{{{ defaults
 
-# set mod to alt
-set $mod Mod1
-set $sup Mod4
-
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:monospace 10
@@ -73,24 +85,32 @@ floating_modifier $mod
 
 #{{{ mappings
 
+# terminal spotify
+bindsym $mod+s exec $terminal -e spt
+
+# terminal file manager
+bindsym $mod+Shift+f exec $terminal -e vifm ~
+
+# terminal audio mixer
+bindsym $mod+m exec $terminal -e pulsemixer
+
 # start a terminal
-bindsym $mod+Return exec termite
+bindsym $mod+Return exec $terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+Shift+d exec dmenu_run
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+d exec  "rofi \
-    -show-icons -drun-icon-theme \
-    -combi-modi window,drun -show combi -modi combi"
-
 # rofi-emoji
-bindsym $mod+Shift+e exec "rofi -show emoji -modi emoji"
+bindsym $mod+Shift+e exec --no-startup-id "rofi -show emoji -modi emoji"
+
+# rofi : window
+bindsym $mod+w exec --no-startup-id "rofi -show window -show-icons -drun-icon-theme"
+
+# rofi : drun
+bindsym $mod+d exec --no-startup-id "rofi -show drun -show-icons -drun-icon-theme"
+
+# rofi : run
+bindsym $mod+e exec --no-startup-id "rofi -show run"
 
 # change focus
 bindsym $mod+h focus left
@@ -119,12 +139,6 @@ bindsym $mod+Shift+Right move right
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
-# change container layout (stacked, tabbed, toggle split)
-workspace_layout tabbed
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
@@ -138,7 +152,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # toggle last workspace
-bindsym $mod+backslash workspace back_and_forth
+bindsym $mod+Tab workspace back_and_forth
 
 #}}}
 
@@ -203,13 +217,19 @@ mode $volume_mode_label {
         bindsym k exec --no-startup-id \
             pactl set-sink-volume @DEFAULT_SINK@ +$media_keys_step% ; \
             exec ~/.config/dunst/notify-percent -v
+        bindsym h exec --no-startup-id \
+            pactl set-sink-volume @DEFAULT_SINK@ -1% ; \
+            exec ~/.config/dunst/notify-percent -v
+        bindsym l exec --no-startup-id \
+            pactl set-sink-volume @DEFAULT_SINK@ +1% ; \
+            exec ~/.config/dunst/notify-percent -v
         bindsym m exec --no-startup-id \
             pactl set-sink-mute @DEFAULT_SINK@ toggle ; \
             exec ~/.config/dunst/notify-percent -v
         bindsym Shift+m exec --no-startup-id \
             pactl set-source-mute @DEFAULT_SOURCE@ toggle ; \
             exec ~/.config/dunst/notify-percent \
-            -vt "$(~/.scripts/pulsesourcevalue)"
+            -vt "$(~/.scripts/get-mic-value)"
         bindsym c exec ~/.config/dunst/notify-percent -v
         # back to normal
         bindsym Return mode "default"
@@ -225,17 +245,21 @@ bindsym $mod+v mode $volume_mode_label ; exec ~/.config/dunst/notify-percent -v
 set $brightness_mode_label "brightness"
 set $brightness_mode_step 10
 mode $brightness_mode_label {
-        bindsym k exec ~/.scripts/brightcontrol +$brightness_mode_step ; \
-            exec "sleep .1 && ~/.config/dunst/notify-percent -b"
-        bindsym j exec ~/.scripts/brightcontrol -$brightness_mode_step ; \
-            exec "sleep .1 && ~/.config/dunst/notify-percent -b"
-        bindsym c exec "sleep .1 && ~/.config/dunst/notify-percent -b"
+        bindsym k exec light -A $brightness_mode_step ; \
+            exec ~/.config/dunst/notify-percent -b
+        bindsym j exec light -U $brightness_mode_step ; \
+            exec ~/.config/dunst/notify-percent -b
+        bindsym h exec light -U 1 ; \
+            exec ~/.config/dunst/notify-percent -b
+        bindsym l exec light -A 1 ; \
+            exec ~/.config/dunst/notify-percent -b
+        bindsym c exec ~/.config/dunst/notify-percent -b
         # back to normal
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+b mode "default"
 }
-bindsym $mod+b mode $brightness_mode_label ; exec "sleep .1 && ~/.config/dunst/notify-percent -b"
+bindsym $mod+b mode $brightness_mode_label ; exec ~/.config/dunst/notify-percent -b
 
 #}}}
 
@@ -247,6 +271,9 @@ mode "resize" {
         bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
         bindsym l resize grow width 10 px or 10 ppt
+        bindsym r layout stacking
+        bindsym t layout tabbed
+        bindsym y layout toggle split
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
@@ -258,11 +285,6 @@ bindsym $mod+r mode "resize"
 
 #{{{ user lock
 
-set $Locker i3lock \
-    -i ~/.imgs/windows-desktop.png \
-    -p win \
-    -t -u \
-    && sleep 1
 set $mode_system\
  System (l) lock,\
  (e) logout,\

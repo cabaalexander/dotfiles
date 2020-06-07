@@ -73,27 +73,3 @@ __change_emoji(){
 }
 chpwd_functions+=(__change_emoji)
 __change_emoji
-
-# open spotify-tui (spt) now on enter to `spotify-tui` directory
-__spotify_tui(){
-    local cwd_basename
-    local RE
-
-    RE="spotify-tui"
-    cwd_basename=$(basename $PWD)
-
-    if ! [[ $cwd_basename =~ "^$RE$" ]]; then
-        return 0
-    fi
-
-    if [ -n "$TMUX" ]; then
-        tmux rename-window "$cwd_basename"
-    fi
-
-    # open spotify-tui
-    if command -v spt &> /dev/null; then
-        spt
-    fi
-}
-chpwd_functions+=(__spotify_tui)
-__spotify_tui

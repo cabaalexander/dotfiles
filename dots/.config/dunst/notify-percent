@@ -42,14 +42,13 @@ while getopts ":t:vb" opt; do
             RUN="notify ${volume%\%*} $message_icon $msgId $filled_icon $not_filled_icon"
             ;;
         b)
-            bright="$(bc <<<"$(<~/.bright) * 100")"
+            bright="$(light)"
             bright="${bright%.*}"
             message_icon="🔆"
             msgId="9991049"
             filled_icon="🌞"
             not_filled_icon="🌑"
-            echo "$bright"
-            RUN="notify $bright $message_icon $msgId $filled_icon $not_filled_icon"
+            RUN="notify ${bright%.*} $message_icon $msgId $filled_icon $not_filled_icon"
             ;;
         :)
             echo "No argument provided for option (-$OPTARG)"

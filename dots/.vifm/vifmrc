@@ -1,10 +1,7 @@
 " vim: filetype=vim
 
-set vicmd=nvim
-set number
-set relativenumber
-
 " {{{ commands
+
 " :com[mand][!] command_name action
 " The following macros can be used in a command
 " %a is replaced with the user arguments.
@@ -21,9 +18,17 @@ command! df df -h %m 2> /dev/null
 command! make !!make %a
 command! mkcd :mkdir %a | cd %a
 command! reload :write | restart
+
 " }}}
 
-" {{{ defaults
+" {{{ options
+
+set vicmd=nvim
+set number
+set relativenumber
+set confirm=permdelete
+
+
 " Sample configuration file for vifm (last updated: 20 July, 2018)
 " You can edit this file by hand.
 " The " character at the beginning of a line comments out the line.
@@ -169,9 +174,11 @@ set vifminfo=dhistory,chistory,state,tui,shistory,
 "     vifm --server-name "$VIFM_SERVER_NAME" --remote +"cd '$PWD'"
 "
 " let $VIFM_SERVER_NAME = v:servername
+
 " }}}
 
 " {{{ filetypes
+
 " The file type is for the default programs to be used with
 " a file extension.
 " :filetype pattern1,pattern2 defaultprogram,program2
@@ -412,9 +419,11 @@ filextype *.svg
 " filetype * open
 " For Windows:
 " filetype * start, explorer
+
 " }}}
 
 " {{{ mappings
+
 nnoremap ; :
 nnoremap : ;
 
@@ -476,9 +485,11 @@ nnoremap A cw
 
 " Toggle wrap setting on ,w key
 nnoremap ,w :set wrap!<cr>
+
 " }}}
 
 " {{{ marks
+
 " :mark mark /full/directory/path [filename]
 mark h ~/
 mark d ~/dotfiles
@@ -489,9 +500,11 @@ mark S ~/dotfiles/secrets
 mark c ~/.config
 mark p ~/projects
 mark w ~/work
+
 " }}}
 
 " {{{ file icons
+
 " file types
 set classify=' :dir:/, :exe:, :reg:, :link:'
 " various file names
@@ -511,8 +524,11 @@ set classify+=' ::*.avi,,*.wmv,,*.m[p]eg,,*.rmvb,,*.rm,,*.mkv,,*.flv,,*.mp4,,
 set classify+=' ::*.doc,,*.docx::, ::*.xls,,*.xls[mx]::, ::*.pptx,,*.ppt::'
 " devicons
 set classify+=' ::*.txt::,λ ::*.ml,,*.mli::, ::*.styl::, ::*.scss::, ::*.py,,*.pyc,,*.pyd,,*.pyo::, ::*.php::, ::*.markdown,,*.md::, ::*.json::, ::*.js::, ::*.ejs,,*.slim::, ::*.hbs,,*mustache::, ::*.css,,*.less::, ::*.bat,,*.conf,,*.ini,,*.rc,,*.yml::, ::*.rss::, ::*.coffee::, ::*.twig::, ::*.hs,,*.lhs,,*.lua::, ::*.jl::, ::*.go::, ::*.ts::, ::*.db,,*.dump,,*.sql::, ::*.sln,,*.suo::, ::*.diff::, ::*.scala::, ::*.java::, ::*.xul::, ::*.clj,,*.cljc::, ::*.pl,,*.pm,,*.t::, ::*.cljs,,*.edn::, ::*.rb::, ::*.dart::, ::*.f#,,*.fs,,*.fsi,,*.fsscript,,*.fsx::, ::*.rlib,,*.rs::, ::*.d::, ::*.erl,,*.hrl::, ::*.jsx::, ::*.vim,,*.vimrc::, ::*.log::'
+
 " }}}
 
 " {{{ filter
+
 filter Session.vim
+
 " }}}
