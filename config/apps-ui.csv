@@ -42,6 +42,10 @@ a,screenkey-git,on,
 ,pavucontrol,on,
 a,obs-studio,on,
 a,rofi-emoji,on,
+pip,pulsemixer,on,
+,zathura,on,
+,zathura-pdf-poppler,on,
+,light-git,on,
 
 #########
 #       #
