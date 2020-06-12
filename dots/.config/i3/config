@@ -41,7 +41,6 @@ exec i3-msg 'workspace $ws2 ; exec $terminal -e "tmux" --hold'
 exec slack
 exec spotify
 exec discord
-exec popcorntime
 
 #}}}
 
