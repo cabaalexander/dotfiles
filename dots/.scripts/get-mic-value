@@ -4,7 +4,7 @@ set -Eeuo pipefail
 source_value=$(pulseaudio-ctl | grep "source muted" | cut -d: -f2)
 
 if [[ $source_value =~ yes ]]; then
-    echo "Mic Muted"
+    echo "Microphone ❌"
 else
-    echo "Mic Enabled"
+    echo "Microphone ✅"
 fi

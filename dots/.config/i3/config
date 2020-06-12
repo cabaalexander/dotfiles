@@ -63,6 +63,8 @@ for_window [title="video0 - mpv"] floating enable, border pixel 0
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
+for_window [class="Termite" instance="floating"] floating enable, border pixel 2
+
 #}}}
 
 #{{{ globals
@@ -83,6 +85,10 @@ floating_modifier $mod
 #}}}
 
 #{{{ mappings
+
+# scratch pad
+bindsym $mod+n exec $terminal --name="floating" \
+-e "nvim -c 'startinsert' -u ~/.config/nvim/init-scratch.vim"
 
 # terminal spotify
 bindsym $mod+s exec $terminal -e spt
