@@ -43,15 +43,7 @@
 [difftool]
     prompt = false
 [core]
-    pager = delta \
-        --plus-color="#012800" \
-        --minus-color="#340001" \
-        --file-color="#fbb829" \
-        --hunk-color="#fbb829" \
-        --file-style="box" \
-        --theme='zenburn'
-[interactive]
-    diffFilter = delta --color-only
+    pager = diff-so-fancy | less --tabs=4 -RFX
 [color "diff-highlight"]
     oldNormal = red
     oldHighlight = red 52

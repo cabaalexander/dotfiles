@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ -n "$IS_VAGRANT" ]; then
+    tmux "$@"
+else
+    tmux -f ~/.tmux/true-colors.conf "$@"
+fi

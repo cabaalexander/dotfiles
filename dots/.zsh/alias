@@ -124,7 +124,6 @@ alias epi='elm package install'
 alias tmuxinstall="~/.tmux/plugins/tpm/bin/install_plugins"
 alias tmuxupdate="~/.tmux/plugins/tpm/bin/update_plugins"
 alias tmuxclean="~/.tmux/plugins/tpm/bin/clean_plugins"
-alias tm='tmux'
 alias tma='tmux attach'
 
 ##########

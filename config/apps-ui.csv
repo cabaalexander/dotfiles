@@ -47,6 +47,13 @@ pip,pulsemixer,on,
 ,zathura-pdf-poppler,on,
 a,light-git,on,
 
+##########
+#        #
+# python #
+#        #
+##########
+pip,ueberzug,on,
+
 #########
 #       #
 # fonts #
