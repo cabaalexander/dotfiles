@@ -1,13 +1,5 @@
 # Mapper,Name,State,Description
 
-##############################################################
-#                                                            #
-# This need to be here so the base mac deps can be installed #
-#                                                            #
-##############################################################
-f,brew,on,
-f,brewfonts,on,
-
 ########
 #      #
 # Apps #
@@ -26,13 +18,13 @@ f,brewfonts,on,
 ,fd,on,
 ,ripgrep,on,
 ,curlftpfs,off,
-,asciinema,on,Terminal recorder
-,figlet,on,ASCII art text
+,asciinema,off,Terminal recorder
+,figlet,off,ASCII art text
 ,unzip,on,
 ,vifm,on,
 ,gnupg,on,
-f,rust,on,
-f,spotifynow,on,
+f,rust,off,
+f,spotifynow,off,
 ,gcc,on,
 
 ######
@@ -49,19 +41,19 @@ f,go,on,
 ##########
 f,nvm,on,
 ,yarn,on,
-node,pnpm,on,
-node,peerflix,on,
+node,pnpm,off,
+node,peerflix,off,
 node,vtop,on,
-node,elm@0.18.0,on,
-node,elm-oracle,on,
-node,elm-format,on,
+node,elm@0.18.0,off,
+node,elm-oracle,off,
+node,elm-format,off,
 node,live-server,on,
 node,alex,on,
-node,bs-platform,on,
+node,bs-platform,off,
 node,commitizen,on,
 node,git-cz,on,
 node,gatsby-cli,off,
-node,surge,on,
+node,surge,off,
 node,diff-so-fancy,on,
 
 ########
@@ -70,10 +62,10 @@ node,diff-so-fancy,on,
 #      #
 ########
 f,rvm,on,
-gem,lolcat,on,
+gem,lolcat,off,
 gem,neovim,on,
 gem,mdl,on,
-gem,vimgolf,on,
+gem,vimgolf,off,
 
 ##########
 #        #
@@ -82,11 +74,11 @@ gem,vimgolf,on,
 ##########
 ,python3,on,
 ,python-pip,on,
-pip,doge,on,
+pip,doge,off,
 pip,neovim,on,
 pip,vim-vint,on,
 pip,speedtest-cli,off,
-pip,termtosvg,on,
+pip,termtosvg,off,
 pip,pip,on,
 
 #######
