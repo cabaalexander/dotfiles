@@ -87,6 +87,7 @@ pip,neovim,on,
 pip,vim-vint,on,
 pip,speedtest-cli,off,
 pip,termtosvg,on,
+pip,pylint,on,
 pip,pip,on,
 
 #######
