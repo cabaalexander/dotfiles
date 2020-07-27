@@ -33,6 +33,11 @@ G_INSTALL_MANAGER_TYPES=(
     pip
 )
 GOD_SHELL_NAME="$(logname) ALL=(ALL:ALL) NOPASSWD: ALL"
+MAIN_DIRECTORIES=(
+    ~/projects
+    ~/work
+    ~/training
+)
 
 # Source script to source (¯\_(ツ)_/¯)
 # ===================================
@@ -118,6 +123,12 @@ __become_god_shell() {
         &> /dev/null
 }
 
+__initialize_main_directories() {
+    for directory in ${MAIN_DIRECTORIES[*]}; do
+        mkdir -p "$directory"
+    done
+}
+
 #########
 #       #
 # Begin #
@@ -129,6 +140,7 @@ main() {
 
     # This is to catch the password for later use if needed ;)
     __become_god_shell
+    __initialize_main_directories
 
     echo "[Installing]..."
 
