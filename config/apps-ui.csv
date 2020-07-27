@@ -46,6 +46,9 @@ pip,pulsemixer,on,
 ,zathura,on,
 ,zathura-pdf-poppler,on,
 a,light-git,on,
+a,postman,on,
+a,zoom,on,
+,lutris,off,
 
 ##########
 #        #

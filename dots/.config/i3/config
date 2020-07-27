@@ -64,6 +64,8 @@ for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
 for_window [class="Termite" instance="floating"] floating enable, border pixel 2
+for_window [class="Termite" instance="floating-calendar"] \
+resize set 620 636, move up 100 px, move right 50 px
 
 #}}}
 
@@ -89,6 +91,10 @@ floating_modifier $mod
 # scratch pad
 bindsym $mod+n exec $terminal --name="floating" \
 -e "nvim -c 'startinsert' -u ~/.config/nvim/init-scratch.vim"
+
+# calendar
+bindsym $mod+c exec $terminal --name="floating floating-calendar" \
+-e "cal $(date | cut -d' ' -f4)" --hold
 
 # terminal spotify
 bindsym $mod+s exec $terminal -e spt
