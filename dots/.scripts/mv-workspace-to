@@ -1,0 +1,50 @@
+#!/bin/bash
+# shellcheck disable=2207
+set -Eeuo pipefail
+
+
+move_to_monitor(){
+    connected_monitors=( $(xrandr | grep ' connected ' | cut -d' ' -f1) )
+    index=1
+    connected_monitors_formatted=()
+
+    for monitor in ${connected_monitors[*]}; do
+        connected_monitors_formatted+=( "($index: $monitor)" )
+        index=$((index + 1))
+    done
+
+    prompt_message="${connected_monitors_formatted[*]}"
+
+    # prompt monitor selection
+    read -rsn1 -p "$prompt_message" selected_monitor
+
+    if [[ $selected_monitor =~ ^[0-9]$ ]]; then
+        selected_index=$((selected_monitor - 1))
+        echo "${connected_monitors[$selected_index]}"
+    else
+        echo
+        echo "You did not enter one of the options above"
+        return 1
+    fi
+}
+
+main(){
+    local workspace
+    local monitor
+    workspace=${1:-}
+
+    if [ -z "$workspace" ]; then
+        echo "Enter the index of the workspace"
+        return 1
+    fi
+
+    if ! [[ $workspace =~ ^[0-9]$ ]]; then
+        echo "The workspace needs to be a numeric value between 0 - 9"
+        return 1
+    fi
+
+    monitor=$(move_to_monitor)
+    i3-msg "workspace $workspace, move workspace to $monitor" &> /dev/null
+}
+
+main "$@"

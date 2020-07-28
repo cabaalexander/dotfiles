@@ -320,6 +320,8 @@ fileviewer *.torrent dumptorrent -v %c
 filetype *.zip,*.jar,*.war,*.ear,*.oxt,*.apkg
        \ {Mount with fuse-zip}
        \ FUSE_MOUNT|fuse-zip %SOURCE_FILE %DESTINATION_DIR,
+       \ {Unzip}
+       \ unzip %c,
        \ {View contents}
        \ zip -sf %c | less,
        \ {Extract here}
