@@ -96,6 +96,11 @@ bindsym $mod+n exec $terminal --name="floating" \
 bindsym $mod+c exec $terminal --name="floating floating-calendar" \
 -e "cal $(date | cut -d' ' -f4)" --hold
 
+# clock
+bindsym $mod+t exec $terminal --name="floating floating-clock" \
+-e "tty-clock -c -C 7 -r -t -f \"%A, %B %d\""
+
+
 # terminal spotify
 bindsym $mod+s exec $terminal -e spt
 
