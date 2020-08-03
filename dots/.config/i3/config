@@ -90,7 +90,7 @@ floating_modifier $mod
 
 # scratch pad
 bindsym $mod+n exec $terminal --name="floating" \
--e "nvim -c 'startinsert' -u ~/.config/nvim/init-scratch.vim"
+-e "nvim"
 
 # calendar
 bindsym $mod+c exec $terminal --name="floating floating-calendar" \
@@ -98,7 +98,12 @@ bindsym $mod+c exec $terminal --name="floating floating-calendar" \
 
 # clock
 bindsym $mod+t exec $terminal --name="floating floating-clock" \
--e "tty-clock -c -C 7 -r -t -f \"%A, %B %d\""
+-e 'tty-clock -c -C 7 -r -t -f "%A - %B - %d"'
+
+
+# processes
+bindsym $mod+p exec $terminal --name="floating floating-top" \
+-e "htop"
 
 
 # terminal spotify
