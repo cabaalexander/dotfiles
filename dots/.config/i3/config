@@ -110,6 +110,9 @@ bindsym $mod+Shift+f exec $terminal -e vifm ~
 # terminal audio mixer
 bindsym $mod+m exec $terminal -e pulsemixer
 
+# pavucontrol audio mixer
+bindsym $mod+Shift+m exec pavucontrol
+
 # start a terminal
 bindsym $mod+Return exec $terminal
 
