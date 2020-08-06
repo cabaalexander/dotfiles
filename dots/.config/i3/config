@@ -150,7 +150,7 @@ bindsym $mod+Right focus right
 
 # move focused window
 set $move_focused_value_horizontal 98
-set $move_focused_value_vertical 83
+set $move_focused_value_vertical 78
 bindsym $mod+Shift+h move left $move_focused_value_horizontal px
 bindsym $mod+Shift+j move down $move_focused_value_vertical px
 bindsym $mod+Shift+k move up $move_focused_value_vertical px
