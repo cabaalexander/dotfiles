@@ -28,3 +28,7 @@ unsetopt HIST_VERIFY
 
 # File Descriptor stuff
 unsetopt MULTIOS
+
+# google cloud platform
+sourceIfExists ~/Downloads/gcp/google-cloud-sdk/path.zsh.inc
+sourceIfExists ~/Downloads/gcp/google-cloud-sdk/completion.zsh.inc
