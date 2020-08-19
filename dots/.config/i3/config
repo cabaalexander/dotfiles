@@ -131,7 +131,7 @@ bindsym $mod+Shift+e exec --no-startup-id "rofi -show emoji -modi emoji"
 bindsym $mod+w exec --no-startup-id "rofi -show window -show-icons -drun-icon-theme"
 
 # rofi : drun
-bindsym $mod+d exec --no-startup-id "rofi -show drun -show-icons -drun-icon-theme"
+bindsym $mod+space exec --no-startup-id "rofi -show drun -show-icons -drun-icon-theme"
 
 # rofi : run
 bindsym $mod+e exec --no-startup-id "rofi -show run"
@@ -170,10 +170,10 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+f fullscreen toggle
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+i floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+i focus mode_toggle
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
