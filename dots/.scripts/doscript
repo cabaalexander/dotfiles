@@ -30,30 +30,21 @@ make_script(){
 }
 
 main(){
-    local script opt
+    local script_name
+    local opt
+    local scripts
 
-    while getopts ":b:n:" opt; do
-        FILES_CREATED+=("$OPTARG")
+    scripts=${@:-script.sh}
 
-        case $opt in
-            b)
-                make_script "$OPTARG" "$BASH_TEMPLATE"
-                ;;
-            n)
-                make_script "$OPTARG" "$NODE_TEMPLATE"
-                ;;
-            *)
-                echo "Option (-$opt) is not valid..."
-                exit 1
-                ;;
-        esac
-    done
-    shift $((OPTIND - 1))
+    for script_name in $scripts; do
+        FILES_CREATED+=("$script_name")
+        file_extension="${script_name#*.}"
 
-    for script in "$@"; do
-        FILES_CREATED+=("$script")
-
-        make_script "$script" "$BASH_TEMPLATE"
+        if [ "$file_extension" == "js" ]; then
+            make_script "$script_name" "$NODE_TEMPLATE"
+        else
+            make_script "$script_name" "$BASH_TEMPLATE"
+        fi
     done
 }
 
