@@ -9,18 +9,27 @@ fi
 
 CURRENT_BBRANCH=$(git symbolic-ref --short -q HEAD)
 
-validate_master(){
+PROTECTED_BRANCHES=(
+    master
+    main
+)
+
+validate_protected_branches(){
     if [ "$BYPASS" ]
     then
         return 0
     fi
-    if [ "$CURRENT_BBRANCH" = "master" ]
-    then
-        echo "¯\\_(ツ)_/¯"
-        echo "You're on master, sorry bruh..."
-        echo "Use (-f) if you want to bypass the security measures ;)"
-        return 1
-    fi
+
+    for protected_branch in ${PROTECTED_BRANCHES[*]}; do
+        if [ "$CURRENT_BBRANCH" = "$protected_branch" ]
+        then
+            echo "¯\\_(ツ)_/¯"
+            echo "You're on $protected_branch, sorry bruh..."
+            echo "Use (-f) if you want to bypass the security measures ;)"
+            return 1
+        fi
+    done
+
 }
 
 # Parse options
@@ -36,9 +45,8 @@ do
 done
 shift $((OPTIND - 1))
 
-validate_master
+validate_protected_branches
 
 git add -A
 eval "git commit $sighned --amend --no-edit --no-verify"
 git push origin "$CURRENT_BBRANCH" -f
-
