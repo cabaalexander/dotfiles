@@ -10,6 +10,11 @@ export TERMINAL=termite
 export MANPAGER='nvim +Man!'
 export IS_VAGRANT="$(test -d /vagrant && echo "1")"
 
+# Polybar network
+# ===============
+export WIRELESS_NAME="$(find /sys/class/net -name 'wl*' | sed 's#.*/##')"
+export ETH_NAME="$(find /sys/class/net -name 'e*' | sed 's#.*/##')"
+
 # Setting fd as the default source for fzf
 # ========================================
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g !.git'

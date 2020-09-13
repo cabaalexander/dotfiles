@@ -157,27 +157,6 @@ label-song-ellipsis = true
 
 ;}}}
 
-;{{{ module/xbacklight
-
-[module/xbacklight]
-type = internal/xbacklight
-
-format = <label> <bar>
-label = Bright: %percentage%%
-
-bar-width = 10
-bar-indicator = |
-bar-indicator-foreground = #fff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = #9f78e1
-bar-empty = ─
-bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-alt}
-
-;}}}
-
 ;{{{ module/cpu
 
 [module/cpu]
@@ -213,18 +192,13 @@ label = "%gb_used% / %gb_total%"
 underline = #9f78e1
 
 type = internal/network
-interface = wlp0s20f3
+interface = ${env:WIRELESS_NAME}
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
 format-connected-underline = ${self.underline}
-label-connected = %essid%
 
-format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
+label-connected = %essid% ↑%upspeed% ↓%downspeed%
 
 ramp-signal-0 = 直
 ramp-signal-1 = 直
