@@ -16,25 +16,27 @@ __open() {
     done
 }
 
+# exit if live-server is not installed
+if ! command -v live-server; then
+    echo "@npm : live-server not installed"
+    exit 1
+fi
+
 # Parse options
 while getopts ":rp:o:" OPT; do
     case $OPT in
     r) random=$RANDOM ;;
     p) port=$OPTARG ;;
-    o) file=$OPTARG ;;
+    o) cmd="--entry-file=$OPTARG" ;;
     *) port=8000 ;;
     esac
 done
 shift $((OPTIND - 1))
 
 # compute port for later use below
-port=${port:-${random:-8000}}
+port="--port=${port:-${random:-8000}}"
 
-if command -v live-server; then
-    eval "live-server --port=\"$port\" --no-browser &"
-    test -n "${file:-}" && __open "http://localhost:$port/$file"
-else
-    echo "@npm : live-server not installed"
-fi
+# run the process
+eval "live-server $port ${cmd:-} --no-browser"
 
 exit 0

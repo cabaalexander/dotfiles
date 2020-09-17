@@ -12,6 +12,8 @@ CURRENT_BBRANCH=$(git symbolic-ref --short -q HEAD)
 PROTECTED_BRANCHES=(
     master
     main
+    stage
+    develop
 )
 
 validate_protected_branches(){

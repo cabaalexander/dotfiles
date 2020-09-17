@@ -11,7 +11,7 @@ fi
 clear
 files=$(
     git log -p -"${FIRST_PARAM:-$AHEAD}" --name-status --oneline |
-        awk '$1 ~ /^[a-zA-Z]$/ && $1 != "D" && NR != 1 {print $2}' |
+        awk '$1 ~ /^[a-zA-Z0-9]+$/ && $1 != "D" && NR != 1 {print $NF}' |
         tr '\n' ' '
 )
 
