@@ -15,6 +15,9 @@ set $Locker i3lock \
 
 #{{{ auto starts
 
+# auto hide cursor
+exec_always --no-startup-id unclutter -idle 3
+
 # set trackpad speed
 exec xset m 26/10 4
 

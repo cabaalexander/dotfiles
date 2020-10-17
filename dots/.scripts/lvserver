@@ -5,17 +5,6 @@ BROWSERS_MAC=(
     /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
 )
 
-__open() {
-    local browser
-    IFS=$'\n'
-    for browser in ${BROWSERS_MAC[*]}; do
-        if command -v "$browser" &>/dev/null; then
-            $browser "$1"
-            break
-        fi
-    done
-}
-
 # exit if live-server is not installed
 if ! command -v live-server; then
     echo "@npm : live-server not installed"
@@ -37,6 +26,6 @@ shift $((OPTIND - 1))
 port="--port=${port:-${random:-8000}}"
 
 # run the process
-eval "live-server $port ${cmd:-} --no-browser"
+eval "live-server --cors $port ${cmd:-} --no-browser"
 
 exit 0
