@@ -57,6 +57,7 @@ alias grb='git rebase'
 alias grba='git rebase --abort'
 alias grbm='git rebase master'
 alias grbc='git rebase --continue'
+alias gmc='git merge --continue'
 
 # Commit
 # ======

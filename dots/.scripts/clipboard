@@ -110,6 +110,6 @@ case "$(__get_clipboard)" in
         __tmux_paste
         ;;
     *)
-        echo "$COPY_ME"
+        echo "[No clipboard]: $COPY_ME"
         ;;
 esac

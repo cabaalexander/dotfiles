@@ -5,10 +5,9 @@ set $mod Mod4
 
 set $terminal termite
 
-set $Locker i3lock \
-    -i ~/.imgs/windows-desktop.png \
-    -p win \
-    -t -u \
+set $Locker i3lock-fancy \
+    -pf Fira-Code-Regular-Nerd-Font-Complete-Mono \
+    -- scrot -z -o \
     && sleep 1
 
 # }}}
