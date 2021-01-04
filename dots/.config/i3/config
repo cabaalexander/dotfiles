@@ -96,7 +96,7 @@ bindsym $mod+n exec $terminal --name="floating" \
 
 # calendar
 bindsym $mod+c exec $terminal --name="floating floating-calendar" \
--e "cal -m $(date | cut -d' ' -f4)" --hold
+-e "cal -m $(date +'%Y')" --hold
 
 # clock
 bindsym $mod+t exec $terminal --name="floating floating-clock" \
