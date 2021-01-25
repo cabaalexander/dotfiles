@@ -2,7 +2,7 @@
 
 __aur(){
   case "$OS" in
-      mac) brew cask install "$@" ;;
+      mac) brew install --cask "$@" ;;
       *) yay --noconfirm -S "$@" ;;
   esac
 }

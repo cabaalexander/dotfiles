@@ -3,7 +3,7 @@
 
 case "$(uname -s)" in
     [Dd]arwin)
-        . /usr/local/Cellar/antigen/[0-9.]*/share/antigen/antigen.zsh ;;
+        . /usr/local/share/antigen/antigen.zsh ;;
     *)
         . /usr/share/zsh/share/antigen.zsh ;;
 esac
@@ -23,4 +23,3 @@ antigen theme https://github.com/denysdovhan/spaceship-prompt
 
 # Tell Antigen that you're done.
 antigen apply
-

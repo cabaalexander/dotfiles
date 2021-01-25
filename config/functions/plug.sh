@@ -5,7 +5,7 @@ plugInstall(){
   # Prepare yarn for VIM plugins
   [ -f "${HOME}/.profile" ] && source "${HOME}/.profile"
 
-  nvim -u ~/.config/nvim/init-plugin-manager.vim -c PlugInstall -c qa!
+  nvim -u ~/.config/nvim/init-plugin-manager.vim -c PlugInstall -c qa! | true
 }
 
 # If this file is running in terminal call the function `plugInstall`

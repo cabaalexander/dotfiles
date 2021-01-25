@@ -19,6 +19,7 @@
     lsassumed = "!git ls-files -v | grep ^h | cut -c 3-"
     rank = shortlog -sn --no-merges
     todo = grep -EIn "TODO|FIXME"
+    gpg = "!f(){ git log --show-signature -${1:-1}; };f"
 [merge]
     tool = vim_mergetool
     conflictstyle = diff3

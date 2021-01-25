@@ -19,28 +19,25 @@ f,brewfonts,on,
 ,bc,off,
 ,ctags,on,
 ,ncdu,on,
-,neovim,on,
+f,neovim,on,
 ,tmux,on,
-,bash-completion,on,
 ,shellcheck,on,
 ,fd,on,
 ,ripgrep,on,
-,curlftpfs,off,
 ,asciinema,on,Terminal recorder
 ,figlet,on,ASCII art text
 ,unzip,on,
 ,vifm,on,
 ,gnupg,on,
-f,rust,on,
-f,spotifynow,on,
-,gcc,on,
+,bat,on,
+# f,rust,on,//m1 wait
 
 ######
 #    #
 # Go #
 #    #
 ######
-f,go,on,
+# f,go,on,//m1 wait
 
 ##########
 #        #
@@ -49,19 +46,18 @@ f,go,on,
 ##########
 f,nvm,on,
 ,yarn,on,
-node,pnpm,on,
-node,peerflix,on,
+node,peerflix,off,
 node,vtop,on,
-node,elm@0.18.0,on,
-node,elm-oracle,on,
-node,elm-format,on,
+node,elm@0.18.0,off,
+node,elm-oracle,off,
+node,elm-format,off,
 node,live-server,on,
 node,alex,on,
-node,bs-platform,on,
+node,bs-platform,off,
 node,commitizen,on,
 node,git-cz,on,
 node,gatsby-cli,off,
-node,surge,on,
+node,surge,off,
 node,diff-so-fancy,on,
 
 ########
@@ -69,7 +65,7 @@ node,diff-so-fancy,on,
 # Ruby #
 #      #
 ########
-f,rvm,on,
+,ruby,on,
 gem,lolcat,on,
 gem,neovim,on,
 gem,mdl,on,
@@ -81,7 +77,6 @@ gem,vimgolf,on,
 #        #
 ##########
 ,python3,on,
-,python-pip,on,
 pip,doge,on,
 pip,neovim,on,
 pip,vim-vint,on,
@@ -104,7 +99,6 @@ f,ohmyzsh,on,
 # Functions #
 #           #
 #############
-f,gotop,on,
 f,libtinfo,off,Thing for `elm repl` to work
 
 #################

@@ -30,5 +30,5 @@ unsetopt HIST_VERIFY
 unsetopt MULTIOS
 
 # google cloud platform
-sourceIfExists ~/Downloads/gcp/google-cloud-sdk/path.zsh.inc
-sourceIfExists ~/Downloads/gcp/google-cloud-sdk/completion.zsh.inc
+sourceIfExists /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+sourceIfExists /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc

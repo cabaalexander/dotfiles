@@ -9,6 +9,9 @@ addToPath(){
     done
 }
 
+# homebrew
+addToPath /opt/homebrew/bin
+
 # nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
@@ -33,6 +36,13 @@ addToPath ~/.cargo/bin
 
 # dotnet
 addToPath ~/.dotnet
+
+# ruby (homebrew)
+addToPath /usr/local/opt/ruby/bin
+addToPath /usr/local/lib/ruby/gems/3.0.0/bin
+export LDFLAGS="-L/usr/local/opt/ruby/lib"
+export CPPFLAGS="-I/usr/local/opt/ruby/include"
+export PKG_CONFIG_PATH="/usr/local/opt/ruby/lib/pkgconfig"
 
 ########################
 #                      #

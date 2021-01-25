@@ -2,9 +2,9 @@
 # shellcheck disable=1090
 
 nvmInstall(){
-  local NVM="0.33.8"
+  local NVM="v0.37.2"
 
-  bash -c "$(curl -s -o- https://raw.githubusercontent.com/creationix/nvm/v${NVM}/install.sh)"
+  bash -c "$(curl -s -o- https://raw.githubusercontent.com/nvm-sh/nvm/${NVM}/install.sh)"
 
   # Source `nvm`
   [[ -s ~/.nvm/nvm.sh ]] && . ~/.nvm/nvm.sh

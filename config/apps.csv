@@ -27,6 +27,7 @@ a,ctop-bin,on, Htop like for docker
 ,editorconfig-core-c,on,
 ,fontconfig,off,
 ,git,on,
+f,spotifynow,on,
 
 #################
 #               #

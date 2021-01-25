@@ -1,7 +1,8 @@
 #!/bin/bash -e
 
 rustInstall() {
-    curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs |
+        sh -s -- -y --no-modify-path
 }
 
 # If this file is on the terminal $PATH's just run the function `rustInstall`

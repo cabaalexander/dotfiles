@@ -2,7 +2,7 @@
 # shellcheck disable=1090
 
 __gem(){
-    . ~/.rvm/scripts/rvm 2> /dev/null
+    . ~/.rvm/scripts/rvm 2> /dev/null | true
     gem install "$@"
 }
 

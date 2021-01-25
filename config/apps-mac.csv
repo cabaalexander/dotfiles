@@ -6,21 +6,30 @@
 #          #
 ############
 a,spotify,on,
-a,google-chrome,on,
 a,iterm2,on,
-a,postman,on,
+a,postman,off,
 a,slack,on,
-a,virtualbox,on,
+a,zoom,on,
+a,discord,on,
+a,obs,on,
+a,cyberduck,on,
+a,google-cloud-sdk,on,
+a,keka,on,
+a,webtorrent,on,
+a,vlc,on,
+a,postman,on,
+a,keycastr,on,
+a,pock,on,
 
 ########
 #      #
 # Apps #
 #      #
 ########
-,editorconfig,on,
-a,font-firacode-nerd-font-mono,on,
+,editorconfig,off,
+,font-fira-code-nerd-font,on,
 ,htop,on,
-a,vagrant,on,
+,pinentry-mac,on,
 
 #################
 #               #
@@ -34,12 +43,12 @@ a,vagrant,on,
 # Haskell #
 #         #
 ###########
-,ghc,off,Haskell Compiler
-,cabal-install,off,
+# ,ghc,off,Haskell Compiler//m1 wait
+# ,cabal-install,off,//m1 wait
 
 ##########
 #        #
 # Docker #
 #        #
 ##########
-a,docker,on,
+# a,docker,off,//m1 wait
