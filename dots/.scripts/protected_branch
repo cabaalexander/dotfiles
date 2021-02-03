@@ -1,0 +1,41 @@
+#!/bin/bash
+set -Eeuo pipefail
+
+PROTECTED_BRANCHES=(
+    master
+    main
+    stage
+    develop
+)
+
+branch=${1:-}
+shift
+
+# in the options check if this should be bypassed
+while getopts ":fs" opt; do
+    case $opt in
+        f) bypass=true ;;
+        s) silent=true ;;
+        :)
+            echo "No argument provided for option (-$OPTARG)"
+            ;;
+        \?)
+            echo "Invalid option (-$OPTARG)"
+            exit 0
+            ;;
+    esac
+done
+shift $((OPTIND - 1))
+
+for protected_branch in ${PROTECTED_BRANCHES[*]}; do
+    # if the branch is protected or bypass is not set return 'OK'
+    if [ "$protected_branch" = "$branch" ] && [ -z "${bypass:-}" ]; then
+        if [ -z "${silent:-}" ]; then
+            echo "You are using a protected branch: '$branch'" 1>&2
+        fi
+        exit 0
+    fi
+done
+
+# if the branch is not protected return 'NOT OK'
+exit 1

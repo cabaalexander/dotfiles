@@ -1,8 +1,10 @@
 #!/bin/bash
 set -Eeuo pipefail
 
-if gpg -K | grep 'cabaalexander' &> /dev/null; then
-    sighned="-S";
+if command -v gpg &> /dev/null; then
+    if gpg -K | grep 'cabaalexander' &> /dev/null; then
+        sighned="-S";
+    fi
 fi
 
 base_command="git commit ${sighned:-}"

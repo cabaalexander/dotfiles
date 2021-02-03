@@ -3,51 +3,17 @@
 # This `add`, `commit --amend` and `git push -f --no-verify`
 # all the changes in the current branch to its remote one
 
-if gpg -K | grep 'cabaalexander' &> /dev/null; then
-    sighned="-S";
+if command -v gpg &> /dev/null; then
+    if gpg -K | grep 'cabaalexander' &> /dev/null; then
+        sighned="-S";
+    fi
 fi
 
-CURRENT_BBRANCH=$(git symbolic-ref --short -q HEAD)
+CURRENT_BBRANCH=$(gcb)
 
-PROTECTED_BRANCHES=(
-    master
-    main
-    stage
-    develop
-)
-
-validate_protected_branches(){
-    if [ "$BYPASS" ]
-    then
-        return 0
-    fi
-
-    for protected_branch in ${PROTECTED_BRANCHES[*]}; do
-        if [ "$CURRENT_BBRANCH" = "$protected_branch" ]
-        then
-            echo "¯\\_(ツ)_/¯"
-            echo "You're on $protected_branch, sorry bruh..."
-            echo "Use (-f) if you want to bypass the security measures ;)"
-            return 1
-        fi
-    done
-
-}
-
-# Parse options
-while getopts ":f" OPT
-do
-  case $OPT in
-      f) BYPASS=true ;;
-      *)
-          echo "Bad option (-$OPTARG)"
-          exit 1
-          ;;
-  esac
-done
-shift $((OPTIND - 1))
-
-validate_protected_branches
+if protected_branch "$CURRENT_BBRANCH" "$@"; then
+    exit 1
+fi
 
 git add -A
 eval "git commit $sighned --amend --no-edit --no-verify"

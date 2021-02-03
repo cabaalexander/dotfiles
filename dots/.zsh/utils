@@ -25,13 +25,11 @@ gps(){
     local currentBranch
     currentBranch=$(gcb)
 
-    if [ "${currentBranch}" = "master" ]
-    then
-        echo "¯\\_(ツ)_/¯"
+    if protected_branch "$currentBranch" "$@"; then
         return 1
     fi
 
-    git push origin "${currentBranch}" "${@}"
+    git push origin "$currentBranch" "${@}"
 }
 
 ginfo(){
