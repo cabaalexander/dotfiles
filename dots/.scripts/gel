@@ -2,7 +2,7 @@
 set -Eeuo pipefail
 
 FIRST_PARAM=${1:-}
-AHEAD=$(git rev-list --left-right --count origin/master.. | cut -f2)
+AHEAD=$(gahead)
 
 if [ "$AHEAD" -eq 0 ]; then
     AHEAD=1
