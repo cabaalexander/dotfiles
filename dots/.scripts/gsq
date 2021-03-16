@@ -8,7 +8,7 @@ USER_INPUT="${1:-}"
 if [ -n "$USER_INPUT" ]; then
     SQUASH="$USER_INPUT"
 else
-    SQUASH=$(git rev-list --left-right --count origin/master.. | cut -f2)
+    SQUASH=$(git rev-list --left-right --count origin/$(gmain).. | cut -f2)
     test "$SQUASH" -lt 2 && exit 0
 fi
 

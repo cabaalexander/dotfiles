@@ -1,10 +1,4 @@
 #!/bin/bash
 set -Eeuo pipefail
 
-if git branch -a | grep 'master' &> /dev/null; then
-    main_branch="master"
-else
-    main_branch="main"
-fi
-
-git rev-list --left-right --count origin/$main_branch.. | cut -f2
+git rev-list --left-right --count origin/$(gmain).. | cut -f2

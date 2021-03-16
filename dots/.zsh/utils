@@ -83,23 +83,17 @@ ee(){
 }
 
 gpr(){
-    MAIN_BRANCHES=(
-        main
-        master
-    )
-    for main_branch in ${MAIN_BRANCHES[*]}; do
-        if git pull --rebase origin "$main_branch" 2> /dev/null; then
-            return 0
-        else
-            continue
-        fi
-    done
+    # Git rebases from origin [master]
+    local BRANCH_NAME=$1
+    local main_branch=$(gmain)
+    git pull --rebase origin "${BRANCH_NAME:-$main_branch}"
 }
 
 gprup(){
     # Git rebases from upstream [master]
     local BRANCH_NAME=$1
-    git pull --rebase upstream "${BRANCH_NAME:-master}"
+    local main_branch=$(gmain)
+    git pull --rebase upstream "${main_branch:-$main_branch}"
 }
 
 dotar(){
