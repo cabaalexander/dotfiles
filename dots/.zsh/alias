@@ -44,7 +44,7 @@ alias gdms='git diff --stat --color master..'
 # Pull/Push
 # =========
 alias gp='git fetch && git pull'
-alias gpsm='git push origin master'
+alias gpsm='git push origin $(gmain)'
 
 # Merge
 # =====

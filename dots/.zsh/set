@@ -36,7 +36,6 @@ gcl(){
 
     if [ -n "$TMUX" ]; then
         cdtmux "$repo_name"
-        tmux rename-window "$repo_name"
         exit 0
     else
         cd "$repo_name" || exit

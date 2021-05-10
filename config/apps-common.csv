@@ -30,7 +30,7 @@ f,neovim,on,
 ,vifm,on,
 ,gnupg,on,
 ,bat,on,
-# f,rust,on,//m1 wait
+f,rust,on,
 
 ######
 #    #

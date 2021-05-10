@@ -61,10 +61,6 @@ filetypeb(){
     mv -f tmp "${INPUT_FILE}"
 }
 
-lsport(){
-    tail +2 /etc/services | grep " ${1:?What port...}/"
-}
-
 killport(){
     # Given a port kills its process
     fuser -k "$1"/tcp
