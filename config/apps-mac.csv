@@ -20,6 +20,10 @@ a,vlc,on,
 a,postman,on,
 a,keycastr,on,
 a,pock,on,
+a,firefox,on,
+a,utm,on,
+a,streamlabs-obs,on,
+a,inkscape,on,
 
 ########
 #      #
@@ -31,6 +35,9 @@ a,pock,on,
 ,htop,on,
 ,pinentry-mac,on,
 ,smartmontools,on,
+,imagemagick,on,
+,ctop,on,
+,qemu,on,
 
 #################
 #               #
