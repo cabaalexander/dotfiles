@@ -91,4 +91,3 @@ setw -g mode-bg ${TMUX_DESIGN_DARK_RED}
 # =========
 setw -g window-status-bell-fg colour255
 setw -g window-status-bell-bg colour1
-

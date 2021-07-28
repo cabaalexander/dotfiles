@@ -17,7 +17,7 @@ $apps = @(
     'discord'
     'spotify'
     'sharpkeys'
-    'sharemouse'
+    'synergy'
 
     # stream
     'elgato-game-capture'

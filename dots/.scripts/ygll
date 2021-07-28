@@ -1,0 +1,32 @@
+#!/bin/bash
+set -Eeuo pipefail
+
+if ! [ -d "$HOME/.config/yarn/link" ]; then
+    echo "'yarn links' not initialized"
+    exit 1
+fi
+
+while getopts ":i" opt; do
+    case $opt in
+        i) install=1 ;;
+        :)
+            echo "No argument provided for option (-$OPTARG)"
+            ;;
+        \?)
+            echo "Invalid option (-$OPTARG)"
+            ;;
+    esac
+done
+shift $((OPTIND - 1))
+
+links=$(cd "$HOME/.config/yarn/link" && find . -type l | cut -c 3-)
+
+if [ -n "${install:-}" ]; then
+    while read -r link; do
+        yarn link "$link"
+    done <<<"$(fzf -m <<<"$links")"
+else
+    for link in "${links[@]}"; do
+        echo "$link"
+    done
+fi

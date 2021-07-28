@@ -1,0 +1,51 @@
+#!/bin/bash
+set -Eeuo pipefail
+
+if ! [ -d "node_modules" ]; then
+    echo "'node_modules' not installed"
+    exit 1
+fi
+
+get_field(){
+    local text
+    local field
+    text=$1
+    field=$2
+    eval "cut -d' ' -f$field <<<\"$text\""
+}
+
+format_relative_path(){
+    local text
+    text=$1
+    relative_config_path=$(
+        awk '{print $11}' <<<"$text" |
+            sed -E 's:(../)+::'
+    )
+    echo "$HOME/$relative_config_path"
+}
+
+format_link(){
+    local text
+    text=$1
+    awk '{print $9}' <<<"$text"
+}
+
+# loop each link and do stuffs on them
+find ./node_modules -maxdepth 3 -type l -ls |
+    grep link |
+    tr -s ' ' | cut -d' ' -f3- |
+    while read -r link_info; do
+        link=$(format_link "$link_info")
+
+        config_path=$(format_relative_path "$link_info")
+        config_basename=$(basename "$config_path")
+        config_basepath=${config_path%/*}
+
+        real_link_info=$(
+            cd "$config_basepath" && ls -lah |
+                grep "$config_basename"
+        )
+        real_path=$(format_relative_path "$real_link_info")
+
+        echo "$link -> $real_path"
+    done

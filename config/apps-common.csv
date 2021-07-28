@@ -31,6 +31,7 @@ f,neovim,on,
 ,gnupg,on,
 ,bat,on,
 f,rust,on,
+,httpie,on,
 
 ######
 #    #

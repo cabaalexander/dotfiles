@@ -1,0 +1,8 @@
+#!/bin/bash
+set -Eeuo pipefail
+
+if [ "$(~/.scripts/getos)" ==  "mac" ]; then
+    ~/.scripts/spotimac
+else
+    ~/.bin/spotify-now -i "%%artist - %%title ►" -e "Spotify ❌" -p "⏸︎"
+fi
