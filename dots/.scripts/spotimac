@@ -1,0 +1,25 @@
+#!/bin/bash
+set -Eeuo pipefail
+
+# documentation about osascript dictionary
+# https://apple.stackexchange.com/questions/46521/how-do-i-find-out-the-applescript-commands-available-for-a-particular-app
+
+paused="⏸️ "
+playing="▶️ "
+
+get() {
+    local cmd
+    cmd=${*:-}
+    osascript -e "tell application \"Spotify\" to $cmd"
+}
+
+if [ "$(get "player state as string")" == "paused" ]; then
+    state=$paused
+else
+    state=$playing
+fi
+
+artist=$(get "artist of current track as string")
+track=$(get "name of current track as string")
+
+echo "$state $artist [$track]"

@@ -1,0 +1,17 @@
+#!/bin/bash
+set -Eeuo pipefail
+
+if ! [ -d "node_modules" ]; then
+    echo "'node_modules' not installed"
+    exit 1
+fi
+
+# loop each link and do stuffs on them
+find ./node_modules -maxdepth 3 -type l -ls |
+    grep link |
+    awk '{print $11}' |
+    while read -r link; do
+        yarn unlink "$(cut -d'/' -f3- <<<"$link")"
+    done
+
+yarn install --check-files

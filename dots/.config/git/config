@@ -53,3 +53,5 @@
     newHighlight = green 22
 [init]
 	defaultBranch = main
+[pull]
+	rebase = true

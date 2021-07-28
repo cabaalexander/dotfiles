@@ -23,6 +23,8 @@ command! reload :write | restart
 
 " {{{ options
 
+" set only one window at startup
+:only
 set vicmd=nvim
 set number
 set relativenumber
@@ -206,6 +208,9 @@ set vifminfo=dhistory,chistory,state,tui,shistory,
 " program.
 
 " Pdf
+filetype *.pdf
+        \ {View in MacOS}
+        \ open %c
 filextype *.pdf zathura %c %i &, apvlv %c, xpdf %c
 fileviewer *.pdf pdftotext -nopgbrk %c -
 
@@ -267,7 +272,9 @@ filetype *.[1-8] man ./%c
 fileviewer *.[1-8] man ./%c | col -b
 
 " Images
-filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
+filetype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
+        \ {Open quicklook in macOS}
+        \ qlmanage -p %c > /dev/null 2>&1,
         \ {View in sxiv}
         \ sxiv %f,
         \ {View in gpicview}
@@ -445,6 +452,8 @@ nnoremap <space> <nop>
 nnoremap <space>q  :q<cr>
 nnoremap <space>x  :qa<cr>
 nnoremap <space>X  :qa!<cr>
+
+" show file type
 nnoremap <space>tp :echo filetype('.')<cr>
 
 " ###############
