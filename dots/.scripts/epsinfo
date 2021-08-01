@@ -1,0 +1,53 @@
+#!/usr/bin/env node
+const https = require('http')
+const options = {
+  hostname: '0.0.0.0',
+  port: 8000,
+  path: '/',
+  method: 'GET'
+}
+
+const processData = (data) => {
+  const dataObject = JSON.parse(data)
+  const defaultItemsObject = {
+    miami: [],
+    shipped: [],
+    ready: [],
+  }
+
+  const itemsReducer =   (acc, item) => {
+    const statusMapper = {
+      'status1': 'miami',
+      'status2': 'shipped',
+      'status5': 'ready',
+    }
+
+    const itemStatus = statusMapper[item.status]
+
+    if (itemStatus) {
+      acc[itemStatus].push(item)
+    }
+
+    return acc
+  }
+
+  const {miami, shipped, ready} = dataObject.items.reduce(
+    itemsReducer,
+    defaultItemsObject,
+  )
+
+  return `[📦] 🏬 ${miami.length} - ✈️  ${shipped.length} - 🏠 ${ready.length}`
+}
+
+const req = https.request(options, res => {
+  res.on('data', data => {
+    process.stdout.write(processData(data))
+  })
+})
+
+req.on('error', error => {
+  console.error(error)
+  process.stdout.write('[📦] 💩')
+})
+
+req.end()
