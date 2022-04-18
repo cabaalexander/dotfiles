@@ -40,9 +40,15 @@ a,sequel-ace,off,
 ,imagemagick,on,
 ,ctop,on,
 ,qemu,on,
-,composer,off,
-,php@7.4,off,
 ,pyenv,on,
+
+#######
+#     #
+# PHP #
+#     #
+#######
+,php@7.4,off,
+,composer,off,
 
 #################
 #               #

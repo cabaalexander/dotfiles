@@ -154,3 +154,4 @@ alias reset-bluetooth='sudo rfkill block bluetooth && sleep 0.1 && sudo rfkill u
 alias reset-xmodmap='setxkbmap'
 alias syncclock='timedatectl set-ntp true'
 alias diskhealth='smartctl --all /dev/disk0'
+alias hostsupdate='sudo killall -HUP mDNSResponder'

@@ -37,12 +37,18 @@ addToPath ~/.cargo/bin
 # dotnet
 addToPath ~/.dotnet
 
+# pyenv
+addToPath $(pyenv root)/shims
+
 # php@7.4
 addToPath /usr/local/opt/php@7.4/bin
 addToPath /usr/local/opt/php@7.4/sbin
 
-# pyenv
-addToPath $(pyenv root)/shims
+########################
+#                      #
+# This need to go last #
+#                      #
+########################
 
 # ruby (homebrew)
 addToPath /usr/local/opt/ruby/bin
@@ -50,12 +56,6 @@ addToPath /usr/local/lib/ruby/gems/3.0.0/bin
 export LDFLAGS="-L/usr/local/opt/ruby/lib"
 export CPPFLAGS="-I/usr/local/opt/ruby/include"
 export PKG_CONFIG_PATH="/usr/local/opt/ruby/lib/pkgconfig"
-
-########################
-#                      #
-# This need to go last #
-#                      #
-########################
 
 # Load RVM into a shell session *as a function*
 [[ -s ~/.rvm/scripts/rvm ]] && . ~/.rvm/scripts/rvm

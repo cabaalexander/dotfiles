@@ -5,5 +5,5 @@ sudo lsof -i4 -P -n |
     grep LISTEN |
     awk '{print $1 "     \t" $9}' |
     sed -E 's/[[:digit:]*.]+://' |
-    uniq |
-    sort -nk 2
+    sort -nk 2 |
+    uniq

@@ -8,7 +8,7 @@ PREFIX=$(pwd |
     tr '[:upper:]' '[:lower:]')
 PRUNE_BRANCHES="${HOME}/.dots/${PREFIX}-prune-remote-branches"
 
-git checkout master
+git checkout "$(gmain)"
 git fetch && git pull --rebase origin "$(gmain)"
 
 git merge --ff-only "$CURRENT_BRANCH"
