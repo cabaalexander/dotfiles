@@ -25,6 +25,7 @@ a,utm,off,
 a,streamlabs-obs,on,
 a,inkscape,on,
 a,synergy,on,
+a,sequel-ace,off,
 
 ########
 #      #
@@ -39,6 +40,9 @@ a,synergy,on,
 ,imagemagick,on,
 ,ctop,on,
 ,qemu,on,
+,composer,off,
+,php@7.4,off,
+,pyenv,on,
 
 #################
 #               #

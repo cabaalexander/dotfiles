@@ -37,6 +37,13 @@ addToPath ~/.cargo/bin
 # dotnet
 addToPath ~/.dotnet
 
+# php@7.4
+addToPath /usr/local/opt/php@7.4/bin
+addToPath /usr/local/opt/php@7.4/sbin
+
+# pyenv
+addToPath $(pyenv root)/shims
+
 # ruby (homebrew)
 addToPath /usr/local/opt/ruby/bin
 addToPath /usr/local/lib/ruby/gems/3.0.0/bin
