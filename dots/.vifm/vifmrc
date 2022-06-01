@@ -433,6 +433,7 @@ filextype *.svg
 
 " {{{ mappings
 
+" change colon to semi-color (so no need to shift for command)
 nnoremap ; :
 nnoremap : ;
 
@@ -455,6 +456,13 @@ nnoremap <space>X  :qa!<cr>
 
 " show file type
 nnoremap <space>tp :echo filetype('.')<cr>
+
+" leave 'only' current pane
+nnoremap <space>o :only<cr>
+
+" split screen
+nnoremap <space>v :vsplit<cr>
+nnoremap <space>s :split<cr>
 
 " ###############
 " #             #

@@ -2,17 +2,16 @@
 
 # Git pulls "hard" from a repo
 
-MESSAGE=$"\
-Are you sure that you want to pull hard ? \
-Really, reaaally hard ? ( ͡° ͜ʖ ͡°) [y, n]: \
-"
+CURRENT_BRANCH=$(gcb)
 
-read -rsn1 -p "$MESSAGE" IS_HARD
+MESSAGE="This will perform a hard reset with the branch \
+'origin/$CURRENT_BRANCH'."
+
+echo -e $MESSAGE
+read -rsn1 -p "Do you wish to continue ? [y, n]: " IS_HARD
 echo
 
 [ "$IS_HARD" != "y" ] && exit 1
-
-CURRENT_BRANCH=$(gcb)
 
 echo "Fetching..."
 git fetch origin "$CURRENT_BRANCH" &> /dev/null

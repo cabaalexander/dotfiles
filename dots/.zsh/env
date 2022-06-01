@@ -28,6 +28,7 @@ export SPACESHIP_GIT_BRANCH_COLOR="green"
 export SPACESHIP_CHAR_SYMBOL="↪ "
 export SPACESHIP_JOBS_SYMBOL="♦"
 export SPACESHIP_DOCKER_SHOW="false"
+export SPACESHIP_GCLOUD_SHOW="false"
 
 # GPG
 # ===

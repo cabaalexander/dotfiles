@@ -45,3 +45,5 @@ bind -r L resize-pane -R 4
 # Swap window
 TMUX_SWAP_WINDOWS="#(~/.tmux/scripts/listwindows.sh)"
 bind C-m command-prompt -p " #S ${TMUX_SWAP_WINDOWS} : Select window to swap :" "swap-window -t %%"
+
+bind M show-messages

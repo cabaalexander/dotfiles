@@ -7,3 +7,7 @@ Session*.vim
 
 # custom
 .nic
+
+# vscode
+.DS_Store
+.vscode/
