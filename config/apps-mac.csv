@@ -41,6 +41,8 @@ a,sequel-pro,off,
 ,ctop,on,
 ,qemu,on,
 ,pyenv,on,
+# astro vim requirements
+,lazygit,on,
 
 #######
 #     #

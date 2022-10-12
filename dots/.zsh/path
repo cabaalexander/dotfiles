@@ -44,6 +44,9 @@ addToPath $(pyenv root)/shims
 addToPath /usr/local/opt/php@7.4/bin
 addToPath /usr/local/opt/php@7.4/sbin
 
+# vscode
+addToPath /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/
+
 ########################
 #                      #
 # This need to go last #

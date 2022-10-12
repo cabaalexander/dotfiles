@@ -1,5 +1,5 @@
 # VIM
-Session*.vim
+Session*.vim*
 *.un~
 
 # NPM
@@ -10,4 +10,3 @@ Session*.vim
 
 # vscode
 .DS_Store
-.vscode/
