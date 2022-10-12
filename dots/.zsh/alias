@@ -19,8 +19,11 @@ alias lsgst='git stash list'
 alias gr='git remote'
 alias grl='git reflog'
 alias gst='git stash'
+alias gsts='git stash show -p'
+alias gsta='git stash apply'
 alias grs='git reset'
 alias uptrefs='git fetch origin --prune'
+alias gdir='echo $( cd $(git rev-parse --show-cdup); pwd)'
 
 # Fetch
 # =====

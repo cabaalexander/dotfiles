@@ -1,8 +1,23 @@
 #!/bin/bash
 
+while getopts ":b:r:" opt; do
+    case $opt in
+        b) branch="$OPTARG" ;;
+        r) remote="$OPTARG" ;;
+        :)
+            echo "No argument provided for option (-$OPTARG)"
+            ;;
+        \?)
+            echo "Invalid option (-$OPTARG)"
+            ;;
+    esac
+done
+shift $((OPTIND - 1))
+
 # Git pulls "hard" from a repo
 
-CURRENT_BRANCH=$(gcb)
+CURRENT_BRANCH=${branch:-$(gcb)}
+ORIGIN=${remote:-origin}
 
 MESSAGE="This will perform a hard reset with the branch \
 'origin/$CURRENT_BRANCH'."
@@ -14,6 +29,6 @@ echo
 [ "$IS_HARD" != "y" ] && exit 1
 
 echo "Fetching..."
-git fetch origin "$CURRENT_BRANCH" &> /dev/null
-git reset --hard "origin/$CURRENT_BRANCH"
+git fetch "$ORIGIN" "$CURRENT_BRANCH" &> /dev/null
+git reset --hard "$ORIGIN/$CURRENT_BRANCH"
 
