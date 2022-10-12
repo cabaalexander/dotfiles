@@ -2,7 +2,8 @@
 set -Eeuo pipefail
 
 if command -v gpg &> /dev/null; then
-    if gpg -K | grep 'cabaalexander' &> /dev/null; then
+    if gpg -K | grep 'cabaalexander' &> /dev/null && \
+    [ "$(git config user.name)" == "cabaalexander" ]; then
         sighned="-S";
     fi
 fi

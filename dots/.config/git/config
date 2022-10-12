@@ -2,6 +2,8 @@
     email = cabaalexander321@gmail.com
     name = cabaalexander
     signingkey = DB56C615C371EF8E
+[includeIf "gitdir:~/work/baires/**"]
+    path = ~/.config/git/config-work
 [alias]
     chp = cherry-pick
     unstage = reset HEAD --

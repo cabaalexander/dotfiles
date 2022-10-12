@@ -1,0 +1,7 @@
+# vim: ft=gitconfig
+[user]
+	email = 109443845+nicanordelacruz@users.noreply.github.com
+	name = nicanordelacruz
+
+[core]
+    sshCommand = "ssh -i ~/.ssh/id_rsa_work"
