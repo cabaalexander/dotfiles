@@ -2,18 +2,14 @@
 // epsinfo
 // status bar for: https://github.com/cabaalexander/eps-packages-scrapping-api
 const https = require('http')
-const options = {
-  hostname: '0.0.0.0',
-  port: 8000,
-  path: '/',
-  method: 'GET'
-}
 
+// {{{ processData
 const processData = (data) => {
   const dataObject = JSON.parse(data)
   const defaultItemsObject = {
     miami: [],
     shipped: [],
+    island: [],
     ready: [],
   }
 
@@ -21,10 +17,10 @@ const processData = (data) => {
     const statusMapper = {
       'status1': 'miami',
       'status2': 'shipped',
-      'status5': 'ready',
+      'status7': 'ready',
     }
 
-    const itemStatus = statusMapper[item.status] || 'shipped'
+    const itemStatus = statusMapper[item.status] || 'island'
 
     if (itemStatus) {
       acc[itemStatus].push(item)
@@ -33,12 +29,21 @@ const processData = (data) => {
     return acc
   }
 
-  const {miami, shipped, ready} = dataObject.items.reduce(
+  const {miami, shipped, island, ready} = dataObject.items.reduce(
     itemsReducer,
     defaultItemsObject,
   )
 
-  return `[📦] 🏬 ${miami.length} - ✈️  ${shipped.length} - 🏠 ${ready.length}`
+  return `[📦] 🏬 ${miami.length} - ✈️  ${shipped.length} - 🏝  ${island.length} - 🏠 ${ready.length}`
+}
+// }}}
+
+// {{{ request
+const options = {
+  hostname: '0.0.0.0',
+  port: 8000,
+  path: '/',
+  method: 'GET'
 }
 
 const req = https.request(options, res => {
@@ -53,3 +58,4 @@ req.on('error', error => {
 })
 
 req.end()
+// }}}
