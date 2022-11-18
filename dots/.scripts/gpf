@@ -29,6 +29,6 @@ echo
 [ "$IS_HARD" != "y" ] && exit 1
 
 echo "Fetching..."
-git fetch "$ORIGIN" "$CURRENT_BRANCH" &> /dev/null
+git fetch "$ORIGIN" "$CURRENT_BRANCH"
 git reset --hard "$ORIGIN/$CURRENT_BRANCH"
 

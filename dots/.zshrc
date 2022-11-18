@@ -32,3 +32,8 @@ unsetopt MULTIOS
 # google cloud platform
 sourceIfExists /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
 sourceIfExists /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+
+# heroku autocomplete setup
+HEROKU_AC_ZSH_SETUP_PATH=/Users/cabaalexander/Library/Caches/heroku/autocomplete/zsh_setup \
+    && test -f $HEROKU_AC_ZSH_SETUP_PATH \
+    && source $HEROKU_AC_ZSH_SETUP_PATH;

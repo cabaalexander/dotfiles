@@ -46,4 +46,8 @@ bind -r L resize-pane -R 4
 TMUX_SWAP_WINDOWS="#(~/.tmux/scripts/listwindows.sh)"
 bind C-m command-prompt -p " #S ${TMUX_SWAP_WINDOWS} : Select window to swap :" "swap-window -t %%"
 
+# show tmux messages
 bind M show-messages
+
+# check eps-scapping-api
+bind e run-shell "curl localhost:8000 | jq ."
