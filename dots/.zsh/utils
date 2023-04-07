@@ -67,15 +67,7 @@ killport(){
 }
 
 ee(){
-    # Opens vin in current directory (And 'Session.vim' if exists)
-    local FILE=$1
-    clear
-    if [ -f ./Session.vim ] && [ -z "${FILE}" ]
-    then
-        nvim -S
-    else
-        nvim "${@}"
-    fi
+    clear && nvim
 }
 
 gpr(){
