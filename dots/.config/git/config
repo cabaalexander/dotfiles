@@ -1,9 +1,14 @@
+# main user, MAIN !!!
 [user]
-    email = cabaalexander321@gmail.com
-    name = cabaalexander
+    email = "cabaalexander321@gmail.com"
+    name = "cabaalexander"
     signingkey = DB56C615C371EF8E
-[includeIf "gitdir:~/work/baires/**"]
-    path = ~/.config/git/config-work
+# overwrite: email, name and sshKey (with ssh command <file>)
+[includeIf "gitdir:baires/"]
+    path = config-work
+[includeIf "gitdir:nexstar/"]
+    path = config-nexstar
+# common config
 [alias]
     chp = cherry-pick
     unstage = reset HEAD --

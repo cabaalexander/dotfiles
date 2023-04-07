@@ -1,0 +1,84 @@
+#!/bin/bash
+set -Eeuo pipefail
+
+show_help() {
+	# TODO: finish help documentation
+	cat <<EOF
+-- gclc : Help
+
+Options
+  name    : config name you want to use
+EOF
+}
+
+get_config() {
+	cat $GIT_CONFIG_PATH/$selected_config |
+		grep -v "#" |
+		egrep "$1\s*=" |
+		sed 's:.*"\(.*\).*":\1:' || echo ""
+}
+
+set_automatic_config() {
+	directories_config_path=(
+		"nexstar;nexstar"
+		"baires;work"
+	)
+
+	for item in ${directories_config_path[*]}; do
+		IFS=';' read -r -a directory_config <<<"$item"
+		directory="${directory_config[0]}"
+		config="${directory_config[1]}"
+
+		if [[ "$PWD" =~ "$directory" ]]; then
+			config_name="$config"
+		fi
+	done
+}
+
+GIT_CONFIG_PATH=~/.config/git
+
+config_name=""
+
+# parse ocnfig name
+while getopts "h?n:" opt; do
+	case "$opt" in
+	h | \?)
+		show_help
+		exit 0
+		;;
+	n)
+		config_name=$OPTARG
+		;;
+	esac
+done
+shift $((OPTIND - 1))
+
+# set config name automatically based on `pwd` path
+if [ -z "$config_name" ]; then
+	set_automatic_config
+fi
+
+# get configs
+configs=$(ls $GIT_CONFIG_PATH | grep "config")
+
+filtered_configs=($(grep "$config_name" <<<"$configs"))
+
+selected_config=${filtered_configs[0]}
+
+echo "Active config: $selected_config"
+echo "=============="
+
+config_name=$(get_config name)
+config_email=$(get_config email)
+config_ssh=$(get_config sshCommand)
+
+if [ -n "$config_ssh" ]; then
+	computed_ssh_cmd="GIT_SSH_COMMAND=\"$config_ssh\" "
+fi
+
+# format command and execute
+eval "${computed_ssh_cmd:-}\
+git clone \
+--config user.name=\"$config_name\" \
+--config user.email=\"$config_email\" \
+${1:-}"
