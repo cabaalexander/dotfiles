@@ -3,16 +3,18 @@
 # This `add`, `commit --amend` and `git push -f --no-verify`
 # all the changes in the current branch to its remote one
 
-if command -v gpg &> /dev/null; then
-    if gpg -K | grep 'cabaalexander' &> /dev/null; then
-        sighned="-S";
-    fi
+if command -v gpg &>/dev/null; then
+	gpg_key_exists="$(gpg -K | grep -E 'uid.*cabaalexander')"
+	git_user="$(git config user.name)"
+	if [ -n "$gpg_key_exists" ] && [ $git_user == "cabaalexander" ]; then
+		sighned="-S"
+	fi
 fi
 
 CURRENT_BBRANCH=$(gcb)
 
 if protected_branch "$CURRENT_BBRANCH" "$@"; then
-    exit 1
+	exit 1
 fi
 
 git add -A
