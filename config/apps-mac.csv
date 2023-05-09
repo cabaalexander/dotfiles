@@ -43,6 +43,7 @@ a,sequel-pro,off,
 ,pyenv,on,
 # astro vim requirements
 ,lazygit,on,
+,volta,on,
 
 #######
 #     #

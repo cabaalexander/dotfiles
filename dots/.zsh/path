@@ -12,10 +12,6 @@ addToPath(){
 # homebrew
 addToPath /opt/homebrew/bin
 
-# nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -46,6 +42,9 @@ addToPath /usr/local/opt/php@8.0/sbin
 
 # vscode
 addToPath /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/
+
+# volta
+addToPath $VOLTA_HOME/bin
 
 ########################
 #                      #

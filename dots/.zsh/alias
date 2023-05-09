@@ -81,17 +81,11 @@ alias grls='npx semantic-release'
 # LS'
 # ====
 alias lsgem='gem list'
-alias lsnvm='nvm list'
 alias lspip='pip3 list'
 alias lsnpm='npm ls --depth 0'
 alias lspath='for I in $(tr : " " <<<$PATH);do echo $I; done'
 alias lsfonts='fc-list'
 alias lspackages='pacman -Qm'
-
-# NVM
-# ===
-alias nvmv='nvm current'
-alias nvmd='nvm alias default '
 
 # NPM
 # ===

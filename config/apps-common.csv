@@ -46,8 +46,8 @@ f,rust,on,
 # NodeJS #
 #        #
 ##########
-f,nvm,on,
-,yarn,on,
+f,nvm,off,
+,yarn,off,
 node,peerflix,off,
 node,vtop,on,
 node,elm@0.18.0,off,
@@ -57,10 +57,10 @@ node,live-server,on,
 node,alex,on,
 node,bs-platform,off,
 node,commitizen,on,
-node,git-cz,on,
 node,gatsby-cli,off,
 node,surge,off,
 node,diff-so-fancy,on,
+node,ngrok,on,
 
 ########
 #      #

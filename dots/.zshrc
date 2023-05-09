@@ -37,3 +37,5 @@ sourceIfExists /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/comp
 HEROKU_AC_ZSH_SETUP_PATH=/Users/cabaalexander/Library/Caches/heroku/autocomplete/zsh_setup \
     && test -f $HEROKU_AC_ZSH_SETUP_PATH \
     && source $HEROKU_AC_ZSH_SETUP_PATH;
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"

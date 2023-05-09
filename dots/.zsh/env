@@ -47,3 +47,6 @@ export VIFM="$HOME/.vifm"
 if [ -n "$IS_VAGRANT" ]; then
     export ZSH_TMUX_AUTOSTART=true
 fi
+
+# volta
+VOLTA_HOME="$HOME/.volta"
