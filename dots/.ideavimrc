@@ -1,0 +1,17 @@
+set relativenumber
+set number
+
+" set <leader> to <space>
+let mapleader = " "
+nnoremap <leader>ee :e ~/.ideavimrc<CR>
+nnoremap <leader>er :source ~/.ideavimrc<CR>
+
+" Press `f` to activate AceJump
+" nnoremap <leader>f <Action>(AceAction)
+nnoremap <leader>f :action AceAction<CR>
+" Press `F` to activate Target Mode
+nnoremap <leader>F :action AceTargetAction<CR>
+
+" undo friendly
+nnoremap <C-r> <NOP>
+nnoremap U <C-r>

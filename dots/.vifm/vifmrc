@@ -1,5 +1,7 @@
 " vim: filetype=vim
 
+set vicmd=vim
+
 " {{{ commands
 
 " :com[mand][!] command_name action

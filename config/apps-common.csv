@@ -61,6 +61,7 @@ node,git-cz,on,
 node,gatsby-cli,off,
 node,surge,off,
 node,diff-so-fancy,on,
+node,wrangler,on,
 
 ########
 #      #
