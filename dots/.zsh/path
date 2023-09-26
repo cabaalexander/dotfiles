@@ -47,6 +47,9 @@ addToPath /usr/local/opt/php@8.0/sbin
 # vscode
 addToPath /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/
 
+# bun
+addToPath ~/.bun/bin
+
 ########################
 #                      #
 # This need to go last #
