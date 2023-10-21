@@ -118,10 +118,10 @@ __set_zsh() {
     chsh -s "$(grep "/zsh$" /etc/shells | tail -1)"
 }
 
-__become_god_shell() {
-    sudo bash -c "echo \"$GOD_SHELL_NAME\" | (EDITOR=\"tee -a\" visudo)" \
-        &> /dev/null
-}
+# __become_god_shell() {
+#     sudo bash -c "echo \"$GOD_SHELL_NAME\" | (EDITOR=\"tee -a\" visudo)" \
+#         &> /dev/null
+# }
 
 __initialize_main_directories() {
     for directory in ${MAIN_DIRECTORIES[*]}; do
@@ -139,7 +139,7 @@ main() {
     local OS CSV_SUFFIX DEFAULT_APPS_FILES APPS_FILES APPS_FILE
 
     # This is to catch the password for later use if needed ;)
-    __become_god_shell
+    # __become_god_shell
     __initialize_main_directories
 
     echo "[Installing]..."
