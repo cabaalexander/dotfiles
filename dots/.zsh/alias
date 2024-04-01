@@ -161,3 +161,4 @@ alias diskhealth='smartctl --all /dev/disk0'
 alias hostsupdate='sudo killall -HUP mDNSResponder'
 alias resetaudio='sudo killall coreaudiod'
 alias check='rg -g \!.git --hidden'
+alias checkport='nc -zv ' # <ip> <port>

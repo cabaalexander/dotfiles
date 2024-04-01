@@ -3,6 +3,8 @@ set -Eeuo pipefail
 
 if git branch -a | grep 'master' &> /dev/null; then
     echo "master"
+elif git branch -a | grep 'stable' &> /dev/null; then
+    echo "stable"
 else
     echo "main"
 fi

@@ -4,6 +4,12 @@ set -Eeuo pipefail
 # documentation about osascript dictionary
 # https://apple.stackexchange.com/questions/46521/how-do-i-find-out-the-applescript-commands-available-for-a-particular-app
 
+# exit if spotify is not running
+if ! ps aux | grep -v grep | grep spotify &> /dev/null; then
+  echo "🎹"
+  exit 1
+fi
+
 paused="⏸️ "
 playing="▶️ "
 
@@ -22,4 +28,4 @@ fi
 artist=$(get "artist of current track as string")
 track=$(get "name of current track as string")
 
-echo "$state $artist [$track]"
+echo "$state$artist [$track]"

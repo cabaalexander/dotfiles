@@ -41,8 +41,8 @@ addToPath ~/.dotnet
 addToPath $(pyenv root)/shims
 
 # php@7.4
-addToPath /usr/local/opt/php@8.0/bin
-addToPath /usr/local/opt/php@8.0/sbin
+addToPath /usr/local/opt/php@8.1/bin
+addToPath /usr/local/opt/php@8.1/sbin
 
 # vscode
 addToPath /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/

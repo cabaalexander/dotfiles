@@ -34,7 +34,7 @@ const processData = (data) => {
     defaultItemsObject,
   )
 
-  return `[📦] 🏬 ${miami.length} - ✈️  ${shipped.length} - 🏝  ${island.length} - 🏠 ${ready.length}`
+  return `📦: 🏬 ${miami.length} - ✈️  ${shipped.length} - 🏝  ${island.length} - 🏠 ${ready.length}`
 }
 // }}}
 
@@ -54,7 +54,7 @@ const req = https.request(options, res => {
 
 req.on('error', error => {
   console.error(error)
-  process.stdout.write('[📦] 💩')
+  process.stdout.write('📦')
 })
 
 req.end()

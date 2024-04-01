@@ -34,6 +34,7 @@ f,rust,on,
 ,httpie,on,
 ,watch,on,
 f,bun,on,
+,direnv,on,
 
 ######
 #    #

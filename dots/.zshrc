@@ -44,3 +44,6 @@ HEROKU_AC_ZSH_SETUP_PATH=/Users/cabaalexander/Library/Caches/heroku/autocomplete
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# direnv
+eval "$(direnv hook zsh)"

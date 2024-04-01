@@ -10,9 +10,7 @@ Session*.vim*
 
 # vscode
 .DS_Store
+.vscode
 
 # nexstar
 plugins/es-wp-query
-
-# test
-coverage/
