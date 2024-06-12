@@ -26,6 +26,7 @@ a,streamlabs-obs,on,
 a,inkscape,on,
 a,synergy,on,
 a,sequel-pro,off,
+a,orbstack,on,
 
 ########
 #      #
@@ -42,7 +43,6 @@ a,sequel-pro,off,
 ,qemu,on,
 ,pyenv,on,
 ,gh,on,
-# astro vim requirements
 ,lazygit,on,
 
 #######
